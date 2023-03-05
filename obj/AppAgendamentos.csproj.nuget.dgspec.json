@@ -1,0 +1,64 @@
+{
+  "format": 1,
+  "restore": {
+    "/home/jvprotano/Workspace/AppAgendamentos/AppAgendamentos.csproj": {}
+  },
+  "projects": {
+    "/home/jvprotano/Workspace/AppAgendamentos/AppAgendamentos.csproj": {
+      "version": "1.0.0",
+      "restore": {
+***REMOVED***"projectUniqueName": "/home/jvprotano/Workspace/AppAgendamentos/AppAgendamentos.csproj",
+***REMOVED***"projectName": "AppAgendamentos",
+***REMOVED***"projectPath": "/home/jvprotano/Workspace/AppAgendamentos/AppAgendamentos.csproj",
+***REMOVED***"packagesPath": "/home/jvprotano/.nuget/packages/",
+***REMOVED***"outputPath": "/home/jvprotano/Workspace/AppAgendamentos/obj/",
+***REMOVED***"projectStyle": "PackageReference",
+***REMOVED***"configFilePaths": [
+***REMOVED***  "/home/jvprotano/.nuget/NuGet/NuGet.Config"
+***REMOVED***],
+***REMOVED***"originalTargetFrameworks": [
+***REMOVED***  "net7.0"
+***REMOVED***],
+***REMOVED***"sources": {
+***REMOVED***  "https://api.nuget.org/v3/index.json": {}
+***REMOVED***},
+***REMOVED***"frameworks": {
+***REMOVED***  "net7.0": {
+***REMOVED***    "targetAlias": "net7.0",
+***REMOVED***    "projectReferences": {}
+***REMOVED***  }
+***REMOVED***},
+***REMOVED***"warningProperties": {
+***REMOVED***  "warnAsError": [
+***REMOVED***    "NU1605"
+***REMOVED***  ]
+***REMOVED***}
+      },
+      "frameworks": {
+***REMOVED***"net7.0": {
+***REMOVED***  "targetAlias": "net7.0",
+***REMOVED***  "imports": [
+***REMOVED***    "net461",
+***REMOVED***    "net462",
+***REMOVED***    "net47",
+***REMOVED***    "net471",
+***REMOVED***    "net472",
+***REMOVED***    "net48",
+***REMOVED***    "net481"
+***REMOVED***  ],
+***REMOVED***  "assetTargetFallback": true,
+***REMOVED***  "warn": true,
+***REMOVED***  "frameworkReferences": {
+***REMOVED***    "Microsoft.AspNetCore.App": {
+***REMOVED***      "privateAssets": "none"
+***REMOVED***    },
+***REMOVED***    "Microsoft.NETCore.App": {
+***REMOVED***      "privateAssets": "all"
+***REMOVED***    }
+***REMOVED***  },
+***REMOVED***  "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/7.0.201/RuntimeIdentifierGraph.json"
+***REMOVED***}
+      }
+    }
+  }
+}

@@ -1,0 +1,49 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - AppAgendamentos</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/AppAgendamentos.styles.css" asp-append-version="true" />
+</head>
+<body>
+    <header>
+***REMOVED***<nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+***REMOVED***    <div class="container-fluid">
+***REMOVED******REMOVED***<a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">AppAgendamentos</a>
+***REMOVED******REMOVED***<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+***REMOVED******REMOVED******REMOVED***aria-expanded="false" aria-label="Toggle navigation">
+***REMOVED******REMOVED***    <span class="navbar-toggler-icon"></span>
+***REMOVED******REMOVED***</button>
+***REMOVED******REMOVED***<div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+***REMOVED******REMOVED***    <ul class="navbar-nav flex-grow-1">
+***REMOVED******REMOVED******REMOVED***<li class="nav-item">
+***REMOVED******REMOVED******REMOVED***    <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+***REMOVED******REMOVED******REMOVED***</li>
+***REMOVED******REMOVED******REMOVED***<li class="nav-item">
+***REMOVED******REMOVED******REMOVED***    <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+***REMOVED******REMOVED******REMOVED***</li>
+***REMOVED******REMOVED***    </ul>
+***REMOVED******REMOVED***</div>
+***REMOVED***    </div>
+***REMOVED***</nav>
+    </header>
+    <div class="container">
+***REMOVED***<main role="main" class="pb-3">
+***REMOVED***    @RenderBody()
+***REMOVED***</main>
+    </div>
+
+    <footer class="border-top footer text-muted">
+***REMOVED***<div class="container">
+***REMOVED***    &copy; 2023 - AppAgendamentos - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+***REMOVED***</div>
+    </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

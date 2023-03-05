@@ -1,0 +1,69 @@
+{
+  "version": 3,
+  "targets": {
+    "net7.0": {}
+  },
+  "libraries": {},
+  "projectFileDependencyGroups": {
+    "net7.0": []
+  },
+  "packageFolders": {
+    "/home/jvprotano/.nuget/packages/": {}
+  },
+  "project": {
+    "version": "1.0.0",
+    "restore": {
+      "projectUniqueName": "/home/jvprotano/Workspace/AppAgendamentos/AppAgendamentos.csproj",
+      "projectName": "AppAgendamentos",
+      "projectPath": "/home/jvprotano/Workspace/AppAgendamentos/AppAgendamentos.csproj",
+      "packagesPath": "/home/jvprotano/.nuget/packages/",
+      "outputPath": "/home/jvprotano/Workspace/AppAgendamentos/obj/",
+      "projectStyle": "PackageReference",
+      "configFilePaths": [
+***REMOVED***"/home/jvprotano/.nuget/NuGet/NuGet.Config"
+      ],
+      "originalTargetFrameworks": [
+***REMOVED***"net7.0"
+      ],
+      "sources": {
+***REMOVED***"https://api.nuget.org/v3/index.json": {}
+      },
+      "frameworks": {
+***REMOVED***"net7.0": {
+***REMOVED***  "targetAlias": "net7.0",
+***REMOVED***  "projectReferences": {}
+***REMOVED***}
+      },
+      "warningProperties": {
+***REMOVED***"warnAsError": [
+***REMOVED***  "NU1605"
+***REMOVED***]
+      }
+    },
+    "frameworks": {
+      "net7.0": {
+***REMOVED***"targetAlias": "net7.0",
+***REMOVED***"imports": [
+***REMOVED***  "net461",
+***REMOVED***  "net462",
+***REMOVED***  "net47",
+***REMOVED***  "net471",
+***REMOVED***  "net472",
+***REMOVED***  "net48",
+***REMOVED***  "net481"
+***REMOVED***],
+***REMOVED***"assetTargetFallback": true,
+***REMOVED***"warn": true,
+***REMOVED***"frameworkReferences": {
+***REMOVED***  "Microsoft.AspNetCore.App": {
+***REMOVED***    "privateAssets": "none"
+***REMOVED***  },
+***REMOVED***  "Microsoft.NETCore.App": {
+***REMOVED***    "privateAssets": "all"
+***REMOVED***  }
+***REMOVED***},
+***REMOVED***"runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/7.0.201/RuntimeIdentifierGraph.json"
+      }
+    }
+  }
+}

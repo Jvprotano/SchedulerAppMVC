@@ -1,0 +1,35 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+***REMOVED***{
+***REMOVED***    // Use IntelliSense to find out which attributes exist for C# debugging
+***REMOVED***    // Use hover for the description of the existing attributes
+***REMOVED***    // For further information visit https://github.com/OmniSharp/omnisharp-vscode/blob/master/debugger-launchjson.md
+***REMOVED***    "name": ".NET Core Launch (web)",
+***REMOVED***    "type": "coreclr",
+***REMOVED***    "request": "launch",
+***REMOVED***    "preLaunchTask": "build",
+***REMOVED***    // If you have changed target frameworks, make sure to update the program path.
+***REMOVED***    "program": "${workspaceFolder}/bin/Debug/net7.0/AppAgendamentos.dll",
+***REMOVED***    "args": [],
+***REMOVED***    "cwd": "${workspaceFolder}",
+***REMOVED***    "stopAtEntry": false,
+***REMOVED***    // Enable launching a web browser when ASP.NET Core starts. For more information: https://aka.ms/VSCode-CS-LaunchJson-WebBrowser
+***REMOVED***    "serverReadyAction": {
+***REMOVED******REMOVED***"action": "openExternally",
+***REMOVED******REMOVED***"pattern": "\\bNow listening on:\\s+(https?://\\S+)"
+***REMOVED***    },
+***REMOVED***    "env": {
+***REMOVED******REMOVED***"ASPNETCORE_ENVIRONMENT": "Development"
+***REMOVED***    },
+***REMOVED***    "sourceFileMap": {
+***REMOVED******REMOVED***"/Views": "${workspaceFolder}/Views"
+***REMOVED***    }
+***REMOVED***},
+***REMOVED***{
+***REMOVED***    "name": ".NET Core Attach",
+***REMOVED***    "type": "coreclr",
+***REMOVED***    "request": "attach"
+***REMOVED***}
+    ]
+}
