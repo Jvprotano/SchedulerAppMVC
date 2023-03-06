@@ -10,11 +10,11 @@
 ***REMOVED***"projectUniqueName": "/home/jvprotano/Workspace/AppAgendamentos/AppAgendamentos.csproj",
 ***REMOVED***"projectName": "AppAgendamentos",
 ***REMOVED***"projectPath": "/home/jvprotano/Workspace/AppAgendamentos/AppAgendamentos.csproj",
-***REMOVED***"packagesPath": "/home/jvprotano/.nuget/packages/",
+***REMOVED***"packagesPath": "/root/.nuget/packages/",
 ***REMOVED***"outputPath": "/home/jvprotano/Workspace/AppAgendamentos/obj/",
 ***REMOVED***"projectStyle": "PackageReference",
 ***REMOVED***"configFilePaths": [
-***REMOVED***  "/home/jvprotano/.nuget/NuGet/NuGet.Config"
+***REMOVED***  "/root/.nuget/NuGet/NuGet.Config"
 ***REMOVED***],
 ***REMOVED***"originalTargetFrameworks": [
 ***REMOVED***  "net7.0"
@@ -37,6 +37,18 @@
       "frameworks": {
 ***REMOVED***"net7.0": {
 ***REMOVED***  "targetAlias": "net7.0",
+***REMOVED***  "dependencies": {
+***REMOVED***    "Microsoft.EntityFrameworkCore.Design": {
+***REMOVED***      "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+***REMOVED***      "suppressParent": "All",
+***REMOVED***      "target": "Package",
+***REMOVED***      "version": "[7.0.3, )"
+***REMOVED***    },
+***REMOVED***    "Microsoft.EntityFrameworkCore.SqlServer": {
+***REMOVED***      "target": "Package",
+***REMOVED***      "version": "[7.0.3, )"
+***REMOVED***    }
+***REMOVED***  },
 ***REMOVED***  "imports": [
 ***REMOVED***    "net461",
 ***REMOVED***    "net462",

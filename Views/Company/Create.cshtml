@@ -1,0 +1,21 @@
+﻿@model Company
+@{
+    ViewData["Title"] = "Create Company";
+}
+<h1>@ViewData["Title"]</h1>
+
+<p>Use this page to detail your site's privacy policy.</p>
+<form asp-action="Create" method="post">
+    <div class="row">
+***REMOVED***<div class="col-md-4">
+***REMOVED***    @Html.Label("Name")
+***REMOVED***    @Html.TextBoxFor(c => c.Name, new {@class = "form-control"})
+***REMOVED***</div>
+***REMOVED***<div class="col-md-4">
+***REMOVED***    @Html.Label("User Id")
+***REMOVED***    @Html.TextBoxFor(c => c.UserId, new {@class = "form-control", @value = 1})
+***REMOVED***</div>
+    </div>
+    <input type="submit" value="Salvar">
+</form>
+
