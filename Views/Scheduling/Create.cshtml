@@ -1,0 +1,30 @@
+@page
+@model AppAgendamentos.ViewModels.SchedulingViewModel
+
+@* @{
+ViewData["Title"] = "Create";
+} *@
+@* <h1>@ViewData["Title"]</h1> *@
+<div class="company-information" style="text-align: center;">
+    <img src="https://pbs.twimg.com/media/EfOeE08X0AEdlB6.jpg" height="200px"></img>
+
+    <h1 style="text-align: center;">Company</h1>
+    <h3 style="text-align: center;">Description of the services of the company</h3>
+</div>
+
+<div class="services">
+    <div class="row">
+***REMOVED***<div class="col-md-5">
+***REMOVED***    @Html.Label("Serviço")
+***REMOVED***    @Html.DropDownListFor(m => m.CustomerId, Model.ListaTeste ))
+***REMOVED***    @* @Html.TextBoxFor(c=>c.CustomerId, htmlAttributes: new {@class = "form-control"}) *@
+***REMOVED***</div>
+***REMOVED***<div class="col-md-6">
+***REMOVED***    @Html.Label("Data do agendamento")
+***REMOVED***    <input type="datetime-local" class="form-control" />
+***REMOVED***    @* <input class="form-control" asp-for="DataTeste" asp-format="{0:yyyy-MM-ddTHH:mm}" /> *@
+***REMOVED***</div>
+    </div>
+***REMOVED***<input type="submit" value="Agendar">
+</div>
+

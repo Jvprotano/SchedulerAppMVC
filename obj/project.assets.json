@@ -2,6 +2,35 @@
   "version": 3,
   "targets": {
     "net7.0": {
+      "AutoMapper/12.0.1": {
+***REMOVED***"type": "package",
+***REMOVED***"dependencies": {
+***REMOVED***  "Microsoft.CSharp": "4.7.0"
+***REMOVED***},
+***REMOVED***"compile": {
+***REMOVED***  "lib/netstandard2.1/AutoMapper.dll": {
+***REMOVED***    "related": ".xml"
+***REMOVED***  }
+***REMOVED***},
+***REMOVED***"runtime": {
+***REMOVED***  "lib/netstandard2.1/AutoMapper.dll": {
+***REMOVED***    "related": ".xml"
+***REMOVED***  }
+***REMOVED***}
+      },
+      "AutoMapper.Extensions.Microsoft.DependencyInjection/12.0.0": {
+***REMOVED***"type": "package",
+***REMOVED***"dependencies": {
+***REMOVED***  "AutoMapper": "12.0.0",
+***REMOVED***  "Microsoft.Extensions.Options": "6.0.0"
+***REMOVED***},
+***REMOVED***"compile": {
+***REMOVED***  "lib/netstandard2.1/AutoMapper.Extensions.Microsoft.DependencyInjection.dll": {}
+***REMOVED***},
+***REMOVED***"runtime": {
+***REMOVED***  "lib/netstandard2.1/AutoMapper.Extensions.Microsoft.DependencyInjection.dll": {}
+***REMOVED***}
+      },
       "Azure.Core/1.24.0": {
 ***REMOVED***"type": "package",
 ***REMOVED***"dependencies": {
@@ -70,7 +99,7 @@
 ***REMOVED***  }
 ***REMOVED***}
       },
-      "Microsoft.CSharp/4.5.0": {
+      "Microsoft.CSharp/4.7.0": {
 ***REMOVED***"type": "package",
 ***REMOVED***"compile": {
 ***REMOVED***  "ref/netcoreapp2.0/_._": {}
@@ -1124,6 +1153,35 @@
     }
   },
   "libraries": {
+    "AutoMapper/12.0.1": {
+      "sha512": "hvV62vl6Hp/WfQ24yzo3Co9+OPl8wH8hApwVtgWpiAynVJkUcs7xvehnSftawL8Pe8FrPffBRM3hwzLQqWDNjA==",
+      "type": "package",
+      "path": "automapper/12.0.1",
+      "files": [
+***REMOVED***".nupkg.metadata",
+***REMOVED***".signature.p7s",
+***REMOVED***"README.md",
+***REMOVED***"automapper.12.0.1.nupkg.sha512",
+***REMOVED***"automapper.nuspec",
+***REMOVED***"icon.png",
+***REMOVED***"lib/netstandard2.1/AutoMapper.dll",
+***REMOVED***"lib/netstandard2.1/AutoMapper.xml"
+      ]
+    },
+    "AutoMapper.Extensions.Microsoft.DependencyInjection/12.0.0": {
+      "sha512": "XCJ4E3oKrbRl1qY9Mr+7uyC0xZj1+bqQjmQRWTiTKiVuuXTny+7YFWHi20tPjwkMukLbicN6yGlDy5PZ4wyi1w==",
+      "type": "package",
+      "path": "automapper.extensions.microsoft.dependencyinjection/12.0.0",
+      "files": [
+***REMOVED***".nupkg.metadata",
+***REMOVED***".signature.p7s",
+***REMOVED***"README.md",
+***REMOVED***"automapper.extensions.microsoft.dependencyinjection.12.0.0.nupkg.sha512",
+***REMOVED***"automapper.extensions.microsoft.dependencyinjection.nuspec",
+***REMOVED***"icon.png",
+***REMOVED***"lib/netstandard2.1/AutoMapper.Extensions.Microsoft.DependencyInjection.dll"
+      ]
+    },
     "Azure.Core/1.24.0": {
       "sha512": "+/qI1j2oU1S4/nvxb2k/wDsol00iGf1AyJX5g3epV7eOpQEP/2xcgh/cxgKMeFgn3U2fmgSiBnQZdkV+l5y0Uw==",
       "type": "package",
@@ -1205,10 +1263,10 @@
 ***REMOVED***"version.txt"
       ]
     },
-    "Microsoft.CSharp/4.5.0": {
-      "sha512": "kaj6Wb4qoMuH3HySFJhxwQfe8R/sJsNJnANrvv8WdFPMoNbKY5htfNscv+LHCu5ipz+49m2e+WQXpLXr9XYemQ==",
+    "Microsoft.CSharp/4.7.0": {
+      "sha512": "pTj+D3uJWyN3My70i2Hqo+OXixq3Os2D1nJ2x92FFo6sk8fYS1m1WLNTs0Dc1uPaViH0YvEEwvzddQ7y4rhXmA==",
       "type": "package",
-      "path": "microsoft.csharp/4.5.0",
+      "path": "microsoft.csharp/4.7.0",
       "files": [
 ***REMOVED***".nupkg.metadata",
 ***REMOVED***".signature.p7s",
@@ -1221,6 +1279,7 @@
 ***REMOVED***"lib/netcoreapp2.0/_._",
 ***REMOVED***"lib/netstandard1.3/Microsoft.CSharp.dll",
 ***REMOVED***"lib/netstandard2.0/Microsoft.CSharp.dll",
+***REMOVED***"lib/netstandard2.0/Microsoft.CSharp.xml",
 ***REMOVED***"lib/portable-net45+win8+wp8+wpa81/_._",
 ***REMOVED***"lib/uap10.0.16299/_._",
 ***REMOVED***"lib/win8/_._",
@@ -1230,7 +1289,7 @@
 ***REMOVED***"lib/xamarinmac20/_._",
 ***REMOVED***"lib/xamarintvos10/_._",
 ***REMOVED***"lib/xamarinwatchos10/_._",
-***REMOVED***"microsoft.csharp.4.5.0.nupkg.sha512",
+***REMOVED***"microsoft.csharp.4.7.0.nupkg.sha512",
 ***REMOVED***"microsoft.csharp.nuspec",
 ***REMOVED***"ref/MonoAndroid10/_._",
 ***REMOVED***"ref/MonoTouch10/_._",
@@ -3419,6 +3478,8 @@
   },
   "projectFileDependencyGroups": {
     "net7.0": [
+      "AutoMapper >= 12.0.1",
+      "AutoMapper.Extensions.Microsoft.DependencyInjection >= 12.0.0",
       "Microsoft.EntityFrameworkCore.Design >= 7.0.3",
       "Microsoft.EntityFrameworkCore.SqlServer >= 7.0.3"
     ]
@@ -3460,6 +3521,14 @@
       "net7.0": {
 ***REMOVED***"targetAlias": "net7.0",
 ***REMOVED***"dependencies": {
+***REMOVED***  "AutoMapper": {
+***REMOVED***    "target": "Package",
+***REMOVED***    "version": "[12.0.1, )"
+***REMOVED***  },
+***REMOVED***  "AutoMapper.Extensions.Microsoft.DependencyInjection": {
+***REMOVED***    "target": "Package",
+***REMOVED***    "version": "[12.0.0, )"
+***REMOVED***  },
 ***REMOVED***  "Microsoft.EntityFrameworkCore.Design": {
 ***REMOVED***    "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
 ***REMOVED***    "suppressParent": "All",

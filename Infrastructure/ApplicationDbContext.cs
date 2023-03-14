@@ -11,9 +11,9 @@ namespace AppAgendamentos.Infrastructure
 ***REMOVED***{
 ***REMOVED***}
 
-***REMOVED***public DbSet<Company>? Companies { get; set; }
-***REMOVED***public DbSet<User>? Users { get; set; }
-***REMOVED***public DbSet<Scheduling>? Schedulings { get; set; }
+***REMOVED***public DbSet<Company> Companies { get; set; }
+***REMOVED***public DbSet<User> Users { get; set; }
+***REMOVED***public DbSet<Scheduling> Schedulings { get; set; }
 
 ***REMOVED***protected override void OnModelCreating(ModelBuilder modelBuilder)
 ***REMOVED***{

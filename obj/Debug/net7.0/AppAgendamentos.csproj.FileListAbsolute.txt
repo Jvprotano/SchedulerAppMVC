@@ -73,3 +73,5 @@
 /home/jvprotano/Workspace/AppAgendamentos/bin/Debug/net7.0/Microsoft.Extensions.DependencyModel.dll
 /home/jvprotano/Workspace/AppAgendamentos/bin/Debug/net7.0/Mono.TextTemplating.dll
 /home/jvprotano/Workspace/AppAgendamentos/bin/Debug/net7.0/System.CodeDom.dll
+/home/jvprotano/Workspace/AppAgendamentos/bin/Debug/net7.0/AutoMapper.dll
+/home/jvprotano/Workspace/AppAgendamentos/bin/Debug/net7.0/AutoMapper.Extensions.Microsoft.DependencyInjection.dll
