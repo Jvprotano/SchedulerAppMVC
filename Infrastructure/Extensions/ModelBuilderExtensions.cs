@@ -30,11 +30,18 @@ namespace AppAgendamentos.Infrastructure.Extensions
 ***REMOVED***    }
 ***REMOVED***}
 
-***REMOVED***private static string? ToSnakeCase(this string? input)
+***REMOVED***private static string ToSnakeCase(this string input)
 ***REMOVED***{
+***REMOVED***    var reservedNames = new List<string>{ "CNPJ", "CPF"};
+***REMOVED***    
 ***REMOVED***    if (string.IsNullOrEmpty(input))
 ***REMOVED***    {
 ***REMOVED******REMOVED***return input;
+***REMOVED***    }
+
+***REMOVED***    if (reservedNames.Contains(input.ToUpper()))
+***REMOVED***    {
+***REMOVED******REMOVED***return input.ToLower();
 ***REMOVED***    }
 
 ***REMOVED***    var result = new StringBuilder();

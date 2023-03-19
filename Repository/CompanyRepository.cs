@@ -1,6 +1,8 @@
 using AppAgendamentos.Contracts.Repository;
 using AppAgendamentos.Infrastructure;
 using AppAgendamentos.Models;
+using Microsoft.EntityFrameworkCore;
+using System.Data;
 
 namespace AppAgendamentos.Repository
 {
@@ -25,6 +27,13 @@ namespace AppAgendamentos.Repository
 ***REMOVED******REMOVED***throw new Exception(ex.Message);
 ***REMOVED***    }
 
+***REMOVED***}
+
+***REMOVED***public async Task<Company> GetAsync(int id)
+***REMOVED***{
+***REMOVED***    return await this._context.Companies
+***REMOVED******REMOVED***.Include(c => c.ServicesOffered)
+***REMOVED******REMOVED***.Where(c => c.Id == id).FirstOrDefaultAsync();
 ***REMOVED***}
     }
 }

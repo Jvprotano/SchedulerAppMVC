@@ -4,15 +4,14 @@ using AppAgendamentos.Models.Base;
 
 namespace AppAgendamentos.Models
 {
-    [Table("users")]
-    public class User : BaseEntity
+    public class ServicesOffered : BaseEntity
     {
 ***REMOVED***[Required]
 ***REMOVED***public string Name { get; set; }
-
 ***REMOVED***[Required]
-***REMOVED***public DateTime BirthDate { get; set; }
-
-***REMOVED***public ICollection<CompanyOwners> Companies { get; set; }
+***REMOVED***public float Price { get; set; }
+***REMOVED***[Required]
+***REMOVED***public int CompanyId { get; set; }
+***REMOVED***public Company Company { get; set; }
     }
 }

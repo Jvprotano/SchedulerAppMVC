@@ -2,11 +2,12 @@ using AppAgendamentos.Contracts.Repository;
 using AppAgendamentos.Infrastructure;
 using AppAgendamentos.Repository;
 using Microsoft.EntityFrameworkCore;
-using AutoMapper;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddAutoMapper(typeof(Program));
+
+
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 

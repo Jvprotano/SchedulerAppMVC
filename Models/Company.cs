@@ -8,11 +8,14 @@ namespace AppAgendamentos.Models
     public class Company : BaseEntity
     {
 ***REMOVED***[Required]
-***REMOVED***public string? Name { get; set; }
+***REMOVED***public string Name { get; set; }
 ***REMOVED***[Required]
-***REMOVED***[ForeignKey("User")]
-***REMOVED***public int UserId { get; set; }
+***REMOVED***public string Description { get; set; }
+***REMOVED***public string CNPJ { get; set; }
+***REMOVED***public string Image { get; set; }
 
-***REMOVED***public User Owner { get; set; }
+***REMOVED***public IList<CompanyOwners> Owners;
+***REMOVED***public IList<Category> Categories;
+***REMOVED***public ICollection<ServicesOffered> ServicesOffered;
     }
 }

@@ -13,13 +13,15 @@ namespace AppAgendamentos.Infrastructure
 
 ***REMOVED***public DbSet<Company> Companies { get; set; }
 ***REMOVED***public DbSet<User> Users { get; set; }
+***REMOVED***public DbSet<Category> Categories { get; set; }
+***REMOVED***public DbSet<CompanyOwners> CompanyOwners { get; set; }
+***REMOVED***public DbSet<ServicesOffered> ServicesOffered { get; set; }
 ***REMOVED***public DbSet<Scheduling> Schedulings { get; set; }
 
 ***REMOVED***protected override void OnModelCreating(ModelBuilder modelBuilder)
 ***REMOVED***{
+***REMOVED***    modelBuilder.ApplyConfiguration<Company>(new CompanyConfiguration());
 ***REMOVED***    modelBuilder.ApplySnakeCaseNamingConvention();
-
-***REMOVED***    // modelBuilder.ApplyConfiguration(new SchedulingConfiguration());
 
 ***REMOVED***    base.OnModelCreating(modelBuilder);
 ***REMOVED***}

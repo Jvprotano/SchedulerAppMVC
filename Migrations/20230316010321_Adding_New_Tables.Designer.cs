@@ -4,6 +4,7 @@ using AppAgendamentos.Infrastructure;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AppAgendamentos.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230316010321_Adding_New_Tables")]
+    partial class Adding_New_Tables
     {
-***REMOVED***protected override void BuildModel(ModelBuilder modelBuilder)
+***REMOVED***/// <inheritdoc />
+***REMOVED***protected override void BuildTargetModel(ModelBuilder modelBuilder)
 ***REMOVED***{
 #pragma warning disable 612, 618
 ***REMOVED***    modelBuilder
@@ -63,16 +66,12 @@ namespace AppAgendamentos.Migrations
 
 ***REMOVED******REMOVED***    b.Property<string>("CNPJ")
 ***REMOVED******REMOVED******REMOVED***.HasColumnType("nvarchar(max)")
-***REMOVED******REMOVED******REMOVED***.HasColumnName("cnpj");
+***REMOVED******REMOVED******REMOVED***.HasColumnName("c_n_p_j");
 
 ***REMOVED******REMOVED***    b.Property<string>("Description")
 ***REMOVED******REMOVED******REMOVED***.IsRequired()
 ***REMOVED******REMOVED******REMOVED***.HasColumnType("nvarchar(max)")
 ***REMOVED******REMOVED******REMOVED***.HasColumnName("description");
-
-***REMOVED******REMOVED***    b.Property<string>("Image")
-***REMOVED******REMOVED******REMOVED***.HasColumnType("nvarchar(max)")
-***REMOVED******REMOVED******REMOVED***.HasColumnName("image");
 
 ***REMOVED******REMOVED***    b.Property<string>("Name")
 ***REMOVED******REMOVED******REMOVED***.IsRequired()
@@ -132,48 +131,6 @@ namespace AppAgendamentos.Migrations
 ***REMOVED******REMOVED***    b.HasIndex("UserId");
 
 ***REMOVED******REMOVED***    b.ToTable("company_owners");
-***REMOVED******REMOVED***});
-
-***REMOVED***    modelBuilder.Entity("AppAgendamentos.Models.Scheduling", b =>
-***REMOVED******REMOVED***{
-***REMOVED******REMOVED***    b.Property<int>("Id")
-***REMOVED******REMOVED******REMOVED***.ValueGeneratedOnAdd()
-***REMOVED******REMOVED******REMOVED***.HasColumnType("int")
-***REMOVED******REMOVED******REMOVED***.HasColumnName("id");
-
-***REMOVED******REMOVED***    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-***REMOVED******REMOVED***    b.Property<int>("CompanyId")
-***REMOVED******REMOVED******REMOVED***.HasColumnType("int")
-***REMOVED******REMOVED******REMOVED***.HasColumnName("company_id");
-
-***REMOVED******REMOVED***    b.Property<int>("CustomerId")
-***REMOVED******REMOVED******REMOVED***.HasColumnType("int")
-***REMOVED******REMOVED******REMOVED***.HasColumnName("customer_id");
-
-***REMOVED******REMOVED***    b.Property<DateTime>("RegisterDate")
-***REMOVED******REMOVED******REMOVED***.HasColumnType("datetime2")
-***REMOVED******REMOVED******REMOVED***.HasColumnName("register_date");
-
-***REMOVED******REMOVED***    b.Property<DateTime>("ScheduledDate")
-***REMOVED******REMOVED******REMOVED***.HasColumnType("datetime2")
-***REMOVED******REMOVED******REMOVED***.HasColumnName("scheduled_date");
-
-***REMOVED******REMOVED***    b.Property<int>("Status")
-***REMOVED******REMOVED******REMOVED***.HasColumnType("int")
-***REMOVED******REMOVED******REMOVED***.HasColumnName("status");
-
-***REMOVED******REMOVED***    b.Property<DateTime>("UpdateDate")
-***REMOVED******REMOVED******REMOVED***.HasColumnType("datetime2")
-***REMOVED******REMOVED******REMOVED***.HasColumnName("update_date");
-
-***REMOVED******REMOVED***    b.HasKey("Id");
-
-***REMOVED******REMOVED***    b.HasIndex("CompanyId");
-
-***REMOVED******REMOVED***    b.HasIndex("CustomerId");
-
-***REMOVED******REMOVED***    b.ToTable("schedulings");
 ***REMOVED******REMOVED***});
 
 ***REMOVED***    modelBuilder.Entity("AppAgendamentos.Models.ServicesOffered", b =>
@@ -267,25 +224,6 @@ namespace AppAgendamentos.Migrations
 ***REMOVED******REMOVED***    b.Navigation("Company");
 
 ***REMOVED******REMOVED***    b.Navigation("User");
-***REMOVED******REMOVED***});
-
-***REMOVED***    modelBuilder.Entity("AppAgendamentos.Models.Scheduling", b =>
-***REMOVED******REMOVED***{
-***REMOVED******REMOVED***    b.HasOne("AppAgendamentos.Models.Company", "Company")
-***REMOVED******REMOVED******REMOVED***.WithMany()
-***REMOVED******REMOVED******REMOVED***.HasForeignKey("CompanyId")
-***REMOVED******REMOVED******REMOVED***.OnDelete(DeleteBehavior.Cascade)
-***REMOVED******REMOVED******REMOVED***.IsRequired();
-
-***REMOVED******REMOVED***    b.HasOne("AppAgendamentos.Models.User", "Customer")
-***REMOVED******REMOVED******REMOVED***.WithMany()
-***REMOVED******REMOVED******REMOVED***.HasForeignKey("CustomerId")
-***REMOVED******REMOVED******REMOVED***.OnDelete(DeleteBehavior.Cascade)
-***REMOVED******REMOVED******REMOVED***.IsRequired();
-
-***REMOVED******REMOVED***    b.Navigation("Company");
-
-***REMOVED******REMOVED***    b.Navigation("Customer");
 ***REMOVED******REMOVED***});
 
 ***REMOVED***    modelBuilder.Entity("AppAgendamentos.Models.User", b =>
