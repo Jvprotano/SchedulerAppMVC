@@ -263,3 +263,9 @@ FakesAssemblies/
 # Visual Studio 6 workspace options file
 *.opt
 appsettings.json
+*.dll
+obj/Debug/net7.0/apphost
+obj/Debug/net7.0/AppAgendamentos.csproj.CoreCompileInputs.cache
+obj/Debug/net7.0/AppAgendamentos.csproj.CoreCompileInputs.cache
+obj/project.nuget.cache
+bin/Debug/net7.0/AppAgendamentos
