@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using AppAgendamentos.Models;
 using AppAgendamentos.Contracts.Repository;
 using AppAgendamentos.Repository;
+using AppAgendamentos.ViewModels;
 
 namespace AppAgendamentos.Controllers;
 
@@ -17,9 +18,13 @@ public class HomeController : Controller
 ***REMOVED***_companyRepository = companyRepository;
     }
 
-    public IActionResult Index()
+    public async Task<IActionResult> Index()
     {
-***REMOVED***return View();
+***REMOVED***HomeViewModel model = new HomeViewModel();
+
+***REMOVED***model.Companies = await _companyRepository.GetAllAsync();
+
+***REMOVED***return View(model);
     }
 
     public IActionResult CreateCompany()

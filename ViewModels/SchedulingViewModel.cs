@@ -10,19 +10,22 @@ namespace AppAgendamentos.ViewModels
 ***REMOVED***public string CompanyImage { get; set; }
 
 ***REMOVED***public int CustomerId { get; set; }
-
+***REMOVED***public string Phone { get; set; }
+***REMOVED***public string ConfirmationCode { get; set; }
 
 ***REMOVED***public SelectListItem ServiceSelected { get; set; }
-
 ***REMOVED***public IList<SelectListItem> CompanyServices { get; set; }
-
+***REMOVED***public IList<SelectListItem> AvailableTimeSlots { get; set; }
 ***REMOVED***public DateTime ScheduledDate { get; set; }
+***REMOVED***public TimeSpan ScheduledDTime { get; set; }
+***REMOVED***public SelectListItem TimeSelected { get; set; }
 
 
 ***REMOVED***public SchedulingViewModel()
 ***REMOVED***{
 ***REMOVED***    CompanyServices = new List<SelectListItem>();
 ***REMOVED***    ScheduledDate = DateTime.Now;
+***REMOVED***    AvailableTimeSlots = new List<SelectListItem>();
 ***REMOVED***}
     }
 }

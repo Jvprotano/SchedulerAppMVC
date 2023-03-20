@@ -1,21 +1,89 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
 }
+<style>
+    .carousel {
+***REMOVED***width: 60%;
+    }
+
+    .carousel img {
+***REMOVED***width: 60%;
+***REMOVED***aspect-ratio: 3/2;
+***REMOVED***@*object-fit:contain;*@mix-blend-mode: color-burn;
+    }
+
+    .container-carousel {
+***REMOVED***display: flex;
+***REMOVED***justify-content: center;
+    }
+
+
+    .carousel-caption {
+***REMOVED***color: #fff;
+***REMOVED***text-align: center;
+***REMOVED***background-color: black;
+    }
+
+    .carousel-control-prev {
+***REMOVED***left: 20px;
+    }
+
+    .carousel-control-prev-icon {
+***REMOVED***background-color: darkgray;
+    }
+
+    .carousel-control-next-icon {
+***REMOVED***background-color: darkgray;
+    }
+
+    .carousel-control-next {
+***REMOVED***right: 20px;
+    }
+</style>
 
 <div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    <h1 class="display-4">Empresas</h1>
+    @* <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p> *@
 </div>
 
-<div class="row">
-    <div class="form-group">
-***REMOVED***<button>
-***REMOVED***    <a href='@Url.Action("Index", "Company")' class="button">Criar Empresa</a>
-***REMOVED***</button>
+@*
+<button>
+<a href='@Url.Action("Index", "Company")' class="button">Criar Empresa</a>
+</button>
+</div>
+*@
+
+
+<div class="container-carousel">
+    <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+***REMOVED***<ol class="carousel-indicators">
+***REMOVED***    @for (int i = 0; i <= Model.Companies.Count; i++)
+***REMOVED***    {
+***REMOVED******REMOVED***<li data-target="#carouselExampleIndicators" data-slide-to=i.ToString() @i==1 ? class="active" :></li>
+***REMOVED***    }
+***REMOVED***</ol>
+***REMOVED***<div class="carousel-inner">
+***REMOVED***    @for (int i = 0; i < Model.Companies.Count; i++)
+***REMOVED***    {
+***REMOVED******REMOVED***<div class="@(i==1 ? "carousel-item active" : "carousel-item ")">
+***REMOVED******REMOVED***    <a href='@Url.Action("Create", "Scheduling", new {@companyId = Model.Companies[i].Id})'>
+***REMOVED******REMOVED******REMOVED***<img class="d-block w-100" src=@(Model.Companies[i].Image) alt=@(Model.Companies[i].Name)>
+***REMOVED******REMOVED******REMOVED***<div class="carousel-caption d-none d-md-block">
+***REMOVED******REMOVED******REMOVED***    <h5>@Model.Companies[i].Name</h5>
+***REMOVED******REMOVED******REMOVED***    <p>@Model.Companies[i].Description</p>
+***REMOVED******REMOVED******REMOVED***</div>
+***REMOVED******REMOVED***    </a>
+***REMOVED******REMOVED***</div>
+***REMOVED***    }
+***REMOVED***</div>
+***REMOVED***<a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+***REMOVED***    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+***REMOVED***    <span class="sr-only">Previous</span>
+***REMOVED***</a>
+***REMOVED***<a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+***REMOVED***    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+***REMOVED***    <span class="sr-only">Next</span>
+***REMOVED***</a>
     </div>
-    <div class="form-group">
-***REMOVED***<button>
-***REMOVED***    <a href='@Url.Action("Create", "Scheduling", new {@companyId = 10})' class="button">Agendar cabelo</a>
-***REMOVED***</button>
-    </div>
+</div>
 </div>

@@ -4,6 +4,7 @@ using AppAgendamentos.Infrastructure;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AppAgendamentos.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230320031142_NewSchedulingColumns")]
+    partial class NewSchedulingColumns
     {
-***REMOVED***protected override void BuildModel(ModelBuilder modelBuilder)
+***REMOVED***/// <inheritdoc />
+***REMOVED***protected override void BuildTargetModel(ModelBuilder modelBuilder)
 ***REMOVED***{
 #pragma warning disable 612, 618
 ***REMOVED***    modelBuilder
@@ -105,8 +108,8 @@ namespace AppAgendamentos.Migrations
 
 ***REMOVED******REMOVED***    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-***REMOVED******REMOVED***    b.Property<TimeSpan>("ClosingHour")
-***REMOVED******REMOVED******REMOVED***.HasColumnType("time")
+***REMOVED******REMOVED***    b.Property<DateTime>("ClosingHour")
+***REMOVED******REMOVED******REMOVED***.HasColumnType("datetime2")
 ***REMOVED******REMOVED******REMOVED***.HasColumnName("closing_hour");
 
 ***REMOVED******REMOVED***    b.Property<int>("CompanyId")
@@ -117,8 +120,8 @@ namespace AppAgendamentos.Migrations
 ***REMOVED******REMOVED******REMOVED***.HasColumnType("int")
 ***REMOVED******REMOVED******REMOVED***.HasColumnName("day_of_week");
 
-***REMOVED******REMOVED***    b.Property<TimeSpan>("OpeningHour")
-***REMOVED******REMOVED******REMOVED***.HasColumnType("time")
+***REMOVED******REMOVED***    b.Property<DateTime>("OpeningHour")
+***REMOVED******REMOVED******REMOVED***.HasColumnType("datetime2")
 ***REMOVED******REMOVED******REMOVED***.HasColumnName("opening_hour");
 
 ***REMOVED******REMOVED***    b.Property<DateTime>("RegisterDate")
@@ -233,8 +236,8 @@ namespace AppAgendamentos.Migrations
 ***REMOVED******REMOVED******REMOVED***.HasColumnType("int")
 ***REMOVED******REMOVED******REMOVED***.HasColumnName("company_id");
 
-***REMOVED******REMOVED***    b.Property<TimeSpan>("Duration")
-***REMOVED******REMOVED******REMOVED***.HasColumnType("time")
+***REMOVED******REMOVED***    b.Property<DateTime>("Duration")
+***REMOVED******REMOVED******REMOVED***.HasColumnType("datetime2")
 ***REMOVED******REMOVED******REMOVED***.HasColumnName("duration");
 
 ***REMOVED******REMOVED***    b.Property<string>("Name")

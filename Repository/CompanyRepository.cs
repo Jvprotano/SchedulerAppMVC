@@ -1,4 +1,5 @@
 using AppAgendamentos.Contracts.Repository;
+using AppAgendamentos.Enums;
 using AppAgendamentos.Infrastructure;
 using AppAgendamentos.Models;
 using Microsoft.EntityFrameworkCore;
@@ -34,6 +35,11 @@ namespace AppAgendamentos.Repository
 ***REMOVED***    return await this._context.Companies
 ***REMOVED******REMOVED***.Include(c => c.ServicesOffered)
 ***REMOVED******REMOVED***.Where(c => c.Id == id).FirstOrDefaultAsync();
+***REMOVED***}
+
+***REMOVED***public async Task<IEnumerable<Company>> GetAllAsync()
+***REMOVED***{
+***REMOVED***    return await this._context.Companies.Where(c => c.Status == StatusEnum.Active).ToListAsync();
 ***REMOVED***}
     }
 }

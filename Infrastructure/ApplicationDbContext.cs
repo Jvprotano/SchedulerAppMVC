@@ -17,6 +17,7 @@ namespace AppAgendamentos.Infrastructure
 ***REMOVED***public DbSet<CompanyOwners> CompanyOwners { get; set; }
 ***REMOVED***public DbSet<ServicesOffered> ServicesOffered { get; set; }
 ***REMOVED***public DbSet<Scheduling> Schedulings { get; set; }
+***REMOVED***public DbSet<CompanyOpeningHours> CompanyOpeningHours { get; set; }
 
 ***REMOVED***protected override void OnModelCreating(ModelBuilder modelBuilder)
 ***REMOVED***{

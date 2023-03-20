@@ -13,5 +13,6 @@ namespace AppAgendamentos.Models
 ***REMOVED***[Required]
 ***REMOVED***public int CompanyId { get; set; }
 ***REMOVED***public Company Company { get; set; }
+***REMOVED***public TimeSpan Duration { get; set; }
     }
 }

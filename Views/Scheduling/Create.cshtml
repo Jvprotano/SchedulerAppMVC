@@ -1,9 +1,16 @@
 @model AppAgendamentos.ViewModels.SchedulingViewModel
 
-@* @{
-ViewData["Title"] = "Create";
-} *@
-@* <h1>@ViewData["Title"]</h1> *@
+@{
+    ViewData["Title"] = "Scheduling";
+}
+
+<style>
+    #row-actions {
+***REMOVED***margin-top: 10px;
+***REMOVED***justify-content: center;
+    }
+</style>
+
 <div class="company-information" style="text-align: center;">
     <img src="@Model.CompanyImage" height="200px"></img>
 
@@ -13,29 +20,77 @@ ViewData["Title"] = "Create";
 
 <div class="services">
     <div class="row">
-***REMOVED***<div class="col-md-5">
+***REMOVED***<div class="col-md-3">
+***REMOVED***</div>
+***REMOVED***<div class="col-md-3">
 ***REMOVED***    @Html.Label("Serviço")
 ***REMOVED***    @Html.DropDownListFor(m => m.ServiceSelected, Model.CompanyServices, htmlAttributes: new {@class =
 ***REMOVED***    "form-control"})
 ***REMOVED***</div>
-***REMOVED***<div class="col-md-3">
+***REMOVED***<div class="col-md-2">
 ***REMOVED***    @Html.Label("Data do agendamento")
-***REMOVED***    <input class="form-control" asp-for="ScheduledDate" asp-format="{0:MM-dd-yyyyTHH:mm}" />
+***REMOVED***    <input class="form-control" type="date" asp-for="ScheduledDate" asp-format="{0:MM-dd-yyyy}" />
+***REMOVED***</div>
+***REMOVED***<div class="col-md-2">
+***REMOVED***    @Html.Label("Horários disponíveis")
+***REMOVED***    @Html.DropDownListFor(m => m.TimeSelected, Model.AvailableTimeSlots, htmlAttributes: new {@class =
+***REMOVED***    "form-control"})
 ***REMOVED***</div>
     </div>
+    <div class="col-md-3">
+
+    </div>
+</div>
+</div>
+<div class="user-confirmation" style="display: none;">
     <div class="row">
-***REMOVED***<div>
-***REMOVED***    <input type="submit" value="Agendar" id="submit">
+***REMOVED***<div class="col-md-3">
+***REMOVED***</div>
+***REMOVED***<div class="col-md-3">
+***REMOVED***    @Html.Label("Phone Number")
+***REMOVED***    <input type="tel" maxlength="15" asp-for="Phone" onkeyup="handlePhone(event)" class="form-control"
+***REMOVED******REMOVED***placeholder="(99)99999999" />
+***REMOVED***</div>
+***REMOVED***<div class="col-md-3" style="display: none;" id="divConfirmationCode">
+***REMOVED***    @Html.Label("Code")
+***REMOVED***    @Html.TextBoxFor(m => m.ConfirmationCode, htmlAttributes: new {@class = "form-control", @maxlength="5"})
+***REMOVED***</div>
+***REMOVED***<div class="col-md-3" style="margin-top: 2.8%;">
+***REMOVED***    <button class="btn btn-primary" id="sendCode">Send Code</button>
 ***REMOVED***</div>
     </div>
 </div>
+<div class="row" id="row-actions">
+    <button class="btn btn-primary" id="confirm">Confirmar</button>
+    <input class="btn btn-primary" type="submit" value="Agendar" id="submit" style="display: none;">
+</div>
 
-<style>
-    #submit {
-***REMOVED***width: 50%;
-***REMOVED***display: block;
-***REMOVED***margin: 0 auto;
-***REMOVED***margin-top: 10px;
-    }
-</style>
+@section Scripts{
+    <script type="text/javascript">
 
+***REMOVED***const handlePhone = (event) => {
+***REMOVED***    let input = event.target
+***REMOVED***    input.value = phoneMask(input.value)
+***REMOVED***}
+
+***REMOVED***const phoneMask = (value) => {
+***REMOVED***    if (!value) return ""
+***REMOVED***    value = value.replace(/\D/g, '')
+***REMOVED***    value = value.replace(/(\d{2})(\d)/, "($1) $2")
+***REMOVED***    value = value.replace(/(\d)(\d{4})$/, "$1-$2")
+***REMOVED***    return value
+***REMOVED***}
+
+***REMOVED***$("#confirm").on("click", function () {
+***REMOVED***    $("#confirm").hide();
+***REMOVED***    $(".user-confirmation").show();
+***REMOVED***})
+***REMOVED***$("#sendCode").on("click", function () {
+***REMOVED***    $("#confirm").hide();
+***REMOVED***    $("#submit").show();
+***REMOVED***    $(".user-confirmation").show();
+***REMOVED***    $("#divConfirmationCode").show();
+***REMOVED***    $("#sendCode").hide();
+***REMOVED***})
+    </script>
+}

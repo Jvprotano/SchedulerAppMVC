@@ -1,5 +1,6 @@
 using AppAgendamentos.Contracts.Repository;
 using AppAgendamentos.Infrastructure;
+using AppAgendamentos.Infrastructure.Extensions;
 using AppAgendamentos.Repository;
 using Microsoft.EntityFrameworkCore;
 
@@ -22,7 +23,7 @@ builder.Services.AddDbContext<ApplicationDbContext>( options =>
     ServiceLifetime.Scoped
 );
 
-builder.Services.AddScoped<ICompanyRepository, CompanyRepository>();
+builder.Services.AddRepositories();
 
 var app = builder.Build();
 

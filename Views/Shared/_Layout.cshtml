@@ -1,20 +1,23 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - SchedulingApp</title>
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+***REMOVED***integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/AppAgendamentos.styles.css" asp-append-version="true" />
 </head>
+
 <body>
     <header>
 ***REMOVED***<nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
 ***REMOVED***    <div class="container-fluid">
 ***REMOVED******REMOVED***<a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">AppAgendamentos</a>
-***REMOVED******REMOVED***<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-***REMOVED******REMOVED******REMOVED***aria-expanded="false" aria-label="Toggle navigation">
+***REMOVED******REMOVED***<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse"
+***REMOVED******REMOVED***    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 ***REMOVED******REMOVED***    <span class="navbar-toggler-icon"></span>
 ***REMOVED******REMOVED***</button>
 ***REMOVED******REMOVED***<div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
@@ -23,7 +26,8 @@
 ***REMOVED******REMOVED******REMOVED***    <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
 ***REMOVED******REMOVED******REMOVED***</li>
 ***REMOVED******REMOVED******REMOVED***<li class="nav-item">
-***REMOVED******REMOVED******REMOVED***    <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+***REMOVED******REMOVED******REMOVED***    <a class="nav-link text-dark" asp-area="" asp-controller="Home"
+***REMOVED******REMOVED******REMOVED******REMOVED***asp-action="Privacy">Privacy</a>
 ***REMOVED******REMOVED******REMOVED***</li>
 ***REMOVED******REMOVED***    </ul>
 ***REMOVED******REMOVED***</div>
@@ -44,6 +48,17 @@
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+***REMOVED***integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+***REMOVED***crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
+***REMOVED***integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+***REMOVED***crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
+***REMOVED***integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+***REMOVED***crossorigin="anonymous"></script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>
+
 </html>
