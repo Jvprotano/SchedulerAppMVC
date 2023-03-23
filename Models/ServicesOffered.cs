@@ -1,5 +1,4 @@
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 using AppAgendamentos.Models.Base;
 
 namespace AppAgendamentos.Models
