@@ -4,6 +4,7 @@ using AppAgendamentos.Infrastructure;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AppAgendamentos.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230324021513_FixingColumn")]
+    partial class FixingColumn
     {
-***REMOVED***protected override void BuildModel(ModelBuilder modelBuilder)
+***REMOVED***/// <inheritdoc />
+***REMOVED***protected override void BuildTargetModel(ModelBuilder modelBuilder)
 ***REMOVED***{
 #pragma warning disable 612, 618
 ***REMOVED***    modelBuilder
@@ -203,10 +206,6 @@ namespace AppAgendamentos.Migrations
 ***REMOVED******REMOVED******REMOVED***.HasColumnType("datetime2")
 ***REMOVED******REMOVED******REMOVED***.HasColumnName("scheduled_date");
 
-***REMOVED******REMOVED***    b.Property<int>("ServicesOfferedId")
-***REMOVED******REMOVED******REMOVED***.HasColumnType("int")
-***REMOVED******REMOVED******REMOVED***.HasColumnName("services_offered_id");
-
 ***REMOVED******REMOVED***    b.Property<int>("Status")
 ***REMOVED******REMOVED******REMOVED***.HasColumnType("int")
 ***REMOVED******REMOVED******REMOVED***.HasColumnName("status");
@@ -220,8 +219,6 @@ namespace AppAgendamentos.Migrations
 ***REMOVED******REMOVED***    b.HasIndex("CompanyId");
 
 ***REMOVED******REMOVED***    b.HasIndex("CustomerId");
-
-***REMOVED******REMOVED***    b.HasIndex("ServicesOfferedId");
 
 ***REMOVED******REMOVED***    b.ToTable("schedulings");
 ***REMOVED******REMOVED***});
@@ -350,17 +347,9 @@ namespace AppAgendamentos.Migrations
 ***REMOVED******REMOVED******REMOVED***.OnDelete(DeleteBehavior.Cascade)
 ***REMOVED******REMOVED******REMOVED***.IsRequired();
 
-***REMOVED******REMOVED***    b.HasOne("AppAgendamentos.Models.ServicesOffered", "ServicesOffered")
-***REMOVED******REMOVED******REMOVED***.WithMany()
-***REMOVED******REMOVED******REMOVED***.HasForeignKey("ServicesOfferedId")
-***REMOVED******REMOVED******REMOVED***.OnDelete(DeleteBehavior.Cascade)
-***REMOVED******REMOVED******REMOVED***.IsRequired();
-
 ***REMOVED******REMOVED***    b.Navigation("Company");
 
 ***REMOVED******REMOVED***    b.Navigation("Customer");
-
-***REMOVED******REMOVED***    b.Navigation("ServicesOffered");
 ***REMOVED******REMOVED***});
 
 ***REMOVED***    modelBuilder.Entity("AppAgendamentos.Models.ServicesOffered", b =>

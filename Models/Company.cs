@@ -16,6 +16,6 @@ namespace AppAgendamentos.Models
 
 ***REMOVED***public IList<CompanyOwners> Owners;
 ***REMOVED***public IList<Category> Categories;
-***REMOVED***public ICollection<ServicesOffered> ServicesOffered;
+***REMOVED***public IList<ServicesOffered> ServicesOffered;
     }
 }

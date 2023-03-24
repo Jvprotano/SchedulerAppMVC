@@ -9,5 +9,8 @@ namespace AppAgendamentos.Models
 ***REMOVED***public int CustomerId { get; set; }
 ***REMOVED***public User Customer { get; set; }
 ***REMOVED***public DateTime ScheduledDate { get; set; }
+
+***REMOVED***public int ServicesOfferedId { get; set; }
+***REMOVED***public ServicesOffered ServicesOffered { get; set; }
     }
 }

@@ -1,4 +1,4 @@
-namespace AppAgendamentos.Models;
+namespace AppAgendamentos.Models.Base;
 
 public class ErrorViewModel
 {

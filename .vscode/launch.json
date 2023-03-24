@@ -14,6 +14,7 @@
 ***REMOVED***    "args": [],
 ***REMOVED***    "cwd": "${workspaceFolder}",
 ***REMOVED***    "stopAtEntry": false,
+***REMOVED***    "requireExactSource": false,
 ***REMOVED***    // Enable launching a web browser when ASP.NET Core starts. For more information: https://aka.ms/VSCode-CS-LaunchJson-WebBrowser
 ***REMOVED***    "serverReadyAction": {
 ***REMOVED******REMOVED***"action": "openExternally",

@@ -10,11 +10,11 @@
 ***REMOVED***"projectUniqueName": "/home/jvprotano/Workspace/AppAgendamentos/AppAgendamentos.csproj",
 ***REMOVED***"projectName": "AppAgendamentos",
 ***REMOVED***"projectPath": "/home/jvprotano/Workspace/AppAgendamentos/AppAgendamentos.csproj",
-***REMOVED***"packagesPath": "/home/jvprotano/.nuget/packages/",
+***REMOVED***"packagesPath": "/root/.nuget/packages/",
 ***REMOVED***"outputPath": "/home/jvprotano/Workspace/AppAgendamentos/obj/",
 ***REMOVED***"projectStyle": "PackageReference",
 ***REMOVED***"configFilePaths": [
-***REMOVED***  "/home/jvprotano/.nuget/NuGet/NuGet.Config"
+***REMOVED***  "/root/.nuget/NuGet/NuGet.Config"
 ***REMOVED***],
 ***REMOVED***"originalTargetFrameworks": [
 ***REMOVED***  "net7.0"

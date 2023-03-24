@@ -7,7 +7,7 @@ namespace AppAgendamentos.Models
     {
 ***REMOVED***public int CompanyId { get; set; }
 ***REMOVED***public Company Company { get; set; }
-***REMOVED***public DayOfWeekEnum DayOfWeek { get; set; }
+***REMOVED***public DayOfWeek DayOfWeek { get; set; }
 ***REMOVED***public TimeSpan OpeningHour { get; set; }
 ***REMOVED***public TimeSpan ClosingHour { get; set; }
     }

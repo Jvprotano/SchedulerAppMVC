@@ -4,6 +4,7 @@ using AppAgendamentos.Models;
 using AppAgendamentos.Contracts.Repository;
 using AppAgendamentos.Repository;
 using AppAgendamentos.ViewModels;
+using AppAgendamentos.Models.Base;
 
 namespace AppAgendamentos.Controllers;
 
