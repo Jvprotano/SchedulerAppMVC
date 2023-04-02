@@ -62,7 +62,7 @@ namespace AppAgendamentos.Controllers
 ***REMOVED***}
 
 ***REMOVED***[HttpPost]
-***REMOVED***[Route("GetAvailableTimes2")]
+***REMOVED***[Route("GetAvailableTimesJson")]
 ***REMOVED***public JsonResult GetAvailableTimes(int companyId, int serviceSelected, DateOnly dateSelected)
 ***REMOVED***{
 ***REMOVED***    try

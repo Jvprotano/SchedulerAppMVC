@@ -1,5 +1,6 @@
 using AppAgendamentos.Infrastructure;
 using AppAgendamentos.Infrastructure.Extensions;
+using AppAgendamentos.Models.Base;
 using Microsoft.EntityFrameworkCore;
 
 

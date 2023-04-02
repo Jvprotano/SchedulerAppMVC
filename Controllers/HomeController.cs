@@ -27,20 +27,7 @@ public class HomeController : Controller
 
 ***REMOVED***return View(model);
     }
-
-    public IActionResult CreateCompany()
-    {
-***REMOVED***return View();
-    }
-
-    [HttpPost]
-    public IActionResult CreateCompany(Company company)
-    {
-***REMOVED***_companyRepository.Save(company);
-
-***REMOVED***return RedirectToAction("Index");
-    }
-
+    
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
     public IActionResult Error()
     {

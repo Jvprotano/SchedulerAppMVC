@@ -2,7 +2,7 @@ using AppAgendamentos.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace AppAgendamentos.Infrastructure
+namespace AppAgendamentos.Infrastructure.Configurations
 {
     public class CompanyConfiguration : IEntityTypeConfiguration<Company>
     {

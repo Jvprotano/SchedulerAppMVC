@@ -15,6 +15,10 @@ namespace AppAgendamentos.Services
 ***REMOVED***    _repositoryCompanyOpeningHours = repositoryCompanyOpeningHours;
 ***REMOVED***}
 
+***REMOVED***public void Save(Scheduling entity)
+***REMOVED***{
+***REMOVED***    // _repositoryScheduling.Save(entity);
+***REMOVED***}
 ***REMOVED***public List<TimeSpan> GetAvailableTimes(int companyId, int? serviceSelected, DateOnly date)
 ***REMOVED***{
 ***REMOVED***    List<CompanyOpeningHours> openingHours = _repositoryCompanyOpeningHours.GetByDayOfWeek(companyId, date.DayOfWeek);

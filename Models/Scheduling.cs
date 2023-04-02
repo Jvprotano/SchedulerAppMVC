@@ -1,7 +1,9 @@
+using System.ComponentModel.DataAnnotations.Schema;
 using AppAgendamentos.Models.Base;
 
 namespace AppAgendamentos.Models
 {
+    [Table("schedulings")]
     public class Scheduling : BaseEntity
     {
 ***REMOVED***public int CompanyId { get; set; }

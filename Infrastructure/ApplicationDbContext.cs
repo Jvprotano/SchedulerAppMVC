@@ -1,3 +1,4 @@
+using AppAgendamentos.Infrastructure.Configurations;
 using AppAgendamentos.Infrastructure.Extensions;
 using AppAgendamentos.Models;
 using AppAgendamentos.Models.Base;
@@ -10,18 +11,20 @@ namespace AppAgendamentos.Infrastructure
 ***REMOVED***public ApplicationDbContext(DbContextOptions options) : base(options)
 ***REMOVED***{
 ***REMOVED***}
+***REMOVED***// public DbSet<T> DbSet { get; set; }
 
-***REMOVED***public DbSet<Company> Companies { get; set; }
-***REMOVED***public DbSet<User> Users { get; set; }
-***REMOVED***public DbSet<Category> Categories { get; set; }
-***REMOVED***public DbSet<CompanyOwners> CompanyOwners { get; set; }
-***REMOVED***public DbSet<ServicesOffered> ServicesOffered { get; set; }
-***REMOVED***public DbSet<Scheduling> Schedulings { get; set; }
-***REMOVED***public DbSet<CompanyOpeningHours> CompanyOpeningHours { get; set; }
+***REMOVED***// public DbSet<Company> Companies { get; set; }
+***REMOVED***// public DbSet<User> Users { get; set; }
+***REMOVED***// public DbSet<Category> Categories { get; set; }
+***REMOVED***// public DbSet<CompanyOwners> CompanyOwners { get; set; }
+***REMOVED***// public DbSet<ServicesOffered> ServicesOffered { get; set; }
+***REMOVED***// public DbSet<Scheduling> Schedulings { get; set; }
+***REMOVED***// public DbSet<CompanyOpeningHours> CompanyOpeningHours { get; set; }
 
 ***REMOVED***protected override void OnModelCreating(ModelBuilder modelBuilder)
 ***REMOVED***{
-***REMOVED***    modelBuilder.ApplyConfiguration<Company>(new CompanyConfiguration());
+***REMOVED***    modelBuilder.ApplyConfigurationsFromAssembly(typeof(ApplicationDbContext).Assembly);
+
 ***REMOVED***    modelBuilder.ApplySnakeCaseNamingConvention();
 
 ***REMOVED***    base.OnModelCreating(modelBuilder);

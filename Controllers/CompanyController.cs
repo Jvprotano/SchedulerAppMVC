@@ -29,7 +29,7 @@ namespace AppAgendamentos.Controllers
 ***REMOVED***[HttpPost]
 ***REMOVED***public async Task<IActionResult> Create(Company company)
 ***REMOVED***{
-***REMOVED***    await _companyRepository.Save(company);
+***REMOVED***    await _companyRepository.SaveAsync(company);
 
 ***REMOVED***    return RedirectToAction("Index", "Home");
 ***REMOVED***}
