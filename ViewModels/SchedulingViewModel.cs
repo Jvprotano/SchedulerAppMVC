@@ -10,6 +10,7 @@ namespace AppAgendamentos.ViewModels
 ***REMOVED***public string CompanyImage { get; set; }
 
 ***REMOVED***public int CustomerId { get; set; }
+***REMOVED***public string CustomerName { get; set; }
 ***REMOVED***public string Phone { get; set; }
 ***REMOVED***public string ConfirmationCode { get; set; }
 
@@ -17,7 +18,7 @@ namespace AppAgendamentos.ViewModels
 ***REMOVED***public IList<SelectListItem> CompanyServices { get; set; }
 ***REMOVED***public IList<SelectListItem> AvailableTimeSlots { get; set; }
 ***REMOVED***public DateTime ScheduledDate { get; set; }
-***REMOVED***public TimeSpan ScheduledDTime { get; set; }
+***REMOVED***public TimeSpan ScheduledTime { get; set; }
 ***REMOVED***public SelectListItem TimeSelected { get; set; }
 
 

@@ -13,11 +13,11 @@ namespace AppAgendamentos.Repository
 ***REMOVED***    _context = context;
 ***REMOVED***}
 
-***REMOVED***public List<Scheduling> GetAllByDate(int companyId, DateTime date)
+***REMOVED***public List<Scheduling> GetAllByDate(int companyId, DateOnly date)
 ***REMOVED***{
 ***REMOVED***    return this._context.Schedulings
 ***REMOVED******REMOVED***.Where(c => c.CompanyId == companyId &&
-***REMOVED******REMOVED***c.ScheduledDate.Date == date.Date)
+***REMOVED******REMOVED***c.ScheduledDate.Date == date.ToDateTime(TimeOnly.Parse("10:00 PM")).Date)
 ***REMOVED******REMOVED***.ToList();
 ***REMOVED***}
     }
