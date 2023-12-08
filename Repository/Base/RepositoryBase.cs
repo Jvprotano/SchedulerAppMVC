@@ -1,10 +1,6 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using AppAgendamentos.Contracts.Repository;
-using AppAgendamentos.Contracts.Repository.Base;
+using AppAgendamentos.Contracts.Repositories.Base;
 using AppAgendamentos.Infrastructure;
+
 using Microsoft.EntityFrameworkCore;
 
 namespace AppAgendamentos.Repository.Base

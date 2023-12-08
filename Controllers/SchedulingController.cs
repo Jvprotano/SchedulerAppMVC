@@ -1,4 +1,4 @@
-using AppAgendamentos.Contracts.Repository;
+using AppAgendamentos.Contracts.Repositories;
 using AppAgendamentos.Contracts.Services;
 using AppAgendamentos.Controllers.BaseControllers;
 using AppAgendamentos.Models;

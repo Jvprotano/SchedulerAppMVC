@@ -1,10 +1,9 @@
-﻿using System.Diagnostics;
-using Microsoft.AspNetCore.Mvc;
-using AppAgendamentos.Models;
-using AppAgendamentos.Contracts.Repository;
-using AppAgendamentos.Repository;
-using AppAgendamentos.ViewModels;
+﻿using AppAgendamentos.Contracts.Repositories;
 using AppAgendamentos.Models.Base;
+using AppAgendamentos.ViewModels;
+using Microsoft.AspNetCore.Mvc;
+
+using System.Diagnostics;
 
 namespace AppAgendamentos.Controllers;
 
@@ -27,7 +26,7 @@ public class HomeController : Controller
 
 ***REMOVED***return View(model);
     }
-    
+
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
     public IActionResult Error()
     {

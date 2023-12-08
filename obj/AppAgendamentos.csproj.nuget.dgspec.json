@@ -10,21 +10,21 @@
 ***REMOVED***"projectUniqueName": "/home/jvprotano/Workspace/AppAgendamentos/AppAgendamentos.csproj",
 ***REMOVED***"projectName": "AppAgendamentos",
 ***REMOVED***"projectPath": "/home/jvprotano/Workspace/AppAgendamentos/AppAgendamentos.csproj",
-***REMOVED***"packagesPath": "/root/.nuget/packages/",
+***REMOVED***"packagesPath": "/home/jvprotano/.nuget/packages/",
 ***REMOVED***"outputPath": "/home/jvprotano/Workspace/AppAgendamentos/obj/",
 ***REMOVED***"projectStyle": "PackageReference",
 ***REMOVED***"configFilePaths": [
-***REMOVED***  "/root/.nuget/NuGet/NuGet.Config"
+***REMOVED***  "/home/jvprotano/.nuget/NuGet/NuGet.Config"
 ***REMOVED***],
 ***REMOVED***"originalTargetFrameworks": [
-***REMOVED***  "net7.0"
+***REMOVED***  "net8.0"
 ***REMOVED***],
 ***REMOVED***"sources": {
 ***REMOVED***  "https://api.nuget.org/v3/index.json": {}
 ***REMOVED***},
 ***REMOVED***"frameworks": {
-***REMOVED***  "net7.0": {
-***REMOVED***    "targetAlias": "net7.0",
+***REMOVED***  "net8.0": {
+***REMOVED***    "targetAlias": "net8.0",
 ***REMOVED***    "projectReferences": {}
 ***REMOVED***  }
 ***REMOVED***},
@@ -35,8 +35,8 @@
 ***REMOVED***}
       },
       "frameworks": {
-***REMOVED***"net7.0": {
-***REMOVED***  "targetAlias": "net7.0",
+***REMOVED***"net8.0": {
+***REMOVED***  "targetAlias": "net8.0",
 ***REMOVED***  "dependencies": {
 ***REMOVED***    "AutoMapper": {
 ***REMOVED***      "target": "Package",
@@ -76,7 +76,7 @@
 ***REMOVED***      "privateAssets": "all"
 ***REMOVED***    }
 ***REMOVED***  },
-***REMOVED***  "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/7.0.202/RuntimeIdentifierGraph.json"
+***REMOVED***  "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/8.0.100/PortableRuntimeIdentifierGraph.json"
 ***REMOVED***}
       }
     }

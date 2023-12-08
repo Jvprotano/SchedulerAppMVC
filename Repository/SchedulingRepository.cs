@@ -1,4 +1,4 @@
-using AppAgendamentos.Contracts.Repository;
+using AppAgendamentos.Contracts.Repositories;
 using AppAgendamentos.Infrastructure;
 using AppAgendamentos.Models;
 using AppAgendamentos.Repository.Base;

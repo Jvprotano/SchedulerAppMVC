@@ -1,7 +1,7 @@
 {
   "version": 3,
   "targets": {
-    "net7.0": {
+    "net8.0": {
       "AutoMapper/12.0.1": {
 ***REMOVED***"type": "package",
 ***REMOVED***"dependencies": {
@@ -3477,7 +3477,7 @@
     }
   },
   "projectFileDependencyGroups": {
-    "net7.0": [
+    "net8.0": [
       "AutoMapper >= 12.0.1",
       "AutoMapper.Extensions.Microsoft.DependencyInjection >= 12.0.0",
       "Microsoft.EntityFrameworkCore.Design >= 7.0.3",
@@ -3500,14 +3500,14 @@
 ***REMOVED***"/home/jvprotano/.nuget/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
-***REMOVED***"net7.0"
+***REMOVED***"net8.0"
       ],
       "sources": {
 ***REMOVED***"https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
-***REMOVED***"net7.0": {
-***REMOVED***  "targetAlias": "net7.0",
+***REMOVED***"net8.0": {
+***REMOVED***  "targetAlias": "net8.0",
 ***REMOVED***  "projectReferences": {}
 ***REMOVED***}
       },
@@ -3518,8 +3518,8 @@
       }
     },
     "frameworks": {
-      "net7.0": {
-***REMOVED***"targetAlias": "net7.0",
+      "net8.0": {
+***REMOVED***"targetAlias": "net8.0",
 ***REMOVED***"dependencies": {
 ***REMOVED***  "AutoMapper": {
 ***REMOVED***    "target": "Package",
@@ -3559,7 +3559,7 @@
 ***REMOVED***    "privateAssets": "all"
 ***REMOVED***  }
 ***REMOVED***},
-***REMOVED***"runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/7.0.202/RuntimeIdentifierGraph.json"
+***REMOVED***"runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/8.0.100/PortableRuntimeIdentifierGraph.json"
       }
     }
   }

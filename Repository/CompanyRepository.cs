@@ -1,9 +1,11 @@
-using AppAgendamentos.Contracts.Repository;
+using AppAgendamentos.Contracts.Repositories;
 using AppAgendamentos.Enums;
 using AppAgendamentos.Infrastructure;
 using AppAgendamentos.Models;
 using AppAgendamentos.Repository.Base;
+
 using Microsoft.EntityFrameworkCore;
+
 using System.Data;
 
 namespace AppAgendamentos.Repository

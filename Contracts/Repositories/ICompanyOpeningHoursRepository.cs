@@ -1,6 +1,6 @@
 using AppAgendamentos.Models;
 
-namespace AppAgendamentos.Contracts.Repository
+namespace AppAgendamentos.Contracts.Repositories
 {
     public interface ICompanyOpeningHoursRepository
     {

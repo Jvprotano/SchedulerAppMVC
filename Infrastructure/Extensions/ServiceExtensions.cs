@@ -1,5 +1,5 @@
-using AppAgendamentos.Contracts.Repository;
-using AppAgendamentos.Contracts.Repository.Base;
+using AppAgendamentos.Contracts.Repositories;
+using AppAgendamentos.Contracts.Repositories.Base;
 using AppAgendamentos.Contracts.Services;
 using AppAgendamentos.Repository;
 using AppAgendamentos.Repository.Base;
@@ -16,7 +16,6 @@ namespace AppAgendamentos.Infrastructure.Extensions
 ***REMOVED***    services.AddScoped<ISchedulingRepository, SchedulingRepository>();
 ***REMOVED***    services.AddScoped<ICompanyRepository, CompanyRepository>();
 ***REMOVED***    services.AddScoped<ICompanyOpeningHoursRepository, CompanyOpeningHoursRepository>();
-***REMOVED***    
 ***REMOVED***    #endregion
 
 ***REMOVED***    #region Services
