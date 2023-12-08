@@ -1,9 +1,8 @@
 using AppAgendamentos.Enums;
 
-namespace AppAgendamentos.ViewModels.Base
+namespace AppAgendamentos.ViewModels.Base;
+public class BaseViewModel
 {
-    public class BaseViewModel
-    {
-public int Id { get; set; }
-public StatusEnum Status { get; set; }    }
+    public int Id { get; set; }
+    public StatusEnum Status { get; set; }
 }

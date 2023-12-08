@@ -1,35 +1,27 @@
 ﻿using AppAgendamentos.Contracts.Repositories;
-using AppAgendamentos.Models.Base;
+using AppAgendamentos.Controllers.BaseControllers;
 using AppAgendamentos.ViewModels;
-using Microsoft.AspNetCore.Mvc;
 
-using System.Diagnostics;
+using Microsoft.AspNetCore.Mvc;
 
 namespace AppAgendamentos.Controllers;
 
-public class HomeController : Controller
+public class HomeController : BaseController
 {
     private readonly ICompanyRepository _companyRepository;
-    private readonly ILogger<HomeController> _logger;
 
-    public HomeController(ILogger<HomeController> logger, ICompanyRepository companyRepository)
+    public HomeController(ILogger<BaseController> logger, ICompanyRepository companyRepository) : base(logger)
     {
-_logger = logger;
-_companyRepository = companyRepository;
+        _companyRepository = companyRepository;
     }
 
     public async Task<IActionResult> Index()
     {
-HomeViewModel model = new HomeViewModel();
+        HomeViewModel model = new HomeViewModel()
+        {
+            Companies = await _companyRepository.GetAllAsync()
+        };
 
-model.Companies = await _companyRepository.GetAllAsync();
-
-return View(model);
-    }
-
-    [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-    public IActionResult Error()
-    {
-return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        return View(model);
     }
 }

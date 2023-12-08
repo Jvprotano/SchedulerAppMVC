@@ -1,10 +1,8 @@
 using AppAgendamentos.Contracts.Repositories.Base;
 using AppAgendamentos.Models;
 
-namespace AppAgendamentos.Contracts.Repositories
+namespace AppAgendamentos.Contracts.Repositories;
+public interface ISchedulingRepository : IRepository<Scheduling>
 {
-    public interface ISchedulingRepository : IRepository<Scheduling>
-    {
-        List<Scheduling> GetAllByDate(int companyId, DateOnly date);
-    }
+    Task<IEnumerable<Scheduling>> GetAllByDateAsync(int companyId, DateOnly date);
 }

@@ -7,17 +7,37 @@
 
 <form asp-action="Create" method="post">
     <div class="row">
-<div class="col-md-4">
-    @Html.LabelFor(c => c.Name)
-    @Html.TextBoxFor(c => c.Name, new {@class = "form-control"})
-</div>
-<div class="col-md-4">
-    @Html.LabelFor(c => c.CategoryId)
-    @Html.DropDownListFor(c => c.CategoryId, Model.Categories, new {@class = "form-control"})
-</div>
+        <div class="col-md-4">
+            @Html.LabelFor(c => c.Name, new { @class = "control-label" })
+            @Html.TextBoxFor(c => c.Name, new { @class = "form-control" })
+        </div>
+        <div class="col-md-4">
+            @Html.LabelFor(c => c.Cnpj, new { @class = "control-label" })
+            @Html.TextBoxFor(c => c.Cnpj, new { @class = "form-control" })
+        </div>
+        <div class="col-md-4">
+            @Html.LabelFor(c => c.Description, new { @class = "control-label" })
+            @Html.TextBoxFor(c => c.Description, new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+            @Html.LabelFor(c => c.Email, new { @class = "control-label" })
+            @Html.TextBoxFor(c => c.Email, new { @class = "form-control" })
+        </div>
+        <div class="col-md-4">
+            @Html.LabelFor(c => c.CategoriesId, new { @class = "control-label", @title = "Hold Ctrl to select more then one"})
+            @Html.ListBoxFor(c => c.CategoriesId, Model.Categories, new { @class = "form-control" })
+        </div>
+        <div class="col-md-4">
+            @Html.LabelFor(c => c.ServicesOfferedIds, new { @class = "control-label", @title = "Hold Ctrl to select more then one" })
+            @Html.ListBoxFor(c => c.ServicesOfferedIds, Model.ServicesOffereds, new { @class = "form-control" })
+        </div>
+    </div>
     </div>
     </br>
-    <a asp-action="Index" asp-controller="Home" class="btn btn-danger">Back</a>
-    <input type="submit" value="Create" class="btn btn-success">
+    <div class="row" style="display: flex;justify-content: flex-end;padding-right: 8%;">
+        <a asp-action="Index" asp-controller="Home" class="btn btn-danger"><i class="bi bi-arrow-left"></i>Back</a>
+        <input type="submit" value="Create" class="btn btn-success">
+    </div>
 </form>
-

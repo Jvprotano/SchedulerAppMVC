@@ -1,9 +1,7 @@
-namespace AppAgendamentos.Enums
+namespace AppAgendamentos.Enums;
+public enum StatusEnum
 {
-    public enum StatusEnum
-    {
-Removed, 
-Active,
-Finished,
-    }
+    Removed,
+    Active,
+    Finished,
 }

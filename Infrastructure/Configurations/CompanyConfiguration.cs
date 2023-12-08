@@ -1,16 +1,18 @@
 using AppAgendamentos.Models;
+
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace AppAgendamentos.Infrastructure.Configurations
+namespace AppAgendamentos.Infrastructure.Configurations;
+public class CompanyConfiguration : IEntityTypeConfiguration<Company>
 {
-    public class CompanyConfiguration : IEntityTypeConfiguration<Company>
+    public void Configure(EntityTypeBuilder<Company> builder)
     {
-public void Configure(EntityTypeBuilder<Company> builder)
-{
-    builder.HasMany(c=>c.ServicesOffered)
-    .WithOne(c=>c.Company)
-    .HasForeignKey(c=>c.CompanyId);
-}
+        builder.HasMany(c => c.ServicesOffered)
+        .WithOne(c => c.Company)
+        .HasForeignKey(c => c.CompanyId);
+
+        builder.Ignore(c => c.CategoryIds);
+        builder.Ignore(c => c.ServicesOfferedIds);
     }
 }

@@ -1,7 +1,7 @@
-namespace AppAgendamentos.Contracts.Services
+using AppAgendamentos.Models;
+
+namespace AppAgendamentos.Contracts.Services;
+public interface ISchedulingService : IService<Scheduling>
 {
-    public interface ISchedulingService
-    {
-        List<TimeSpan> GetAvailableTimes(int companyId, int? serviceSelected, DateOnly date);
-    }
+    Task<IEnumerable<TimeSpan>> GetAvailableTimesAsync(int companyId, int? serviceSelected, DateOnly date);
 }

@@ -2,21 +2,19 @@ using AppAgendamentos.Contracts.Repositories;
 using AppAgendamentos.Infrastructure;
 using AppAgendamentos.Models;
 using AppAgendamentos.Repository.Base;
+using Microsoft.EntityFrameworkCore;
 
-namespace AppAgendamentos.Repository
+namespace AppAgendamentos.Repository;
+public class SchedulingRepository : Repository<Scheduling>, ISchedulingRepository
 {
-    public class SchedulingRepository : Repository<Scheduling>, ISchedulingRepository
+    public SchedulingRepository(ApplicationDbContext context) : base(context)
     {
-public SchedulingRepository(ApplicationDbContext context) : base(context)
-{
-}
+    }
 
-public List<Scheduling> GetAllByDate(int companyId, DateOnly date)
-{
-    return this.DbSet
-.Where(c => c.CompanyId == companyId &&
-c.ScheduledDate.Date == date.ToDateTime(TimeOnly.Parse("10:00 PM")).Date)
-.ToList();
-}
+    public async Task<IEnumerable<Scheduling>> GetAllByDateAsync(int companyId, DateOnly date)
+    {
+        return await this.DbSet.Where(c => c.CompanyId == companyId &&
+            c.ScheduledDate.Date == date.ToDateTime(TimeOnly.Parse("10:00 PM")).Date)
+            .ToListAsync();
     }
 }
