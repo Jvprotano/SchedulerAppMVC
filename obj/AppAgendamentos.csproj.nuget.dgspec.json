@@ -7,77 +7,77 @@
     "/home/jvprotano/Workspace/AppAgendamentos/AppAgendamentos.csproj": {
       "version": "1.0.0",
       "restore": {
-***REMOVED***"projectUniqueName": "/home/jvprotano/Workspace/AppAgendamentos/AppAgendamentos.csproj",
-***REMOVED***"projectName": "AppAgendamentos",
-***REMOVED***"projectPath": "/home/jvprotano/Workspace/AppAgendamentos/AppAgendamentos.csproj",
-***REMOVED***"packagesPath": "/home/jvprotano/.nuget/packages/",
-***REMOVED***"outputPath": "/home/jvprotano/Workspace/AppAgendamentos/obj/",
-***REMOVED***"projectStyle": "PackageReference",
-***REMOVED***"configFilePaths": [
-***REMOVED***  "/home/jvprotano/.nuget/NuGet/NuGet.Config"
-***REMOVED***],
-***REMOVED***"originalTargetFrameworks": [
-***REMOVED***  "net8.0"
-***REMOVED***],
-***REMOVED***"sources": {
-***REMOVED***  "https://api.nuget.org/v3/index.json": {}
-***REMOVED***},
-***REMOVED***"frameworks": {
-***REMOVED***  "net8.0": {
-***REMOVED***    "targetAlias": "net8.0",
-***REMOVED***    "projectReferences": {}
-***REMOVED***  }
-***REMOVED***},
-***REMOVED***"warningProperties": {
-***REMOVED***  "warnAsError": [
-***REMOVED***    "NU1605"
-***REMOVED***  ]
-***REMOVED***}
+        "projectUniqueName": "/home/jvprotano/Workspace/AppAgendamentos/AppAgendamentos.csproj",
+        "projectName": "AppAgendamentos",
+        "projectPath": "/home/jvprotano/Workspace/AppAgendamentos/AppAgendamentos.csproj",
+        "packagesPath": "/home/jvprotano/.nuget/packages/",
+        "outputPath": "/home/jvprotano/Workspace/AppAgendamentos/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/home/jvprotano/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net8.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net8.0": {
+            "targetAlias": "net8.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
       },
       "frameworks": {
-***REMOVED***"net8.0": {
-***REMOVED***  "targetAlias": "net8.0",
-***REMOVED***  "dependencies": {
-***REMOVED***    "AutoMapper": {
-***REMOVED***      "target": "Package",
-***REMOVED***      "version": "[12.0.1, )"
-***REMOVED***    },
-***REMOVED***    "AutoMapper.Extensions.Microsoft.DependencyInjection": {
-***REMOVED***      "target": "Package",
-***REMOVED***      "version": "[12.0.0, )"
-***REMOVED***    },
-***REMOVED***    "Microsoft.EntityFrameworkCore.Design": {
-***REMOVED***      "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
-***REMOVED***      "suppressParent": "All",
-***REMOVED***      "target": "Package",
-***REMOVED***      "version": "[7.0.3, )"
-***REMOVED***    },
-***REMOVED***    "Microsoft.EntityFrameworkCore.SqlServer": {
-***REMOVED***      "target": "Package",
-***REMOVED***      "version": "[7.0.3, )"
-***REMOVED***    }
-***REMOVED***  },
-***REMOVED***  "imports": [
-***REMOVED***    "net461",
-***REMOVED***    "net462",
-***REMOVED***    "net47",
-***REMOVED***    "net471",
-***REMOVED***    "net472",
-***REMOVED***    "net48",
-***REMOVED***    "net481"
-***REMOVED***  ],
-***REMOVED***  "assetTargetFallback": true,
-***REMOVED***  "warn": true,
-***REMOVED***  "frameworkReferences": {
-***REMOVED***    "Microsoft.AspNetCore.App": {
-***REMOVED***      "privateAssets": "none"
-***REMOVED***    },
-***REMOVED***    "Microsoft.NETCore.App": {
-***REMOVED***      "privateAssets": "all"
-***REMOVED***    }
-***REMOVED***  },
-***REMOVED***  "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/8.0.100/PortableRuntimeIdentifierGraph.json"
-***REMOVED***}
+        "net8.0": {
+          "targetAlias": "net8.0",
+          "dependencies": {
+            "AutoMapper": {
+              "target": "Package",
+              "version": "[12.0.1, )"
+            },
+            "AutoMapper.Extensions.Microsoft.DependencyInjection": {
+              "target": "Package",
+              "version": "[12.0.0, )"
+            },
+            "Microsoft.EntityFrameworkCore.Design": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[7.0.3, )"
+            },
+            "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[7.0.3, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.AspNetCore.App": {
+              "privateAssets": "none"
+            },
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/8.0.100/PortableRuntimeIdentifierGraph.json"
+        }
       }
     }
   }

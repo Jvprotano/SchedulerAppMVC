@@ -12,72 +12,72 @@ namespace AppAgendamentos.Controllers
     [Route("[controller]")]
     public class SchedulingController : BaseController
     {
-***REMOVED***private readonly ICompanyRepository _repositoryCompany;
-***REMOVED***private readonly ISchedulingRepository _repositoryScheduling;
-***REMOVED***private readonly ISchedulingService _serviceScheduling;
-***REMOVED***private readonly IMapper _mapper;
+private readonly ICompanyRepository _repositoryCompany;
+private readonly ISchedulingRepository _repositoryScheduling;
+private readonly ISchedulingService _serviceScheduling;
+private readonly IMapper _mapper;
 
-***REMOVED***public SchedulingController(ILogger<SchedulingController> logger, ICompanyRepository repositoryCompany, IMapper mapper, ISchedulingRepository repositoryScheduling, ISchedulingService serviceScheduling) : base(logger)
-***REMOVED***{
-***REMOVED***    _repositoryCompany = repositoryCompany;
-***REMOVED***    _mapper = mapper;
-***REMOVED***    _repositoryScheduling = repositoryScheduling;
-***REMOVED***    _serviceScheduling = serviceScheduling;
-***REMOVED***}
+public SchedulingController(ILogger<SchedulingController> logger, ICompanyRepository repositoryCompany, IMapper mapper, ISchedulingRepository repositoryScheduling, ISchedulingService serviceScheduling) : base(logger)
+{
+    _repositoryCompany = repositoryCompany;
+    _mapper = mapper;
+    _repositoryScheduling = repositoryScheduling;
+    _serviceScheduling = serviceScheduling;
+}
 
-***REMOVED***public async Task<IActionResult> Create(int companyId)
-***REMOVED***{
-***REMOVED***    var company = await _repositoryCompany.GetAsync(companyId);
+public async Task<IActionResult> Create(int companyId)
+{
+    var company = await _repositoryCompany.GetAsync(companyId);
 
-***REMOVED***    SchedulingViewModel model = _mapper.Map<SchedulingViewModel>(company);
+    SchedulingViewModel model = _mapper.Map<SchedulingViewModel>(company);
 
-***REMOVED***    foreach (var item in company.ServicesOffered)
-***REMOVED***    {
-***REMOVED******REMOVED***model.CompanyServices.Add(new SelectListItem { Value = item.Id.ToString(), Text = item.Name + " - " + string.Format("{0:C}", item.Price) });
-***REMOVED***    }
+    foreach (var item in company.ServicesOffered)
+    {
+model.CompanyServices.Add(new SelectListItem { Value = item.Id.ToString(), Text = item.Name + " - " + string.Format("{0:C}", item.Price) });
+    }
 
-***REMOVED***    List<TimeSpan> availableTimes = _serviceScheduling.GetAvailableTimes(company.Id, company.ServicesOffered.FirstOrDefault().Id, DateOnly.FromDateTime(DateTime.Now));
+    List<TimeSpan> availableTimes = _serviceScheduling.GetAvailableTimes(company.Id, company.ServicesOffered.FirstOrDefault().Id, DateOnly.FromDateTime(DateTime.Now));
 
-***REMOVED***    foreach (var item in availableTimes)
-***REMOVED***    {
-***REMOVED******REMOVED***model.AvailableTimeSlots.Add(new SelectListItem { Value = item.ToString(), Text = TimeOnly.Parse(item.ToString()).ToString() });
-***REMOVED***    }
+    foreach (var item in availableTimes)
+    {
+model.AvailableTimeSlots.Add(new SelectListItem { Value = item.ToString(), Text = TimeOnly.Parse(item.ToString()).ToString() });
+    }
 
-***REMOVED***    return View(model);
-***REMOVED***}
-***REMOVED***[HttpPost]
-***REMOVED***public ActionResult Create(SchedulingViewModel model)
-***REMOVED***{
-***REMOVED***    try
-***REMOVED***    {
-***REMOVED******REMOVED***var scheduling = _mapper.Map<Scheduling>(model);
-***REMOVED******REMOVED***// _serviceScheduling.Save(scheduling);
-***REMOVED***    }
-***REMOVED***    catch (Exception ex)
-***REMOVED***    {
-***REMOVED******REMOVED***throw new Exception(ex.Message);
-***REMOVED***    }
+    return View(model);
+}
+[HttpPost]
+public ActionResult Create(SchedulingViewModel model)
+{
+    try
+    {
+var scheduling = _mapper.Map<Scheduling>(model);
+// _serviceScheduling.Save(scheduling);
+    }
+    catch (Exception ex)
+    {
+throw new Exception(ex.Message);
+    }
 
-***REMOVED***    return RedirectToAction("Index", "Home");
-***REMOVED***}
+    return RedirectToAction("Index", "Home");
+}
 
-***REMOVED***[HttpPost]
-***REMOVED***[Route("GetAvailableTimesJson")]
-***REMOVED***public JsonResult GetAvailableTimes(int companyId, int serviceSelected, DateOnly dateSelected)
-***REMOVED***{
-***REMOVED***    try
-***REMOVED***    {
-***REMOVED******REMOVED***List<TimeSpan> listTimes = _serviceScheduling.GetAvailableTimes(companyId, serviceSelected, dateSelected);
+[HttpPost]
+[Route("GetAvailableTimesJson")]
+public JsonResult GetAvailableTimes(int companyId, int serviceSelected, DateOnly dateSelected)
+{
+    try
+    {
+List<TimeSpan> listTimes = _serviceScheduling.GetAvailableTimes(companyId, serviceSelected, dateSelected);
 
-***REMOVED******REMOVED***Response.StatusCode = 200;
-***REMOVED******REMOVED***return Json(listTimes);
-***REMOVED***    }
-***REMOVED***    catch (Exception ex)
-***REMOVED***    {
-***REMOVED******REMOVED***Response.StatusCode = 500;
-***REMOVED******REMOVED***return Json(ex.Message);
-***REMOVED***    }
+Response.StatusCode = 200;
+return Json(listTimes);
+    }
+    catch (Exception ex)
+    {
+Response.StatusCode = 500;
+return Json(ex.Message);
+    }
 
-***REMOVED***}
+}
     }
 }

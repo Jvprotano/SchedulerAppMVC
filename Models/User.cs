@@ -7,12 +7,12 @@ namespace AppAgendamentos.Models
     [Table("users")]
     public class User : BaseEntity
     {
-***REMOVED***[Required]
-***REMOVED***public string Name { get; set; }
+[Required]
+public string Name { get; set; }
 
-***REMOVED***[Required]
-***REMOVED***public DateTime BirthDate { get; set; }
+[Required]
+public DateTime BirthDate { get; set; }
 
-***REMOVED***public ICollection<CompanyOwners> Companies { get; set; }
+public ICollection<CompanyOwners> Companies { get; set; }
     }
 }

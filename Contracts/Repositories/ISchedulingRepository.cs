@@ -5,6 +5,6 @@ namespace AppAgendamentos.Contracts.Repositories
 {
     public interface ISchedulingRepository : IRepository<Scheduling>
     {
-***REMOVED***List<Scheduling> GetAllByDate(int companyId, DateOnly date);
+        List<Scheduling> GetAllByDate(int companyId, DateOnly date);
     }
 }

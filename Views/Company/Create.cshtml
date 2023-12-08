@@ -7,14 +7,14 @@
 
 <form asp-action="Create" method="post">
     <div class="row">
-***REMOVED***<div class="col-md-4">
-***REMOVED***    @Html.LabelFor(c => c.Name)
-***REMOVED***    @Html.TextBoxFor(c => c.Name, new {@class = "form-control"})
-***REMOVED***</div>
-***REMOVED***<div class="col-md-4">
-***REMOVED***    @Html.LabelFor(c => c.CategoryId)
-***REMOVED***    @Html.DropDownListFor(c => c.CategoryId, Model.Categories, new {@class = "form-control"})
-***REMOVED***</div>
+<div class="col-md-4">
+    @Html.LabelFor(c => c.Name)
+    @Html.TextBoxFor(c => c.Name, new {@class = "form-control"})
+</div>
+<div class="col-md-4">
+    @Html.LabelFor(c => c.CategoryId)
+    @Html.DropDownListFor(c => c.CategoryId, Model.Categories, new {@class = "form-control"})
+</div>
     </div>
     </br>
     <a asp-action="Index" asp-controller="Home" class="btn btn-danger">Back</a>

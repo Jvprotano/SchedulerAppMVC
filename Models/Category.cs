@@ -6,6 +6,6 @@ namespace AppAgendamentos.Models
     [Table("categories")]
     public class Category : BaseEntity
     {
-***REMOVED***public string Name { get; set; }
+public string Name { get; set; }
     }
 }

@@ -5,10 +5,10 @@ namespace AppAgendamentos.ViewModels
 {
     public class HomeViewModel : BaseViewModel
     {
-***REMOVED***public IEnumerable<Company> Companies { get; set; }
+public IEnumerable<Company> Companies { get; set; }
 
-***REMOVED***public HomeViewModel(){
-***REMOVED***    Companies = new List<Company>();
-***REMOVED***}
+public HomeViewModel(){
+    Companies = new List<Company>();
+}
     }
 }

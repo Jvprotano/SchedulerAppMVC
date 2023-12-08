@@ -7,53 +7,53 @@ namespace AppAgendamentos.Migrations
     /// <inheritdoc />
     public partial class AddingColumnServiceOfferedId : Migration
     {
-***REMOVED***/// <inheritdoc />
-***REMOVED***protected override void Up(MigrationBuilder migrationBuilder)
-***REMOVED***{
-***REMOVED***    migrationBuilder.AddColumn<int>(
-***REMOVED******REMOVED***name: "service_offred_id",
-***REMOVED******REMOVED***table: "schedulings",
-***REMOVED******REMOVED***type: "int",
-***REMOVED******REMOVED***nullable: false,
-***REMOVED******REMOVED***defaultValue: 0);
+/// <inheritdoc />
+protected override void Up(MigrationBuilder migrationBuilder)
+{
+    migrationBuilder.AddColumn<int>(
+name: "service_offred_id",
+table: "schedulings",
+type: "int",
+nullable: false,
+defaultValue: 0);
 
-***REMOVED***    migrationBuilder.AddColumn<int>(
-***REMOVED******REMOVED***name: "services_offered_id",
-***REMOVED******REMOVED***table: "schedulings",
-***REMOVED******REMOVED***type: "int",
-***REMOVED******REMOVED***nullable: true);
+    migrationBuilder.AddColumn<int>(
+name: "services_offered_id",
+table: "schedulings",
+type: "int",
+nullable: true);
 
-***REMOVED***    migrationBuilder.CreateIndex(
-***REMOVED******REMOVED***name: "IX_schedulings_services_offered_id",
-***REMOVED******REMOVED***table: "schedulings",
-***REMOVED******REMOVED***column: "services_offered_id");
+    migrationBuilder.CreateIndex(
+name: "IX_schedulings_services_offered_id",
+table: "schedulings",
+column: "services_offered_id");
 
-***REMOVED***    migrationBuilder.AddForeignKey(
-***REMOVED******REMOVED***name: "FK_schedulings_services_offered_services_offered_id",
-***REMOVED******REMOVED***table: "schedulings",
-***REMOVED******REMOVED***column: "services_offered_id",
-***REMOVED******REMOVED***principalTable: "services_offered",
-***REMOVED******REMOVED***principalColumn: "id");
-***REMOVED***}
+    migrationBuilder.AddForeignKey(
+name: "FK_schedulings_services_offered_services_offered_id",
+table: "schedulings",
+column: "services_offered_id",
+principalTable: "services_offered",
+principalColumn: "id");
+}
 
-***REMOVED***/// <inheritdoc />
-***REMOVED***protected override void Down(MigrationBuilder migrationBuilder)
-***REMOVED***{
-***REMOVED***    migrationBuilder.DropForeignKey(
-***REMOVED******REMOVED***name: "FK_schedulings_services_offered_services_offered_id",
-***REMOVED******REMOVED***table: "schedulings");
+/// <inheritdoc />
+protected override void Down(MigrationBuilder migrationBuilder)
+{
+    migrationBuilder.DropForeignKey(
+name: "FK_schedulings_services_offered_services_offered_id",
+table: "schedulings");
 
-***REMOVED***    migrationBuilder.DropIndex(
-***REMOVED******REMOVED***name: "IX_schedulings_services_offered_id",
-***REMOVED******REMOVED***table: "schedulings");
+    migrationBuilder.DropIndex(
+name: "IX_schedulings_services_offered_id",
+table: "schedulings");
 
-***REMOVED***    migrationBuilder.DropColumn(
-***REMOVED******REMOVED***name: "service_offred_id",
-***REMOVED******REMOVED***table: "schedulings");
+    migrationBuilder.DropColumn(
+name: "service_offred_id",
+table: "schedulings");
 
-***REMOVED***    migrationBuilder.DropColumn(
-***REMOVED******REMOVED***name: "services_offered_id",
-***REMOVED******REMOVED***table: "schedulings");
-***REMOVED***}
+    migrationBuilder.DropColumn(
+name: "services_offered_id",
+table: "schedulings");
+}
     }
 }

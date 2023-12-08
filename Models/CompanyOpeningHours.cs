@@ -5,10 +5,10 @@ namespace AppAgendamentos.Models
 {
     public class CompanyOpeningHours : BaseEntity
     {
-***REMOVED***public int CompanyId { get; set; }
-***REMOVED***public Company Company { get; set; }
-***REMOVED***public DayOfWeek DayOfWeek { get; set; }
-***REMOVED***public TimeSpan OpeningHour { get; set; }
-***REMOVED***public TimeSpan ClosingHour { get; set; }
+public int CompanyId { get; set; }
+public Company Company { get; set; }
+public DayOfWeek DayOfWeek { get; set; }
+public TimeSpan OpeningHour { get; set; }
+public TimeSpan ClosingHour { get; set; }
     }
 }

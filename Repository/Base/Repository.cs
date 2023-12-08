@@ -7,27 +7,27 @@ namespace AppAgendamentos.Repository.Base
 {
     public class Repository<T> : IRepository<T> where T : class
     {
-***REMOVED***private readonly DbSet<T> _dbSet;
-***REMOVED***private ApplicationDbContext _context;
-***REMOVED***public Repository(ApplicationDbContext context)
-***REMOVED***{
-***REMOVED***    _context = context;
-***REMOVED***    _dbSet = _context.Set<T>();
-***REMOVED***}
+private readonly DbSet<T> _dbSet;
+private ApplicationDbContext _context;
+public Repository(ApplicationDbContext context)
+{
+    _context = context;
+    _dbSet = _context.Set<T>();
+}
 
-***REMOVED***public DbSet<T> DbSet { get => _dbSet; }
+public DbSet<T> DbSet { get => _dbSet; }
 
-***REMOVED***public virtual async Task SaveAsync(T entity)
-***REMOVED***{
-***REMOVED***    try
-***REMOVED***    {
-***REMOVED******REMOVED***await this.DbSet.AddAsync(entity);
-***REMOVED******REMOVED***await this._context.SaveChangesAsync();
-***REMOVED***    }
-***REMOVED***    catch (Exception ex)
-***REMOVED***    {
-***REMOVED******REMOVED***throw new Exception(ex.Message);
-***REMOVED***    }
-***REMOVED***}
+public virtual async Task SaveAsync(T entity)
+{
+    try
+    {
+await this.DbSet.AddAsync(entity);
+await this._context.SaveChangesAsync();
+    }
+    catch (Exception ex)
+    {
+throw new Exception(ex.Message);
+    }
+}
     }
 }

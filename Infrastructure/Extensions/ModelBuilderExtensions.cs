@@ -5,68 +5,68 @@ namespace AppAgendamentos.Infrastructure.Extensions
 {
     public static class ModelBuilderExtensions
     {
-***REMOVED***public static void ApplySnakeCaseNamingConvention(this ModelBuilder modelBuilder)
-***REMOVED***{
-***REMOVED***    modelBuilder.ApplySnakeCaseNamingConventionForEntities();
-***REMOVED***    modelBuilder.ApplySnakeCaseNamingConventionForProperties();
-***REMOVED***}
+public static void ApplySnakeCaseNamingConvention(this ModelBuilder modelBuilder)
+{
+    modelBuilder.ApplySnakeCaseNamingConventionForEntities();
+    modelBuilder.ApplySnakeCaseNamingConventionForProperties();
+}
 
-***REMOVED***private static void ApplySnakeCaseNamingConventionForEntities(this ModelBuilder modelBuilder)
-***REMOVED***{
-***REMOVED***    foreach (var entity in modelBuilder.Model.GetEntityTypes())
-***REMOVED***    {
-***REMOVED******REMOVED***entity.SetTableName(entity.GetTableName().ToSnakeCase());
-***REMOVED***    }
-***REMOVED***}
+private static void ApplySnakeCaseNamingConventionForEntities(this ModelBuilder modelBuilder)
+{
+    foreach (var entity in modelBuilder.Model.GetEntityTypes())
+    {
+entity.SetTableName(entity.GetTableName().ToSnakeCase());
+    }
+}
 
-***REMOVED***private static void ApplySnakeCaseNamingConventionForProperties(this ModelBuilder modelBuilder)
-***REMOVED***{
-***REMOVED***    foreach (var entity in modelBuilder.Model.GetEntityTypes())
-***REMOVED***    {
-***REMOVED******REMOVED***foreach (var property in entity.GetProperties())
-***REMOVED******REMOVED***{
-***REMOVED******REMOVED***    property.SetColumnName(property.GetColumnName().ToSnakeCase());
-***REMOVED******REMOVED***}
-***REMOVED***    }
-***REMOVED***}
+private static void ApplySnakeCaseNamingConventionForProperties(this ModelBuilder modelBuilder)
+{
+    foreach (var entity in modelBuilder.Model.GetEntityTypes())
+    {
+foreach (var property in entity.GetProperties())
+{
+    property.SetColumnName(property.GetColumnName().ToSnakeCase());
+}
+    }
+}
 
-***REMOVED***private static string ToSnakeCase(this string input)
-***REMOVED***{
-***REMOVED***    var reservedNames = new List<string>{ "CNPJ", "CPF"};
-***REMOVED***    
-***REMOVED***    if (string.IsNullOrEmpty(input))
-***REMOVED***    {
-***REMOVED******REMOVED***return input;
-***REMOVED***    }
+private static string ToSnakeCase(this string input)
+{
+    var reservedNames = new List<string>{ "CNPJ", "CPF"};
+    
+    if (string.IsNullOrEmpty(input))
+    {
+return input;
+    }
 
-***REMOVED***    if (reservedNames.Contains(input.ToUpper()))
-***REMOVED***    {
-***REMOVED******REMOVED***return input.ToLower();
-***REMOVED***    }
+    if (reservedNames.Contains(input.ToUpper()))
+    {
+return input.ToLower();
+    }
 
-***REMOVED***    var result = new StringBuilder();
-***REMOVED***    var lastChar = char.MinValue;
+    var result = new StringBuilder();
+    var lastChar = char.MinValue;
 
-***REMOVED***    foreach (var character in input)
-***REMOVED***    {
-***REMOVED******REMOVED***if (char.IsUpper(character))
-***REMOVED******REMOVED***{
-***REMOVED******REMOVED***    if (result.Length > 0 && lastChar != '_')
-***REMOVED******REMOVED***    {
-***REMOVED******REMOVED******REMOVED***result.Append('_');
-***REMOVED******REMOVED***    }
+    foreach (var character in input)
+    {
+if (char.IsUpper(character))
+{
+    if (result.Length > 0 && lastChar != '_')
+    {
+result.Append('_');
+    }
 
-***REMOVED******REMOVED***    result.Append(char.ToLowerInvariant(character));
-***REMOVED******REMOVED***}
-***REMOVED******REMOVED***else
-***REMOVED******REMOVED***{
-***REMOVED******REMOVED***    result.Append(character);
-***REMOVED******REMOVED***}
+    result.Append(char.ToLowerInvariant(character));
+}
+else
+{
+    result.Append(character);
+}
 
-***REMOVED******REMOVED***lastChar = character;
-***REMOVED***    }
+lastChar = character;
+    }
 
-***REMOVED***    return result.ToString();
-***REMOVED***}
+    return result.ToString();
+}
     }
 }

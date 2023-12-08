@@ -6,13 +6,13 @@ namespace AppAgendamentos.Models
     [Table("schedulings")]
     public class Scheduling : BaseEntity
     {
-***REMOVED***public int CompanyId { get; set; }
-***REMOVED***public Company Company { get; set; }
-***REMOVED***public int CustomerId { get; set; }
-***REMOVED***public User Customer { get; set; }
-***REMOVED***public DateTime ScheduledDate { get; set; }
+public int CompanyId { get; set; }
+public Company Company { get; set; }
+public int CustomerId { get; set; }
+public User Customer { get; set; }
+public DateTime ScheduledDate { get; set; }
 
-***REMOVED***public int ServicesOfferedId { get; set; }
-***REMOVED***public ServicesOffered ServicesOffered { get; set; }
+public int ServicesOfferedId { get; set; }
+public ServicesOffered ServicesOffered { get; set; }
     }
 }

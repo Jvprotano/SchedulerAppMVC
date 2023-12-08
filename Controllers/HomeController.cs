@@ -14,22 +14,22 @@ public class HomeController : Controller
 
     public HomeController(ILogger<HomeController> logger, ICompanyRepository companyRepository)
     {
-***REMOVED***_logger = logger;
-***REMOVED***_companyRepository = companyRepository;
+_logger = logger;
+_companyRepository = companyRepository;
     }
 
     public async Task<IActionResult> Index()
     {
-***REMOVED***HomeViewModel model = new HomeViewModel();
+HomeViewModel model = new HomeViewModel();
 
-***REMOVED***model.Companies = await _companyRepository.GetAllAsync();
+model.Companies = await _companyRepository.GetAllAsync();
 
-***REMOVED***return View(model);
+return View(model);
     }
 
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
     public IActionResult Error()
     {
-***REMOVED***return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
     }
 }

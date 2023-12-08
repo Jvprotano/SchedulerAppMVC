@@ -1,41 +1,41 @@
 {
     "version": "2.0.0",
     "tasks": [
-***REMOVED***{
-***REMOVED***    "label": "build",
-***REMOVED***    "command": "dotnet",
-***REMOVED***    "type": "process",
-***REMOVED***    "args": [
-***REMOVED******REMOVED***"build",
-***REMOVED******REMOVED***"${workspaceFolder}/AppAgendamentos.csproj",
-***REMOVED******REMOVED***"/property:GenerateFullPaths=true",
-***REMOVED******REMOVED***"/consoleloggerparameters:NoSummary"
-***REMOVED***    ],
-***REMOVED***    "problemMatcher": "$msCompile"
-***REMOVED***},
-***REMOVED***{
-***REMOVED***    "label": "publish",
-***REMOVED***    "command": "dotnet",
-***REMOVED***    "type": "process",
-***REMOVED***    "args": [
-***REMOVED******REMOVED***"publish",
-***REMOVED******REMOVED***"${workspaceFolder}/AppAgendamentos.csproj",
-***REMOVED******REMOVED***"/property:GenerateFullPaths=true",
-***REMOVED******REMOVED***"/consoleloggerparameters:NoSummary"
-***REMOVED***    ],
-***REMOVED***    "problemMatcher": "$msCompile"
-***REMOVED***},
-***REMOVED***{
-***REMOVED***    "label": "watch",
-***REMOVED***    "command": "dotnet",
-***REMOVED***    "type": "process",
-***REMOVED***    "args": [
-***REMOVED******REMOVED***"watch",
-***REMOVED******REMOVED***"run",
-***REMOVED******REMOVED***"--project",
-***REMOVED******REMOVED***"${workspaceFolder}/AppAgendamentos.csproj"
-***REMOVED***    ],
-***REMOVED***    "problemMatcher": "$msCompile"
-***REMOVED***}
+{
+    "label": "build",
+    "command": "dotnet",
+    "type": "process",
+    "args": [
+"build",
+"${workspaceFolder}/AppAgendamentos.csproj",
+"/property:GenerateFullPaths=true",
+"/consoleloggerparameters:NoSummary"
+    ],
+    "problemMatcher": "$msCompile"
+},
+{
+    "label": "publish",
+    "command": "dotnet",
+    "type": "process",
+    "args": [
+"publish",
+"${workspaceFolder}/AppAgendamentos.csproj",
+"/property:GenerateFullPaths=true",
+"/consoleloggerparameters:NoSummary"
+    ],
+    "problemMatcher": "$msCompile"
+},
+{
+    "label": "watch",
+    "command": "dotnet",
+    "type": "process",
+    "args": [
+"watch",
+"run",
+"--project",
+"${workspaceFolder}/AppAgendamentos.csproj"
+    ],
+    "problemMatcher": "$msCompile"
+}
     ]
 }

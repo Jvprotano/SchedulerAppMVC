@@ -6,8 +6,8 @@
  {[m
      public interface ICompanyRepository[m
      {[m
-[32m+[m[32m***REMOVED***Task<Company> GetAsync(int id);[m
-***REMOVED*** Task Save(Company company);[m
+[32m+[m[32mTask<Company> GetAsync(int id);[m
+ Task Save(Company company);[m
      }[m
  }[m
 \ No newline at end of file[m
@@ -25,28 +25,28 @@
 [36m@@ -7,16 +9,22 @@[m [mnamespace AppAgendamentos.Controllers[m
      public class SchedulingController : Controller[m
      {[m
-***REMOVED*** private readonly ILogger<SchedulingController> _logger;[m
-[32m+[m[32m***REMOVED***private readonly ICompanyRepository _repositoryCompany;[m
-[32m+[m[32m***REMOVED***private readonly IMapper _mapper;[m
+ private readonly ILogger<SchedulingController> _logger;[m
+[32m+[m[32mprivate readonly ICompanyRepository _repositoryCompany;[m
+[32m+[m[32mprivate readonly IMapper _mapper;[m
  [m
-[31m-***REMOVED***public SchedulingController(ILogger<SchedulingController> logger)[m
-[32m+[m[32m***REMOVED***public SchedulingController(ILogger<SchedulingController> logger, ICompanyRepository repositoryCompany, IMapper mapper)[m
-***REMOVED*** {[m
-***REMOVED***     _logger = logger;[m
-[32m+[m[32m***REMOVED***    _repositoryCompany = repositoryCompany;[m
-[32m+[m[32m***REMOVED***    _mapper = mapper;[m
-***REMOVED*** }[m
+[31m-public SchedulingController(ILogger<SchedulingController> logger)[m
+[32m+[m[32mpublic SchedulingController(ILogger<SchedulingController> logger, ICompanyRepository repositoryCompany, IMapper mapper)[m
+ {[m
+     _logger = logger;[m
+[32m+[m[32m    _repositoryCompany = repositoryCompany;[m
+[32m+[m[32m    _mapper = mapper;[m
+ }[m
  [m
-[31m-***REMOVED***public IActionResult Create()[m
-[32m+[m[32m***REMOVED***public async Task<IActionResult> Create(int companyId)[m
-***REMOVED*** {[m
-[31m-***REMOVED***    SchedulingViewModel model = new SchedulingViewModel();[m
-[32m+[m[32m***REMOVED***    var empresa = await _repositoryCompany.GetAsync(companyId);[m
+[31m-public IActionResult Create()[m
+[32m+[m[32mpublic async Task<IActionResult> Create(int companyId)[m
+ {[m
+[31m-    SchedulingViewModel model = new SchedulingViewModel();[m
+[32m+[m[32m    var empresa = await _repositoryCompany.GetAsync(companyId);[m
  [m
-[32m+[m[32m***REMOVED***    SchedulingViewModel model = _mapper.Map<SchedulingViewModel>(empresa);[m
-[32m+[m[41m***REMOVED***    [m
-***REMOVED***     return View(model);[m
-***REMOVED*** }[m
+[32m+[m[32m    SchedulingViewModel model = _mapper.Map<SchedulingViewModel>(empresa);[m
+[32m+[m[41m    [m
+     return View(model);[m
+ }[m
      }[m
 [1mdiff --git a/Infrastructure/ApplicationDbContext.cs b/Infrastructure/ApplicationDbContext.cs[m
 [1mindex f0c6a16..582707e 100644[m
@@ -54,21 +54,21 @@
 [1m+++ b/Infrastructure/ApplicationDbContext.cs[m
 [36m@@ -13,14 +13,15 @@[m [mnamespace AppAgendamentos.Infrastructure[m
  [m
-***REMOVED*** public DbSet<Company> Companies { get; set; }[m
-***REMOVED*** public DbSet<User> Users { get; set; }[m
-[32m+[m[32m***REMOVED***public DbSet<Category> Categories { get; set; }[m
-[32m+[m[32m***REMOVED***public DbSet<CompanyOwners> CompanyOwners { get; set; }[m
-[32m+[m[32m***REMOVED***public DbSet<ServicesOffered> ServicesOffered { get; set; }[m
-***REMOVED*** public DbSet<Scheduling> Schedulings { get; set; }[m
+ public DbSet<Company> Companies { get; set; }[m
+ public DbSet<User> Users { get; set; }[m
+[32m+[m[32mpublic DbSet<Category> Categories { get; set; }[m
+[32m+[m[32mpublic DbSet<CompanyOwners> CompanyOwners { get; set; }[m
+[32m+[m[32mpublic DbSet<ServicesOffered> ServicesOffered { get; set; }[m
+ public DbSet<Scheduling> Schedulings { get; set; }[m
  [m
-***REMOVED*** protected override void OnModelCreating(ModelBuilder modelBuilder)[m
-***REMOVED*** {[m
-***REMOVED***     modelBuilder.ApplySnakeCaseNamingConvention();[m
+ protected override void OnModelCreating(ModelBuilder modelBuilder)[m
+ {[m
+     modelBuilder.ApplySnakeCaseNamingConvention();[m
  [m
-[31m-***REMOVED***    // modelBuilder.ApplyConfiguration(new SchedulingConfiguration());[m
+[31m-    // modelBuilder.ApplyConfiguration(new SchedulingConfiguration());[m
 [31m-[m
-***REMOVED***     base.OnModelCreating(modelBuilder);[m
-***REMOVED*** }[m
+     base.OnModelCreating(modelBuilder);[m
+ }[m
  [m
 [1mdiff --git a/Infrastructure/Configuration/SchedulingConfiguration.cs b/Infrastructure/Configuration/SchedulingConfiguration.cs[m
 [1mdeleted file mode 100644[m
@@ -84,20 +84,20 @@
 [31m-{[m
 [31m-    public class SchedulingConfiguration : IEntityTypeConfiguration<Scheduling>[m
 [31m-    {[m
-[31m-***REMOVED***public void Configure(EntityTypeBuilder<Scheduling> builder)[m
-[31m-***REMOVED***{[m
-[31m-***REMOVED***    builder.ToTable("schedulings");[m
+[31m-public void Configure(EntityTypeBuilder<Scheduling> builder)[m
+[31m-{[m
+[31m-    builder.ToTable("schedulings");[m
 [31m-[m
-[31m-***REMOVED***    builder.Property(c=>c.Company)[m
-[31m-***REMOVED******REMOVED***.HasColumnName("company_id")[m
-[31m-***REMOVED******REMOVED***.IsRequired();[m
+[31m-    builder.Property(c=>c.Company)[m
+[31m-.HasColumnName("company_id")[m
+[31m-.IsRequired();[m
 [31m-[m
-[31m-***REMOVED***    builder.Property(c=>c.Customer)[m
-[31m-***REMOVED******REMOVED***.HasColumnName("customer_id")[m
-[31m-***REMOVED******REMOVED***.IsRequired();[m
-[31m-***REMOVED******REMOVED***[m
-[31m-***REMOVED***    builder.Property(c=>c.ScheduledDate).IsRequired();[m
-[31m-***REMOVED***}[m
+[31m-    builder.Property(c=>c.Customer)[m
+[31m-.HasColumnName("customer_id")[m
+[31m-.IsRequired();[m
+[31m-[m
+[31m-    builder.Property(c=>c.ScheduledDate).IsRequired();[m
+[31m-}[m
 [31m-    }[m
 [31m-}[m
 \ No newline at end of file[m
@@ -106,26 +106,26 @@
 [1m--- a/Infrastructure/Extensions/ModelBuilderExtensions.cs[m
 [1m+++ b/Infrastructure/Extensions/ModelBuilderExtensions.cs[m
 [36m@@ -30,13 +30,20 @@[m [mnamespace AppAgendamentos.Infrastructure.Extensions[m
-***REMOVED***     }[m
-***REMOVED*** }[m
+     }[m
+ }[m
  [m
-[31m-***REMOVED***private static string? ToSnakeCase(this string? input)[m
-[32m+[m[32m***REMOVED***private static string ToSnakeCase(this string input)[m
-***REMOVED*** {[m
-[32m+[m[32m***REMOVED***    var reservedNames = new List<string>{ "CNPJ", "CPF"};[m
-[32m+[m[41m***REMOVED***    [m
-***REMOVED***     if (string.IsNullOrEmpty(input))[m
-***REMOVED***     {[m
-***REMOVED******REMOVED*** return input;[m
-***REMOVED***     }[m
+[31m-private static string? ToSnakeCase(this string? input)[m
+[32m+[m[32mprivate static string ToSnakeCase(this string input)[m
+ {[m
+[32m+[m[32m    var reservedNames = new List<string>{ "CNPJ", "CPF"};[m
+[32m+[m[41m    [m
+     if (string.IsNullOrEmpty(input))[m
+     {[m
+ return input;[m
+     }[m
  [m
-[32m+[m[32m***REMOVED***    if (reservedNames.Contains(input.ToUpper()))[m
-[32m+[m[32m***REMOVED***    {[m
-[32m+[m[32m***REMOVED******REMOVED***return input.ToLower();[m
-[32m+[m[32m***REMOVED***    }[m
+[32m+[m[32m    if (reservedNames.Contains(input.ToUpper()))[m
+[32m+[m[32m    {[m
+[32m+[m[32mreturn input.ToLower();[m
+[32m+[m[32m    }[m
 [32m+[m
-***REMOVED***     var result = new StringBuilder();[m
-***REMOVED***     var lastChar = char.MinValue;[m
+     var result = new StringBuilder();[m
+     var lastChar = char.MinValue;[m
  [m
 [1mdiff --git a/Mappings/CompanyProfile.cs b/Mappings/CompanyProfile.cs[m
 [1mindex a252612..211b972 100644[m
@@ -145,210 +145,210 @@
 [1m+++ b/Migrations/ApplicationDbContextModelSnapshot.cs[m
 [36m@@ -22,6 +22,36 @@[m [mnamespace AppAgendamentos.Migrations[m
  [m
-***REMOVED***     SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);[m
+     SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);[m
  [m
-[32m+[m[32m***REMOVED***    modelBuilder.Entity("AppAgendamentos.Models.Category", b =>[m
-[32m+[m[32m***REMOVED******REMOVED***{[m
-[32m+[m[32m***REMOVED******REMOVED***    b.Property<int>("Id")[m
-[32m+[m[32m***REMOVED******REMOVED******REMOVED***.ValueGeneratedOnAdd()[m
-[32m+[m[32m***REMOVED******REMOVED******REMOVED***.HasColumnType("int")[m
-[32m+[m[32m***REMOVED******REMOVED******REMOVED***.HasColumnName("id");[m
+[32m+[m[32m    modelBuilder.Entity("AppAgendamentos.Models.Category", b =>[m
+[32m+[m[32m{[m
+[32m+[m[32m    b.Property<int>("Id")[m
+[32m+[m[32m.ValueGeneratedOnAdd()[m
+[32m+[m[32m.HasColumnType("int")[m
+[32m+[m[32m.HasColumnName("id");[m
 [32m+[m
-[32m+[m[32m***REMOVED******REMOVED***    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));[m
+[32m+[m[32m    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));[m
 [32m+[m
-[32m+[m[32m***REMOVED******REMOVED***    b.Property<string>("Name")[m
-[32m+[m[32m***REMOVED******REMOVED******REMOVED***.HasColumnType("nvarchar(max)")[m
-[32m+[m[32m***REMOVED******REMOVED******REMOVED***.HasColumnName("name");[m
+[32m+[m[32m    b.Property<string>("Name")[m
+[32m+[m[32m.HasColumnType("nvarchar(max)")[m
+[32m+[m[32m.HasColumnName("name");[m
 [32m+[m
-[32m+[m[32m***REMOVED******REMOVED***    b.Property<DateTime>("RegisterDate")[m
-[32m+[m[32m***REMOVED******REMOVED******REMOVED***.HasColumnType("datetime2")[m
-[32m+[m[32m***REMOVED******REMOVED******REMOVED***.HasColumnName("register_date");[m
+[32m+[m[32m    b.Property<DateTime>("RegisterDate")[m
+[32m+[m[32m.HasColumnType("datetime2")[m
+[32m+[m[32m.HasColumnName("register_date");[m
 [32m+[m
-[32m+[m[32m***REMOVED******REMOVED***    b.Property<int>("Status")[m
-[32m+[m[32m***REMOVED******REMOVED******REMOVED***.HasColumnType("int")[m
-[32m+[m[32m***REMOVED******REMOVED******REMOVED***.HasColumnName("status");[m
+[32m+[m[32m    b.Property<int>("Status")[m
+[32m+[m[32m.HasColumnType("int")[m
+[32m+[m[32m.HasColumnName("status");[m
 [32m+[m
-[32m+[m[32m***REMOVED******REMOVED***    b.Property<DateTime>("UpdateDate")[m
-[32m+[m[32m***REMOVED******REMOVED******REMOVED***.HasColumnType("datetime2")[m
-[32m+[m[32m***REMOVED******REMOVED******REMOVED***.HasColumnName("update_date");[m
+[32m+[m[32m    b.Property<DateTime>("UpdateDate")[m
+[32m+[m[32m.HasColumnType("datetime2")[m
+[32m+[m[32m.HasColumnName("update_date");[m
 [32m+[m
-[32m+[m[32m***REMOVED******REMOVED***    b.HasKey("Id");[m
+[32m+[m[32m    b.HasKey("Id");[m
 [32m+[m
-[32m+[m[32m***REMOVED******REMOVED***    b.ToTable("categories");[m
-[32m+[m[32m***REMOVED******REMOVED***});[m
+[32m+[m[32m    b.ToTable("categories");[m
+[32m+[m[32m});[m
 [32m+[m
-***REMOVED***     modelBuilder.Entity("AppAgendamentos.Models.Company", b =>[m
-***REMOVED******REMOVED*** {[m
-***REMOVED******REMOVED***     b.Property<int>("Id")[m
+     modelBuilder.Entity("AppAgendamentos.Models.Company", b =>[m
+ {[m
+     b.Property<int>("Id")[m
 [36m@@ -31,6 +61,19 @@[m [mnamespace AppAgendamentos.Migrations[m
  [m
-***REMOVED******REMOVED***     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));[m
+     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));[m
  [m
-[32m+[m[32m***REMOVED******REMOVED***    b.Property<string>("CNPJ")[m
-[32m+[m[32m***REMOVED******REMOVED******REMOVED***.HasColumnType("nvarchar(max)")[m
-[32m+[m[32m***REMOVED******REMOVED******REMOVED***.HasColumnName("cnpj");[m
+[32m+[m[32m    b.Property<string>("CNPJ")[m
+[32m+[m[32m.HasColumnType("nvarchar(max)")[m
+[32m+[m[32m.HasColumnName("cnpj");[m
 [32m+[m
-[32m+[m[32m***REMOVED******REMOVED***    b.Property<string>("Description")[m
-[32m+[m[32m***REMOVED******REMOVED******REMOVED***.IsRequired()[m
-[32m+[m[32m***REMOVED******REMOVED******REMOVED***.HasColumnType("nvarchar(max)")[m
-[32m+[m[32m***REMOVED******REMOVED******REMOVED***.HasColumnName("description");[m
+[32m+[m[32m    b.Property<string>("Description")[m
+[32m+[m[32m.IsRequired()[m
+[32m+[m[32m.HasColumnType("nvarchar(max)")[m
+[32m+[m[32m.HasColumnName("description");[m
 [32m+[m
-[32m+[m[32m***REMOVED******REMOVED***    b.Property<string>("Image")[m
-[32m+[m[32m***REMOVED******REMOVED******REMOVED***.HasColumnType("nvarchar(max)")[m
-[32m+[m[32m***REMOVED******REMOVED******REMOVED***.HasColumnName("image");[m
+[32m+[m[32m    b.Property<string>("Image")[m
+[32m+[m[32m.HasColumnType("nvarchar(max)")[m
+[32m+[m[32m.HasColumnName("image");[m
 [32m+[m
-***REMOVED******REMOVED***     b.Property<string>("Name")[m
-***REMOVED******REMOVED******REMOVED*** .IsRequired()[m
-***REMOVED******REMOVED******REMOVED*** .HasColumnType("nvarchar(max)")[m
+     b.Property<string>("Name")[m
+ .IsRequired()[m
+ .HasColumnType("nvarchar(max)")[m
 [36m@@ -40,6 +83,40 @@[m [mnamespace AppAgendamentos.Migrations[m
-***REMOVED******REMOVED******REMOVED*** .HasColumnType("datetime2")[m
-***REMOVED******REMOVED******REMOVED*** .HasColumnName("register_date");[m
+ .HasColumnType("datetime2")[m
+ .HasColumnName("register_date");[m
  [m
-[32m+[m[32m***REMOVED******REMOVED***    b.Property<int>("Status")[m
-[32m+[m[32m***REMOVED******REMOVED******REMOVED***.HasColumnType("int")[m
-[32m+[m[32m***REMOVED******REMOVED******REMOVED***.HasColumnName("status");[m
+[32m+[m[32m    b.Property<int>("Status")[m
+[32m+[m[32m.HasColumnType("int")[m
+[32m+[m[32m.HasColumnName("status");[m
 [32m+[m
-[32m+[m[32m***REMOVED******REMOVED***    b.Property<DateTime>("UpdateDate")[m
-[32m+[m[32m***REMOVED******REMOVED******REMOVED***.HasColumnType("datetime2")[m
-[32m+[m[32m***REMOVED******REMOVED******REMOVED***.HasColumnName("update_date");[m
+[32m+[m[32m    b.Property<DateTime>("UpdateDate")[m
+[32m+[m[32m.HasColumnType("datetime2")[m
+[32m+[m[32m.HasColumnName("update_date");[m
 [32m+[m
-[32m+[m[32m***REMOVED******REMOVED***    b.HasKey("Id");[m
+[32m+[m[32m    b.HasKey("Id");[m
 [32m+[m
-[32m+[m[32m***REMOVED******REMOVED***    b.ToTable("companies");[m
-[32m+[m[32m***REMOVED******REMOVED***});[m
+[32m+[m[32m    b.ToTable("companies");[m
+[32m+[m[32m});[m
 [32m+[m
-[32m+[m[32m***REMOVED***    modelBuilder.Entity("AppAgendamentos.Models.CompanyOwners", b =>[m
-[32m+[m[32m***REMOVED******REMOVED***{[m
-[32m+[m[32m***REMOVED******REMOVED***    b.Property<int>("Id")[m
-[32m+[m[32m***REMOVED******REMOVED******REMOVED***.ValueGeneratedOnAdd()[m
-[32m+[m[32m***REMOVED******REMOVED******REMOVED***.HasColumnType("int")[m
-[32m+[m[32m***REMOVED******REMOVED******REMOVED***.HasColumnName("id");[m
+[32m+[m[32m    modelBuilder.Entity("AppAgendamentos.Models.CompanyOwners", b =>[m
+[32m+[m[32m{[m
+[32m+[m[32m    b.Property<int>("Id")[m
+[32m+[m[32m.ValueGeneratedOnAdd()[m
+[32m+[m[32m.HasColumnType("int")[m
+[32m+[m[32m.HasColumnName("id");[m
 [32m+[m
-[32m+[m[32m***REMOVED******REMOVED***    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));[m
+[32m+[m[32m    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));[m
 [32m+[m
-[32m+[m[32m***REMOVED******REMOVED***    b.Property<int>("CompanyId")[m
-[32m+[m[32m***REMOVED******REMOVED******REMOVED***.HasColumnType("int")[m
-[32m+[m[32m***REMOVED******REMOVED******REMOVED***.HasColumnName("company_id");[m
+[32m+[m[32m    b.Property<int>("CompanyId")[m
+[32m+[m[32m.HasColumnType("int")[m
+[32m+[m[32m.HasColumnName("company_id");[m
 [32m+[m
-[32m+[m[32m***REMOVED******REMOVED***    b.Property<DateTime>("RegisterDate")[m
-[32m+[m[32m***REMOVED******REMOVED******REMOVED***.HasColumnType("datetime2")[m
-[32m+[m[32m***REMOVED******REMOVED******REMOVED***.HasColumnName("register_date");[m
+[32m+[m[32m    b.Property<DateTime>("RegisterDate")[m
+[32m+[m[32m.HasColumnType("datetime2")[m
+[32m+[m[32m.HasColumnName("register_date");[m
 [32m+[m
-[32m+[m[32m***REMOVED******REMOVED***    b.Property<int>("Status")[m
-[32m+[m[32m***REMOVED******REMOVED******REMOVED***.HasColumnType("int")[m
-[32m+[m[32m***REMOVED******REMOVED******REMOVED***.HasColumnName("status");[m
+[32m+[m[32m    b.Property<int>("Status")[m
+[32m+[m[32m.HasColumnType("int")[m
+[32m+[m[32m.HasColumnName("status");[m
 [32m+[m
-***REMOVED******REMOVED***     b.Property<DateTime>("UpdateDate")[m
-***REMOVED******REMOVED******REMOVED*** .HasColumnType("datetime2")[m
-***REMOVED******REMOVED******REMOVED*** .HasColumnName("update_date");[m
+     b.Property<DateTime>("UpdateDate")[m
+ .HasColumnType("datetime2")[m
+ .HasColumnName("update_date");[m
 [36m@@ -50,9 +127,11 @@[m [mnamespace AppAgendamentos.Migrations[m
  [m
-***REMOVED******REMOVED***     b.HasKey("Id");[m
+     b.HasKey("Id");[m
  [m
-[32m+[m[32m***REMOVED******REMOVED***    b.HasIndex("CompanyId");[m
+[32m+[m[32m    b.HasIndex("CompanyId");[m
 [32m+[m
-***REMOVED******REMOVED***     b.HasIndex("UserId");[m
+     b.HasIndex("UserId");[m
  [m
-[31m-***REMOVED******REMOVED***    b.ToTable("companies");[m
-[32m+[m[32m***REMOVED******REMOVED***    b.ToTable("company_owners");[m
-***REMOVED******REMOVED*** });[m
+[31m-    b.ToTable("companies");[m
+[32m+[m[32m    b.ToTable("company_owners");[m
+ });[m
  [m
-***REMOVED***     modelBuilder.Entity("AppAgendamentos.Models.Scheduling", b =>[m
+     modelBuilder.Entity("AppAgendamentos.Models.Scheduling", b =>[m
 [36m@@ -80,6 +159,10 @@[m [mnamespace AppAgendamentos.Migrations[m
-***REMOVED******REMOVED******REMOVED*** .HasColumnType("datetime2")[m
-***REMOVED******REMOVED******REMOVED*** .HasColumnName("scheduled_date");[m
+ .HasColumnType("datetime2")[m
+ .HasColumnName("scheduled_date");[m
  [m
-[32m+[m[32m***REMOVED******REMOVED***    b.Property<int>("Status")[m
-[32m+[m[32m***REMOVED******REMOVED******REMOVED***.HasColumnType("int")[m
-[32m+[m[32m***REMOVED******REMOVED******REMOVED***.HasColumnName("status");[m
+[32m+[m[32m    b.Property<int>("Status")[m
+[32m+[m[32m.HasColumnType("int")[m
+[32m+[m[32m.HasColumnName("status");[m
 [32m+[m
-***REMOVED******REMOVED***     b.Property<DateTime>("UpdateDate")[m
-***REMOVED******REMOVED******REMOVED*** .HasColumnType("datetime2")[m
-***REMOVED******REMOVED******REMOVED*** .HasColumnName("update_date");[m
+     b.Property<DateTime>("UpdateDate")[m
+ .HasColumnType("datetime2")[m
+ .HasColumnName("update_date");[m
 [36m@@ -93,6 +176,45 @@[m [mnamespace AppAgendamentos.Migrations[m
-***REMOVED******REMOVED***     b.ToTable("schedulings");[m
-***REMOVED******REMOVED*** });[m
+     b.ToTable("schedulings");[m
+ });[m
  [m
-[32m+[m[32m***REMOVED***    modelBuilder.Entity("AppAgendamentos.Models.ServicesOffered", b =>[m
-[32m+[m[32m***REMOVED******REMOVED***{[m
-[32m+[m[32m***REMOVED******REMOVED***    b.Property<int>("Id")[m
-[32m+[m[32m***REMOVED******REMOVED******REMOVED***.ValueGeneratedOnAdd()[m
-[32m+[m[32m***REMOVED******REMOVED******REMOVED***.HasColumnType("int")[m
-[32m+[m[32m***REMOVED******REMOVED******REMOVED***.HasColumnName("id");[m
+[32m+[m[32m    modelBuilder.Entity("AppAgendamentos.Models.ServicesOffered", b =>[m
+[32m+[m[32m{[m
+[32m+[m[32m    b.Property<int>("Id")[m
+[32m+[m[32m.ValueGeneratedOnAdd()[m
+[32m+[m[32m.HasColumnType("int")[m
+[32m+[m[32m.HasColumnName("id");[m
 [32m+[m
-[32m+[m[32m***REMOVED******REMOVED***    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));[m
+[32m+[m[32m    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));[m
 [32m+[m
-[32m+[m[32m***REMOVED******REMOVED***    b.Property<int>("CompanyId")[m
-[32m+[m[32m***REMOVED******REMOVED******REMOVED***.HasColumnType("int")[m
-[32m+[m[32m***REMOVED******REMOVED******REMOVED***.HasColumnName("company_id");[m
+[32m+[m[32m    b.Property<int>("CompanyId")[m
+[32m+[m[32m.HasColumnType("int")[m
+[32m+[m[32m.HasColumnName("company_id");[m
 [32m+[m
-[32m+[m[32m***REMOVED******REMOVED***    b.Property<string>("Name")[m
-[32m+[m[32m***REMOVED******REMOVED******REMOVED***.IsRequired()[m
-[32m+[m[32m***REMOVED******REMOVED******REMOVED***.HasColumnType("nvarchar(max)")[m
-[32m+[m[32m***REMOVED******REMOVED******REMOVED***.HasColumnName("name");[m
+[32m+[m[32m    b.Property<string>("Name")[m
+[32m+[m[32m.IsRequired()[m
+[32m+[m[32m.HasColumnType("nvarchar(max)")[m
+[32m+[m[32m.HasColumnName("name");[m
 [32m+[m
-[32m+[m[32m***REMOVED******REMOVED***    b.Property<float>("Price")[m
-[32m+[m[32m***REMOVED******REMOVED******REMOVED***.HasColumnType("real")[m
-[32m+[m[32m***REMOVED******REMOVED******REMOVED***.HasColumnName("price");[m
+[32m+[m[32m    b.Property<float>("Price")[m
+[32m+[m[32m.HasColumnType("real")[m
+[32m+[m[32m.HasColumnName("price");[m
 [32m+[m
-[32m+[m[32m***REMOVED******REMOVED***    b.Property<DateTime>("RegisterDate")[m
-[32m+[m[32m***REMOVED******REMOVED******REMOVED***.HasColumnType("datetime2")[m
-[32m+[m[32m***REMOVED******REMOVED******REMOVED***.HasColumnName("register_date");[m
+[32m+[m[32m    b.Property<DateTime>("RegisterDate")[m
+[32m+[m[32m.HasColumnType("datetime2")[m
+[32m+[m[32m.HasColumnName("register_date");[m
 [32m+[m
-[32m+[m[32m***REMOVED******REMOVED***    b.Property<int>("Status")[m
-[32m+[m[32m***REMOVED******REMOVED******REMOVED***.HasColumnType("int")[m
-[32m+[m[32m***REMOVED******REMOVED******REMOVED***.HasColumnName("status");[m
+[32m+[m[32m    b.Property<int>("Status")[m
+[32m+[m[32m.HasColumnType("int")[m
+[32m+[m[32m.HasColumnName("status");[m
 [32m+[m
-[32m+[m[32m***REMOVED******REMOVED***    b.Property<DateTime>("UpdateDate")[m
-[32m+[m[32m***REMOVED******REMOVED******REMOVED***.HasColumnType("datetime2")[m
-[32m+[m[32m***REMOVED******REMOVED******REMOVED***.HasColumnName("update_date");[m
+[32m+[m[32m    b.Property<DateTime>("UpdateDate")[m
+[32m+[m[32m.HasColumnType("datetime2")[m
+[32m+[m[32m.HasColumnName("update_date");[m
 [32m+[m
-[32m+[m[32m***REMOVED******REMOVED***    b.HasKey("Id");[m
+[32m+[m[32m    b.HasKey("Id");[m
 [32m+[m
-[32m+[m[32m***REMOVED******REMOVED***    b.ToTable("services_offered");[m
-[32m+[m[32m***REMOVED******REMOVED***});[m
+[32m+[m[32m    b.ToTable("services_offered");[m
+[32m+[m[32m});[m
 [32m+[m
-***REMOVED***     modelBuilder.Entity("AppAgendamentos.Models.User", b =>[m
-***REMOVED******REMOVED*** {[m
-***REMOVED******REMOVED***     b.Property<int>("Id")[m
+     modelBuilder.Entity("AppAgendamentos.Models.User", b =>[m
+ {[m
+     b.Property<int>("Id")[m
 [36m@@ -115,6 +237,10 @@[m [mnamespace AppAgendamentos.Migrations[m
-***REMOVED******REMOVED******REMOVED*** .HasColumnType("datetime2")[m
-***REMOVED******REMOVED******REMOVED*** .HasColumnName("register_date");[m
+ .HasColumnType("datetime2")[m
+ .HasColumnName("register_date");[m
  [m
-[32m+[m[32m***REMOVED******REMOVED***    b.Property<int>("Status")[m
-[32m+[m[32m***REMOVED******REMOVED******REMOVED***.HasColumnType("int")[m
-[32m+[m[32m***REMOVED******REMOVED******REMOVED***.HasColumnName("status");[m
+[32m+[m[32m    b.Property<int>("Status")[m
+[32m+[m[32m.HasColumnType("int")[m
+[32m+[m[32m.HasColumnName("status");[m
 [32m+[m
-***REMOVED******REMOVED***     b.Property<DateTime>("UpdateDate")[m
-***REMOVED******REMOVED******REMOVED*** .HasColumnType("datetime2")[m
-***REMOVED******REMOVED******REMOVED*** .HasColumnName("update_date");[m
+     b.Property<DateTime>("UpdateDate")[m
+ .HasColumnType("datetime2")[m
+ .HasColumnName("update_date");[m
 [36m@@ -124,15 +250,23 @@[m [mnamespace AppAgendamentos.Migrations[m
-***REMOVED******REMOVED***     b.ToTable("users");[m
-***REMOVED******REMOVED*** });[m
+     b.ToTable("users");[m
+ });[m
  [m
-[31m-***REMOVED***    modelBuilder.Entity("AppAgendamentos.Models.Company", b =>[m
-[32m+[m[32m***REMOVED***    modelBuilder.Entity("AppAgendamentos.Models.CompanyOwners", b =>[m
-***REMOVED******REMOVED*** {[m
-[31m-***REMOVED******REMOVED***    b.HasOne("AppAgendamentos.Models.User", "Owner")[m
-[32m+[m[32m***REMOVED******REMOVED***    b.HasOne("AppAgendamentos.Models.Company", "Company")[m
-[32m+[m[32m***REMOVED******REMOVED******REMOVED***.WithMany()[m
-[32m+[m[32m***REMOVED******REMOVED******REMOVED***.HasForeignKey("CompanyId")[m
-[32m+[m[32m***REMOVED******REMOVED******REMOVED***.OnDelete(DeleteBehavior.Cascade)[m
-[32m+[m[32m***REMOVED******REMOVED******REMOVED***.IsRequired();[m
+[31m-    modelBuilder.Entity("AppAgendamentos.Models.Company", b =>[m
+[32m+[m[32m    modelBuilder.Entity("AppAgendamentos.Models.CompanyOwners", b =>[m
+ {[m
+[31m-    b.HasOne("AppAgendamentos.Models.User", "Owner")[m
+[32m+[m[32m    b.HasOne("AppAgendamentos.Models.Company", "Company")[m
+[32m+[m[32m.WithMany()[m
+[32m+[m[32m.HasForeignKey("CompanyId")[m
+[32m+[m[32m.OnDelete(DeleteBehavior.Cascade)[m
+[32m+[m[32m.IsRequired();[m
 [32m+[m
-[32m+[m[32m***REMOVED******REMOVED***    b.HasOne("AppAgendamentos.Models.User", "User")[m
-***REMOVED******REMOVED******REMOVED*** .WithMany("Companies")[m
-***REMOVED******REMOVED******REMOVED*** .HasForeignKey("UserId")[m
-***REMOVED******REMOVED******REMOVED*** .OnDelete(DeleteBehavior.Cascade)[m
-***REMOVED******REMOVED******REMOVED*** .IsRequired();[m
+[32m+[m[32m    b.HasOne("AppAgendamentos.Models.User", "User")[m
+ .WithMany("Companies")[m
+ .HasForeignKey("UserId")[m
+ .OnDelete(DeleteBehavior.Cascade)[m
+ .IsRequired();[m
  [m
-[31m-***REMOVED******REMOVED***    b.Navigation("Owner");[m
-[32m+[m[32m***REMOVED******REMOVED***    b.Navigation("Company");[m
+[31m-    b.Navigation("Owner");[m
+[32m+[m[32m    b.Navigation("Company");[m
 [32m+[m
-[32m+[m[32m***REMOVED******REMOVED***    b.Navigation("User");[m
-***REMOVED******REMOVED*** });[m
+[32m+[m[32m    b.Navigation("User");[m
+ });[m
  [m
-***REMOVED***     modelBuilder.Entity("AppAgendamentos.Models.Scheduling", b =>[m
+     modelBuilder.Entity("AppAgendamentos.Models.Scheduling", b =>[m
 [1mdiff --git a/Models/Base/BaseEntity.cs b/Models/Base/BaseEntity.cs[m
 [1mindex 7e3fe8b..5aa4572 100644[m
 [1m--- a/Models/Base/BaseEntity.cs[m
@@ -356,10 +356,10 @@
 [36m@@ -4,6 +4,7 @@[m [mnamespace AppAgendamentos.Models.Base[m
      public class BaseEntity[m
      {[m
-***REMOVED*** public int Id { get; set; }[m
-[32m+[m[32m***REMOVED***public int Status { get; set; }[m
-***REMOVED*** public DateTime RegisterDate { get; set; }[m
-***REMOVED*** public DateTime UpdateDate { get; set; }[m
+ public int Id { get; set; }[m
+[32m+[m[32mpublic int Status { get; set; }[m
+ public DateTime RegisterDate { get; set; }[m
+ public DateTime UpdateDate { get; set; }[m
      }[m
 [1mdiff --git a/Models/Company.cs b/Models/Company.cs[m
 [1mindex 6e391ea..643483d 100644[m
@@ -368,20 +368,20 @@
 [36m@@ -8,11 +8,14 @@[m [mnamespace AppAgendamentos.Models[m
      public class Company : BaseEntity[m
      {[m
-***REMOVED*** [Required][m
-[31m-***REMOVED***public string? Name { get; set; }[m
-[32m+[m[32m***REMOVED***public string Name { get; set; }[m
-***REMOVED*** [Required][m
-[31m-***REMOVED***[ForeignKey("User")][m
-[31m-***REMOVED***public int UserId { get; set; }[m
-[32m+[m[32m***REMOVED***public string Description { get; set; }[m
-[32m+[m[32m***REMOVED***public string CNPJ { get; set; }[m
-[32m+[m[32m***REMOVED***public string Image { get; set; }[m
+ [Required][m
+[31m-public string? Name { get; set; }[m
+[32m+[m[32mpublic string Name { get; set; }[m
+ [Required][m
+[31m-[ForeignKey("User")][m
+[31m-public int UserId { get; set; }[m
+[32m+[m[32mpublic string Description { get; set; }[m
+[32m+[m[32mpublic string CNPJ { get; set; }[m
+[32m+[m[32mpublic string Image { get; set; }[m
  [m
-[31m-***REMOVED***public User Owner { get; set; }[m
-[32m+[m[32m***REMOVED***public IList<CompanyOwners> Owners;[m
-[32m+[m[32m***REMOVED***public IList<Category> Categories;[m
-[32m+[m[32m***REMOVED***public ICollection<ServicesOffered> ServicesOffered;[m
+[31m-public User Owner { get; set; }[m
+[32m+[m[32mpublic IList<CompanyOwners> Owners;[m
+[32m+[m[32mpublic IList<Category> Categories;[m
+[32m+[m[32mpublic ICollection<ServicesOffered> ServicesOffered;[m
      }[m
  }[m
 \ No newline at end of file[m
@@ -394,7 +394,8 @@
  public class ErrorViewModel[m
  {[m
 [31m-    public string? RequestId { get; set; }[m
-[32m+[m[32m    public string RequestId { get; set; }[m[41m[m
+[32m+[m[32m    public string RequestId { get; set; }[m[41m
+[m
  [m
      public bool ShowRequestId => !string.IsNullOrEmpty(RequestId);[m
  }[m
@@ -411,14 +412,14 @@
  {[m
 [32m+[m[32m    // [Table("schedulings")][m
      public class Scheduling : BaseEntity[m
-     {[m
-***REMOVED*** public int CompanyId { get; set; }[m
-[31m-***REMOVED***public Company? Company { get; set; }[m
-[32m+[m[32m***REMOVED***public Company Company { get; set; }[m
-***REMOVED*** public int CustomerId { get; set; }[m
-[31m-***REMOVED***public User? Customer { get; set; }[m
-[32m+[m[32m***REMOVED***public User Customer { get; set; }[m
-***REMOVED*** public DateTime ScheduledDate { get; set; }[m
+
+***REMc int CompanyId { get; set; }[m
+[31m-***REMOVompany? Company { get; set; }[m
+mpublic Company Company { get; set; }[m
+***REMc int CustomerId { get; set; }[m
+[31m-***REMOVser? Customer { get; set; }[m
+mpublic User Customer { get; set; }[m
+ public DateTime ScheduledDate { get; set; }[m
      }[m
  }[m
 \ No newline at end of file[m
@@ -428,16 +429,16 @@
 [1m+++ b/Models/User.cs[m
 [36m@@ -8,11 +8,11 @@[m [mnamespace AppAgendamentos.Models[m
      public class User : BaseEntity[m
-     {[m
-***REMOVED*** [Required][m
-[31m-***REMOVED***public string? Name { get; set; }[m
-[32m+[m[32m***REMOVED***public string Name { get; set; }[m
+
+***REMired][m
+[31m-***REMOVtring? Name { get; set; }[m
+[32m+[m[32mpublic string Name { get; set; }[m
+
+ [Required][m
+ public DateTime BirthDate { get; set; }[m
  [m
-***REMOVED*** [Required][m
-***REMOVED*** public DateTime BirthDate { get; set; }[m
- [m
-[31m-***REMOVED***public ICollection<Company> Companies { get; set; }[m
-[32m+[m[32m***REMOVED***public ICollection<CompanyOwners> Companies { get; set; }[m
+[31m-***REMOVCollection<Company> Companies { get; set; }[m
+[32m+[m[32mpublic ICollection<CompanyOwners> Companies { get; set; }[m
      }[m
  }[m
 \ No newline at end of file[m
@@ -466,17 +467,17 @@
  [m
  namespace AppAgendamentos.Repository[m
  {[m
-[36m@@ -26,5 +28,12 @@[m [mnamespace AppAgendamentos.Repository[m
-***REMOVED***     }[m
- [m
-***REMOVED*** }[m
+ +28,12 @@[m [mnamespace AppAgendamentos.Repository[m
+     }[m
+
+ }[m
 [32m+[m
-[32m+[m[32m***REMOVED***public async Task<Company> GetAsync(int id)[m
-[32m+[m[32m***REMOVED***{[m
-[32m+[m[32m***REMOVED***    return await this._context.Companies[m
-[32m+[m[32m***REMOVED******REMOVED***.Include(c => c.ServicesOffered)[m
-[32m+[m[32m***REMOVED******REMOVED***.Where(c => c.Id == id).FirstOrDefaultAsync();[m
-[32m+[m[32m***REMOVED***}[m
+[32m+[m[32mpublic async Task<Company> GetAsync(int id)[m
+[32m+[m[32m{[m
+[32m+[m[32mait this._context.Companies[m
+[32m+[m[32m.Include(c => c.ServicesOffered)[m
+[32m+[m[32m.Where(c => c.Id == id).FirstOrDefaultAsync();[m
+[32m+[m[32m}[m
      }[m
  }[m
 \ No newline at end of file[m
@@ -491,9 +492,9 @@
  {[m
 [31m-    public class CompanyViewModel[m
 [32m+[m[32m    public class CompanyViewModel : BaseViewModel[m
-     {[m
-***REMOVED*** public string Name { get; set; }[m
-[32m+[m[32m***REMOVED***public string Description { get; set; }[m
+
+  Name { get; set; }[m
+[32m+[m[32mpublic string Description { get; set; }[m
 [32m+[m
      }[m
  [m
@@ -504,28 +505,28 @@
 [1m--- a/ViewModels/SchedulingViewModel.cs[m
 [1m+++ b/ViewModels/SchedulingViewModel.cs[m
 [36m@@ -6,18 +6,21 @@[m [mnamespace AppAgendamentos.ViewModels[m
-     {[m
-***REMOVED*** public int CompanyId { get; set; }[m
-***REMOVED*** public string CompanyName { get; set; }[m
-[32m+[m[32m***REMOVED***public string CompanyDescription { get; set; }[m
-[32m+[m[32m***REMOVED***public string CompanyImage { get; set; }[m
+
+ public int CompanyId { get; set; }[m
+  CompanyName { get; set; }[m
+[32m+[m[32mpublic string CompanyDescription { get; set; }[m
+[32m+[m[32mpublic string CompanyImage { get; set; }[m
+
+ public int CustomerId { get; set; }[m
  [m
-***REMOVED*** public int CustomerId { get; set; }[m
- [m
-[31m-***REMOVED***public IEnumerable<SelectListItem>? ListaTeste { get; set; }[m
+[31m-public IEnumerable<SelectListItem>? ListaTeste { get; set; }[m
 [32m+[m
-[32m+[m[32m***REMOVED***public int ServiceSelected { get; set; }[m
+[32m+[m[32mpublic int ServiceSelected { get; set; }[m
 [32m+[m
-[32m+[m[32m***REMOVED***public IEnumerable<SelectListItem> CompanyServices { get; set; }[m
+[32m+[m[32mpublic IEnumerable<SelectListItem> CompanyServices { get; set; }[m
+
+ public DateTime ScheduledDate { get; set; }[m
  [m
-***REMOVED*** public DateTime ScheduledDate { get; set; }[m
- [m
- [m
-***REMOVED*** public SchedulingViewModel()[m
-***REMOVED*** {[m
-[31m-***REMOVED***    CompanyName = String.Empty;[m
-[31m-***REMOVED***    ListaTeste = new List<SelectListItem>();[m
-***REMOVED*** }[m
+
+ public SchedulingViewModel()[m
+***REM
+[31m-    CompanyName = String.Empty;[m
+VED***    ListaTeste = new List<SelectListItem>();[m
+ }[m
      }[m
  }[m
 \ No newline at end of file[m
@@ -533,13 +534,14 @@
 [1mindex ad00a25..23c28e0 100644[m
 [1m--- a/Views/Company/Create.cshtml[m
 [1m+++ b/Views/Company/Create.cshtml[m
-[36m@@ -13,7 +13,7 @@[m
-***REMOVED*** </div>[m
-***REMOVED*** <div class="col-md-4">[m
-***REMOVED***     @Html.Label("User Id")[m
-[31m-***REMOVED***    @Html.TextBoxFor(c => c.UserId, new {@class = "form-control", @value = 1})[m
-[32m+[m[32m***REMOVED***    @* @Html.TextBoxFor(c => c.UserId, new {@class = "form-control", @value = 1}) *@[m[41m[m
-***REMOVED*** </div>[m
+ +13,7 @@[m
+ </div>[m
+ <div class="col-md-4">[m
+***REMHtml.Label("User Id")[m
+[31m-***REMOVl.TextBoxFor(c => c.UserId, new {@class = "form-control", @value = 1})[m
+m    @* @Html.TextBoxFor(c => c.UserId, new {@class = "form-control", @value = 1}) *@[m[41m
+[m
+ </div>[m
      </div>[m
      <input type="submit" value="Salvar">[m
 [1mdiff --git a/Views/Home/Index.cshtml b/Views/Home/Index.cshtml[m
@@ -549,20 +551,30 @@
 [36m@@ -8,7 +8,14 @@[m
  </div>[m
  [m
- <div class="row">[m
+ <div [m
 [31m-    <button>[m
-[31m-***REMOVED***<a href='@Url.Action("Index", "Company")' class="button">Criar Empresa</a>[m
-[31m-    </button>[m
-[32m+[m[32m    <div class="form-group">[m[41m[m
-[32m+[m[32m***REMOVED***<button>[m[41m[m
-[32m+[m[32m***REMOVED***    <a href='@Url.Action("Index", "Company")' class="button">Criar Empresa</a>[m[41m[m
-[32m+[m[32m***REMOVED***</button>[m[41m[m
-[32m+[m[32m    </div>[m[41m[m
-[32m+[m[32m    <div class="form-group">[m[41m[m
-[32m+[m[32m***REMOVED***<button>[m[41m[m
-[32m+[m[32m***REMOVED***    <a href='@Url.Action("Create", "Scheduling", new {@companyId = 10})' class="button">Agendar cabelo</a>[m[41m[m
-[32m+[m[32m***REMOVED***</button>[m[41m[m
-[32m+[m[32m    </div>[m[41m[m
+[31m-<a href='@Url.Action("Index", "Company")' class="button">Criar Empresa</a>[m
+[31m-    </bu
+[32m+[m[32ms="form-group">[m[41m
+[m
+[32m+[m[32m<button>[m[41m
+[m
+[32m+[m[32m    <a href='@Url.Action("Index", "Company")' class="button">Criar Empresa</a>[m[41m
+[m
+[32m+[m[32m</button>[m[41m
+[m
+[32m+[m[32m    </div>[m[41m
+[m
+[32m+[m[32m    <div class="form-group">[m[41m
+[m
+[32m+[m[32m<button>[m[41m
+[m
+[32m+[m[32m    <a href='@Url.Action("Create", "Scheduling", new {@companyId = 10})' class="button">Agendar cabelo</a>[m[41m
+[m
+[32m+[m[32m</button>[m[41m
+[m
+[32m+[m[32m    </div>[m[41m
+[m
  </div>[m
 [1mdiff --git a/Views/Scheduling/Create.cshtml b/Views/Scheduling/Create.cshtml[m
 [1mindex 59c3134..765bee2 100644[m
@@ -576,34 +588,34 @@
 [36m@@ -6,25 +5,26 @@[m [mViewData["Title"] = "Create";[m
  } *@[m
  @* <h1>@ViewData["Title"]</h1> *@[m
- <div class="company-information" style="text-align: center;">[m
-[31m-    <img src="https://pbs.twimg.com/media/EfOeE08X0AEdlB6.jpg" height="200px"></img>[m
-[32m+[m[32m    <img src="@Model.CompanyImage" height="200px"></img>[m
+company-information" style="text-align: center;">[m
+g src="https://pbs.twimg.com/media/EfOeE08X0AEdlB6.jpg" height="200px"></img>[m
+[32m+img src="@Model.CompanyImage" height="200px"></img>[m
  [m
-[31m-    <h1 style="text-align: center;">Company</h1>[m
-[31m-    <h3 style="text-align: center;">Description of the services of the company</h3>[m
-[32m+[m[32m    <h1 style="text-align: center;">@Model.CompanyName</h1>[m
-[32m+[m[32m    <h3 style="text-align: center;">@Model.CompanyDescription</h3>[m
+[31m-    <h1 lign: center;">Company</h1>[m
+ style="text-align: center;">Description of the services of the company</h3>[m
+m    <h1 style="text-align: center;">@Model.CompanyName</h1>[m
+m    <h3 style="text-align: center;">@Model.CompanyDescription</h3>[m
+ </div
+ [m
+ <div class="s
+     <div clas
+ <div class="col-md-5">[m
+     @Html.Label("Serviço")[m
+[31m-    @Html.DropDownListFor(m => m.CustomerId, Model.ListaTeste ))[m
+VED***    @* @Html.TextBoxFor(c=>c.CustomerId, htmlAttributes: new {@class = "form-control"}) *@[m
+[32m+[m[32m    @Html.DropDownListFor(m => m.ServiceSelected, Model.CompanyServices, htmlAttributes: new {@class = "form-control"})[m
  </div>[m
- [m
- <div class="services">[m
-     <div class="row">[m
-***REMOVED*** <div class="col-md-5">[m
-***REMOVED***     @Html.Label("Serviço")[m
-[31m-***REMOVED***    @Html.DropDownListFor(m => m.CustomerId, Model.ListaTeste ))[m
-[31m-***REMOVED***    @* @Html.TextBoxFor(c=>c.CustomerId, htmlAttributes: new {@class = "form-control"}) *@[m
-[32m+[m[32m***REMOVED***    @Html.DropDownListFor(m => m.ServiceSelected, Model.CompanyServices, htmlAttributes: new {@class = "form-control"})[m
-***REMOVED*** </div>[m
-***REMOVED*** <div class="col-md-6">[m
-***REMOVED***     @Html.Label("Data do agendamento")[m
-[31m-***REMOVED***    <input type="datetime-local" class="form-control" />[m
-[31m-***REMOVED***    @* <input class="form-control" asp-for="DataTeste" asp-format="{0:yyyy-MM-ddTHH:mm}" /> *@[m
-[32m+[m[32m***REMOVED***    @* <input type="datetime-local" class="form-control" /> *@[m
-[32m+[m[32m***REMOVED***    <input class="form-control" asp-for="ScheduledDate" asp-format="{0:yyyy-MM-ddTHH:mm}" />[m
-***REMOVED*** </div>[m
+ <div class="col-md-6">[m
+     @Html.Label("Data do agendamento")[m
+[31m-    <input type="datetime-local" class="form-control" />[m
+[31m-    @* <input class="form-control" asp-for="DataTeste" asp-format="{0:yyyy-MM-ddTHH:mm}" /> *@[m
+[32m+[m[32m    @* <input type="datetime-local" class="form-control" /> *@[m
+[32m+[m[32m    <input class="form-control" asp-for="ScheduledDate" asp-format="{0:yyyy-MM-ddTHH:mm}" />[m
+ </div>[m
      </div>[m
 [32m+[m[32m    <div class="row">[m
-***REMOVED*** <input type="submit" value="Agendar">[m
+ <input type="submit" value="Agendar">[m
 [32m+[m[32m    </div>[m
  </div>[m
  [m
@@ -622,1179 +634,1179 @@ Binary files a/bin/Debug/net7.0/AppAgendamentos.pdb and b/bin/Debug/net7.0/AppAg
 [32m+[m[32m73e51d085ed8c9819136c7bdfd522b9a80f7ff76[m
 [1mdiff --git a/obj/Debug/net7.0/AppAgendamentos.dll b/obj/Debug/net7.0/AppAgendamentos.dll[m
 [1mindex f508997..bcc1694 100644[m
-Binary files a/obj/Debug/net7.0/AppAgendamentos.dll and b/obj/Debug/net7.0/AppAgendamentos.dll differ
-[1mdiff --git a/obj/Debug/net7.0/AppAgendamentos.pdb b/obj/Debug/net7.0/AppAgendamentos.pdb[m
-[1mindex c2bf01b..ad42baa 100644[m
-Binary files a/obj/Debug/net7.0/AppAgendamentos.pdb and b/obj/Debug/net7.0/AppAgendamentos.pdb differ
-[1mdiff --git a/obj/Debug/net7.0/project.razor.json b/obj/Debug/net7.0/project.razor.json[m
+BinaryDebug/net7.0/AppAgendamentos.dll and b/obj/Debug/net7.0/AppAgendamentos.dll differ
+[1mdiff --gitnet7.0/AppAgendamentos.pdb b/obj/Debug/net7.0/AppAgendamentos.pdb[m
+f01b..ad42baa 100644[m
+a/obj/Debug/net7.0/AppAgendamentos.pdb and b/obj/Debug/net7.0/AppAgendamentos.pdb differ
+t a/obj/Debug/net7.0/project.razor.json b/obj/Debug/net7.0/project.razor.json[m
 [1mindex 6bc628f..890532d 100644[m
-[1m--- a/obj/Debug/net7.0/project.razor.json[m
+/Debug/net7.0/project.razor.json[m
 [1m+++ b/obj/Debug/net7.0/project.razor.json[m
 [36m@@ -13,7 +13,7 @@[m
-   "ProjectWorkspaceState": {[m
-     "TagHelpers": [[m
-       {[m
-[31m-***REMOVED***"HashCode": -1163602037,[m
-[32m+[m[32m***REMOVED***"HashCode": 1662343935,[m
-***REMOVED*** "Kind": "Components.Component",[m
-***REMOVED*** "Name": "Microsoft.AspNetCore.Components.Authorization.AuthorizeRouteView",[m
-***REMOVED*** "AssemblyName": "Microsoft.AspNetCore.Components.Authorization",[m
+   "PreState": {[m
+     "TagHelpe
+
+VED***"HashCode": -1163602037,[m
+m"HashCode": 1662343935,[m
+ "Kind": "Components.Component",[m
+ "Name": "Microsoft.AspNetCore.Components.Authorization.AuthorizeRouteView",[m
+ "AssemblyName": "Microsoft.AspNetCore.Components.Authorization",[m
 [36m@@ -97,7 +97,7 @@[m
-***REMOVED*** }[m
+***REM
        },[m
-       {[m
-[31m-***REMOVED***"HashCode": 312045761,[m
-[32m+[m[32m***REMOVED***"HashCode": 1961396846,[m
-***REMOVED*** "Kind": "Components.Component",[m
-***REMOVED*** "Name": "Microsoft.AspNetCore.Components.Authorization.AuthorizeRouteView",[m
-***REMOVED*** "AssemblyName": "Microsoft.AspNetCore.Components.Authorization",[m
+
+VED***"HashCode": 312045761,[m
+m"HashCode": 1961396846,[m
+ "Kind": "Components.Component",[m
+ "Name": "Microsoft.AspNetCore.Components.Authorization.AuthorizeRouteView",[m
+ "AssemblyName": "Microsoft.AspNetCore.Components.Authorization",[m
 [36m@@ -182,7 +182,7 @@[m
-***REMOVED*** }[m
+***REM
        },[m
-       {[m
-[31m-***REMOVED***"HashCode": 2099097868,[m
-[32m+[m[32m***REMOVED***"HashCode": -1568798023,[m
-***REMOVED*** "Kind": "Components.ChildContent",[m
-***REMOVED*** "Name": "Microsoft.AspNetCore.Components.Authorization.AuthorizeRouteView.NotAuthorized",[m
-***REMOVED*** "AssemblyName": "Microsoft.AspNetCore.Components.Authorization",[m
+
+VED***"HashCode": 2099097868,[m
+m"HashCode": -1568798023,[m
+ "Kind": "Components.ChildContent",[m
+ "Name": "Microsoft.AspNetCore.Components.Authorization.AuthorizeRouteView.NotAuthorized",[m
+ "AssemblyName": "Microsoft.AspNetCore.Components.Authorization",[m
 [36m@@ -215,7 +215,7 @@[m
-***REMOVED*** }[m
+***REM
        },[m
-       {[m
-[31m-***REMOVED***"HashCode": -512710649,[m
-[32m+[m[32m***REMOVED***"HashCode": 300075729,[m
-***REMOVED*** "Kind": "Components.ChildContent",[m
-***REMOVED*** "Name": "Microsoft.AspNetCore.Components.Authorization.AuthorizeRouteView.NotAuthorized",[m
-***REMOVED*** "AssemblyName": "Microsoft.AspNetCore.Components.Authorization",[m
+
+VED***"HashCode": -512710649,[m
+m"HashCode": 300075729,[m
+ "Kind": "Components.ChildContent",[m
+ "Name": "Microsoft.AspNetCore.Components.Authorization.AuthorizeRouteView.NotAuthorized",[m
+ "AssemblyName": "Microsoft.AspNetCore.Components.Authorization",[m
 [36m@@ -249,7 +249,7 @@[m
-***REMOVED*** }[m
+***REM
        },[m
-       {[m
-[31m-***REMOVED***"HashCode": 328758078,[m
-[32m+[m[32m***REMOVED***"HashCode": -735980516,[m
-***REMOVED*** "Kind": "Components.ChildContent",[m
-***REMOVED*** "Name": "Microsoft.AspNetCore.Components.Authorization.AuthorizeRouteView.Authorizing",[m
-***REMOVED*** "AssemblyName": "Microsoft.AspNetCore.Components.Authorization",[m
+
+VED***"HashCode": 328758078,[m
+m"HashCode": -735980516,[m
+ "Kind": "Components.ChildContent",[m
+ "Name": "Microsoft.AspNetCore.Components.Authorization.AuthorizeRouteView.Authorizing",[m
+ "AssemblyName": "Microsoft.AspNetCore.Components.Authorization",[m
 [36m@@ -270,7 +270,7 @@[m
-***REMOVED*** }[m
+***REM
        },[m
-       {[m
-[31m-***REMOVED***"HashCode": -222235744,[m
-[32m+[m[32m***REMOVED***"HashCode": 34162739,[m
-***REMOVED*** "Kind": "Components.ChildContent",[m
-***REMOVED*** "Name": "Microsoft.AspNetCore.Components.Authorization.AuthorizeRouteView.Authorizing",[m
-***REMOVED*** "AssemblyName": "Microsoft.AspNetCore.Components.Authorization",[m
+
+VED***"HashCode": -222235744,[m
+m"HashCode": 34162739,[m
+ "Kind": "Components.ChildContent",[m
+ "Name": "Microsoft.AspNetCore.Components.Authorization.AuthorizeRouteView.Authorizing",[m
+ "AssemblyName": "Microsoft.AspNetCore.Components.Authorization",[m
 [36m@@ -292,7 +292,7 @@[m
-***REMOVED*** }[m
+***REM
        },[m
-       {[m
-[31m-***REMOVED***"HashCode": -334715652,[m
-[32m+[m[32m***REMOVED***"HashCode": -1217104201,[m
-***REMOVED*** "Kind": "Components.Component",[m
-***REMOVED*** "Name": "Microsoft.AspNetCore.Components.Authorization.AuthorizeView",[m
-***REMOVED*** "AssemblyName": "Microsoft.AspNetCore.Components.Authorization",[m
+
+VED***"HashCode": -334715652,[m
+m"HashCode": -1217104201,[m
+ "Kind": "Components.Component",[m
+ "Name": "Microsoft.AspNetCore.Components.Authorization.AuthorizeView",[m
+ "AssemblyName": "Microsoft.AspNetCore.Components.Authorization",[m
 [36m@@ -397,7 +397,7 @@[m
-***REMOVED*** }[m
+***REM
        },[m
-       {[m
-[31m-***REMOVED***"HashCode": -519835879,[m
-[32m+[m[32m***REMOVED***"HashCode": -115112678,[m
-***REMOVED*** "Kind": "Components.Component",[m
-***REMOVED*** "Name": "Microsoft.AspNetCore.Components.Authorization.AuthorizeView",[m
-***REMOVED*** "AssemblyName": "Microsoft.AspNetCore.Components.Authorization",[m
+
+VED***"HashCode": -519835879,[m
+m"HashCode": -115112678,[m
+ "Kind": "Components.Component",[m
+ "Name": "Microsoft.AspNetCore.Components.Authorization.AuthorizeView",[m
+ "AssemblyName": "Microsoft.AspNetCore.Components.Authorization",[m
 [36m@@ -503,7 +503,7 @@[m
-***REMOVED*** }[m
+***REM
        },[m
-       {[m
-[31m-***REMOVED***"HashCode": 828920415,[m
-[32m+[m[32m***REMOVED***"HashCode": -35147687,[m
-***REMOVED*** "Kind": "Components.ChildContent",[m
-***REMOVED*** "Name": "Microsoft.AspNetCore.Components.Authorization.AuthorizeView.ChildContent",[m
-***REMOVED*** "AssemblyName": "Microsoft.AspNetCore.Components.Authorization",[m
+
+VED***"HashCode": 828920415,[m
+m"HashCode": -35147687,[m
+ "Kind": "Components.ChildContent",[m
+ "Name": "Microsoft.AspNetCore.Components.Authorization.AuthorizeView.ChildContent",[m
+ "AssemblyName": "Microsoft.AspNetCore.Components.Authorization",[m
 [36m@@ -536,7 +536,7 @@[m
-***REMOVED*** }[m
+***REM
        },[m
-       {[m
-[31m-***REMOVED***"HashCode": -167252532,[m
-[32m+[m[32m***REMOVED***"HashCode": -818648748,[m
-***REMOVED*** "Kind": "Components.ChildContent",[m
-***REMOVED*** "Name": "Microsoft.AspNetCore.Components.Authorization.AuthorizeView.ChildContent",[m
-***REMOVED*** "AssemblyName": "Microsoft.AspNetCore.Components.Authorization",[m
+
+VED***"HashCode": -167252532,[m
+m"HashCode": -818648748,[m
+ "Kind": "Components.ChildContent",[m
+ "Name": "Microsoft.AspNetCore.Components.Authorization.AuthorizeView.ChildContent",[m
+ "AssemblyName": "Microsoft.AspNetCore.Components.Authorization",[m
 [36m@@ -570,7 +570,7 @@[m
-***REMOVED*** }[m
+***REM
        },[m
-       {[m
-[31m-***REMOVED***"HashCode": 1228649434,[m
-[32m+[m[32m***REMOVED***"HashCode": 721609524,[m
-***REMOVED*** "Kind": "Components.ChildContent",[m
-***REMOVED*** "Name": "Microsoft.AspNetCore.Components.Authorization.AuthorizeView.NotAuthorized",[m
-***REMOVED*** "AssemblyName": "Microsoft.AspNetCore.Components.Authorization",[m
+
+VED***"HashCode": 1228649434,[m
+m"HashCode": 721609524,[m
+ "Kind": "Components.ChildContent",[m
+ "Name": "Microsoft.AspNetCore.Components.Authorization.AuthorizeView.NotAuthorized",[m
+ "AssemblyName": "Microsoft.AspNetCore.Components.Authorization",[m
 [36m@@ -603,7 +603,7 @@[m
-***REMOVED*** }[m
+***REM
        },[m
-       {[m
-[31m-***REMOVED***"HashCode": 32366878,[m
-[32m+[m[32m***REMOVED***"HashCode": 1907298977,[m
-***REMOVED*** "Kind": "Components.ChildContent",[m
-***REMOVED*** "Name": "Microsoft.AspNetCore.Components.Authorization.AuthorizeView.NotAuthorized",[m
-***REMOVED*** "AssemblyName": "Microsoft.AspNetCore.Components.Authorization",[m
+
+VED***"HashCode": 32366878,[m
+m"HashCode": 1907298977,[m
+ "Kind": "Components.ChildContent",[m
+ "Name": "Microsoft.AspNetCore.Components.Authorization.AuthorizeView.NotAuthorized",[m
+ "AssemblyName": "Microsoft.AspNetCore.Components.Authorization",[m
 [36m@@ -637,7 +637,7 @@[m
-***REMOVED*** }[m
+***REM
        },[m
-       {[m
-[31m-***REMOVED***"HashCode": -751374222,[m
-[32m+[m[32m***REMOVED***"HashCode": 1935890232,[m
-***REMOVED*** "Kind": "Components.ChildContent",[m
-***REMOVED*** "Name": "Microsoft.AspNetCore.Components.Authorization.AuthorizeView.Authorized",[m
-***REMOVED*** "AssemblyName": "Microsoft.AspNetCore.Components.Authorization",[m
+
+VED***"HashCode": -751374222,[m
+m"HashCode": 1935890232,[m
+ "Kind": "Components.ChildContent",[m
+ "Name": "Microsoft.AspNetCore.Components.Authorization.AuthorizeView.Authorized",[m
+ "AssemblyName": "Microsoft.AspNetCore.Components.Authorization",[m
 [36m@@ -670,7 +670,7 @@[m
-***REMOVED*** }[m
+***REM
        },[m
-       {[m
-[31m-***REMOVED***"HashCode": -103222827,[m
-[32m+[m[32m***REMOVED***"HashCode": 972132145,[m
-***REMOVED*** "Kind": "Components.ChildContent",[m
-***REMOVED*** "Name": "Microsoft.AspNetCore.Components.Authorization.AuthorizeView.Authorized",[m
-***REMOVED*** "AssemblyName": "Microsoft.AspNetCore.Components.Authorization",[m
+
+VED***"HashCode": -103222827,[m
+m"HashCode": 972132145,[m
+ "Kind": "Components.ChildContent",[m
+ "Name": "Microsoft.AspNetCore.Components.Authorization.AuthorizeView.Authorized",[m
+ "AssemblyName": "Microsoft.AspNetCore.Components.Authorization",[m
 [36m@@ -704,7 +704,7 @@[m
-***REMOVED*** }[m
+***REM
        },[m
-       {[m
-[31m-***REMOVED***"HashCode": -1598350151,[m
-[32m+[m[32m***REMOVED***"HashCode": -1394313539,[m
-***REMOVED*** "Kind": "Components.ChildContent",[m
-***REMOVED*** "Name": "Microsoft.AspNetCore.Components.Authorization.AuthorizeView.Authorizing",[m
-***REMOVED*** "AssemblyName": "Microsoft.AspNetCore.Components.Authorization",[m
+
+VED***"HashCode": -1598350151,[m
+m"HashCode": -1394313539,[m
+ "Kind": "Components.ChildContent",[m
+ "Name": "Microsoft.AspNetCore.Components.Authorization.AuthorizeView.Authorizing",[m
+ "AssemblyName": "Microsoft.AspNetCore.Components.Authorization",[m
 [36m@@ -725,7 +725,7 @@[m
-***REMOVED*** }[m
+***REM
        },[m
-       {[m
-[31m-***REMOVED***"HashCode": 297681189,[m
-[32m+[m[32m***REMOVED***"HashCode": 1346862305,[m
-***REMOVED*** "Kind": "Components.ChildContent",[m
-***REMOVED*** "Name": "Microsoft.AspNetCore.Components.Authorization.AuthorizeView.Authorizing",[m
-***REMOVED*** "AssemblyName": "Microsoft.AspNetCore.Components.Authorization",[m
+
+VED***"HashCode": 297681189,[m
+m"HashCode": 1346862305,[m
+ "Kind": "Components.ChildContent",[m
+ "Name": "Microsoft.AspNetCore.Components.Authorization.AuthorizeView.Authorizing",[m
+ "AssemblyName": "Microsoft.AspNetCore.Components.Authorization",[m
 [36m@@ -747,7 +747,7 @@[m
-***REMOVED*** }[m
+***REM
        },[m
-       {[m
-[31m-***REMOVED***"HashCode": -2105443133,[m
-[32m+[m[32m***REMOVED***"HashCode": 283231029,[m
-***REMOVED*** "Kind": "Components.Component",[m
-***REMOVED*** "Name": "Microsoft.AspNetCore.Components.Authorization.CascadingAuthenticationState",[m
-***REMOVED*** "AssemblyName": "Microsoft.AspNetCore.Components.Authorization",[m
+
+VED***"HashCode": -2105443133,[m
+m"HashCode": 283231029,[m
+ "Kind": "Components.Component",[m
+ "Name": "Microsoft.AspNetCore.Components.Authorization.CascadingAuthenticationState",[m
+ "AssemblyName": "Microsoft.AspNetCore.Components.Authorization",[m
 [36m@@ -778,7 +778,7 @@[m
-***REMOVED*** }[m
+***REM
        },[m
-       {[m
-[31m-***REMOVED***"HashCode": 1445053030,[m
-[32m+[m[32m***REMOVED***"HashCode": 720991731,[m
-***REMOVED*** "Kind": "Components.Component",[m
-***REMOVED*** "Name": "Microsoft.AspNetCore.Components.Authorization.CascadingAuthenticationState",[m
-***REMOVED*** "AssemblyName": "Microsoft.AspNetCore.Components.Authorization",[m
+
+VED***"HashCode": 1445053030,[m
+m"HashCode": 720991731,[m
+ "Kind": "Components.Component",[m
+ "Name": "Microsoft.AspNetCore.Components.Authorization.CascadingAuthenticationState",[m
+ "AssemblyName": "Microsoft.AspNetCore.Components.Authorization",[m
 [36m@@ -810,7 +810,7 @@[m
-***REMOVED*** }[m
+***REM
        },[m
-       {[m
-[31m-***REMOVED***"HashCode": 1035796263,[m
-[32m+[m[32m***REMOVED***"HashCode": 1809807182,[m
-***REMOVED*** "Kind": "Components.ChildContent",[m
-***REMOVED*** "Name": "Microsoft.AspNetCore.Components.Authorization.CascadingAuthenticationState.ChildContent",[m
-***REMOVED*** "AssemblyName": "Microsoft.AspNetCore.Components.Authorization",[m
+
+VED***"HashCode": 1035796263,[m
+m"HashCode": 1809807182,[m
+ "Kind": "Components.ChildContent",[m
+ "Name": "Microsoft.AspNetCore.Components.Authorization.CascadingAuthenticationState.ChildContent",[m
+ "AssemblyName": "Microsoft.AspNetCore.Components.Authorization",[m
 [36m@@ -831,7 +831,7 @@[m
-***REMOVED*** }[m
+***REM
        },[m
-       {[m
-[31m-***REMOVED***"HashCode": -1837224645,[m
-[32m+[m[32m***REMOVED***"HashCode": -1234415531,[m
-***REMOVED*** "Kind": "Components.ChildContent",[m
-***REMOVED*** "Name": "Microsoft.AspNetCore.Components.Authorization.CascadingAuthenticationState.ChildContent",[m
-***REMOVED*** "AssemblyName": "Microsoft.AspNetCore.Components.Authorization",[m
+
+VED***"HashCode": -1837224645,[m
+m"HashCode": -1234415531,[m
+ "Kind": "Components.ChildContent",[m
+ "Name": "Microsoft.AspNetCore.Components.Authorization.CascadingAuthenticationState.ChildContent",[m
+ "AssemblyName": "Microsoft.AspNetCore.Components.Authorization",[m
 [36m@@ -853,7 +853,7 @@[m
-***REMOVED*** }[m
+***REM
        },[m
-       {[m
-[31m-***REMOVED***"HashCode": 67812544,[m
-[32m+[m[32m***REMOVED***"HashCode": 1237767415,[m
-***REMOVED*** "Kind": "Components.Component",[m
-***REMOVED*** "Name": "Microsoft.AspNetCore.Components.CascadingValue<TValue>",[m
-***REMOVED*** "AssemblyName": "Microsoft.AspNetCore.Components",[m
+
+VED***"HashCode": 67812544,[m
+m"HashCode": 1237767415,[m
+ "Kind": "Components.Component",[m
+ "Name": "Microsoft.AspNetCore.Components.CascadingValue<TValue>",[m
+ "AssemblyName": "Microsoft.AspNetCore.Components",[m
 [36m@@ -928,7 +928,7 @@[m
-***REMOVED*** }[m
+***REM
        },[m
-       {[m
-[31m-***REMOVED***"HashCode": -1063178843,[m
-[32m+[m[32m***REMOVED***"HashCode": 1173411918,[m
-***REMOVED*** "Kind": "Components.Component",[m
-***REMOVED*** "Name": "Microsoft.AspNetCore.Components.CascadingValue<TValue>",[m
-***REMOVED*** "AssemblyName": "Microsoft.AspNetCore.Components",[m
+
+VED***"HashCode": -1063178843,[m
+m"HashCode": 1173411918,[m
+ "Kind": "Components.Component",[m
+ "Name": "Microsoft.AspNetCore.Components.CascadingValue<TValue>",[m
+ "AssemblyName": "Microsoft.AspNetCore.Components",[m
 [36m@@ -1004,7 +1004,7 @@[m
-***REMOVED*** }[m
+***REM
        },[m
-       {[m
-[31m-***REMOVED***"HashCode": -519810170,[m
-[32m+[m[32m***REMOVED***"HashCode": 28326615,[m
-***REMOVED*** "Kind": "Components.ChildContent",[m
-***REMOVED*** "Name": "Microsoft.AspNetCore.Components.CascadingValue<TValue>.ChildContent",[m
-***REMOVED*** "AssemblyName": "Microsoft.AspNetCore.Components",[m
+
+VED***"HashCode": -519810170,[m
+m"HashCode": 28326615,[m
+ "Kind": "Components.ChildContent",[m
+ "Name": "Microsoft.AspNetCore.Components.CascadingValue<TValue>.ChildContent",[m
+ "AssemblyName": "Microsoft.AspNetCore.Components",[m
 [36m@@ -1025,7 +1025,7 @@[m
-***REMOVED*** }[m
+***REM
        },[m
-       {[m
-[31m-***REMOVED***"HashCode": -696727349,[m
-[32m+[m[32m***REMOVED***"HashCode": 207669114,[m
-***REMOVED*** "Kind": "Components.ChildContent",[m
-***REMOVED*** "Name": "Microsoft.AspNetCore.Components.CascadingValue<TValue>.ChildContent",[m
-***REMOVED*** "AssemblyName": "Microsoft.AspNetCore.Components",[m
+
+VED***"HashCode": -696727349,[m
+m"HashCode": 207669114,[m
+ "Kind": "Components.ChildContent",[m
+ "Name": "Microsoft.AspNetCore.Components.CascadingValue<TValue>.ChildContent",[m
+ "AssemblyName": "Microsoft.AspNetCore.Components",[m
 [36m@@ -1047,7 +1047,7 @@[m
-***REMOVED*** }[m
+***REM
        },[m
-       {[m
-[31m-***REMOVED***"HashCode": 520102871,[m
-[32m+[m[32m***REMOVED***"HashCode": -1472252936,[m
-***REMOVED*** "Kind": "Components.Component",[m
-***REMOVED*** "Name": "Microsoft.AspNetCore.Components.DynamicComponent",[m
-***REMOVED*** "AssemblyName": "Microsoft.AspNetCore.Components",[m
+
+VED***"HashCode": 520102871,[m
+m"HashCode": -1472252936,[m
+ "Kind": "Components.Component",[m
+ "Name": "Microsoft.AspNetCore.Components.DynamicComponent",[m
+ "AssemblyName": "Microsoft.AspNetCore.Components",[m
 [36m@@ -1089,7 +1089,7 @@[m
-***REMOVED*** }[m
+***REM
        },[m
-       {[m
-[31m-***REMOVED***"HashCode": -1819083948,[m
-[32m+[m[32m***REMOVED***"HashCode": 1736113621,[m
-***REMOVED*** "Kind": "Components.Component",[m
-***REMOVED*** "Name": "Microsoft.AspNetCore.Components.DynamicComponent",[m
-***REMOVED*** "AssemblyName": "Microsoft.AspNetCore.Components",[m
+
+VED***"HashCode": -1819083948,[m
+m"HashCode": 1736113621,[m
+ "Kind": "Components.Component",[m
+ "Name": "Microsoft.AspNetCore.Components.DynamicComponent",[m
+ "AssemblyName": "Microsoft.AspNetCore.Components",[m
 [36m@@ -1132,7 +1132,7 @@[m
-***REMOVED*** }[m
+***REM
        },[m
-       {[m
-[31m-***REMOVED***"HashCode": -943419247,[m
-[32m+[m[32m***REMOVED***"HashCode": -1061233171,[m
-***REMOVED*** "Kind": "Components.Component",[m
-***REMOVED*** "Name": "Microsoft.AspNetCore.Components.LayoutView",[m
-***REMOVED*** "AssemblyName": "Microsoft.AspNetCore.Components",[m
+
+VED***"HashCode": -943419247,[m
+m"HashCode": -1061233171,[m
+ "Kind": "Components.Component",[m
+ "Name": "Microsoft.AspNetCore.Components.LayoutView",[m
+ "AssemblyName": "Microsoft.AspNetCore.Components",[m
 [36m@@ -1174,7 +1174,7 @@[m
-***REMOVED*** }[m
+***REM
        },[m
-       {[m
-[31m-***REMOVED***"HashCode": -1796789557,[m
-[32m+[m[32m***REMOVED***"HashCode": 279023248,[m
-***REMOVED*** "Kind": "Components.Component",[m
-***REMOVED*** "Name": "Microsoft.AspNetCore.Components.LayoutView",[m
-***REMOVED*** "AssemblyName": "Microsoft.AspNetCore.Components",[m
+
+VED***"HashCode": -1796789557,[m
+m"HashCode": 279023248,[m
+ "Kind": "Components.Component",[m
+ "Name": "Microsoft.AspNetCore.Components.LayoutView",[m
+ "AssemblyName": "Microsoft.AspNetCore.Components",[m
 [36m@@ -1217,7 +1217,7 @@[m
-***REMOVED*** }[m
+***REM
        },[m
-       {[m
-[31m-***REMOVED***"HashCode": -447967364,[m
-[32m+[m[32m***REMOVED***"HashCode": -762992716,[m
-***REMOVED*** "Kind": "Components.ChildContent",[m
-***REMOVED*** "Name": "Microsoft.AspNetCore.Components.LayoutView.ChildContent",[m
-***REMOVED*** "AssemblyName": "Microsoft.AspNetCore.Components",[m
+
+VED***"HashCode": -447967364,[m
+m"HashCode": -762992716,[m
+ "Kind": "Components.ChildContent",[m
+ "Name": "Microsoft.AspNetCore.Components.LayoutView.ChildContent",[m
+ "AssemblyName": "Microsoft.AspNetCore.Components",[m
 [36m@@ -1238,7 +1238,7 @@[m
-***REMOVED*** }[m
+***REM
        },[m
-       {[m
-[31m-***REMOVED***"HashCode": 1055348191,[m
-[32m+[m[32m***REMOVED***"HashCode": 135638412,[m
-***REMOVED*** "Kind": "Components.ChildContent",[m
-***REMOVED*** "Name": "Microsoft.AspNetCore.Components.LayoutView.ChildContent",[m
-***REMOVED*** "AssemblyName": "Microsoft.AspNetCore.Components",[m
+
+VED***"HashCode": 1055348191,[m
+m"HashCode": 135638412,[m
+ "Kind": "Components.ChildContent",[m
+ "Name": "Microsoft.AspNetCore.Components.LayoutView.ChildContent",[m
+ "AssemblyName": "Microsoft.AspNetCore.Components",[m
 [36m@@ -1260,7 +1260,7 @@[m
-***REMOVED*** }[m
+***REM
        },[m
-       {[m
-[31m-***REMOVED***"HashCode": -1436735508,[m
-[32m+[m[32m***REMOVED***"HashCode": 1164542608,[m
-***REMOVED*** "Kind": "Components.Component",[m
-***REMOVED*** "Name": "Microsoft.AspNetCore.Components.RouteView",[m
-***REMOVED*** "AssemblyName": "Microsoft.AspNetCore.Components",[m
+
+VED***"HashCode": -1436735508,[m
+m"HashCode": 1164542608,[m
+ "Kind": "Components.Component",[m
+ "Name": "Microsoft.AspNetCore.Components.RouteView",[m
+ "AssemblyName": "Microsoft.AspNetCore.Components",[m
 [36m@@ -1302,7 +1302,7 @@[m
-***REMOVED*** }[m
+***REM
        },[m
-       {[m
-[31m-***REMOVED***"HashCode": -9456440,[m
-[32m+[m[32m***REMOVED***"HashCode": -1519981897,[m
-***REMOVED*** "Kind": "Components.Component",[m
-***REMOVED*** "Name": "Microsoft.AspNetCore.Components.RouteView",[m
-***REMOVED*** "AssemblyName": "Microsoft.AspNetCore.Components",[m
+
+VED***"HashCode": -9456440,[m
+m"HashCode": -1519981897,[m
+ "Kind": "Components.Component",[m
+ "Name": "Microsoft.AspNetCore.Components.RouteView",[m
+ "AssemblyName": "Microsoft.AspNetCore.Components",[m
 [36m@@ -1345,7 +1345,7 @@[m
-***REMOVED*** }[m
+***REM
        },[m
-       {[m
-[31m-***REMOVED***"HashCode": -527443502,[m
-[32m+[m[32m***REMOVED***"HashCode": -1566760917,[m
-***REMOVED*** "Kind": "Components.Component",[m
-***REMOVED*** "Name": "Microsoft.AspNetCore.Components.Routing.Router",[m
-***REMOVED*** "AssemblyName": "Microsoft.AspNetCore.Components",[m
+
+VED***"HashCode": -527443502,[m
+m"HashCode": -1566760917,[m
+ "Kind": "Components.Component",[m
+ "Name": "Microsoft.AspNetCore.Components.Routing.Router",[m
+ "AssemblyName": "Microsoft.AspNetCore.Components",[m
 [36m@@ -1453,7 +1453,7 @@[m
-***REMOVED*** }[m
+***REM
        },[m
-       {[m
-[31m-***REMOVED***"HashCode": -1882185707,[m
-[32m+[m[32m***REMOVED***"HashCode": 1579314757,[m
-***REMOVED*** "Kind": "Components.Component",[m
-***REMOVED*** "Name": "Microsoft.AspNetCore.Components.Routing.Router",[m
-***REMOVED*** "AssemblyName": "Microsoft.AspNetCore.Components",[m
+
+VED***"HashCode": -1882185707,[m
+m"HashCode": 1579314757,[m
+ "Kind": "Components.Component",[m
+ "Name": "Microsoft.AspNetCore.Components.Routing.Router",[m
+ "AssemblyName": "Microsoft.AspNetCore.Components",[m
 [36m@@ -1562,7 +1562,7 @@[m
-***REMOVED*** }[m
+***REM
        },[m
-       {[m
-[31m-***REMOVED***"HashCode": -467405460,[m
-[32m+[m[32m***REMOVED***"HashCode": 1650725080,[m
-***REMOVED*** "Kind": "Components.ChildContent",[m
-***REMOVED*** "Name": "Microsoft.AspNetCore.Components.Routing.Router.NotFound",[m
-***REMOVED*** "AssemblyName": "Microsoft.AspNetCore.Components",[m
+
+VED***"HashCode": -467405460,[m
+m"HashCode": 1650725080,[m
+ "Kind": "Components.ChildContent",[m
+ "Name": "Microsoft.AspNetCore.Components.Routing.Router.NotFound",[m
+ "AssemblyName": "Microsoft.AspNetCore.Components",[m
 [36m@@ -1583,7 +1583,7 @@[m
-***REMOVED*** }[m
+***REM
        },[m
-       {[m
-[31m-***REMOVED***"HashCode": 1585437809,[m
-[32m+[m[32m***REMOVED***"HashCode": 1777012218,[m
-***REMOVED*** "Kind": "Components.ChildContent",[m
-***REMOVED*** "Name": "Microsoft.AspNetCore.Components.Routing.Router.NotFound",[m
-***REMOVED*** "AssemblyName": "Microsoft.AspNetCore.Components",[m
+
+VED***"HashCode": 1585437809,[m
+m"HashCode": 1777012218,[m
+ "Kind": "Components.ChildContent",[m
+ "Name": "Microsoft.AspNetCore.Components.Routing.Router.NotFound",[m
+ "AssemblyName": "Microsoft.AspNetCore.Components",[m
 [36m@@ -1605,7 +1605,7 @@[m
-***REMOVED*** }[m
+***REM
        },[m
-       {[m
-[31m-***REMOVED***"HashCode": 637776496,[m
-[32m+[m[32m***REMOVED***"HashCode": 276672977,[m
-***REMOVED*** "Kind": "Components.ChildContent",[m
-***REMOVED*** "Name": "Microsoft.AspNetCore.Components.Routing.Router.Found",[m
-***REMOVED*** "AssemblyName": "Microsoft.AspNetCore.Components",[m
+
+VED***"HashCode": 637776496,[m
+m"HashCode": 276672977,[m
+ "Kind": "Components.ChildContent",[m
+ "Name": "Microsoft.AspNetCore.Components.Routing.Router.Found",[m
+ "AssemblyName": "Microsoft.AspNetCore.Components",[m
 [36m@@ -1638,7 +1638,7 @@[m
-***REMOVED*** }[m
+***REM
        },[m
-       {[m
-[31m-***REMOVED***"HashCode": -1614728456,[m
-[32m+[m[32m***REMOVED***"HashCode": 759460081,[m
-***REMOVED*** "Kind": "Components.ChildContent",[m
-***REMOVED*** "Name": "Microsoft.AspNetCore.Components.Routing.Router.Found",[m
-***REMOVED*** "AssemblyName": "Microsoft.AspNetCore.Components",[m
+
+VED***"HashCode": -1614728456,[m
+m"HashCode": 759460081,[m
+ "Kind": "Components.ChildContent",[m
+ "Name": "Microsoft.AspNetCore.Components.Routing.Router.Found",[m
+ "AssemblyName": "Microsoft.AspNetCore.Components",[m
 [36m@@ -1672,7 +1672,7 @@[m
-***REMOVED*** }[m
+***REM
        },[m
-       {[m
-[31m-***REMOVED***"HashCode": 1577297847,[m
-[32m+[m[32m***REMOVED***"HashCode": -461480406,[m
-***REMOVED*** "Kind": "Components.ChildContent",[m
-***REMOVED*** "Name": "Microsoft.AspNetCore.Components.Routing.Router.Navigating",[m
-***REMOVED*** "AssemblyName": "Microsoft.AspNetCore.Components",[m
+
+VED***"HashCode": 1577297847,[m
+m"HashCode": -461480406,[m
+ "Kind": "Components.ChildContent",[m
+ "Name": "Microsoft.AspNetCore.Components.Routing.Router.Navigating",[m
+ "AssemblyName": "Microsoft.AspNetCore.Components",[m
 [36m@@ -1693,7 +1693,7 @@[m
-***REMOVED*** }[m
+***REM
        },[m
-       {[m
-[31m-***REMOVED***"HashCode": -77114777,[m
-[32m+[m[32m***REMOVED***"HashCode": -1518750832,[m
-***REMOVED*** "Kind": "Components.ChildContent",[m
-***REMOVED*** "Name": "Microsoft.AspNetCore.Components.Routing.Router.Navigating",[m
-***REMOVED*** "AssemblyName": "Microsoft.AspNetCore.Components",[m
+
+VED***"HashCode": -77114777,[m
+m"HashCode": -1518750832,[m
+ "Kind": "Components.ChildContent",[m
+ "Name": "Microsoft.AspNetCore.Components.Routing.Router.Navigating",[m
+ "AssemblyName": "Microsoft.AspNetCore.Components",[m
 [36m@@ -1715,7 +1715,7 @@[m
-***REMOVED*** }[m
+***REM
        },[m
-       {[m
-[31m-***REMOVED***"HashCode": -1834221272,[m
-[32m+[m[32m***REMOVED***"HashCode": -2053275065,[m
-***REMOVED*** "Kind": "Components.Component",[m
-***REMOVED*** "Name": "Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator",[m
-***REMOVED*** "AssemblyName": "Microsoft.AspNetCore.Components.Forms",[m
+
+VED***"HashCode": -1834221272,[m
+m"HashCode": -2053275065,[m
+ "Kind": "Components.Component",[m
+ "Name": "Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator",[m
+ "AssemblyName": "Microsoft.AspNetCore.Components.Forms",[m
 [36m@@ -1734,7 +1734,7 @@[m
-***REMOVED*** }[m
+***REM
        },[m
-       {[m
-[31m-***REMOVED***"HashCode": 1317550544,[m
-[32m+[m[32m***REMOVED***"HashCode": 375767990,[m
-***REMOVED*** "Kind": "Components.Component",[m
-***REMOVED*** "Name": "Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator",[m
-***REMOVED*** "AssemblyName": "Microsoft.AspNetCore.Components.Forms",[m
+
+VED***"HashCode": 1317550544,[m
+m"HashCode": 375767990,[m
+ "Kind": "Components.Component",[m
+ "Name": "Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator",[m
+ "AssemblyName": "Microsoft.AspNetCore.Components.Forms",[m
 [36m@@ -1754,7 +1754,7 @@[m
-***REMOVED*** }[m
+***REM
        },[m
-       {[m
-[31m-***REMOVED***"HashCode": 833986773,[m
-[32m+[m[32m***REMOVED***"HashCode": -432923294,[m
-***REMOVED*** "Kind": "Components.Component",[m
-***REMOVED*** "Name": "Microsoft.AspNetCore.Components.Forms.EditForm",[m
-***REMOVED*** "AssemblyName": "Microsoft.AspNetCore.Components.Web",[m
+
+VED***"HashCode": 833986773,[m
+m"HashCode": -432923294,[m
+ "Kind": "Components.Component",[m
+ "Name": "Microsoft.AspNetCore.Components.Forms.EditForm",[m
+ "AssemblyName": "Microsoft.AspNetCore.Components.Web",[m
 [36m@@ -1859,7 +1859,7 @@[m
-***REMOVED*** }[m
+***REM
        },[m
-       {[m
-[31m-***REMOVED***"HashCode": -804688778,[m
-[32m+[m[32m***REMOVED***"HashCode": 655958261,[m
-***REMOVED*** "Kind": "Components.Component",[m
-***REMOVED*** "Name": "Microsoft.AspNetCore.Components.Forms.EditForm",[m
-***REMOVED*** "AssemblyName": "Microsoft.AspNetCore.Components.Web",[m
+
+VED***"HashCode": -804688778,[m
+m"HashCode": 655958261,[m
+ "Kind": "Components.Component",[m
+ "Name": "Microsoft.AspNetCore.Components.Forms.EditForm",[m
+ "AssemblyName": "Microsoft.AspNetCore.Components.Web",[m
 [36m@@ -1965,7 +1965,7 @@[m
-***REMOVED*** }[m
+***REM
        },[m
-       {[m
-[31m-***REMOVED***"HashCode": 1985896894,[m
-[32m+[m[32m***REMOVED***"HashCode": -1860159468,[m
-***REMOVED*** "Kind": "Components.ChildContent",[m
-***REMOVED*** "Name": "Microsoft.AspNetCore.Components.Forms.EditForm.ChildContent",[m
-***REMOVED*** "AssemblyName": "Microsoft.AspNetCore.Components.Web",[m
+
+VED***"HashCode": 1985896894,[m
+m"HashCode": -1860159468,[m
+ "Kind": "Components.ChildContent",[m
+ "Name": "Microsoft.AspNetCore.Components.Forms.EditForm.ChildContent",[m
+ "AssemblyName": "Microsoft.AspNetCore.Components.Web",[m
 [36m@@ -1998,7 +1998,7 @@[m
-***REMOVED*** }[m
+***REM
        },[m
-       {[m
-[31m-***REMOVED***"HashCode": 928969133,[m
-[32m+[m[32m***REMOVED***"HashCode": 1533629860,[m
-***REMOVED*** "Kind": "Components.ChildContent",[m
-***REMOVED*** "Name": "Microsoft.AspNetCore.Components.Forms.EditForm.ChildContent",[m
-***REMOVED*** "AssemblyName": "Microsoft.AspNetCore.Components.Web",[m
+
+VED***"HashCode": 928969133,[m
+m"HashCode": 1533629860,[m
+ "Kind": "Components.ChildContent",[m
+ "Name": "Microsoft.AspNetCore.Components.Forms.EditForm.ChildContent",[m
+ "AssemblyName": "Microsoft.AspNetCore.Components.Web",[m
 [36m@@ -2032,7 +2032,7 @@[m
-***REMOVED*** }[m
+***REM
        },[m
-       {[m
-[31m-***REMOVED***"HashCode": -788182530,[m
-[32m+[m[32m***REMOVED***"HashCode": -414291169,[m
-***REMOVED*** "Kind": "Components.Component",[m
-***REMOVED*** "Name": "Microsoft.AspNetCore.Components.Forms.InputCheckbox",[m
-***REMOVED*** "AssemblyName": "Microsoft.AspNetCore.Components.Web",[m
+
+VED***"HashCode": -788182530,[m
+m"HashCode": -414291169,[m
+ "Kind": "Components.Component",[m
+ "Name": "Microsoft.AspNetCore.Components.Forms.InputCheckbox",[m
+ "AssemblyName": "Microsoft.AspNetCore.Components.Web",[m
 [36m@@ -2104,7 +2104,7 @@[m
-***REMOVED*** }[m
+***REM
        },[m
-       {[m
-[31m-***REMOVED***"HashCode": 1001455111,[m
-[32m+[m[32m***REMOVED***"HashCode": 340788840,[m
-***REMOVED*** "Kind": "Components.Component",[m
-***REMOVED*** "Name": "Microsoft.AspNetCore.Components.Forms.InputCheckbox",[m
-***REMOVED*** "AssemblyName": "Microsoft.AspNetCore.Components.Web",[m
+
+VED***"HashCode": 1001455111,[m
+m"HashCode": 340788840,[m
+ "Kind": "Components.Component",[m
+ "Name": "Microsoft.AspNetCore.Components.Forms.InputCheckbox",[m
+ "AssemblyName": "Microsoft.AspNetCore.Components.Web",[m
 [36m@@ -2177,7 +2177,7 @@[m
-***REMOVED*** }[m
+***REM
        },[m
-       {[m
-[31m-***REMOVED***"HashCode": -2133268498,[m
-[32m+[m[32m***REMOVED***"HashCode": -402576851,[m
-***REMOVED*** "Kind": "Components.Component",[m
-***REMOVED*** "Name": "Microsoft.AspNetCore.Components.Forms.InputDate<TValue>",[m
-***REMOVED*** "AssemblyName": "Microsoft.AspNetCore.Components.Web",[m
+
+VED***"HashCode": -2133268498,[m
+m"HashCode": -402576851,[m
+ "Kind": "Components.Component",[m
+ "Name": "Microsoft.AspNetCore.Components.Forms.InputDate<TValue>",[m
+ "AssemblyName": "Microsoft.AspNetCore.Components.Web",[m
 [36m@@ -2285,7 +2285,7 @@[m
-***REMOVED*** }[m
+***REM
        },[m
-       {[m
-[31m-***REMOVED***"HashCode": 1381359265,[m
-[32m+[m[32m***REMOVED***"HashCode": -1693410161,[m
-***REMOVED*** "Kind": "Components.Component",[m
-***REMOVED*** "Name": "Microsoft.AspNetCore.Components.Forms.InputDate<TValue>",[m
-***REMOVED*** "AssemblyName": "Microsoft.AspNetCore.Components.Web",[m
+
+VED***"HashCode": 1381359265,[m
+m"HashCode": -1693410161,[m
+ "Kind": "Components.Component",[m
+ "Name": "Microsoft.AspNetCore.Components.Forms.InputDate<TValue>",[m
+ "AssemblyName": "Microsoft.AspNetCore.Components.Web",[m
 [36m@@ -2394,7 +2394,7 @@[m
-***REMOVED*** }[m
+***REM
        },[m
-       {[m
-[31m-***REMOVED***"HashCode": 1333361136,[m
-[32m+[m[32m***REMOVED***"HashCode": 1593806449,[m
-***REMOVED*** "Kind": "Components.Component",[m
-***REMOVED*** "Name": "Microsoft.AspNetCore.Components.Forms.InputFile",[m
-***REMOVED*** "AssemblyName": "Microsoft.AspNetCore.Components.Web",[m
+
+VED***"HashCode": 1333361136,[m
+m"HashCode": 1593806449,[m
+ "Kind": "Components.Component",[m
+ "Name": "Microsoft.AspNetCore.Components.Forms.InputFile",[m
+ "AssemblyName": "Microsoft.AspNetCore.Components.Web",[m
 [36m@@ -2436,7 +2436,7 @@[m
-***REMOVED*** }[m
+***REM
        },[m
-       {[m
-[31m-***REMOVED***"HashCode": 873159144,[m
-[32m+[m[32m***REMOVED***"HashCode": 1689850992,[m
-***REMOVED*** "Kind": "Components.Component",[m
-***REMOVED*** "Name": "Microsoft.AspNetCore.Components.Forms.InputFile",[m
-***REMOVED*** "AssemblyName": "Microsoft.AspNetCore.Components.Web",[m
+
+VED***"HashCode": 873159144,[m
+m"HashCode": 1689850992,[m
+ "Kind": "Components.Component",[m
+ "Name": "Microsoft.AspNetCore.Components.Forms.InputFile",[m
+ "AssemblyName": "Microsoft.AspNetCore.Components.Web",[m
 [36m@@ -2479,7 +2479,7 @@[m
-***REMOVED*** }[m
+***REM
        },[m
-       {[m
-[31m-***REMOVED***"HashCode": 1312787052,[m
-[32m+[m[32m***REMOVED***"HashCode": -64446123,[m
-***REMOVED*** "Kind": "Components.Component",[m
-***REMOVED*** "Name": "Microsoft.AspNetCore.Components.Forms.InputNumber<TValue>",[m
-***REMOVED*** "AssemblyName": "Microsoft.AspNetCore.Components.Web",[m
+
+VED***"HashCode": 1312787052,[m
+m"HashCode": -64446123,[m
+ "Kind": "Components.Component",[m
+ "Name": "Microsoft.AspNetCore.Components.Forms.InputNumber<TValue>",[m
+ "AssemblyName": "Microsoft.AspNetCore.Components.Web",[m
 [36m@@ -2576,7 +2576,7 @@[m
-***REMOVED*** }[m
+***REM
        },[m
-       {[m
-[31m-***REMOVED***"HashCode": 1697981539,[m
-[32m+[m[32m***REMOVED***"HashCode": -709220101,[m
-***REMOVED*** "Kind": "Components.Component",[m
-***REMOVED*** "Name": "Microsoft.AspNetCore.Components.Forms.InputNumber<TValue>",[m
-***REMOVED*** "AssemblyName": "Microsoft.AspNetCore.Components.Web",[m
+
+VED***"HashCode": 1697981539,[m
+m"HashCode": -709220101,[m
+ "Kind": "Components.Component",[m
+ "Name": "Microsoft.AspNetCore.Components.Forms.InputNumber<TValue>",[m
+ "AssemblyName": "Microsoft.AspNetCore.Components.Web",[m
 [36m@@ -2674,7 +2674,7 @@[m
-***REMOVED*** }[m
+***REM
        },[m
-       {[m
-[31m-***REMOVED***"HashCode": -1334581655,[m
-[32m+[m[32m***REMOVED***"HashCode": -1220785782,[m
-***REMOVED*** "Kind": "Components.Component",[m
-***REMOVED*** "Name": "Microsoft.AspNetCore.Components.Forms.InputRadio<TValue>",[m
-***REMOVED*** "AssemblyName": "Microsoft.AspNetCore.Components.Web",[m
+
+VED***"HashCode": -1334581655,[m
+m"HashCode": -1220785782,[m
+ "Kind": "Components.Component",[m
+ "Name": "Microsoft.AspNetCore.Components.Forms.InputRadio<TValue>",[m
+ "AssemblyName": "Microsoft.AspNetCore.Components.Web",[m
 [36m@@ -2738,7 +2738,7 @@[m
-***REMOVED*** }[m
+***REM
        },[m
-       {[m
-[31m-***REMOVED***"HashCode": -1454860468,[m
-[32m+[m[32m***REMOVED***"HashCode": -1891774011,[m
-***REMOVED*** "Kind": "Components.Component",[m
-***REMOVED*** "Name": "Microsoft.AspNetCore.Components.Forms.InputRadio<TValue>",[m
-***REMOVED*** "AssemblyName": "Microsoft.AspNetCore.Components.Web",[m
+
+VED***"HashCode": -1454860468,[m
+m"HashCode": -1891774011,[m
+ "Kind": "Components.Component",[m
+ "Name": "Microsoft.AspNetCore.Components.Forms.InputRadio<TValue>",[m
+ "AssemblyName": "Microsoft.AspNetCore.Components.Web",[m
 [36m@@ -2803,7 +2803,7 @@[m
-***REMOVED*** }[m
+***REM
        },[m
-       {[m
-[31m-***REMOVED***"HashCode": -165340889,[m
-[32m+[m[32m***REMOVED***"HashCode": 25928869,[m
-***REMOVED*** "Kind": "Components.Component",[m
-***REMOVED*** "Name": "Microsoft.AspNetCore.Components.Forms.InputRadioGroup<TValue>",[m
-***REMOVED*** "AssemblyName": "Microsoft.AspNetCore.Components.Web",[m
+
+VED***"HashCode": -165340889,[m
+m"HashCode": 25928869,[m
+ "Kind": "Components.Component",[m
+ "Name": "Microsoft.AspNetCore.Components.Forms.InputRadioGroup<TValue>",[m
+ "AssemblyName": "Microsoft.AspNetCore.Components.Web",[m
 [36m@@ -2911,7 +2911,7 @@[m
-***REMOVED*** }[m
+***REM
        },[m
-       {[m
-[31m-***REMOVED***"HashCode": -2132877895,[m
-[32m+[m[32m***REMOVED***"HashCode": -192705554,[m
-***REMOVED*** "Kind": "Components.Component",[m
-***REMOVED*** "Name": "Microsoft.AspNetCore.Components.Forms.InputRadioGroup<TValue>",[m
-***REMOVED*** "AssemblyName": "Microsoft.AspNetCore.Components.Web",[m
+
+VED***"HashCode": -2132877895,[m
+m"HashCode": -192705554,[m
+ "Kind": "Components.Component",[m
+ "Name": "Microsoft.AspNetCore.Components.Forms.InputRadioGroup<TValue>",[m
+ "AssemblyName": "Microsoft.AspNetCore.Components.Web",[m
 [36m@@ -3020,7 +3020,7 @@[m
-***REMOVED*** }[m
+***REM
        },[m
-       {[m
-[31m-***REMOVED***"HashCode": 1250571874,[m
-[32m+[m[32m***REMOVED***"HashCode": -1594207471,[m
-***REMOVED*** "Kind": "Components.ChildContent",[m
-***REMOVED*** "Name": "Microsoft.AspNetCore.Components.Forms.InputRadioGroup<TValue>.ChildContent",[m
-***REMOVED*** "AssemblyName": "Microsoft.AspNetCore.Components.Web",[m
+
+VED***"HashCode": 1250571874,[m
+m"HashCode": -1594207471,[m
+ "Kind": "Components.ChildContent",[m
+ "Name": "Microsoft.AspNetCore.Components.Forms.InputRadioGroup<TValue>.ChildContent",[m
+ "AssemblyName": "Microsoft.AspNetCore.Components.Web",[m
 [36m@@ -3041,7 +3041,7 @@[m
-***REMOVED*** }[m
+***REM
        },[m
-       {[m
-[31m-***REMOVED***"HashCode": -1523302894,[m
-[32m+[m[32m***REMOVED***"HashCode": 1121976322,[m
-***REMOVED*** "Kind": "Components.ChildContent",[m
-***REMOVED*** "Name": "Microsoft.AspNetCore.Components.Forms.InputRadioGroup<TValue>.ChildContent",[m
-***REMOVED*** "AssemblyName": "Microsoft.AspNetCore.Components.Web",[m
+
+VED***"HashCode": -1523302894,[m
+m"HashCode": 1121976322,[m
+ "Kind": "Components.ChildContent",[m
+ "Name": "Microsoft.AspNetCore.Components.Forms.InputRadioGroup<TValue>.ChildContent",[m
+ "AssemblyName": "Microsoft.AspNetCore.Components.Web",[m
 [36m@@ -3063,7 +3063,7 @@[m
-***REMOVED*** }[m
+***REM
        },[m
-       {[m
-[31m-***REMOVED***"HashCode": 861355029,[m
-[32m+[m[32m***REMOVED***"HashCode": -1548221889,[m
-***REMOVED*** "Kind": "Components.Component",[m
-***REMOVED*** "Name": "Microsoft.AspNetCore.Components.Forms.InputSelect<TValue>",[m
-***REMOVED*** "AssemblyName": "Microsoft.AspNetCore.Components.Web",[m
+
+VED***"HashCode": 861355029,[m
+m"HashCode": -1548221889,[m
+ "Kind": "Components.Component",[m
+ "Name": "Microsoft.AspNetCore.Components.Forms.InputSelect<TValue>",[m
+ "AssemblyName": "Microsoft.AspNetCore.Components.Web",[m
 [36m@@ -3161,7 +3161,7 @@[m
-***REMOVED*** }[m
+***REM
        },[m
-       {[m
-[31m-***REMOVED***"HashCode": -92047590,[m
-[32m+[m[32m***REMOVED***"HashCode": 622396321,[m
-***REMOVED*** "Kind": "Components.Component",[m
-***REMOVED*** "Name": "Microsoft.AspNetCore.Components.Forms.InputSelect<TValue>",[m
-***REMOVED*** "AssemblyName": "Microsoft.AspNetCore.Components.Web",[m
+
+VED***"HashCode": -92047590,[m
+m"HashCode": 622396321,[m
+ "Kind": "Components.Component",[m
+ "Name": "Microsoft.AspNetCore.Components.Forms.InputSelect<TValue>",[m
+ "AssemblyName": "Microsoft.AspNetCore.Components.Web",[m
 [36m@@ -3260,7 +3260,7 @@[m
-***REMOVED*** }[m
+***REM
        },[m
-       {[m
-[31m-***REMOVED***"HashCode": 1584775575,[m
-[32m+[m[32m***REMOVED***"HashCode": 868648158,[m
-***REMOVED*** "Kind": "Components.ChildContent",[m
-***REMOVED*** "Name": "Microsoft.AspNetCore.Components.Forms.InputSelect<TValue>.ChildContent",[m
-***REMOVED*** "AssemblyName": "Microsoft.AspNetCore.Components.Web",[m
+
+VED***"HashCode": 1584775575,[m
+m"HashCode": 868648158,[m
+ "Kind": "Components.ChildContent",[m
+ "Name": "Microsoft.AspNetCore.Components.Forms.InputSelect<TValue>.ChildContent",[m
+ "AssemblyName": "Microsoft.AspNetCore.Components.Web",[m
 [36m@@ -3281,7 +3281,7 @@[m
-***REMOVED*** }[m
+***REM
        },[m
-       {[m
-[31m-***REMOVED***"HashCode": -149130531,[m
-[32m+[m[32m***REMOVED***"HashCode": -720717945,[m
-***REMOVED*** "Kind": "Components.ChildContent",[m
-***REMOVED*** "Name": "Microsoft.AspNetCore.Components.Forms.InputSelect<TValue>.ChildContent",[m
-***REMOVED*** "AssemblyName": "Microsoft.AspNetCore.Components.Web",[m
+
+VED***"HashCode": -149130531,[m
+m"HashCode": -720717945,[m
+ "Kind": "Components.ChildContent",[m
+ "Name": "Microsoft.AspNetCore.Components.Forms.InputSelect<TValue>.ChildContent",[m
+ "AssemblyName": "Microsoft.AspNetCore.Components.Web",[m
 [36m@@ -3303,7 +3303,7 @@[m
-***REMOVED*** }[m
+***REM
        },[m
-       {[m
-[31m-***REMOVED***"HashCode": -258274656,[m
-[32m+[m[32m***REMOVED***"HashCode": -45937916,[m
-***REMOVED*** "Kind": "Components.Component",[m
-***REMOVED*** "Name": "Microsoft.AspNetCore.Components.Forms.InputText",[m
-***REMOVED*** "AssemblyName": "Microsoft.AspNetCore.Components.Web",[m
+
+VED***"HashCode": -258274656,[m
+m"HashCode": -45937916,[m
+ "Kind": "Components.Component",[m
+ "Name": "Microsoft.AspNetCore.Components.Forms.InputText",[m
+ "AssemblyName": "Microsoft.AspNetCore.Components.Web",[m
 [36m@@ -3375,7 +3375,7 @@[m
-***REMOVED*** }[m
+***REM
        },[m
-       {[m
-[31m-***REMOVED***"HashCode": -1029510484,[m
-[32m+[m[32m***REMOVED***"HashCode": 1071146586,[m
-***REMOVED*** "Kind": "Components.Component",[m
-***REMOVED*** "Name": "Microsoft.AspNetCore.Components.Forms.InputText",[m
-***REMOVED*** "AssemblyName": "Microsoft.AspNetCore.Components.Web",[m
+
+VED***"HashCode": -1029510484,[m
+m"HashCode": 1071146586,[m
+ "Kind": "Components.Component",[m
+ "Name": "Microsoft.AspNetCore.Components.Forms.InputText",[m
+ "AssemblyName": "Microsoft.AspNetCore.Components.Web",[m
 [36m@@ -3448,7 +3448,7 @@[m
-***REMOVED*** }[m
+***REM
        },[m
-       {[m
-[31m-***REMOVED***"HashCode": -520719580,[m
-[32m+[m[32m***REMOVED***"HashCode": 1109994792,[m
-***REMOVED*** "Kind": "Components.Component",[m
-***REMOVED*** "Name": "Microsoft.AspNetCore.Components.Forms.InputTextArea",[m
-***REMOVED*** "AssemblyName": "Microsoft.AspNetCore.Components.Web",[m
+
+VED***"HashCode": -520719580,[m
+m"HashCode": 1109994792,[m
+ "Kind": "Components.Component",[m
+ "Name": "Microsoft.AspNetCore.Components.Forms.InputTextArea",[m
+ "AssemblyName": "Microsoft.AspNetCore.Components.Web",[m
 [36m@@ -3520,7 +3520,7 @@[m
-***REMOVED*** }[m
+***REM
        },[m
-       {[m
-[31m-***REMOVED***"HashCode": -115242053,[m
-[32m+[m[32m***REMOVED***"HashCode": 1426698997,[m
-***REMOVED*** "Kind": "Components.Component",[m
-***REMOVED*** "Name": "Microsoft.AspNetCore.Components.Forms.InputTextArea",[m
-***REMOVED*** "AssemblyName": "Microsoft.AspNetCore.Components.Web",[m
+
+VED***"HashCode": -115242053,[m
+m"HashCode": 1426698997,[m
+ "Kind": "Components.Component",[m
+ "Name": "Microsoft.AspNetCore.Components.Forms.InputTextArea",[m
+ "AssemblyName": "Microsoft.AspNetCore.Components.Web",[m
 [36m@@ -3593,7 +3593,7 @@[m
-***REMOVED*** }[m
+***REM
        },[m
-       {[m
-[31m-***REMOVED***"HashCode": 1969469517,[m
-[32m+[m[32m***REMOVED***"HashCode": 1933575111,[m
-***REMOVED*** "Kind": "Components.Component",[m
-***REMOVED*** "Name": "Microsoft.AspNetCore.Components.Forms.ValidationMessage<TValue>",[m
-***REMOVED*** "AssemblyName": "Microsoft.AspNetCore.Components.Web",[m
+
+VED***"HashCode": 1969469517,[m
+m"HashCode": 1933575111,[m
+ "Kind": "Components.Component",[m
+ "Name": "Microsoft.AspNetCore.Components.Forms.ValidationMessage<TValue>",[m
+ "AssemblyName": "Microsoft.AspNetCore.Components.Web",[m
 [36m@@ -3647,7 +3647,7 @@[m
-***REMOVED*** }[m
+***REM
        },[m
-       {[m
-[31m-***REMOVED***"HashCode": -1821433691,[m
-[32m+[m[32m***REMOVED***"HashCode": 643589957,[m
-***REMOVED*** "Kind": "Components.Component",[m
-***REMOVED*** "Name": "Microsoft.AspNetCore.Components.Forms.ValidationMessage<TValue>",[m
-***REMOVED*** "AssemblyName": "Microsoft.AspNetCore.Components.Web",[m
+
+VED***"HashCode": -1821433691,[m
+m"HashCode": 643589957,[m
+ "Kind": "Components.Component",[m
+ "Name": "Microsoft.AspNetCore.Components.Forms.ValidationMessage<TValue>",[m
+ "AssemblyName": "Microsoft.AspNetCore.Components.Web",[m
 [36m@@ -3702,7 +3702,7 @@[m
-***REMOVED*** }[m
+***REM
        },[m
-       {[m
-[31m-***REMOVED***"HashCode": -1571820267,[m
-[32m+[m[32m***REMOVED***"HashCode": 1016391730,[m
-***REMOVED*** "Kind": "Components.Component",[m
-***REMOVED*** "Name": "Microsoft.AspNetCore.Components.Forms.ValidationSummary",[m
-***REMOVED*** "AssemblyName": "Microsoft.AspNetCore.Components.Web",[m
+
+VED***"HashCode": -1571820267,[m
+m"HashCode": 1016391730,[m
+ "Kind": "Components.Component",[m
+ "Name": "Microsoft.AspNetCore.Components.Forms.ValidationSummary",[m
+ "AssemblyName": "Microsoft.AspNetCore.Components.Web",[m
 [36m@@ -3743,7 +3743,7 @@[m
-***REMOVED*** }[m
+***REM
        },[m
-       {[m
-[31m-***REMOVED***"HashCode": 2103789316,[m
-[32m+[m[32m***REMOVED***"HashCode": -1894998712,[m
-***REMOVED*** "Kind": "Components.Component",[m
-***REMOVED*** "Name": "Microsoft.AspNetCore.Components.Forms.ValidationSummary",[m
-***REMOVED*** "AssemblyName": "Microsoft.AspNetCore.Components.Web",[m
+
+VED***"HashCode": 2103789316,[m
+m"HashCode": -1894998712,[m
+ "Kind": "Components.Component",[m
+ "Name": "Microsoft.AspNetCore.Components.Forms.ValidationSummary",[m
+ "AssemblyName": "Microsoft.AspNetCore.Components.Web",[m
 [36m@@ -3785,7 +3785,7 @@[m
-***REMOVED*** }[m
+***REM
        },[m
-       {[m
-[31m-***REMOVED***"HashCode": -317080489,[m
-[32m+[m[32m***REMOVED***"HashCode": -50337346,[m
-***REMOVED*** "Kind": "Components.Component",[m
-***REMOVED*** "Name": "Microsoft.AspNetCore.Components.Routing.FocusOnNavigate",[m
-***REMOVED*** "AssemblyName": "Microsoft.AspNetCore.Components.Web",[m
+
+VED***"HashCode": -317080489,[m
+m"HashCode": -50337346,[m
+ "Kind": "Components.Component",[m
+ "Name": "Microsoft.AspNetCore.Components.Routing.FocusOnNavigate",[m
+ "AssemblyName": "Microsoft.AspNetCore.Components.Web",[m
 [36m@@ -3826,7 +3826,7 @@[m
-***REMOVED*** }[m
+***REM
        },[m
-       {[m
-[31m-***REMOVED***"HashCode": -1627054787,[m
-[32m+[m[32m***REMOVED***"HashCode": -1892573412,[m
-***REMOVED*** "Kind": "Components.Component",[m
-***REMOVED*** "Name": "Microsoft.AspNetCore.Components.Routing.FocusOnNavigate",[m
-***REMOVED*** "AssemblyName": "Microsoft.AspNetCore.Components.Web",[m
+
+VED***"HashCode": -1627054787,[m
+m"HashCode": -1892573412,[m
+ "Kind": "Components.Component",[m
+ "Name": "Microsoft.AspNetCore.Components.Routing.FocusOnNavigate",[m
+ "AssemblyName": "Microsoft.AspNetCore.Components.Web",[m
 [36m@@ -3868,7 +3868,7 @@[m
-***REMOVED*** }[m
+***REM
        },[m
-       {[m
-[31m-***REMOVED***"HashCode": -1478303601,[m
-[32m+[m[32m***REMOVED***"HashCode": 1366696741,[m
-***REMOVED*** "Kind": "Components.Component",[m
-***REMOVED*** "Name": "Microsoft.AspNetCore.Components.Routing.NavigationLock",[m
-***REMOVED*** "AssemblyName": "Microsoft.AspNetCore.Components.Web",[m
+
+VED***"HashCode": -1478303601,[m
+m"HashCode": 1366696741,[m
+ "Kind": "Components.Component",[m
+ "Name": "Microsoft.AspNetCore.Components.Routing.NavigationLock",[m
+ "AssemblyName": "Microsoft.AspNetCore.Components.Web",[m
 [36m@@ -3910,7 +3910,7 @@[m
-***REMOVED*** }[m
+***REM
        },[m
-       {[m
-[31m-***REMOVED***"HashCode": 2117092700,[m
-[32m+[m[32m***REMOVED***"HashCode": -270632890,[m
-***REMOVED*** "Kind": "Components.Component",[m
-***REMOVED*** "Name": "Microsoft.AspNetCore.Components.Routing.NavigationLock",[m
-***REMOVED*** "AssemblyName": "Microsoft.AspNetCore.Components.Web",[m
+
+VED***"HashCode": 2117092700,[m
+m"HashCode": -270632890,[m
+ "Kind": "Components.Component",[m
+ "Name": "Microsoft.AspNetCore.Components.Routing.NavigationLock",[m
+ "AssemblyName": "Microsoft.AspNetCore.Components.Web",[m
 [36m@@ -3953,7 +3953,7 @@[m
-***REMOVED*** }[m
+***REM
        },[m
-       {[m
-[31m-***REMOVED***"HashCode": 66291461,[m
-[32m+[m[32m***REMOVED***"HashCode": 463926147,[m
-***REMOVED*** "Kind": "Components.Component",[m
-***REMOVED*** "Name": "Microsoft.AspNetCore.Components.Routing.NavLink",[m
-***REMOVED*** "AssemblyName": "Microsoft.AspNetCore.Components.Web",[m
+
+VED***"HashCode": 66291461,[m
+m"HashCode": 463926147,[m
+ "Kind": "Components.Component",[m
+ "Name": "Microsoft.AspNetCore.Components.Routing.NavLink",[m
+ "AssemblyName": "Microsoft.AspNetCore.Components.Web",[m
 [36m@@ -4016,7 +4016,7 @@[m
-***REMOVED*** }[m
+***REM
        },[m
-       {[m
-[31m-***REMOVED***"HashCode": -54007606,[m
-[32m+[m[32m***REMOVED***"HashCode": 2035135134,[m
-***REMOVED*** "Kind": "Components.Component",[m
-***REMOVED*** "Name": "Microsoft.AspNetCore.Components.Routing.NavLink",[m
-***REMOVED*** "AssemblyName": "Microsoft.AspNetCore.Components.Web",[m
+
+VED***"HashCode": -54007606,[m
+m"HashCode": 2035135134,[m
+ "Kind": "Components.Component",[m
+ "Name": "Microsoft.AspNetCore.Components.Routing.NavLink",[m
+ "AssemblyName": "Microsoft.AspNetCore.Components.Web",[m
 [36m@@ -4080,7 +4080,7 @@[m
-***REMOVED*** }[m
+***REM
        },[m
-       {[m
-[31m-***REMOVED***"HashCode": 1570478610,[m
-[32m+[m[32m***REMOVED***"HashCode": -1960521053,[m
-***REMOVED*** "Kind": "Components.ChildContent",[m
-***REMOVED*** "Name": "Microsoft.AspNetCore.Components.Routing.NavLink.ChildContent",[m
-***REMOVED*** "AssemblyName": "Microsoft.AspNetCore.Components.Web",[m
+
+VED***"HashCode": 1570478610,[m
+m"HashCode": -1960521053,[m
+ "Kind": "Components.ChildContent",[m
+ "Name": "Microsoft.AspNetCore.Components.Routing.NavLink.ChildContent",[m
+ "AssemblyName": "Microsoft.AspNetCore.Components.Web",[m
 [36m@@ -4101,7 +4101,7 @@[m
-***REMOVED*** }[m
+***REM
        },[m
-       {[m
-[31m-***REMOVED***"HashCode": 985559328,[m
-[32m+[m[32m***REMOVED***"HashCode": -1616145041,[m
-***REMOVED*** "Kind": "Components.ChildContent",[m
-***REMOVED*** "Name": "Microsoft.AspNetCore.Components.Routing.NavLink.ChildContent",[m
-***REMOVED*** "AssemblyName": "Microsoft.AspNetCore.Components.Web",[m
+
+VED***"HashCode": 985559328,[m
+m"HashCode": -1616145041,[m
+ "Kind": "Components.ChildContent",[m
+ "Name": "Microsoft.AspNetCore.Components.Routing.NavLink.ChildContent",[m
+ "AssemblyName": "Microsoft.AspNetCore.Components.Web",[m
 [36m@@ -4123,7 +4123,7 @@[m
-***REMOVED*** }[m
+***REM
        },[m
-       {[m
-[31m-***REMOVED***"HashCode": -1030520466,[m
-[32m+[m[32m***REMOVED***"HashCode": 1447647830,[m
-***REMOVED*** "Kind": "Components.Component",[m
-***REMOVED*** "Name": "Microsoft.AspNetCore.Components.Web.HeadContent",[m
-***REMOVED*** "AssemblyName": "Microsoft.AspNetCore.Components.Web",[m
+
+VED***"HashCode": -1030520466,[m
+m"HashCode": 1447647830,[m
+ "Kind": "Components.Component",[m
+ "Name": "Microsoft.AspNetCore.Components.Web.HeadContent",[m
+ "AssemblyName": "Microsoft.AspNetCore.Components.Web",[m
 [36m@@ -4155,7 +4155,7 @@[m
-***REMOVED*** }[m
+***REM
        },[m
-       {[m
-[31m-***REMOVED***"HashCode": 348255174,[m
-[32m+[m[32m***REMOVED***"HashCode": -1611558429,[m
-***REMOVED*** "Kind": "Components.Component",[m
-***REMOVED*** "Name": "Microsoft.AspNetCore.Components.Web.HeadContent",[m
-***REMOVED*** "AssemblyName": "Microsoft.AspNetCore.Components.Web",[m
+
+VED***"HashCode": 348255174,[m
+m"HashCode": -1611558429,[m
+ "Kind": "Components.Component",[m
+ "Name": "Microsoft.AspNetCore.Components.Web.HeadContent",[m
+ "AssemblyName": "Microsoft.AspNetCore.Components.Web",[m
 [36m@@ -4188,7 +4188,7 @@[m
-***REMOVED*** }[m
+***REM
        },[m
-       {[m
-[31m-***REMOVED***"HashCode": -2087637835,[m
-[32m+[m[32m***REMOVED***"HashCode": -926170823,[m
-***REMOVED*** "Kind": "Components.ChildContent",[m
-***REMOVED*** "Name": "Microsoft.AspNetCore.Components.Web.HeadContent.ChildContent",[m
-***REMOVED*** "AssemblyName": "Microsoft.AspNetCore.Components.Web",[m
+
+VED***"HashCode": -2087637835,[m
+m"HashCode": -926170823,[m
+ "Kind": "Components.ChildContent",[m
+ "Name": "Microsoft.AspNetCore.Components.Web.HeadContent.ChildContent",[m
+ "AssemblyName": "Microsoft.AspNetCore.Components.Web",[m
 [36m@@ -4209,7 +4209,7 @@[m
-***REMOVED*** }[m
+***REM
        },[m
-       {[m
-[31m-***REMOVED***"HashCode": -384098169,[m
-[32m+[m[32m***REMOVED***"HashCode": 1825411201,[m
-***REMOVED*** "Kind": "Components.ChildContent",[m
-***REMOVED*** "Name": "Microsoft.AspNetCore.Components.Web.HeadContent.ChildContent",[m
-***REMOVED*** "AssemblyName": "Microsoft.AspNetCore.Components.Web",[m
+
+VED***"HashCode": -384098169,[m
+m"HashCode": 1825411201,[m
+ "Kind": "Components.ChildContent",[m
+ "Name": "Microsoft.AspNetCore.Components.Web.HeadContent.ChildContent",[m
+ "AssemblyName": "Microsoft.AspNetCore.Components.Web",[m
 [36m@@ -4231,7 +4231,7 @@[m
-***REMOVED*** }[m
+***REM
        },[m
-       {[m
-[31m-***REMOVED***"HashCode": 1327077232,[m
-[32m+[m[32m***REMOVED***"HashCode": 218671886,[m
-***REMOVED*** "Kind": "Components.Component",[m
-***REMOVED*** "Name": "Microsoft.AspNetCore.Components.Web.HeadOutlet",[m
-***REMOVED*** "AssemblyName": "Microsoft.AspNetCore.Components.Web",[m
+
+VED***"HashCode": 1327077232,[m
+m"HashCode": 218671886,[m
+ "Kind": "Components.Component",[m
+ "Name": "Microsoft.AspNetCore.Components.Web.HeadOutlet",[m
+ "AssemblyName": "Microsoft.AspNetCore.Components.Web",[m
 [36m@@ -4250,7 +4250,7 @@[m
-***REMOVED*** }[m
+***REM
        },[m
-       {[m
-[31m-***REMOVED***"HashCode": 1696268677,[m
-[32m+[m[32m***REMOVED***"HashCode": -145636411,[m
-***REMOVED*** "Kind": "Components.Component",[m
-***REMOVED*** "Name": "Microsoft.AspNetCore.Components.Web.HeadOutlet",[m
-***REMOVED*** "AssemblyName": "Microsoft.AspNetCore.Components.Web",[m
+
+VED***"HashCode": 1696268677,[m
+m"HashCode": -145636411,[m
+ "Kind": "Components.Component",[m
+ "Name": "Microsoft.AspNetCore.Components.Web.HeadOutlet",[m
+ "AssemblyName": "Microsoft.AspNetCore.Components.Web",[m
 [36m@@ -4270,7 +4270,7 @@[m
-***REMOVED*** }[m
+***REM
        },[m
-       {[m
-[31m-***REMOVED***"HashCode": 2035931937,[m
-[32m+[m[32m***REMOVED***"HashCode": -1889859503,[m
-***REMOVED*** "Kind": "Components.Component",[m
-***REMOVED*** "Name": "Microsoft.AspNetCore.Components.Web.PageTitle",[m
-***REMOVED*** "AssemblyName": "Microsoft.AspNetCore.Components.Web",[m
+
+VED***"HashCode": 2035931937,[m
+m"HashCode": -1889859503,[m
+ "Kind": "Components.Component",[m
+ "Name": "Microsoft.AspNetCore.Components.Web.PageTitle",[m
+ "AssemblyName": "Microsoft.AspNetCore.Components.Web",[m
 [36m@@ -4302,7 +4302,7 @@[m
-***REMOVED*** }[m
+***REM
        },[m
-       {[m
-[31m-***REMOVED***"HashCode": 1526205591,[m
-[32m+[m[32m***REMOVED***"HashCode": 468279647,[m
-***REMOVED*** "Kind": "Components.Component",[m
-***REMOVED*** "Name": "Microsoft.AspNetCore.Components.Web.PageTitle",[m
-***REMOVED*** "AssemblyName": "Microsoft.AspNetCore.Components.Web",[m
+
+VED***"HashCode": 1526205591,[m
+m"HashCode": 468279647,[m
+ "Kind": "Components.Component",[m
+ "Name": "Microsoft.AspNetCore.Components.Web.PageTitle",[m
+ "AssemblyName": "Microsoft.AspNetCore.Components.Web",[m
 [36m@@ -4335,7 +4335,7 @@[m
-***REMOVED*** }[m
+***REM
        },[m
-       {[m
-[31m-***REMOVED***"HashCode": 390263847,[m
-[32m+[m[32m***REMOVED***"HashCode": 1587816063,[m
-***REMOVED*** "Kind": "Components.ChildContent",[m
-***REMOVED*** "Name": "Microsoft.AspNetCore.Components.Web.PageTitle.ChildContent",[m
-***REMOVED*** "AssemblyName": "Microsoft.AspNetCore.Components.Web",[m
+
+VED***"HashCode": 390263847,[m
+m"HashCode": 1587816063,[m
+ "Kind": "Components.ChildContent",[m
+ "Name": "Microsoft.AspNetCore.Components.Web.PageTitle.ChildContent",[m
+ "AssemblyName": "Microsoft.AspNetCore.Components.Web",[m
 [36m@@ -4356,7 +4356,7 @@[m
-***REMOVED*** }[m
+***REM
        },[m
-       {[m
-[31m-***REMOVED***"HashCode": 1408500783,[m
-[32m+[m[32m***REMOVED***"HashCode": 2040777692,[m
-***REMOVED*** "Kind": "Components.ChildContent",[m
-***REMOVED*** "Name": "Microsoft.AspNetCore.Components.Web.PageTitle.ChildContent",[m
-***REMOVED*** "AssemblyName": "Microsoft.AspNetCore.Components.Web",[m
+
+VED***"HashCode": 1408500783,[m
+m"HashCode": 2040777692,[m
+ "Kind": "Components.ChildContent",[m
+ "Name": "Microsoft.AspNetCore.Components.Web.PageTitle.ChildContent",[m
+ "AssemblyName": "Microsoft.AspNetCore.Components.Web",[m
 [36m@@ -4378,7 +4378,7 @@[m
-***REMOVED*** }[m
+***REM
        },[m
-       {[m
-[31m-***REMOVED***"HashCode": 582097060,[m
-[32m+[m[32m***REMOVED***"HashCode": 859625882,[m
-***REMOVED*** "Kind": "Components.Component",[m
-***REMOVED*** "Name": "Microsoft.AspNetCore.Components.Web.ErrorBoundary",[m
-***REMOVED*** "AssemblyName": "Microsoft.AspNetCore.Components.Web",[m
+
+VED***"HashCode": 582097060,[m
+m"HashCode": 859625882,[m
+ "Kind": "Components.Component",[m
+ "Name": "Microsoft.AspNetCore.Components.Web.ErrorBoundary",[m
+ "AssemblyName": "Microsoft.AspNetCore.Components.Web",[m
 [36m@@ -4441,7 +4441,7 @@[m
-***REMOVED*** }[m
+***REM
        },[m
-       {[m
-[31m-***REMOVED***"HashCode": 110816653,[m
-[32m+[m[32m***REMOVED***"HashCode": -1520977408,[m
-***REMOVED*** "Kind": "Components.Component",[m
-***REMOVED*** "Name": "Microsoft.AspNetCore.Components.Web.ErrorBoundary",[m
-***REMOVED*** "AssemblyName": "Microsoft.AspNetCore.Components.Web",[m
+
+VED***"HashCode": 110816653,[m
+m"HashCode": -1520977408,[m
+ "Kind": "Components.Component",[m
+ "Name": "Microsoft.AspNetCore.Components.Web.ErrorBoundary",[m
+ "AssemblyName": "Microsoft.AspNetCore.Components.Web",[m
 [36m@@ -4505,7 +4505,7 @@[m
-***REMOVED*** }[m
+***REM
        },[m
-       {[m
-[31m-***REMOVED***"HashCode": -501492458,[m
-[32m+[m[32m***REMOVED***"HashCode": -1510536619,[m
-***REMOVED*** "Kind": "Components.ChildContent",[m
-***REMOVED*** "Name": "Microsoft.AspNetCore.Components.Web.ErrorBoundary.ChildContent",[m
-***REMOVED*** "AssemblyName": "Microsoft.AspNetCore.Components.Web",[m
+
+VED***"HashCode": -501492458,[m
+m"HashCode": -1510536619,[m
+ "Kind": "Components.ChildContent",[m
+ "Name": "Microsoft.AspNetCore.Components.Web.ErrorBoundary.ChildContent",[m
+ "AssemblyName": "Microsoft.AspNetCore.Components.Web",[m
 [36m@@ -4526,7 +4526,7 @@[m
-***REMOVED*** }[m
+***REM
        },[m
-       {[m
-[31m-***REMOVED***"HashCode": 1936428790,[m
-[32m+[m[32m***REMOVED***"HashCode": 1148187593,[m
-***REMOVED*** "Kind": "Components.ChildContent",[m
-***REMOVED*** "Name": "Microsoft.AspNetCore.Components.Web.ErrorBoundary.ChildContent",[m
-***REMOVED*** "AssemblyName": "Microsoft.AspNetCore.Components.Web",[m
+
+VED***"HashCode": 1936428790,[m
+m"HashCode": 1148187593,[m
+ "Kind": "Components.ChildContent",[m
+ "Name": "Microsoft.AspNetCore.Components.Web.ErrorBoundary.ChildContent",[m
+ "AssemblyName": "Microsoft.AspNetCore.Components.Web",[m
 [36m@@ -4548,7 +4548,7 @@[m
-***REMOVED*** }[m
+***REM
        },[m
-       {[m
-[31m-***REMOVED***"HashCode": -1838590763,[m
-[32m+[m[32m***REMOVED***"HashCode": -570857681,[m
-***REMOVED*** "Kind": "Components.ChildContent",[m
-***REMOVED*** "Name": "Microsoft.AspNetCore.Components.Web.ErrorBoundary.ErrorContent",[m
-***REMOVED*** "AssemblyName": "Microsoft.AspNetCore.Components.Web",[m
+
+VED***"HashCode": -1838590763,[m
+m"HashCode": -570857681,[m
+ "Kind": "Components.ChildContent",[m
+ "Name": "Microsoft.AspNetCore.Components.Web.ErrorBoundary.ErrorContent",[m
+ "AssemblyName": "Microsoft.AspNetCore.Components.Web",[m
 [36m@@ -4581,7 +4581,7 @@[m
-***REMOVED*** }[m
+***REM
        },[m
-       {[m
-[31m-***REMOVED***"HashCode": -37139899,[m
-[32m+[m[32m***REMOVED***"HashCode": 799623598,[m
-***REMOVED*** "Kind": "Components.ChildContent",[m
-***REMOVED*** "Name": "Microsoft.AspNetCore.Components.Web.ErrorBoundary.ErrorContent",[m
-***REMOVED*** "AssemblyName": "Microsoft.AspNetCore.Components.Web",[m
+
+VED***"HashCode": -37139899,[m
+m"HashCode": 799623598,[m
+ "Kind": "Components.ChildContent",[m
+ "Name": "Microsoft.AspNetCore.Components.Web.ErrorBoundary.ErrorContent",[m
+ "AssemblyName": "Microsoft.AspNetCore.Components.Web",[m
 [36m@@ -4615,7 +4615,7 @@[m
-***REMOVED*** }[m
+***REM
        },[m
-       {[m
-[31m-***REMOVED***"HashCode": -1054043311,[m
-[32m+[m[32m***REMOVED***"HashCode": -832357418,[m
-***REMOVED*** "Kind": "Components.Component",[m
-***REMOVED*** "Name": "Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize<TItem>",[m
-***REMOVED*** "AssemblyName": "Microsoft.AspNetCore.Components.Web",[m
+
+VED***"HashCode": -1054043311,[m
+m"HashCode": -832357418,[m
+ "Kind": "Components.Component",[m
+ "Name": "Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize<TItem>",[m
+ "AssemblyName": "Microsoft.AspNetCore.Components.Web",[m
 [36m@@ -4747,7 +4747,7 @@[m
-***REMOVED*** }[m
+***REM
        },[m
-       {[m
-[31m-***REMOVED***"HashCode": -1069386690,[m
-[32m+[m[32m***REMOVED***"HashCode": -1984434269,[m
-***REMOVED*** "Kind": "Components.Component",[m
-***REMOVED*** "Name": "Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize<TItem>",[m
-***REMOVED*** "AssemblyName": "Microsoft.AspNetCore.Components.Web",[m
+
+VED***"HashCode": -1069386690,[m
+m"HashCode": -1984434269,[m
+ "Kind": "Components.Component",[m
+ "Name": "Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize<TItem>",[m
+ "AssemblyName": "Microsoft.AspNetCore.Components.Web",[m
 [36m@@ -4880,7 +4880,7 @@[m
-***REMOVED*** }[m
+***REM
        },[m
-       {[m
-[31m-***REMOVED***"HashCode": 827258408,[m
-[32m+[m[32m***REMOVED***"HashCode": 165925153,[m
-***REMOVED*** "Kind": "Components.ChildContent",[m
-***REMOVED*** "Name": "Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize<TItem>.ChildContent",[m
-***REMOVED*** "AssemblyName": "Microsoft.AspNetCore.Components.Web",[m
+
+VED***"HashCode": 827258408,[m
+m"HashCode": 165925153,[m
+ "Kind": "Components.ChildContent",[m
+ "Name": "Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize<TItem>.ChildContent",[m
+ "AssemblyName": "Microsoft.AspNetCore.Components.Web",[m
 [36m@@ -4913,7 +4913,7 @@[m
-***REMOVED*** }[m
+***REM
        },[m
-       {[m
-[31m-***REMOVED***"HashCode": -1494354428,[m
-[32m+[m[32m***REMOVED***"HashCode": -2052989238,[m
-***REMOVED*** "Kind": "Components.ChildContent",[m
-***REMOVED*** "Name": "Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize<TItem>.ChildContent",[m
-***REMOVED*** "AssemblyName": "Microsoft.AspNetCore.Components.Web",[m
+
+VED***"HashCode": -1494354428,[m
+m"HashCode": -2052989238,[m
+ "Kind": "Components.ChildContent",[m
+ "Name": "Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize<TItem>.ChildContent",[m
+ "AssemblyName": "Microsoft.AspNetCore.Components.Web",[m
 [36m@@ -4947,7 +4947,7 @@[m
-***REMOVED*** }[m
+***REM
        },[m
-       {[m
-[31m-***REMOVED***"HashCode": 202350820,[m
-[32m+[m[32m***REMOVED***"HashCode": -396692542,[m
-***REMOVED*** "Kind": "Components.ChildContent",[m
-***REMOVED*** "Name": "Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize<TItem>.ItemContent",[m
-***REMOVED*** "AssemblyName": "Microsoft.AspNetCore.Components.Web",[m
+
+VED***"HashCode": 202350820,[m
+m"HashCode": -396692542,[m
+ "Kind": "Components.ChildContent",[m
+ "Name": "Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize<TItem>.ItemContent",[m
+ "AssemblyName": "Microsoft.AspNetCore.Components.Web",[m
 [36m@@ -4980,7 +4980,7 @@[m
-***REMOVED*** }[m
+***REM
        },[m
-       {[m
-[31m-***REMOVED***"HashCode": 892952299,[m
-[32m+[m[32m***REMOVED***"HashCode": 1381456160,[m
-***REMOVED*** "Kind": "Components.ChildContent",[m
-***REMOVED*** "Name": "Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize<TItem>.ItemContent",[m
-***REMOVED*** "AssemblyName": "Microsoft.AspNetCore.Components.Web",[m
+
+VED***"HashCode": 892952299,[m
+m"HashCode": 1381456160,[m
+ "Kind": "Components.ChildContent",[m
+ "Name": "Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize<TItem>.ItemContent",[m
+ "AssemblyName": "Microsoft.AspNetCore.Components.Web",[m
 [36m@@ -5014,7 +5014,7 @@[m
-***REMOVED*** }[m
+***REM
        },[m
-       {[m
-[31m-***REMOVED***"HashCode": 885494393,[m
-[32m+[m[32m***REMOVED***"HashCode": 500721334,[m
-***REMOVED*** "Kind": "Components.ChildContent",[m
-***REMOVED*** "Name": "Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize<TItem>.Placeholder",[m
-***REMOVED*** "AssemblyName": "Microsoft.AspNetCore.Components.Web",[m
+
+VED***"HashCode": 885494393,[m
+m"HashCode": 500721334,[m
+ "Kind": "Components.ChildContent",[m
+ "Name": "Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize<TItem>.Placeholder",[m
+ "AssemblyName": "Microsoft.AspNetCore.Components.Web",[m
 [36m@@ -5047,7 +5047,7 @@[m
-***REMOVED*** }[m
+***REM
        },[m
-       {[m
-[31m-***REMOVED***"HashCode": 1890080515,[m
-[32m+[m[32m***REMOVED***"HashCode": -1625376371,[m
-***REMOVED*** "Kind": "Components.ChildContent",[m
-***REMOVED*** "Name": "Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize<TItem>.Placeholder",[m
-***REMOVED*** "AssemblyName": "Microsoft.AspNetCore.Components.Web",[m
+
+VED***"HashCode": 1890080515,[m
+m"HashCode": -1625376371,[m
+ "Kind": "Components.ChildContent",[m
+ "Name": "Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize<TItem>.Placeholder",[m
+ "AssemblyName": "Microsoft.AspNetCore.Components.Web",[m
 [36m@@ -5081,7 +5081,7 @@[m
-***REMOVED*** }[m
+***REM
        },[m
-       {[m
-[31m-***REMOVED***"HashCode": -812352007,[m
-[32m+[m[32m***REMOVED***"HashCode": -891920846,[m
-***REMOVED*** "Kind": "Components.EventHandler",[m
-***REMOVED*** "Name": "onfocus",[m
-***REMOVED*** "AssemblyName": "Microsoft.AspNetCore.Components",[m
+
+VED***"HashCode": -812352007,[m
+m"HashCode": -891920846,[m
+ "Kind": "Components.EventHandler",[m
+ "Name": "onfocus",[m
+ "AssemblyName": "Microsoft.AspNetCore.Components",[m
 [36m@@ -5164,7 +5164,7 @@[m
-***REMOVED*** }[m
+***REM
        },[m
-       {[m
-[31m-***REMOVED***"HashCode": -1952390771,[m
-[32m+[m[32m***REMOVED***"HashCode": 1486038499,[m
-***REMOVED*** "Kind": "Components.EventHandler",[m
-***REMOVED*** "Name": "onblur",[m
-***REMOVED*** "AssemblyName": "Microsoft.AspNetCore.Components",[m
+
+VED***"HashCode": -1952390771,[m
+m"HashCode": 1486038499,[m
+ "Kind": "Components.EventHandler",[m
+ "Name": "onblur",[m
+ "AssemblyName": "Microsoft.AspNetCore.Components",[m
 [36m@@ -5247,7 +5247,7 @@[m
-***REMOVED*** }[m
+***REM
        },[m
-       {[m
-[31m-***REMOVED***"HashCode": -788805981,[m
-[32m+[m[32m***REMOVED***"HashCode": -850120929,[m
-***REMOVED*** "Kind": "Components.EventHandler",[m
-***REMOVED*** "Name": "onfocusin",[m
-***REMOVED*** "AssemblyName": "Microsoft.AspNetCore.Components",[m
+
+VED***"HashCode": -788805981,[m
+m"HashCode": -850120929,[m
+ "Kind": "Components.EventHandler",[m
+ "Name": "onfocusin",[m
+ "AssemblyName": "Microsoft.AspNetCore.Components",[m
 [36m@@ -5330,7 +5330,7 @@[m
-***REMOVED*** }[m
+***REM
        },[m
-       {[m
-[31m-***REMOVED***"HashCode": 1190208663,[m
-[32m+[m[32m***REMOVED***"HashCode": 891843138,[m
-***REMOVED*** "Kind": "Components.EventHandler",[m
-***REMOVED*** "Name": "onfocusout",[m
-***REMOVED*** "AssemblyName": "Microsoft.AspNetCore.Components",[m
+
+VED***"HashCode": 1190208663,[m
+m"HashCode": 891843138,[m
+ "Kind": "Components.EventHandler",[m
+ "Name": "onfocusout",[m
+ "AssemblyName": "Microsoft.AspNetCore.Components",[m
 [36m@@ -5413,7 +5413,7 @@[m
-***REMOVED*** }[m
+***REM
        },[m
-       {[m
-[31m-***REMOVED***"HashCode": -1928590803,[m
-[32m+[m[32m***REMOVED***"HashCode": -1418798910,[m
-***REMOVED*** "Kind": "Components.EventHandler",[m
-***REMOVED*** "Name": "onmouseover",[m
-***REMOVED*** "AssemblyName": "Microsoft.AspNetCore.Components",[m
+
+VED***"HashCode": -1928590803,[m
+m"HashCode": -1418798910,[m
+ "Kind": "Components.EventHandler",[m
+ "Name": "onmouseover",[m
+ "AssemblyName": "Microsoft.AspNetCore.Components",[m
 [36m@@ -5496,7 +5496,7 @@[m
-***REMOVED*** }[m
+***REM
        },[m
-       {[m
-[31m-***REMOVED***"HashCode": 277004921,[m
-[32m+[m[32m***REMOVED***"HashCode": -1176421363,[m
-***REMOVED*** "Kind": "Components.EventHandler",[m
-***REMOVED*** "Name": "onmouseout",[m
-***REMOVED*** "AssemblyName": "Microsoft.AspNetCore.Components",[m
+
+VED***"HashCode": 277004921,[m
+m"HashCode": -1176421363,[m
+ "Kind": "Components.EventHandler",[m
+ "Name": "onmouseout",[m
+ "AssemblyName": "Microsoft.AspNetCore.Components",[m
 [36m@@ -5579,7 +5579,7 @@[m
-***REMOVED*** }[m
+***REM
        },[m
-       {[m
-[31m-***REMOVED***"HashCode": -28430206,[m
-[32m+[m[32m***REMOVED***"HashCode": -1146256,[m
-***REMOVED*** "Kind": "Components.EventHandler",[m
-***REMOVED*** "Name": "onmouseleave",[m
-***REMOVED*** "AssemblyName": "Microsoft.AspNetCore.Components",[m
+
+VED***"HashCode": -28430206,[m
+m"HashCode": -1146256,[m
+ "Kind": "Components.EventHandler",[m
+ "Name": "onmouseleave",[m
+ "AssemblyName": "Microsoft.AspNetCore.Components",[m
 [36m@@ -5662,7 +5662,7 @@[m
-***REMOVED*** }[m
+***REM
        },[m
-       {[m
-[31m-***REMOVED***"HashCode": -925288174,[m
-[32m+[m[32m***REMOVED***"HashCode": -1286066778,[m
-***REMOVED*** "Kind": "Components.EventHandler",[m
-***REMOVED*** "Name": "onmouseenter",[m
-***REMOVED*** "AssemblyName": "Microsoft.AspNetCore.Components",[m
+
+VED***"HashCode": -925288174,[m
+m"HashCode": -1286066778,[m
+ "Kind": "Components.EventHandler",[m
+ "Name": "onmouseenter",[m
+ "AssemblyName": "Microsoft.AspNetCore.Components",[m
 [36m@@ -5745,7 +5745,7 @@[m
-***REMOVED*** }[m
+***REM
        },[m
-       {[m
-[31m-***REMOVED***"HashCode": -1186085475,[m
-[32m+[m[32m***REMOVED***"HashCode": -687801284,[m
-***REMOVED*** "Kind": "Components.EventHandler",[m
-***REMOVED*** "Name": "onmousemove",[m
-***REMOVED*** "AssemblyName": "Microsoft.AspNetCore.Components",[m
+
+VED***"HashCode": -1186085475,[m
+m"HashCode": -687801284,[m
+ "Kind": "Components.EventHandler",[m
+ "Name": "onmousemove",[m
+ "AssemblyName": "Microsoft.AspNetCore.Components",[m
 [36m@@ -5828,7 +5828,7 @@[m
-***REMOVED*** }[m
+***REM
        },[m
-       {[m
-[31m-***REMOVED***"HashCode": 617245343,[m
-[32m+[m[32m***REMOVED***"HashCode": -1786681446,[m
-***REMOVED*** "Kind": "Components.EventHandler",[m
-***REMOVED*** "Name": "onmousedown",[m
-***REMOVED*** "AssemblyName": "Microsoft.AspNetCore.Components",[m
+
+VED***"HashCode": 617245343,[m
+m"HashCode": -1786681446,[m
+ "Kind": "Components.EventHandler",[m
+ "Name": "onmousedown",[m
+ "AssemblyName": "Microsoft.AspNetCore.Components",[m
 [36m@@ -5911,7 +5911,7 @@[m
-***REMOVED*** }[m
+***REM
        },[m
-       {[m
-[31m-***REMOVED***"HashCode": 379989665,[m
-[32m+[m[32m***REMOVED***"HashCode": -716189263,[m
-***REMOVED*** "Kind": "Components.EventHandler",[m
-***REMOVED*** "Name": "onmouseup",[m
-***REMOVED*** "AssemblyName": "Microsoft.AspNetCore.Components",[m
+
+VED***"HashCode": 379989665,[m
+m"HashCode": -716189263,[m
+ "Kind": "Components.EventHandler",[m
+ "Name": "onmouseup",[m
+ "AssemblyName": "Microsoft.AspNetCore.Components",[m
 [36m@@ -5994,7 +5994,7 @@[m
-***REMOVED*** }[m
+***REM
        },[m
-       {[m
-[31m-***REMOVED***"HashCode": -841024867,[m
-[32m+[m[32m***REMOVED***"HashCode": -1428255173,[m
-***REMOVED*** "Kind": "Components.EventHandler",[m
-***REMOVED*** "Name": "onclick",[m
-***REMOVED*** "AssemblyName": "Microsoft.AspNetCore.Components",[m
+
+VED***"HashCode": -841024867,[m
+m"HashCode": -1428255173,[m
+ "Kind": "Components.EventHandler",[m
+ "Name": "onclick",[m
+ "AssemblyName": "Microsoft.AspNetCore.Components",[m
 [36m@@ -6077,7 +6077,7 @@[m
-***REMOVED*** }[m
+***REM
        },[m
-       {[m
-[31m-***REMOVED***"HashCode": -1745871662,[m
-[32m+[m[32m***REMOVED***"HashCode": 1438918508,[m
-***REMOVED*** "Kind": "Components.EventHandler",[m
-***REMOVED*** "Name": "ondblclick",[m
-***REMOVED*** "AssemblyName": "Microsoft.AspNetCore.Components",[m
+
+VED***"HashCode": -1745871662,[m
+m"HashCode": 1438918508,[m
+ "Kind": "Components.EventHandler",[m
+ "Name": "ondblclick",[m
+ "AssemblyName": "Microsoft.AspNetCore.Components",[m
 [36m@@ -6160,7 +6160,7 @@[m
-***REMOVED*** }[m
+***REM
        },[m
-       {[m
-[31m-***REMOVED***"HashCode": 564757998,[m
-[32m+[m[32m***REMOVED***"HashCode": -1128216778,[m
-***REMOVED*** "Kind": "Components.EventHandler",[m
-***REMOVED*** "Name": "onwheel",[m
-***REMOVED*** "AssemblyName": "Microsoft.AspNetCore.Components",[m
+
+VED***"HashCode": 564757998,[m
+m"HashCode": -1128216778,[m
+ "Kind": "Components.EventHandler",[m
+ "Name": "onwheel",[m
+ "AssemblyName": "Microsoft.AspNetCore.Components",[m
 [36m@@ -6243,7 +6243,7 @@[m
-***REMOVED*** }[m
+***REM
        },[m
-       {[m
-[31m-***REMOVED***"HashCode": -790339200,[m
-[32m+[m[32m***REMOVED***"HashCode": -1277778118,[m
-***REMOVED*** "Kind": "Components.EventHandler",[m
-***REMOVED*** "Name": "onmousewheel",[m
-***REMOVED*** "AssemblyName": "Microsoft.AspNetCore.Components",[m
+
+VED***"HashCode": -790339200,[m
+m"HashCode": -1277778118,[m
+ "Kind": "Components.EventHandler",[m
+ "Name": "onmousewheel",[m
+ "AssemblyName": "Microsoft.AspNetCore.Components",[m
 [36m@@ -6326,7 +6326,7 @@[m
-***REMOVED*** }[m
+***REM
        },[m
-       {[m
-[31m-***REMOVED***"HashCode": -1151988616,[m
-[32m+[m[32m***REMOVED***"HashCode": 123226491,[m
-***REMOVED*** "Kind": "Components.EventHandler",[m
-***REMOVED*** "Name": "oncontextmenu",[m
-***REMOVED*** "AssemblyName": "Microsoft.AspNetCore.Components",[m
+
+VED***"HashCode": -1151988616,[m
+m"HashCode": 123226491,[m
+ "Kind": "Components.EventHandler",[m
+ "Name": "oncontextmenu",[m
+ "AssemblyName": "Microsoft.AspNetCore.Components",[m
 [36m@@ -6409,7 +6409,7 @@[m
-***REMOVED*** }[m
+***REM
        },[m
-       {[m
-[31m-***REMOVED***"HashCode": -1571410521,[m
-[32m+[m[32m***REMOVED***"HashCode": -1165809824,[m
-***REMOVED*** "Kind": "Components.EventHandler",[m
-***REMOVED*** "Name": "ondrag",[m
-***REMOVED*** "AssemblyName": "Microsoft.AspNetCore.Components",[m
+
+VED***"HashCode": -1571410521,[m
+m"HashCode": -1165809824,[m
+ "Kind": "Components.EventHandler",[m
+ "Name": "ondrag",[m
+ "AssemblyName": "Microsoft.AspNetCore.Components",[m
 [36m@@ -6492,7 +6492,7 @@[m
-***REMOVED*** }[m
+***REM
        },[m
-       {[m
-[31m-***REMOVED***"HashCode": -321747848,[m
-[32m+[m[32m***REMOVED***"HashCode": -2083324926,[m
-***REMOVED*** "Kind": "Components.EventHandler",[m
-***REMOVED*** "Name": "ondragend",[m
-***REMOVED*** "AssemblyName": "Microsoft.AspNetCore.Components",[m
+
+VED***"HashCode": -321747848,[m
+m"HashCode": -2083324926,[m
+ "Kind": "Components.EventHandler",[m
+ "Name": "ondragend",[m
+ "AssemblyName": "Microsoft.AspNetCore.Components",[m
 [36m@@ -6575,7 +6575,7 @@[m
-***REMOVED*** }[m
+***REM
        },[m
-       {[m
-[31m-***REMOVED***"HashCode": 273526131,[m
-[32m+[m[32m***REMOVED***"HashCode": 1967385211,[m
-***REMOVED*** "Kind": "Components.EventHandler",[m
-***REMOVED*** "Name": "ondragenter",[m
-***REMOVED*** "AssemblyName": "Microsoft.AspNetCore.Components",[m
+
+VED***"HashCode": 273526131,[m
+m"HashCode": 1967385211,[m
+ "Kind": "Components.EventHandler",[m
+ "Name": "ondragenter",[m
+ "AssemblyName": "Microsoft.AspNetCore.Components",[m
 [36m@@ -6658,7 +6658,7 @@[m
-***REMOVED*** }[m
+***REM
        },[m
-       {[m
-[31m-***REMOVED***"HashCode": 1010827828,[m
-[32m+[m[32m***REMOVED***"HashCode": -1426800735,[m
-***REMOVED*** "Kind": "Components.EventHandler",[m
-***REMOVED*** "Name": "ondragleave",[m
-***REMOVED*** "AssemblyName": "Microsoft.AspNetCore.Components",[m
+
+VED***"HashCode": 1010827828,[m
+m"HashCode": -1426800735,[m
+ "Kind": "Components.EventHandler",[m
+ "Name": "ondragleave",[m
+ "AssemblyName": "Microsoft.AspNetCore.Components",[m
 [36m@@ -6741,7 +6741,7 @@[m
-***REMOVED*** }[m
+***REM
        },[m
-       {[m
-[31m-***REMOVED***"HashCode": 1235285262,[m
-[32m+[m[32m***REMOVED***"HashCode": 2050719016,[m
-***REMOVED*** "Kind": "Components.EventHandler",[m
-***REMOVED*** "Name": "ondragover",[m
-***REMOVED*** "AssemblyName": "Microsoft.AspNetCore.Components",[m
+
+VED***"HashCode": 1235285262,[m
+m"HashCode": 2050719016,[m
+ "Kind": "Components.EventHandler",[m
+ "Name": "ondragover",[m
+ "AssemblyName": "Microsoft.AspNetCore.Components",[m
 [36m@@ -6824,7 +6824,7 @@[m
-***REMOVED*** }[m
+***REM
        },[m
-       {[m
-[31m-***REMOVED***"HashCode": 8148252,[m
-[32m+[m[32m***REMOVED***"HashCode": -265652189,[m
-***REMOVED*** "Kind": "Components.EventHandler",[m
-***REMOVED*** "Name": "ondragstart",[m
-***REMOVED*** "AssemblyName": "Microsoft.AspNetCore.Components",[m
+
+VED***"HashCode": 8148252,[m
+m"HashCode": -265652189,[m
+ "Kind": "Components.EventHandler",[m
+ "Name": "ondragstart",[m
+ "AssemblyName": "Microsoft.AspNetCore.Components",[m
 [36m@@ -6907,7 +6907,7 @@[m
-***REMOVED*** }[m
+***REM
        },[m
-       {[m
-[31m-***REMOVED***"HashCode": -1668825297,[m
-[32m+[m[32m***REMOVED***"HashCode": -7735222,[m
-***REMOVED*** "Kind": "Components.EventHandler",[m
-***REMOVED*** "Name": "ondrop",[m
-***REMOVED*** "AssemblyName": "Microsoft.AspNetCore.Components",[m
+
+VED***"HashCode": -1668825297,[m
+m"HashCode": -7735222,[m
+ "Kind": "Components.EventHandler",[m
+ "Name": "ondrop",[m
+ "AssemblyName": "Microsoft.AspNetCore.Components",[m
 [36m@@ -6990,7 +6990,7 @@[m
-***REMOVED*** }[m
+***REM
        },[m
-       {[m
-[31m-***REMOVED***"HashCode": 1411988339,[m
-[32m+[m[32m***REMOVED***"HashCode": 904749510,[m
-***REMOVED*** "Kind": "Components.EventHandler",[m
-***REMOVED*** "Name": "onkeydown",[m
-***REMOVED*** "AssemblyName": "Microsoft.AspNetCore.Components",[m
+
+VED***"HashCode": 1411988339,[m
+m"HashCode": 904749510,[m
+ "Kind": "Components.EventHandler",[m
+ "Name": "onkeydown",[m
+ "AssemblyName": "Microsoft.AspNetCore.Components",[m
 [36m@@ -7073,7 +7073,7 @@[m
-***REMOVED*** }[m
+***REM
        },[m
-       {[m
-[31m-***REMOVED***"HashCode": -1998188567,[m
-[32m+[m[32m***REMOVED***"HashCode": 943324505,[m
-***REMOVED*** "Kind": "Components.EventHandler",[m
-***REMOVED*** "Name": "onkeyup",[m
-***REMOVED*** "AssemblyName": "Microsoft.AspNetCore.Components",[m
+
+[31m-"HashCode": -1998188567,[m
+[32m+[m[32m"HashCode": 943324505,[m
+ "Kind": "Components.EventHandler",[m
+ "Name": "onkeyup",[m
+ "AssemblyName": "Microsoft.AspNetCore.Components",[m
 [36m@@ -7156,7 +7156,7 @@[m
-***REMOVED*** }[m
+ }[m
        },[m
        {[m
-[31m-***REMOVED***"HashCode": -240547870,[m
-[32m+[m[32m***REMOVED***"HashCode": 1406719879,[m
-***REMOVED*** 
+[31m-"HashCode": -240547870,[m
+[32m+[m[32m"HashCode": 1406719879,[m
+ 

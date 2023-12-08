@@ -7,16 +7,16 @@ namespace AppAgendamentos.Repository
 {
     public class SchedulingRepository : Repository<Scheduling>, ISchedulingRepository
     {
-***REMOVED***public SchedulingRepository(ApplicationDbContext context) : base(context)
-***REMOVED***{
-***REMOVED***}
+public SchedulingRepository(ApplicationDbContext context) : base(context)
+{
+}
 
-***REMOVED***public List<Scheduling> GetAllByDate(int companyId, DateOnly date)
-***REMOVED***{
-***REMOVED***    return this.DbSet
-***REMOVED******REMOVED***.Where(c => c.CompanyId == companyId &&
-***REMOVED******REMOVED***c.ScheduledDate.Date == date.ToDateTime(TimeOnly.Parse("10:00 PM")).Date)
-***REMOVED******REMOVED***.ToList();
-***REMOVED***}
+public List<Scheduling> GetAllByDate(int companyId, DateOnly date)
+{
+    return this.DbSet
+.Where(c => c.CompanyId == companyId &&
+c.ScheduledDate.Date == date.ToDateTime(TimeOnly.Parse("10:00 PM")).Date)
+.ToList();
+}
     }
 }

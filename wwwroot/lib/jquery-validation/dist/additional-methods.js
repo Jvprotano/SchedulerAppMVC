@@ -181,14 +181,14 @@ $.validator.addMethod( "bic", function( value, element ) {
  * [ C ]: Control Digit. It can be a number or a letter depending on T value:
  * [ T ]  -->  [ C ]
  * ------    ----------
- *   A***REMOVED*** Number
- *   B***REMOVED*** Number
- *   E***REMOVED*** Number
- *   H***REMOVED*** Number
- *   K***REMOVED*** Letter
- *   P***REMOVED*** Letter
- *   Q***REMOVED*** Letter
- *   S***REMOVED*** Letter
+ *   A Number
+ *   B Number
+ *   E Number
+ *   H Number
+ *   K Letter
+ *   P Letter
+ *   Q Letter
+ *   S Letter
  *
  */
 $.validator.addMethod( "cifES", function( value, element ) {
@@ -458,9 +458,9 @@ $.validator.addMethod( "creditcardtypes", function( value, element, param ) {
  */
 $.validator.addMethod( "currency", function( value, element, param ) {
     var isParamString = typeof param === "string",
-***REMOVED***symbol = isParamString ? param : param[ 0 ],
-***REMOVED***soft = isParamString ? true : param[ 1 ],
-***REMOVED***regex;
+symbol = isParamString ? param : param[ 0 ],
+soft = isParamString ? true : param[ 1 ],
+regex;
 
     symbol = symbol.replace( /,/g, "" );
     symbol = soft ? symbol + "]" : symbol + "]?";

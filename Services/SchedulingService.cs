@@ -6,60 +6,60 @@ namespace AppAgendamentos.Services
 {
     public class SchedulingService : ISchedulingService
     {
-***REMOVED***private readonly ISchedulingRepository _repositoryScheduling;
-***REMOVED***private readonly ICompanyOpeningHoursRepository _repositoryCompanyOpeningHours;
+private readonly ISchedulingRepository _repositoryScheduling;
+private readonly ICompanyOpeningHoursRepository _repositoryCompanyOpeningHours;
 
-***REMOVED***public SchedulingService(ISchedulingRepository repositoryScheduling, ICompanyOpeningHoursRepository repositoryCompanyOpeningHours)
-***REMOVED***{
-***REMOVED***    _repositoryScheduling = repositoryScheduling;
-***REMOVED***    _repositoryCompanyOpeningHours = repositoryCompanyOpeningHours;
-***REMOVED***}
+public SchedulingService(ISchedulingRepository repositoryScheduling, ICompanyOpeningHoursRepository repositoryCompanyOpeningHours)
+{
+    _repositoryScheduling = repositoryScheduling;
+    _repositoryCompanyOpeningHours = repositoryCompanyOpeningHours;
+}
 
-***REMOVED***public void Save(Scheduling entity)
-***REMOVED***{
-***REMOVED***    // _repositoryScheduling.Save(entity);
-***REMOVED***}
-***REMOVED***public List<TimeSpan> GetAvailableTimes(int companyId, int? serviceSelected, DateOnly date)
-***REMOVED***{
-***REMOVED***    List<CompanyOpeningHours> openingHours = _repositoryCompanyOpeningHours.GetByDayOfWeek(companyId, date.DayOfWeek);
+public void Save(Scheduling entity)
+{
+    // _repositoryScheduling.Save(entity);
+}
+public List<TimeSpan> GetAvailableTimes(int companyId, int? serviceSelected, DateOnly date)
+{
+    List<CompanyOpeningHours> openingHours = _repositoryCompanyOpeningHours.GetByDayOfWeek(companyId, date.DayOfWeek);
 
-***REMOVED***    List<TimeSpan> availableTimes = new List<TimeSpan>();
+    List<TimeSpan> availableTimes = new List<TimeSpan>();
 
-***REMOVED***    if (openingHours.Count > 0)
-***REMOVED***    {
-***REMOVED******REMOVED***Company company = openingHours?.FirstOrDefault()?.Company;
+    if (openingHours.Count > 0)
+    {
+Company company = openingHours?.FirstOrDefault()?.Company;
 
-***REMOVED******REMOVED***ServicesOffered serviceOffered = company.ServicesOffered.Where(c => c.Id == serviceSelected).FirstOrDefault();
+ServicesOffered serviceOffered = company.ServicesOffered.Where(c => c.Id == serviceSelected).FirstOrDefault();
 
-***REMOVED******REMOVED***var shortestService = company.ServicesOffered.Select(c => c.Duration).Min();
+var shortestService = company.ServicesOffered.Select(c => c.Duration).Min();
 
 
-***REMOVED******REMOVED***foreach (var item in openingHours)
-***REMOVED******REMOVED***{
-***REMOVED******REMOVED***    var opening = item.OpeningHour;
-***REMOVED******REMOVED***    var closing = item.ClosingHour;
+foreach (var item in openingHours)
+{
+    var opening = item.OpeningHour;
+    var closing = item.ClosingHour;
 
-***REMOVED******REMOVED***    while (opening <= closing - serviceOffered.Duration)
-***REMOVED******REMOVED***    {
-***REMOVED******REMOVED******REMOVED***availableTimes.Add(opening);
-***REMOVED******REMOVED******REMOVED***opening = opening.Add(shortestService);
-***REMOVED******REMOVED***    }
-***REMOVED******REMOVED***}
+    while (opening <= closing - serviceOffered.Duration)
+    {
+availableTimes.Add(opening);
+opening = opening.Add(shortestService);
+    }
+}
 
-***REMOVED******REMOVED***List<Scheduling> busyTimes = _repositoryScheduling.GetAllByDate(companyId, date);
+List<Scheduling> busyTimes = _repositoryScheduling.GetAllByDate(companyId, date);
 
-***REMOVED******REMOVED***foreach (var item in busyTimes)
-***REMOVED******REMOVED***{
-***REMOVED******REMOVED***    var scheduledHour = item.ScheduledDate.TimeOfDay;
-***REMOVED******REMOVED***    var scheduledDuration = item.ServicesOffered.Duration;
+foreach (var item in busyTimes)
+{
+    var scheduledHour = item.ScheduledDate.TimeOfDay;
+    var scheduledDuration = item.ServicesOffered.Duration;
 
-***REMOVED******REMOVED***    TimeSpan finalBusyTime = scheduledHour.Add(scheduledDuration);
+    TimeSpan finalBusyTime = scheduledHour.Add(scheduledDuration);
 
-***REMOVED******REMOVED***    availableTimes.RemoveAll(c => c >= scheduledHour && c <= finalBusyTime);
-***REMOVED******REMOVED***}
-***REMOVED***    }
+    availableTimes.RemoveAll(c => c >= scheduledHour && c <= finalBusyTime);
+}
+    }
 
-***REMOVED***    return availableTimes;
-***REMOVED***}
+    return availableTimes;
+}
     }
 }

@@ -7,15 +7,15 @@ namespace AppAgendamentos.Models
     [Table("companies")]
     public class Company : BaseEntity
     {
-***REMOVED***[Required]
-***REMOVED***public string Name { get; set; }
-***REMOVED***[Required]
-***REMOVED***public string Description { get; set; }
-***REMOVED***public string CNPJ { get; set; }
-***REMOVED***public string Image { get; set; }
+[Required]
+public string Name { get; set; }
+[Required]
+public string Description { get; set; }
+public string CNPJ { get; set; }
+public string Image { get; set; }
 
-***REMOVED***public IList<CompanyOwners> Owners;
-***REMOVED***public IList<Category> Categories;
-***REMOVED***public IList<ServicesOffered> ServicesOffered;
+public IList<CompanyOwners> Owners;
+public IList<Category> Categories;
+public IList<ServicesOffered> ServicesOffered;
     }
 }

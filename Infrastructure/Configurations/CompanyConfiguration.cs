@@ -6,11 +6,11 @@ namespace AppAgendamentos.Infrastructure.Configurations
 {
     public class CompanyConfiguration : IEntityTypeConfiguration<Company>
     {
-***REMOVED***public void Configure(EntityTypeBuilder<Company> builder)
-***REMOVED***{
-***REMOVED***    builder.HasMany(c=>c.ServicesOffered)
-***REMOVED***    .WithOne(c=>c.Company)
-***REMOVED***    .HasForeignKey(c=>c.CompanyId);
-***REMOVED***}
+public void Configure(EntityTypeBuilder<Company> builder)
+{
+    builder.HasMany(c=>c.ServicesOffered)
+    .WithOne(c=>c.Company)
+    .HasForeignKey(c=>c.CompanyId);
+}
     }
 }

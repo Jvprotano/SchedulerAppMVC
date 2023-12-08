@@ -6,8 +6,8 @@ namespace AppAgendamentos.Infrastructure.Configurations
 {
     public class UserConfiguration : IEntityTypeConfiguration<User>
     {
-***REMOVED***public void Configure(EntityTypeBuilder<User> builder)
-***REMOVED***{
-***REMOVED***}
+public void Configure(EntityTypeBuilder<User> builder)
+{
+}
     }
 }

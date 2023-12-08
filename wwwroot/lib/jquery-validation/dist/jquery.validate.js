@@ -304,11 +304,11 @@ $.extend( $.validator, {
 
 			// Avoid revalidate the field when pressing one of the following keys
 			// Shift       => 16
-			// Ctrl***REMOVED***=> 17
-			// Alt***REMOVED*** => 18
+			// Ctrl=> 17
+			// Alt => 18
 			// Caps lock   => 20
-			// End***REMOVED*** => 35
-			// Home***REMOVED***=> 36
+			// End => 35
+			// Home=> 36
 			// Left arrow  => 37
 			// Up arrow    => 38
 			// Right arrow => 39

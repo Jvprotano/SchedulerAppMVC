@@ -17,11 +17,11 @@ public class CompanyViewModel : BaseViewModel
 
     private static List<SelectListItem> LoadCategories()
     {
-***REMOVED***List<SelectListItem> categories = new List<SelectListItem>();
+List<SelectListItem> categories = new List<SelectListItem>();
 
-***REMOVED***Enum.GetValues(typeof(CategoryEnum)).Cast<CategoryEnum>().ToList().ForEach(category => categories.Add(
-***REMOVED***    new SelectListItem(text: category.ToString(), value: ((int)category).ToString())));
-***REMOVED***
-***REMOVED***return categories;
+Enum.GetValues(typeof(CategoryEnum)).Cast<CategoryEnum>().ToList().ForEach(category => categories.Add(
+    new SelectListItem(text: category.ToString(), value: ((int)category).ToString())));
+
+return categories;
     }
 }

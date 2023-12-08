@@ -4,29 +4,29 @@ namespace AppAgendamentos.ViewModels
 {
     public class SchedulingViewModel
     {
-***REMOVED***public int CompanyId { get; set; }
-***REMOVED***public string CompanyName { get; set; }
-***REMOVED***public string CompanyDescription { get; set; }
-***REMOVED***public string CompanyImage { get; set; }
+public int CompanyId { get; set; }
+public string CompanyName { get; set; }
+public string CompanyDescription { get; set; }
+public string CompanyImage { get; set; }
 
-***REMOVED***public int CustomerId { get; set; }
-***REMOVED***public string CustomerName { get; set; }
-***REMOVED***public string Phone { get; set; }
-***REMOVED***public string ConfirmationCode { get; set; }
+public int CustomerId { get; set; }
+public string CustomerName { get; set; }
+public string Phone { get; set; }
+public string ConfirmationCode { get; set; }
 
-***REMOVED***public SelectListItem ServiceSelected { get; set; }
-***REMOVED***public IList<SelectListItem> CompanyServices { get; set; }
-***REMOVED***public IList<SelectListItem> AvailableTimeSlots { get; set; }
-***REMOVED***public DateTime ScheduledDate { get; set; }
-***REMOVED***public TimeSpan ScheduledTime { get; set; }
-***REMOVED***public SelectListItem TimeSelected { get; set; }
+public SelectListItem ServiceSelected { get; set; }
+public IList<SelectListItem> CompanyServices { get; set; }
+public IList<SelectListItem> AvailableTimeSlots { get; set; }
+public DateTime ScheduledDate { get; set; }
+public TimeSpan ScheduledTime { get; set; }
+public SelectListItem TimeSelected { get; set; }
 
 
-***REMOVED***public SchedulingViewModel()
-***REMOVED***{
-***REMOVED***    CompanyServices = new List<SelectListItem>();
-***REMOVED***    ScheduledDate = DateTime.Now;
-***REMOVED***    AvailableTimeSlots = new List<SelectListItem>();
-***REMOVED***}
+public SchedulingViewModel()
+{
+    CompanyServices = new List<SelectListItem>();
+    ScheduledDate = DateTime.Now;
+    AvailableTimeSlots = new List<SelectListItem>();
+}
     }
 }

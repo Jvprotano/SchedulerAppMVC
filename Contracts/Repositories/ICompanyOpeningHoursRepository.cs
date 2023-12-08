@@ -4,6 +4,6 @@ namespace AppAgendamentos.Contracts.Repositories
 {
     public interface ICompanyOpeningHoursRepository
     {
-***REMOVED***List<CompanyOpeningHours> GetByDayOfWeek(int companyId, DayOfWeek dayOfWeek);
+List<CompanyOpeningHours> GetByDayOfWeek(int companyId, DayOfWeek dayOfWeek);
     }
 }

@@ -9,21 +9,21 @@ namespace AppAgendamentos.Repository
 {
     public class CompanyOpeningHoursRepository : Repository<CompanyOpeningHours>, ICompanyOpeningHoursRepository
     {
-***REMOVED***public CompanyOpeningHoursRepository(ApplicationDbContext context) 
-***REMOVED***: base(context)
-***REMOVED***{
-***REMOVED***}
+public CompanyOpeningHoursRepository(ApplicationDbContext context) 
+: base(context)
+{
+}
 
-***REMOVED***public List<CompanyOpeningHours> GetAll(int companyId)
-***REMOVED***{
-***REMOVED***    return this.DbSet.Where(c => c.CompanyId == companyId).ToList();
-***REMOVED***}
-***REMOVED***public List<CompanyOpeningHours> GetByDayOfWeek(int companyId, DayOfWeek dayOfWeek)
-***REMOVED***{
-***REMOVED***    return this.DbSet
-***REMOVED******REMOVED***    .Include(c => c.Company).ThenInclude(c=> c.ServicesOffered)
-***REMOVED******REMOVED***    .Where(c => c.CompanyId == companyId && c.DayOfWeek == dayOfWeek)
-***REMOVED******REMOVED***    .ToList();
-***REMOVED***}
+public List<CompanyOpeningHours> GetAll(int companyId)
+{
+    return this.DbSet.Where(c => c.CompanyId == companyId).ToList();
+}
+public List<CompanyOpeningHours> GetByDayOfWeek(int companyId, DayOfWeek dayOfWeek)
+{
+    return this.DbSet
+    .Include(c => c.Company).ThenInclude(c=> c.ServicesOffered)
+    .Where(c => c.CompanyId == companyId && c.DayOfWeek == dayOfWeek)
+    .ToList();
+}
     }
 }

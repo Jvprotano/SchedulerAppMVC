@@ -8,199 +8,199 @@ namespace AppAgendamentos.Migrations
     /// <inheritdoc />
     public partial class Adding_New_Tables : Migration
     {
-***REMOVED***/// <inheritdoc />
-***REMOVED***protected override void Up(MigrationBuilder migrationBuilder)
-***REMOVED***{
-***REMOVED***    migrationBuilder.DropForeignKey(
-***REMOVED******REMOVED***name: "FK_companies_users_user_id",
-***REMOVED******REMOVED***table: "companies");
+/// <inheritdoc />
+protected override void Up(MigrationBuilder migrationBuilder)
+{
+    migrationBuilder.DropForeignKey(
+name: "FK_companies_users_user_id",
+table: "companies");
 
-***REMOVED***    migrationBuilder.DropTable(
-***REMOVED******REMOVED***name: "schedulings");
+    migrationBuilder.DropTable(
+name: "schedulings");
 
-***REMOVED***    migrationBuilder.DropIndex(
-***REMOVED******REMOVED***name: "IX_companies_user_id",
-***REMOVED******REMOVED***table: "companies");
+    migrationBuilder.DropIndex(
+name: "IX_companies_user_id",
+table: "companies");
 
-***REMOVED***    migrationBuilder.RenameColumn(
-***REMOVED******REMOVED***name: "user_id",
-***REMOVED******REMOVED***table: "companies",
-***REMOVED******REMOVED***newName: "status");
+    migrationBuilder.RenameColumn(
+name: "user_id",
+table: "companies",
+newName: "status");
 
-***REMOVED***    migrationBuilder.AddColumn<int>(
-***REMOVED******REMOVED***name: "status",
-***REMOVED******REMOVED***table: "users",
-***REMOVED******REMOVED***type: "int",
-***REMOVED******REMOVED***nullable: false,
-***REMOVED******REMOVED***defaultValue: 0);
+    migrationBuilder.AddColumn<int>(
+name: "status",
+table: "users",
+type: "int",
+nullable: false,
+defaultValue: 0);
 
-***REMOVED***    migrationBuilder.AddColumn<string>(
-***REMOVED******REMOVED***name: "CNPJ",
-***REMOVED******REMOVED***table: "companies",
-***REMOVED******REMOVED***type: "nvarchar(max)",
-***REMOVED******REMOVED***nullable: true);
+    migrationBuilder.AddColumn<string>(
+name: "CNPJ",
+table: "companies",
+type: "nvarchar(max)",
+nullable: true);
 
-***REMOVED***    migrationBuilder.AddColumn<string>(
-***REMOVED******REMOVED***name: "description",
-***REMOVED******REMOVED***table: "companies",
-***REMOVED******REMOVED***type: "nvarchar(max)",
-***REMOVED******REMOVED***nullable: false,
-***REMOVED******REMOVED***defaultValue: "");
+    migrationBuilder.AddColumn<string>(
+name: "description",
+table: "companies",
+type: "nvarchar(max)",
+nullable: false,
+defaultValue: "");
 
-***REMOVED***    migrationBuilder.CreateTable(
-***REMOVED******REMOVED***name: "categories",
-***REMOVED******REMOVED***columns: table => new
-***REMOVED******REMOVED***{
-***REMOVED******REMOVED***    id = table.Column<int>(type: "int", nullable: false)
-***REMOVED******REMOVED******REMOVED***.Annotation("SqlServer:Identity", "1, 1"),
-***REMOVED******REMOVED***    name = table.Column<string>(type: "nvarchar(max)", nullable: true),
-***REMOVED******REMOVED***    status = table.Column<int>(type: "int", nullable: false),
-***REMOVED******REMOVED***    register_date = table.Column<DateTime>(type: "datetime2", nullable: false),
-***REMOVED******REMOVED***    update_date = table.Column<DateTime>(type: "datetime2", nullable: false)
-***REMOVED******REMOVED***},
-***REMOVED******REMOVED***constraints: table =>
-***REMOVED******REMOVED***{
-***REMOVED******REMOVED***    table.PrimaryKey("PK_categories", x => x.id);
-***REMOVED******REMOVED***});
+    migrationBuilder.CreateTable(
+name: "categories",
+columns: table => new
+{
+    id = table.Column<int>(type: "int", nullable: false)
+.Annotation("SqlServer:Identity", "1, 1"),
+    name = table.Column<string>(type: "nvarchar(max)", nullable: true),
+    status = table.Column<int>(type: "int", nullable: false),
+    register_date = table.Column<DateTime>(type: "datetime2", nullable: false),
+    update_date = table.Column<DateTime>(type: "datetime2", nullable: false)
+},
+constraints: table =>
+{
+    table.PrimaryKey("PK_categories", x => x.id);
+});
 
-***REMOVED***    migrationBuilder.CreateTable(
-***REMOVED******REMOVED***name: "company_owners",
-***REMOVED******REMOVED***columns: table => new
-***REMOVED******REMOVED***{
-***REMOVED******REMOVED***    id = table.Column<int>(type: "int", nullable: false)
-***REMOVED******REMOVED******REMOVED***.Annotation("SqlServer:Identity", "1, 1"),
-***REMOVED******REMOVED***    company_id = table.Column<int>(type: "int", nullable: false),
-***REMOVED******REMOVED***    user_id = table.Column<int>(type: "int", nullable: false),
-***REMOVED******REMOVED***    status = table.Column<int>(type: "int", nullable: false),
-***REMOVED******REMOVED***    register_date = table.Column<DateTime>(type: "datetime2", nullable: false),
-***REMOVED******REMOVED***    update_date = table.Column<DateTime>(type: "datetime2", nullable: false)
-***REMOVED******REMOVED***},
-***REMOVED******REMOVED***constraints: table =>
-***REMOVED******REMOVED***{
-***REMOVED******REMOVED***    table.PrimaryKey("PK_company_owners", x => x.id);
-***REMOVED******REMOVED***    table.ForeignKey(
-***REMOVED******REMOVED******REMOVED***name: "FK_company_owners_companies_company_id",
-***REMOVED******REMOVED******REMOVED***column: x => x.company_id,
-***REMOVED******REMOVED******REMOVED***principalTable: "companies",
-***REMOVED******REMOVED******REMOVED***principalColumn: "id",
-***REMOVED******REMOVED******REMOVED***onDelete: ReferentialAction.Cascade);
-***REMOVED******REMOVED***    table.ForeignKey(
-***REMOVED******REMOVED******REMOVED***name: "FK_company_owners_users_user_id",
-***REMOVED******REMOVED******REMOVED***column: x => x.user_id,
-***REMOVED******REMOVED******REMOVED***principalTable: "users",
-***REMOVED******REMOVED******REMOVED***principalColumn: "id",
-***REMOVED******REMOVED******REMOVED***onDelete: ReferentialAction.Cascade);
-***REMOVED******REMOVED***});
+    migrationBuilder.CreateTable(
+name: "company_owners",
+columns: table => new
+{
+    id = table.Column<int>(type: "int", nullable: false)
+.Annotation("SqlServer:Identity", "1, 1"),
+    company_id = table.Column<int>(type: "int", nullable: false),
+    user_id = table.Column<int>(type: "int", nullable: false),
+    status = table.Column<int>(type: "int", nullable: false),
+    register_date = table.Column<DateTime>(type: "datetime2", nullable: false),
+    update_date = table.Column<DateTime>(type: "datetime2", nullable: false)
+},
+constraints: table =>
+{
+    table.PrimaryKey("PK_company_owners", x => x.id);
+    table.ForeignKey(
+name: "FK_company_owners_companies_company_id",
+column: x => x.company_id,
+principalTable: "companies",
+principalColumn: "id",
+onDelete: ReferentialAction.Cascade);
+    table.ForeignKey(
+name: "FK_company_owners_users_user_id",
+column: x => x.user_id,
+principalTable: "users",
+principalColumn: "id",
+onDelete: ReferentialAction.Cascade);
+});
 
-***REMOVED***    migrationBuilder.CreateTable(
-***REMOVED******REMOVED***name: "services_offered",
-***REMOVED******REMOVED***columns: table => new
-***REMOVED******REMOVED***{
-***REMOVED******REMOVED***    id = table.Column<int>(type: "int", nullable: false)
-***REMOVED******REMOVED******REMOVED***.Annotation("SqlServer:Identity", "1, 1"),
-***REMOVED******REMOVED***    name = table.Column<string>(type: "nvarchar(max)", nullable: false),
-***REMOVED******REMOVED***    price = table.Column<float>(type: "real", nullable: false),
-***REMOVED******REMOVED***    company_id = table.Column<int>(type: "int", nullable: false),
-***REMOVED******REMOVED***    status = table.Column<int>(type: "int", nullable: false),
-***REMOVED******REMOVED***    register_date = table.Column<DateTime>(type: "datetime2", nullable: false),
-***REMOVED******REMOVED***    update_date = table.Column<DateTime>(type: "datetime2", nullable: false)
-***REMOVED******REMOVED***},
-***REMOVED******REMOVED***constraints: table =>
-***REMOVED******REMOVED***{
-***REMOVED******REMOVED***    table.PrimaryKey("PK_services_offered", x => x.id);
-***REMOVED******REMOVED***});
+    migrationBuilder.CreateTable(
+name: "services_offered",
+columns: table => new
+{
+    id = table.Column<int>(type: "int", nullable: false)
+.Annotation("SqlServer:Identity", "1, 1"),
+    name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+    price = table.Column<float>(type: "real", nullable: false),
+    company_id = table.Column<int>(type: "int", nullable: false),
+    status = table.Column<int>(type: "int", nullable: false),
+    register_date = table.Column<DateTime>(type: "datetime2", nullable: false),
+    update_date = table.Column<DateTime>(type: "datetime2", nullable: false)
+},
+constraints: table =>
+{
+    table.PrimaryKey("PK_services_offered", x => x.id);
+});
 
-***REMOVED***    migrationBuilder.CreateIndex(
-***REMOVED******REMOVED***name: "IX_company_owners_company_id",
-***REMOVED******REMOVED***table: "company_owners",
-***REMOVED******REMOVED***column: "company_id");
+    migrationBuilder.CreateIndex(
+name: "IX_company_owners_company_id",
+table: "company_owners",
+column: "company_id");
 
-***REMOVED***    migrationBuilder.CreateIndex(
-***REMOVED******REMOVED***name: "IX_company_owners_user_id",
-***REMOVED******REMOVED***table: "company_owners",
-***REMOVED******REMOVED***column: "user_id");
-***REMOVED***}
+    migrationBuilder.CreateIndex(
+name: "IX_company_owners_user_id",
+table: "company_owners",
+column: "user_id");
+}
 
-***REMOVED***/// <inheritdoc />
-***REMOVED***protected override void Down(MigrationBuilder migrationBuilder)
-***REMOVED***{
-***REMOVED***    migrationBuilder.DropTable(
-***REMOVED******REMOVED***name: "categories");
+/// <inheritdoc />
+protected override void Down(MigrationBuilder migrationBuilder)
+{
+    migrationBuilder.DropTable(
+name: "categories");
 
-***REMOVED***    migrationBuilder.DropTable(
-***REMOVED******REMOVED***name: "company_owners");
+    migrationBuilder.DropTable(
+name: "company_owners");
 
-***REMOVED***    migrationBuilder.DropTable(
-***REMOVED******REMOVED***name: "services_offered");
+    migrationBuilder.DropTable(
+name: "services_offered");
 
-***REMOVED***    migrationBuilder.DropColumn(
-***REMOVED******REMOVED***name: "status",
-***REMOVED******REMOVED***table: "users");
+    migrationBuilder.DropColumn(
+name: "status",
+table: "users");
 
-***REMOVED***    migrationBuilder.DropColumn(
-***REMOVED******REMOVED***name: "c_n_p_j",
-***REMOVED******REMOVED***table: "companies");
+    migrationBuilder.DropColumn(
+name: "c_n_p_j",
+table: "companies");
 
-***REMOVED***    migrationBuilder.DropColumn(
-***REMOVED******REMOVED***name: "description",
-***REMOVED******REMOVED***table: "companies");
+    migrationBuilder.DropColumn(
+name: "description",
+table: "companies");
 
-***REMOVED***    migrationBuilder.RenameColumn(
-***REMOVED******REMOVED***name: "status",
-***REMOVED******REMOVED***table: "companies",
-***REMOVED******REMOVED***newName: "user_id");
+    migrationBuilder.RenameColumn(
+name: "status",
+table: "companies",
+newName: "user_id");
 
-***REMOVED***    migrationBuilder.CreateTable(
-***REMOVED******REMOVED***name: "schedulings",
-***REMOVED******REMOVED***columns: table => new
-***REMOVED******REMOVED***{
-***REMOVED******REMOVED***    id = table.Column<int>(type: "int", nullable: false)
-***REMOVED******REMOVED******REMOVED***.Annotation("SqlServer:Identity", "1, 1"),
-***REMOVED******REMOVED***    company_id = table.Column<int>(type: "int", nullable: false),
-***REMOVED******REMOVED***    customer_id = table.Column<int>(type: "int", nullable: false),
-***REMOVED******REMOVED***    register_date = table.Column<DateTime>(type: "datetime2", nullable: false),
-***REMOVED******REMOVED***    scheduled_date = table.Column<DateTime>(type: "datetime2", nullable: false),
-***REMOVED******REMOVED***    update_date = table.Column<DateTime>(type: "datetime2", nullable: false)
-***REMOVED******REMOVED***},
-***REMOVED******REMOVED***constraints: table =>
-***REMOVED******REMOVED***{
-***REMOVED******REMOVED***    table.PrimaryKey("PK_schedulings", x => x.id);
-***REMOVED******REMOVED***    table.ForeignKey(
-***REMOVED******REMOVED******REMOVED***name: "FK_schedulings_companies_company_id",
-***REMOVED******REMOVED******REMOVED***column: x => x.company_id,
-***REMOVED******REMOVED******REMOVED***principalTable: "companies",
-***REMOVED******REMOVED******REMOVED***principalColumn: "id",
-***REMOVED******REMOVED******REMOVED***onDelete: ReferentialAction.Cascade);
-***REMOVED******REMOVED***    table.ForeignKey(
-***REMOVED******REMOVED******REMOVED***name: "FK_schedulings_users_customer_id",
-***REMOVED******REMOVED******REMOVED***column: x => x.customer_id,
-***REMOVED******REMOVED******REMOVED***principalTable: "users",
-***REMOVED******REMOVED******REMOVED***principalColumn: "id",
-***REMOVED******REMOVED******REMOVED***onDelete: ReferentialAction.Cascade);
-***REMOVED******REMOVED***});
+    migrationBuilder.CreateTable(
+name: "schedulings",
+columns: table => new
+{
+    id = table.Column<int>(type: "int", nullable: false)
+.Annotation("SqlServer:Identity", "1, 1"),
+    company_id = table.Column<int>(type: "int", nullable: false),
+    customer_id = table.Column<int>(type: "int", nullable: false),
+    register_date = table.Column<DateTime>(type: "datetime2", nullable: false),
+    scheduled_date = table.Column<DateTime>(type: "datetime2", nullable: false),
+    update_date = table.Column<DateTime>(type: "datetime2", nullable: false)
+},
+constraints: table =>
+{
+    table.PrimaryKey("PK_schedulings", x => x.id);
+    table.ForeignKey(
+name: "FK_schedulings_companies_company_id",
+column: x => x.company_id,
+principalTable: "companies",
+principalColumn: "id",
+onDelete: ReferentialAction.Cascade);
+    table.ForeignKey(
+name: "FK_schedulings_users_customer_id",
+column: x => x.customer_id,
+principalTable: "users",
+principalColumn: "id",
+onDelete: ReferentialAction.Cascade);
+});
 
-***REMOVED***    migrationBuilder.CreateIndex(
-***REMOVED******REMOVED***name: "IX_companies_user_id",
-***REMOVED******REMOVED***table: "companies",
-***REMOVED******REMOVED***column: "user_id");
+    migrationBuilder.CreateIndex(
+name: "IX_companies_user_id",
+table: "companies",
+column: "user_id");
 
-***REMOVED***    migrationBuilder.CreateIndex(
-***REMOVED******REMOVED***name: "IX_schedulings_company_id",
-***REMOVED******REMOVED***table: "schedulings",
-***REMOVED******REMOVED***column: "company_id");
+    migrationBuilder.CreateIndex(
+name: "IX_schedulings_company_id",
+table: "schedulings",
+column: "company_id");
 
-***REMOVED***    migrationBuilder.CreateIndex(
-***REMOVED******REMOVED***name: "IX_schedulings_customer_id",
-***REMOVED******REMOVED***table: "schedulings",
-***REMOVED******REMOVED***column: "customer_id");
+    migrationBuilder.CreateIndex(
+name: "IX_schedulings_customer_id",
+table: "schedulings",
+column: "customer_id");
 
-***REMOVED***    migrationBuilder.AddForeignKey(
-***REMOVED******REMOVED***name: "FK_companies_users_user_id",
-***REMOVED******REMOVED***table: "companies",
-***REMOVED******REMOVED***column: "user_id",
-***REMOVED******REMOVED***principalTable: "users",
-***REMOVED******REMOVED***principalColumn: "id",
-***REMOVED******REMOVED***onDelete: ReferentialAction.Restrict);
-***REMOVED***}
+    migrationBuilder.AddForeignKey(
+name: "FK_companies_users_user_id",
+table: "companies",
+column: "user_id",
+principalTable: "users",
+principalColumn: "id",
+onDelete: ReferentialAction.Restrict);
+}
     }
 }

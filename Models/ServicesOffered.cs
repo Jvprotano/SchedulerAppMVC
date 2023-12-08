@@ -5,13 +5,13 @@ namespace AppAgendamentos.Models
 {
     public class ServicesOffered : BaseEntity
     {
-***REMOVED***[Required]
-***REMOVED***public string Name { get; set; }
-***REMOVED***[Required]
-***REMOVED***public float Price { get; set; }
-***REMOVED***[Required]
-***REMOVED***public int CompanyId { get; set; }
-***REMOVED***public Company Company { get; set; }
-***REMOVED***public TimeSpan Duration { get; set; }
+[Required]
+public string Name { get; set; }
+[Required]
+public float Price { get; set; }
+[Required]
+public int CompanyId { get; set; }
+public Company Company { get; set; }
+public TimeSpan Duration { get; set; }
     }
 }

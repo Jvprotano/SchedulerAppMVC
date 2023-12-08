@@ -6,8 +6,8 @@
 
 <style>
     #row-actions {
-***REMOVED***margin-top: 10px;
-***REMOVED***justify-content: center;
+margin-top: 10px;
+justify-content: center;
     }
 </style>
 @Html.HiddenFor(c=>c.CompanyId)
@@ -22,22 +22,22 @@
 
 <div class="services">
     <div class="row">
-***REMOVED***<div class="col-md-3">
-***REMOVED***</div>
-***REMOVED***<div class="col-md-3">
-***REMOVED***    @Html.Label("Serviço")
-***REMOVED***    @Html.DropDownListFor(m => m.ServiceSelected, Model.CompanyServices, htmlAttributes: new {@class =
-***REMOVED***    "form-control"})
-***REMOVED***</div>
-***REMOVED***<div class="col-md-2">
-***REMOVED***    @Html.Label("Data do agendamento")
-***REMOVED***    <input class="form-control" type="date" asp-for="ScheduledDate" asp-format="{0:dd-MM-yyyy}" />
-***REMOVED***</div>
-***REMOVED***<div class="col-md-2">
-***REMOVED***    @Html.Label("Horários disponíveis")
-***REMOVED***    @Html.DropDownListFor(m => m.TimeSelected, Model.AvailableTimeSlots, htmlAttributes: new {@class =
-***REMOVED***    "form-control"})
-***REMOVED***</div>
+<div class="col-md-3">
+</div>
+<div class="col-md-3">
+    @Html.Label("Serviço")
+    @Html.DropDownListFor(m => m.ServiceSelected, Model.CompanyServices, htmlAttributes: new {@class =
+    "form-control"})
+</div>
+<div class="col-md-2">
+    @Html.Label("Data do agendamento")
+    <input class="form-control" type="date" asp-for="ScheduledDate" asp-format="{0:dd-MM-yyyy}" />
+</div>
+<div class="col-md-2">
+    @Html.Label("Horários disponíveis")
+    @Html.DropDownListFor(m => m.TimeSelected, Model.AvailableTimeSlots, htmlAttributes: new {@class =
+    "form-control"})
+</div>
     </div>
     <div class="col-md-3">
 
@@ -46,25 +46,25 @@
 </div>
 <div class="user-confirmation" style="display: none;">
     <div class="row">
-***REMOVED***<div class="col-md-3" style="margin-left: 16%;">
-***REMOVED***    @Html.Label("Nome")
-***REMOVED***    @Html.TextBoxFor(m => m.CustomerName, htmlAttributes: new {@class = "form-control"})
-***REMOVED***</div>
-***REMOVED***<div class="col-md-3">
-***REMOVED***    @Html.Label("Phone Number")
-***REMOVED***    <input type="tel" maxlength="15" asp-for="Phone" onkeyup="handlePhone(event)" class="form-control"
-***REMOVED******REMOVED***placeholder="(99)99999999" />
-***REMOVED***</div>
-***REMOVED***<div class="col-md-3" style="display: none;" id="divConfirmationCode">
-***REMOVED***    @Html.Label("Code")
-***REMOVED***    @Html.TextBoxFor(m => m.ConfirmationCode, htmlAttributes: new {@class = "form-control", @maxlength="5"})
-***REMOVED***</div>
-***REMOVED***<div class="col-md-1" style="margin-top: 2.3%;">
-***REMOVED***    <button class="btn btn-primary" id="sendCode">Send Code</button>
-***REMOVED***</div>
-***REMOVED***<div class="col-md-1" style="margin-top: 2.3%;">
-***REMOVED***    <button class="btn btn-danger" id="cancel">Cancel</button>
-***REMOVED***</div>
+<div class="col-md-3" style="margin-left: 16%;">
+    @Html.Label("Nome")
+    @Html.TextBoxFor(m => m.CustomerName, htmlAttributes: new {@class = "form-control"})
+</div>
+<div class="col-md-3">
+    @Html.Label("Phone Number")
+    <input type="tel" maxlength="15" asp-for="Phone" onkeyup="handlePhone(event)" class="form-control"
+placeholder="(99)99999999" />
+</div>
+<div class="col-md-3" style="display: none;" id="divConfirmationCode">
+    @Html.Label("Code")
+    @Html.TextBoxFor(m => m.ConfirmationCode, htmlAttributes: new {@class = "form-control", @maxlength="5"})
+</div>
+<div class="col-md-1" style="margin-top: 2.3%;">
+    <button class="btn btn-primary" id="sendCode">Send Code</button>
+</div>
+<div class="col-md-1" style="margin-top: 2.3%;">
+    <button class="btn btn-danger" id="cancel">Cancel</button>
+</div>
     </div>
 </div>
 
@@ -77,100 +77,100 @@
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script type="text/javascript">
 
-***REMOVED***const handlePhone = (event) => {
-***REMOVED***    let input = event.target
-***REMOVED***    input.value = phoneMask(input.value)
-***REMOVED***}
+const handlePhone = (event) => {
+    let input = event.target
+    input.value = phoneMask(input.value)
+}
 
-***REMOVED***const phoneMask = (value) => {
-***REMOVED***    if (!value) return ""
-***REMOVED***    value = value.replace(/\D/g, '')
-***REMOVED***    value = value.replace(/(\d{2})(\d)/, "($1) $2")
-***REMOVED***    value = value.replace(/(\d)(\d{4})$/, "$1-$2")
-***REMOVED***    return value
-***REMOVED***}
+const phoneMask = (value) => {
+    if (!value) return ""
+    value = value.replace(/\D/g, '')
+    value = value.replace(/(\d{2})(\d)/, "($1) $2")
+    value = value.replace(/(\d)(\d{4})$/, "$1-$2")
+    return value
+}
 
-***REMOVED***$("#confirm").on("click", function () {
-***REMOVED***    $("#confirm").hide();
-***REMOVED***    $("#ScheduledDate").prop('disabled', true)
-***REMOVED***    $("#ServiceSelected").prop('disabled', true)
-***REMOVED***    $("#TimeSelected").prop('disabled', true)
-***REMOVED***    $(".user-confirmation").show(500);
-***REMOVED***})
-***REMOVED***$("#cancel").on("click", function () {
-***REMOVED***    $("#confirm").show(500);
-***REMOVED***    $("#ScheduledDate").prop('disabled', false)
-***REMOVED***    $("#ServiceSelected").prop('disabled', false)
-***REMOVED***    $("#TimeSelected").prop('disabled', false)
-***REMOVED***    $(".user-confirmation").hide(500);
-***REMOVED***})
-***REMOVED***$("#sendCode").on("click", function () {
-***REMOVED***    $("#confirm").hide();
-***REMOVED***    $("#CustomerName").prop('disabled', true)
-***REMOVED***    $("#Phone").prop('disabled', true)
-***REMOVED***    $("#submit").show(500);
-***REMOVED***    $(".user-confirmation").show();
-***REMOVED***    $("#divConfirmationCode").show();
-***REMOVED***    $("#sendCode").hide();
-***REMOVED***    $("#cancel").hide();
-***REMOVED***})
+$("#confirm").on("click", function () {
+    $("#confirm").hide();
+    $("#ScheduledDate").prop('disabled', true)
+    $("#ServiceSelected").prop('disabled', true)
+    $("#TimeSelected").prop('disabled', true)
+    $(".user-confirmation").show(500);
+})
+$("#cancel").on("click", function () {
+    $("#confirm").show(500);
+    $("#ScheduledDate").prop('disabled', false)
+    $("#ServiceSelected").prop('disabled', false)
+    $("#TimeSelected").prop('disabled', false)
+    $(".user-confirmation").hide(500);
+})
+$("#sendCode").on("click", function () {
+    $("#confirm").hide();
+    $("#CustomerName").prop('disabled', true)
+    $("#Phone").prop('disabled', true)
+    $("#submit").show(500);
+    $(".user-confirmation").show();
+    $("#divConfirmationCode").show();
+    $("#sendCode").hide();
+    $("#cancel").hide();
+})
 
-***REMOVED***$("#ScheduledDate").on("change", function () {
-***REMOVED***    GetAvailableTimes();
-***REMOVED***    CheckIsAllFilled();
-***REMOVED***});
-***REMOVED***$("#ServiceSelected").on("change", function () {
-***REMOVED***    GetAvailableTimes();
-***REMOVED***    CheckIsAllFilled();
-***REMOVED***});
-***REMOVED***$("#TimeSelected").on("change", function () {
-***REMOVED***    CheckIsAllFilled();
-***REMOVED***});
+$("#ScheduledDate").on("change", function () {
+    GetAvailableTimes();
+    CheckIsAllFilled();
+});
+$("#ServiceSelected").on("change", function () {
+    GetAvailableTimes();
+    CheckIsAllFilled();
+});
+$("#TimeSelected").on("change", function () {
+    CheckIsAllFilled();
+});
 
-***REMOVED***function GetAvailableTimes() {
-***REMOVED***    let serviceSel = $("#ServiceSelected").val();
-***REMOVED***    let company = $("#CompanyId").val();
-***REMOVED***    let dateSel = $("#ScheduledDate").val();
+function GetAvailableTimes() {
+    let serviceSel = $("#ServiceSelected").val();
+    let company = $("#CompanyId").val();
+    let dateSel = $("#ScheduledDate").val();
 
-***REMOVED***    if (serviceSel && dateSel) {
-***REMOVED******REMOVED***$.ajax({
-***REMOVED******REMOVED***    url: "/Scheduling/GetAvailableTimesJson",
-***REMOVED******REMOVED***    type: 'POST',
-***REMOVED******REMOVED***    data: { companyId: company, serviceSelected: serviceSel, dateSelected: dateSel },
-***REMOVED******REMOVED***    success: function (data) {
-***REMOVED******REMOVED******REMOVED***updateAvailableTimes(data)
-***REMOVED******REMOVED***    },
-***REMOVED******REMOVED***    error: function (data) {
-***REMOVED******REMOVED******REMOVED***console.log(data);
-***REMOVED******REMOVED***    }
-***REMOVED******REMOVED***});
-***REMOVED***    }
-***REMOVED***}
+    if (serviceSel && dateSel) {
+$.ajax({
+    url: "/Scheduling/GetAvailableTimesJson",
+    type: 'POST',
+    data: { companyId: company, serviceSelected: serviceSel, dateSelected: dateSel },
+    success: function (data) {
+updateAvailableTimes(data)
+    },
+    error: function (data) {
+console.log(data);
+    }
+});
+    }
+}
 
-***REMOVED***function updateAvailableTimes(data) {
-***REMOVED***    var selectList = $("#TimeSelected");
+function updateAvailableTimes(data) {
+    var selectList = $("#TimeSelected");
 
-***REMOVED***    selectList.html('');
+    selectList.html('');
 
-***REMOVED***    data.map(function (time, i) {
-***REMOVED******REMOVED***const formatedTime = new Date(('June 11, 1999 ' + time + ' GMT-03:00')).toLocaleTimeString('en-US').replace(/:\d+ /, ' ');;
-***REMOVED******REMOVED***selectList.append($('<option></option>').val(time).html(formatedTime));
-***REMOVED***    })
+    data.map(function (time, i) {
+const formatedTime = new Date(('June 11, 1999 ' + time + ' GMT-03:00')).toLocaleTimeString('en-US').replace(/:\d+ /, ' ');;
+selectList.append($('<option></option>').val(time).html(formatedTime));
+    })
 
-***REMOVED***    selectList.trigger('change');
-***REMOVED***}
+    selectList.trigger('change');
+}
 
-***REMOVED***function CheckIsAllFilled() {
-***REMOVED***    let serviceSel = $("#ServiceSelected").val();
-***REMOVED***    let dateSel = $("#ScheduledDate").val();
-***REMOVED***    let time = $("#TimeSelected").val();
+function CheckIsAllFilled() {
+    let serviceSel = $("#ServiceSelected").val();
+    let dateSel = $("#ScheduledDate").val();
+    let time = $("#TimeSelected").val();
 
-***REMOVED***    if (serviceSel && dateSel && time) {
-***REMOVED******REMOVED***$("#confirm").show(500);
-***REMOVED***    } else {
-***REMOVED******REMOVED***$("#confirm").hide(200);
-***REMOVED***    }
-***REMOVED***}
+    if (serviceSel && dateSel && time) {
+$("#confirm").show(500);
+    } else {
+$("#confirm").hide(200);
+    }
+}
 
     </script>
 }

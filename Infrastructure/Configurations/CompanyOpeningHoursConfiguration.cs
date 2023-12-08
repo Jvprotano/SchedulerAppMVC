@@ -6,8 +6,8 @@ namespace AppAgendamentos.Infrastructure.Configurations
 {
     public class CompanyOpeningHoursConfiguration : IEntityTypeConfiguration<CompanyOpeningHours>
     {
-***REMOVED***public void Configure(EntityTypeBuilder<CompanyOpeningHours> builder)
-***REMOVED***{
-***REMOVED***}
+public void Configure(EntityTypeBuilder<CompanyOpeningHours> builder)
+{
+}
     }
 }

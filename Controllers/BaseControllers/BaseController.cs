@@ -11,11 +11,11 @@ namespace AppAgendamentos.Controllers.BaseControllers
     [Route("[controller]")]
     public class BaseController : Controller
     {
-***REMOVED***private readonly ILogger<BaseController> _logger;
+private readonly ILogger<BaseController> _logger;
 
-***REMOVED***public BaseController(ILogger<BaseController> logger)
-***REMOVED***{
-***REMOVED***    _logger = logger;
-***REMOVED***}
+public BaseController(ILogger<BaseController> logger)
+{
+    _logger = logger;
+}
     }
 }

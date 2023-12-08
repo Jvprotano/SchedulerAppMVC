@@ -12,19 +12,19 @@ namespace AppAgendamentos.Repository
 {
     public class CompanyRepository : Repository<Company>, ICompanyRepository
     {
-***REMOVED***public CompanyRepository(ApplicationDbContext context) : base(context)
-***REMOVED***{
-***REMOVED***}
-***REMOVED***public async Task<Company> GetAsync(int id)
-***REMOVED***{
-***REMOVED***    return await this.DbSet
-***REMOVED******REMOVED***.Include(c => c.ServicesOffered)
-***REMOVED******REMOVED***.Where(c => c.Id == id).FirstOrDefaultAsync();
-***REMOVED***}
+public CompanyRepository(ApplicationDbContext context) : base(context)
+{
+}
+public async Task<Company> GetAsync(int id)
+{
+    return await this.DbSet
+.Include(c => c.ServicesOffered)
+.Where(c => c.Id == id).FirstOrDefaultAsync();
+}
 
-***REMOVED***public async Task<IEnumerable<Company>> GetAllAsync()
-***REMOVED***{
-***REMOVED***    return await this.DbSet.Where(c => c.Status == StatusEnum.Active).ToListAsync();
-***REMOVED***}
+public async Task<IEnumerable<Company>> GetAllAsync()
+{
+    return await this.DbSet.Where(c => c.Status == StatusEnum.Active).ToListAsync();
+}
     }
 }

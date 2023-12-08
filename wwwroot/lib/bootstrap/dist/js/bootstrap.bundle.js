@@ -51,12 +51,12 @@
       // See https://github.com/twbs/bootstrap/issues/32273
 
       if (!hrefAttr || !hrefAttr.includes('#') && !hrefAttr.startsWith('.')) {
-***REMOVED***return null;
+return null;
       } // Just in case some CMS puts out a full URL with the anchor appended
 
 
       if (hrefAttr.includes('#') && !hrefAttr.startsWith('#')) {
-***REMOVED***hrefAttr = `#${hrefAttr.split('#')[1]}`;
+hrefAttr = `#${hrefAttr.split('#')[1]}`;
       }
 
       selector = hrefAttr && hrefAttr !== '#' ? hrefAttr.trim() : null;
@@ -139,7 +139,7 @@
       const valueType = value && isElement$1(value) ? 'element' : toType(value);
 
       if (!new RegExp(expectedTypes).test(valueType)) {
-***REMOVED***throw new TypeError(`${componentName.toUpperCase()}: Option "${property}" provided type "${valueType}" but expected type "${expectedTypes}".`);
+throw new TypeError(`${componentName.toUpperCase()}: Option "${property}" provided type "${valueType}" but expected type "${expectedTypes}".`);
       }
     });
   };
@@ -225,9 +225,9 @@
     if (document.readyState === 'loading') {
       // add listener on the first call when the document is in loading state
       if (!DOMContentLoadedCallbacks.length) {
-***REMOVED***document.addEventListener('DOMContentLoaded', () => {
-***REMOVED***  DOMContentLoadedCallbacks.forEach(callback => callback());
-***REMOVED***});
+document.addEventListener('DOMContentLoaded', () => {
+  DOMContentLoadedCallbacks.forEach(callback => callback());
+});
       }
 
       DOMContentLoadedCallbacks.push(callback);
@@ -244,15 +244,15 @@
       /* istanbul ignore if */
 
       if ($) {
-***REMOVED***const name = plugin.NAME;
-***REMOVED***const JQUERY_NO_CONFLICT = $.fn[name];
-***REMOVED***$.fn[name] = plugin.jQueryInterface;
-***REMOVED***$.fn[name].Constructor = plugin;
+const name = plugin.NAME;
+const JQUERY_NO_CONFLICT = $.fn[name];
+$.fn[name] = plugin.jQueryInterface;
+$.fn[name].Constructor = plugin;
 
-***REMOVED***$.fn[name].noConflict = () => {
-***REMOVED***  $.fn[name] = JQUERY_NO_CONFLICT;
-***REMOVED***  return plugin.jQueryInterface;
-***REMOVED***};
+$.fn[name].noConflict = () => {
+  $.fn[name] = JQUERY_NO_CONFLICT;
+  return plugin.jQueryInterface;
+};
       }
     });
   };
@@ -277,7 +277,7 @@
       target
     }) => {
       if (target !== transitionElement) {
-***REMOVED***return;
+return;
       }
 
       called = true;
@@ -288,7 +288,7 @@
     transitionElement.addEventListener(TRANSITION_END, handler);
     setTimeout(() => {
       if (!called) {
-***REMOVED***triggerTransitionEnd(transitionElement);
+triggerTransitionEnd(transitionElement);
       }
     }, emulatedDuration);
   };
@@ -366,7 +366,7 @@
       event.delegateTarget = element;
 
       if (handler.oneOff) {
-***REMOVED***EventHandler.off(element, event.type, fn);
+EventHandler.off(element, event.type, fn);
       }
 
       return fn.apply(element, [event]);
@@ -378,20 +378,20 @@
       const domElements = element.querySelectorAll(selector);
 
       for (let {
-***REMOVED***target
+target
       } = event; target && target !== this; target = target.parentNode) {
-***REMOVED***for (let i = domElements.length; i--;) {
-***REMOVED***  if (domElements[i] === target) {
-***REMOVED***    event.delegateTarget = target;
+for (let i = domElements.length; i--;) {
+  if (domElements[i] === target) {
+    event.delegateTarget = target;
 
-***REMOVED***    if (handler.oneOff) {
-***REMOVED***      // eslint-disable-next-line unicorn/consistent-destructuring
-***REMOVED***      EventHandler.off(element, event.type, selector, fn);
-***REMOVED***    }
+    if (handler.oneOff) {
+      // eslint-disable-next-line unicorn/consistent-destructuring
+      EventHandler.off(element, event.type, selector, fn);
+    }
 
-***REMOVED***    return fn.apply(target, [event]);
-***REMOVED***  }
-***REMOVED***}
+    return fn.apply(target, [event]);
+  }
+}
       } // To please ESLint
 
 
@@ -406,7 +406,7 @@
       const event = events[uidEventList[i]];
 
       if (event.originalHandler === handler && event.delegationSelector === delegationSelector) {
-***REMOVED***return event;
+return event;
       }
     }
 
@@ -440,17 +440,17 @@
 
     if (customEventsRegex.test(originalTypeEvent)) {
       const wrapFn = fn => {
-***REMOVED***return function (event) {
-***REMOVED***  if (!event.relatedTarget || event.relatedTarget !== event.delegateTarget && !event.delegateTarget.contains(event.relatedTarget)) {
-***REMOVED***    return fn.call(this, event);
-***REMOVED***  }
-***REMOVED***};
+return function (event) {
+  if (!event.relatedTarget || event.relatedTarget !== event.delegateTarget && !event.delegateTarget.contains(event.relatedTarget)) {
+    return fn.call(this, event);
+  }
+};
       };
 
       if (delegationFn) {
-***REMOVED***delegationFn = wrapFn(delegationFn);
+delegationFn = wrapFn(delegationFn);
       } else {
-***REMOVED***handler = wrapFn(handler);
+handler = wrapFn(handler);
       }
     }
 
@@ -489,8 +489,8 @@
     const storeElementEvent = events[typeEvent] || {};
     Object.keys(storeElementEvent).forEach(handlerKey => {
       if (handlerKey.includes(namespace)) {
-***REMOVED***const event = storeElementEvent[handlerKey];
-***REMOVED***removeHandler(element, events, typeEvent, event.originalHandler, event.delegationSelector);
+const event = storeElementEvent[handlerKey];
+removeHandler(element, events, typeEvent, event.originalHandler, event.delegationSelector);
       }
     });
   }
@@ -512,7 +512,7 @@
 
     off(element, originalTypeEvent, handler, delegationFn) {
       if (typeof originalTypeEvent !== 'string' || !element) {
-***REMOVED***return;
+return;
       }
 
       const [delegation, originalHandler, typeEvent] = normalizeParams(originalTypeEvent, handler, delegationFn);
@@ -521,35 +521,35 @@
       const isNamespace = originalTypeEvent.startsWith('.');
 
       if (typeof originalHandler !== 'undefined') {
-***REMOVED***// Simplest case: handler is passed, remove that listener ONLY.
-***REMOVED***if (!events || !events[typeEvent]) {
-***REMOVED***  return;
-***REMOVED***}
+// Simplest case: handler is passed, remove that listener ONLY.
+if (!events || !events[typeEvent]) {
+  return;
+}
 
-***REMOVED***removeHandler(element, events, typeEvent, originalHandler, delegation ? handler : null);
-***REMOVED***return;
+removeHandler(element, events, typeEvent, originalHandler, delegation ? handler : null);
+return;
       }
 
       if (isNamespace) {
-***REMOVED***Object.keys(events).forEach(elementEvent => {
-***REMOVED***  removeNamespacedHandlers(element, events, elementEvent, originalTypeEvent.slice(1));
-***REMOVED***});
+Object.keys(events).forEach(elementEvent => {
+  removeNamespacedHandlers(element, events, elementEvent, originalTypeEvent.slice(1));
+});
       }
 
       const storeElementEvent = events[typeEvent] || {};
       Object.keys(storeElementEvent).forEach(keyHandlers => {
-***REMOVED***const handlerKey = keyHandlers.replace(stripUidRegex, '');
+const handlerKey = keyHandlers.replace(stripUidRegex, '');
 
-***REMOVED***if (!inNamespace || originalTypeEvent.includes(handlerKey)) {
-***REMOVED***  const event = storeElementEvent[keyHandlers];
-***REMOVED***  removeHandler(element, events, typeEvent, event.originalHandler, event.delegationSelector);
-***REMOVED***}
+if (!inNamespace || originalTypeEvent.includes(handlerKey)) {
+  const event = storeElementEvent[keyHandlers];
+  removeHandler(element, events, typeEvent, event.originalHandler, event.delegationSelector);
+}
       });
     },
 
     trigger(element, event, args) {
       if (typeof event !== 'string' || !element) {
-***REMOVED***return null;
+return null;
       }
 
       const $ = getjQuery();
@@ -563,45 +563,45 @@
       let evt = null;
 
       if (inNamespace && $) {
-***REMOVED***jQueryEvent = $.Event(event, args);
-***REMOVED***$(element).trigger(jQueryEvent);
-***REMOVED***bubbles = !jQueryEvent.isPropagationStopped();
-***REMOVED***nativeDispatch = !jQueryEvent.isImmediatePropagationStopped();
-***REMOVED***defaultPrevented = jQueryEvent.isDefaultPrevented();
+jQueryEvent = $.Event(event, args);
+$(element).trigger(jQueryEvent);
+bubbles = !jQueryEvent.isPropagationStopped();
+nativeDispatch = !jQueryEvent.isImmediatePropagationStopped();
+defaultPrevented = jQueryEvent.isDefaultPrevented();
       }
 
       if (isNative) {
-***REMOVED***evt = document.createEvent('HTMLEvents');
-***REMOVED***evt.initEvent(typeEvent, bubbles, true);
+evt = document.createEvent('HTMLEvents');
+evt.initEvent(typeEvent, bubbles, true);
       } else {
-***REMOVED***evt = new CustomEvent(event, {
-***REMOVED***  bubbles,
-***REMOVED***  cancelable: true
-***REMOVED***});
+evt = new CustomEvent(event, {
+  bubbles,
+  cancelable: true
+});
       } // merge custom information in our event
 
 
       if (typeof args !== 'undefined') {
-***REMOVED***Object.keys(args).forEach(key => {
-***REMOVED***  Object.defineProperty(evt, key, {
-***REMOVED***    get() {
-***REMOVED***      return args[key];
-***REMOVED***    }
+Object.keys(args).forEach(key => {
+  Object.defineProperty(evt, key, {
+    get() {
+      return args[key];
+    }
 
-***REMOVED***  });
-***REMOVED***});
+  });
+});
       }
 
       if (defaultPrevented) {
-***REMOVED***evt.preventDefault();
+evt.preventDefault();
       }
 
       if (nativeDispatch) {
-***REMOVED***element.dispatchEvent(evt);
+element.dispatchEvent(evt);
       }
 
       if (evt.defaultPrevented && typeof jQueryEvent !== 'undefined') {
-***REMOVED***jQueryEvent.preventDefault();
+jQueryEvent.preventDefault();
       }
 
       return evt;
@@ -625,16 +625,16 @@
   var Data = {
     set(element, key, instance) {
       if (!elementMap.has(element)) {
-***REMOVED***elementMap.set(element, new Map());
+elementMap.set(element, new Map());
       }
 
       const instanceMap = elementMap.get(element); // make it clear we only want one instance per element
       // can be removed later when multiple key/instances are fine to be used
 
       if (!instanceMap.has(key) && instanceMap.size !== 0) {
-***REMOVED***// eslint-disable-next-line no-console
-***REMOVED***console.error(`Bootstrap doesn't allow more than one instance per element. Bound instance: ${Array.from(instanceMap.keys())[0]}.`);
-***REMOVED***return;
+// eslint-disable-next-line no-console
+console.error(`Bootstrap doesn't allow more than one instance per element. Bound instance: ${Array.from(instanceMap.keys())[0]}.`);
+return;
       }
 
       instanceMap.set(key, instance);
@@ -642,7 +642,7 @@
 
     get(element, key) {
       if (elementMap.has(element)) {
-***REMOVED***return elementMap.get(element).get(key) || null;
+return elementMap.get(element).get(key) || null;
       }
 
       return null;
@@ -650,14 +650,14 @@
 
     remove(element, key) {
       if (!elementMap.has(element)) {
-***REMOVED***return;
+return;
       }
 
       const instanceMap = elementMap.get(element);
       instanceMap.delete(key); // free up element references if there are no instances left for an element
 
       if (instanceMap.size === 0) {
-***REMOVED***elementMap.delete(element);
+elementMap.delete(element);
       }
     }
 
@@ -682,7 +682,7 @@
       element = getElement(element);
 
       if (!element) {
-***REMOVED***return;
+return;
       }
 
       this._element = element;
@@ -693,7 +693,7 @@
       Data.remove(this._element, this.constructor.DATA_KEY);
       EventHandler.off(this._element, this.constructor.EVENT_KEY);
       Object.getOwnPropertyNames(this).forEach(propertyName => {
-***REMOVED***this[propertyName] = null;
+this[propertyName] = null;
       });
     }
 
@@ -741,11 +741,11 @@
     const name = component.NAME;
     EventHandler.on(document, clickEvent, `[data-bs-dismiss="${name}"]`, function (event) {
       if (['A', 'AREA'].includes(this.tagName)) {
-***REMOVED***event.preventDefault();
+event.preventDefault();
       }
 
       if (isDisabled(this)) {
-***REMOVED***return;
+return;
       }
 
       const target = getElementFromSelector(this) || this.closest(`.${name}`);
@@ -791,7 +791,7 @@
       const closeEvent = EventHandler.trigger(this._element, EVENT_CLOSE);
 
       if (closeEvent.defaultPrevented) {
-***REMOVED***return;
+return;
       }
 
       this._element.classList.remove(CLASS_NAME_SHOW$8);
@@ -812,17 +812,17 @@
 
     static jQueryInterface(config) {
       return this.each(function () {
-***REMOVED***const data = Alert.getOrCreateInstance(this);
+const data = Alert.getOrCreateInstance(this);
 
-***REMOVED***if (typeof config !== 'string') {
-***REMOVED***  return;
-***REMOVED***}
+if (typeof config !== 'string') {
+  return;
+}
 
-***REMOVED***if (data[config] === undefined || config.startsWith('_') || config === 'constructor') {
-***REMOVED***  throw new TypeError(`No method named "${config}"`);
-***REMOVED***}
+if (data[config] === undefined || config.startsWith('_') || config === 'constructor') {
+  throw new TypeError(`No method named "${config}"`);
+}
 
-***REMOVED***data[config](this);
+data[config](this);
       });
     }
 
@@ -884,11 +884,11 @@
 
     static jQueryInterface(config) {
       return this.each(function () {
-***REMOVED***const data = Button.getOrCreateInstance(this);
+const data = Button.getOrCreateInstance(this);
 
-***REMOVED***if (config === 'toggle') {
-***REMOVED***  data[config]();
-***REMOVED***}
+if (config === 'toggle') {
+  data[config]();
+}
       });
     }
 
@@ -956,14 +956,14 @@
 
     getDataAttributes(element) {
       if (!element) {
-***REMOVED***return {};
+return {};
       }
 
       const attributes = {};
       Object.keys(element.dataset).filter(key => key.startsWith('bs')).forEach(key => {
-***REMOVED***let pureKey = key.replace(/^bs/, '');
-***REMOVED***pureKey = pureKey.charAt(0).toLowerCase() + pureKey.slice(1, pureKey.length);
-***REMOVED***attributes[pureKey] = normalizeData(element.dataset[key]);
+let pureKey = key.replace(/^bs/, '');
+pureKey = pureKey.charAt(0).toLowerCase() + pureKey.slice(1, pureKey.length);
+attributes[pureKey] = normalizeData(element.dataset[key]);
       });
       return attributes;
     },
@@ -975,15 +975,15 @@
     offset(element) {
       const rect = element.getBoundingClientRect();
       return {
-***REMOVED***top: rect.top + window.pageYOffset,
-***REMOVED***left: rect.left + window.pageXOffset
+top: rect.top + window.pageYOffset,
+left: rect.left + window.pageXOffset
       };
     },
 
     position(element) {
       return {
-***REMOVED***top: element.offsetTop,
-***REMOVED***left: element.offsetLeft
+top: element.offsetTop,
+left: element.offsetLeft
       };
     }
 
@@ -1014,11 +1014,11 @@
       let ancestor = element.parentNode;
 
       while (ancestor && ancestor.nodeType === Node.ELEMENT_NODE && ancestor.nodeType !== NODE_TEXT) {
-***REMOVED***if (ancestor.matches(selector)) {
-***REMOVED***  parents.push(ancestor);
-***REMOVED***}
+if (ancestor.matches(selector)) {
+  parents.push(ancestor);
+}
 
-***REMOVED***ancestor = ancestor.parentNode;
+ancestor = ancestor.parentNode;
       }
 
       return parents;
@@ -1028,11 +1028,11 @@
       let previous = element.previousElementSibling;
 
       while (previous) {
-***REMOVED***if (previous.matches(selector)) {
-***REMOVED***  return [previous];
-***REMOVED***}
+if (previous.matches(selector)) {
+  return [previous];
+}
 
-***REMOVED***previous = previous.previousElementSibling;
+previous = previous.previousElementSibling;
       }
 
       return [];
@@ -1042,11 +1042,11 @@
       let next = element.nextElementSibling;
 
       while (next) {
-***REMOVED***if (next.matches(selector)) {
-***REMOVED***  return [next];
-***REMOVED***}
+if (next.matches(selector)) {
+  return [next];
+}
 
-***REMOVED***next = next.nextElementSibling;
+next = next.nextElementSibling;
       }
 
       return [];
@@ -1179,7 +1179,7 @@
       // Don't call next when the page isn't visible
       // or the carousel or its parent isn't visible
       if (!document.hidden && isVisible(this._element)) {
-***REMOVED***this.next();
+this.next();
       }
     }
 
@@ -1189,12 +1189,12 @@
 
     pause(event) {
       if (!event) {
-***REMOVED***this._isPaused = true;
+this._isPaused = true;
       }
 
       if (SelectorEngine.findOne(SELECTOR_NEXT_PREV, this._element)) {
-***REMOVED***triggerTransitionEnd(this._element);
-***REMOVED***this.cycle(true);
+triggerTransitionEnd(this._element);
+this.cycle(true);
       }
 
       clearInterval(this._interval);
@@ -1203,18 +1203,18 @@
 
     cycle(event) {
       if (!event) {
-***REMOVED***this._isPaused = false;
+this._isPaused = false;
       }
 
       if (this._interval) {
-***REMOVED***clearInterval(this._interval);
-***REMOVED***this._interval = null;
+clearInterval(this._interval);
+this._interval = null;
       }
 
       if (this._config && this._config.interval && !this._isPaused) {
-***REMOVED***this._updateInterval();
+this._updateInterval();
 
-***REMOVED***this._interval = setInterval((document.visibilityState ? this.nextWhenVisible : this.next).bind(this), this._config.interval);
+this._interval = setInterval((document.visibilityState ? this.nextWhenVisible : this.next).bind(this), this._config.interval);
       }
     }
 
@@ -1224,18 +1224,18 @@
       const activeIndex = this._getItemIndex(this._activeElement);
 
       if (index > this._items.length - 1 || index < 0) {
-***REMOVED***return;
+return;
       }
 
       if (this._isSliding) {
-***REMOVED***EventHandler.one(this._element, EVENT_SLID, () => this.to(index));
-***REMOVED***return;
+EventHandler.one(this._element, EVENT_SLID, () => this.to(index));
+return;
       }
 
       if (activeIndex === index) {
-***REMOVED***this.pause();
-***REMOVED***this.cycle();
-***REMOVED***return;
+this.pause();
+this.cycle();
+return;
       }
 
       const order = index > activeIndex ? ORDER_NEXT : ORDER_PREV;
@@ -1246,8 +1246,8 @@
 
     _getConfig(config) {
       config = { ...Default$a,
-***REMOVED***...Manipulator.getDataAttributes(this._element),
-***REMOVED***...(typeof config === 'object' ? config : {})
+...Manipulator.getDataAttributes(this._element),
+...(typeof config === 'object' ? config : {})
       };
       typeCheckConfig(NAME$b, config, DefaultType$a);
       return config;
@@ -1257,14 +1257,14 @@
       const absDeltax = Math.abs(this.touchDeltaX);
 
       if (absDeltax <= SWIPE_THRESHOLD) {
-***REMOVED***return;
+return;
       }
 
       const direction = absDeltax / this.touchDeltaX;
       this.touchDeltaX = 0;
 
       if (!direction) {
-***REMOVED***return;
+return;
       }
 
       this._slide(direction > 0 ? DIRECTION_RIGHT : DIRECTION_LEFT);
@@ -1272,85 +1272,85 @@
 
     _addEventListeners() {
       if (this._config.keyboard) {
-***REMOVED***EventHandler.on(this._element, EVENT_KEYDOWN, event => this._keydown(event));
+EventHandler.on(this._element, EVENT_KEYDOWN, event => this._keydown(event));
       }
 
       if (this._config.pause === 'hover') {
-***REMOVED***EventHandler.on(this._element, EVENT_MOUSEENTER, event => this.pause(event));
-***REMOVED***EventHandler.on(this._element, EVENT_MOUSELEAVE, event => this.cycle(event));
+EventHandler.on(this._element, EVENT_MOUSEENTER, event => this.pause(event));
+EventHandler.on(this._element, EVENT_MOUSELEAVE, event => this.cycle(event));
       }
 
       if (this._config.touch && this._touchSupported) {
-***REMOVED***this._addTouchEventListeners();
+this._addTouchEventListeners();
       }
     }
 
     _addTouchEventListeners() {
       const start = event => {
-***REMOVED***if (this._pointerEvent && (event.pointerType === POINTER_TYPE_PEN || event.pointerType === POINTER_TYPE_TOUCH)) {
-***REMOVED***  this.touchStartX = event.clientX;
-***REMOVED***} else if (!this._pointerEvent) {
-***REMOVED***  this.touchStartX = event.touches[0].clientX;
-***REMOVED***}
+if (this._pointerEvent && (event.pointerType === POINTER_TYPE_PEN || event.pointerType === POINTER_TYPE_TOUCH)) {
+  this.touchStartX = event.clientX;
+} else if (!this._pointerEvent) {
+  this.touchStartX = event.touches[0].clientX;
+}
       };
 
       const move = event => {
-***REMOVED***// ensure swiping with one touch and not pinching
-***REMOVED***this.touchDeltaX = event.touches && event.touches.length > 1 ? 0 : event.touches[0].clientX - this.touchStartX;
+// ensure swiping with one touch and not pinching
+this.touchDeltaX = event.touches && event.touches.length > 1 ? 0 : event.touches[0].clientX - this.touchStartX;
       };
 
       const end = event => {
-***REMOVED***if (this._pointerEvent && (event.pointerType === POINTER_TYPE_PEN || event.pointerType === POINTER_TYPE_TOUCH)) {
-***REMOVED***  this.touchDeltaX = event.clientX - this.touchStartX;
-***REMOVED***}
+if (this._pointerEvent && (event.pointerType === POINTER_TYPE_PEN || event.pointerType === POINTER_TYPE_TOUCH)) {
+  this.touchDeltaX = event.clientX - this.touchStartX;
+}
 
-***REMOVED***this._handleSwipe();
+this._handleSwipe();
 
-***REMOVED***if (this._config.pause === 'hover') {
-***REMOVED***  // If it's a touch-enabled device, mouseenter/leave are fired as
-***REMOVED***  // part of the mouse compatibility events on first tap - the carousel
-***REMOVED***  // would stop cycling until user tapped out of it;
-***REMOVED***  // here, we listen for touchend, explicitly pause the carousel
-***REMOVED***  // (as if it's the second time we tap on it, mouseenter compat event
-***REMOVED***  // is NOT fired) and after a timeout (to allow for mouse compatibility
-***REMOVED***  // events to fire) we explicitly restart cycling
-***REMOVED***  this.pause();
+if (this._config.pause === 'hover') {
+  // If it's a touch-enabled device, mouseenter/leave are fired as
+  // part of the mouse compatibility events on first tap - the carousel
+  // would stop cycling until user tapped out of it;
+  // here, we listen for touchend, explicitly pause the carousel
+  // (as if it's the second time we tap on it, mouseenter compat event
+  // is NOT fired) and after a timeout (to allow for mouse compatibility
+  // events to fire) we explicitly restart cycling
+  this.pause();
 
-***REMOVED***  if (this.touchTimeout) {
-***REMOVED***    clearTimeout(this.touchTimeout);
-***REMOVED***  }
+  if (this.touchTimeout) {
+    clearTimeout(this.touchTimeout);
+  }
 
-***REMOVED***  this.touchTimeout = setTimeout(event => this.cycle(event), TOUCHEVENT_COMPAT_WAIT + this._config.interval);
-***REMOVED***}
+  this.touchTimeout = setTimeout(event => this.cycle(event), TOUCHEVENT_COMPAT_WAIT + this._config.interval);
+}
       };
 
       SelectorEngine.find(SELECTOR_ITEM_IMG, this._element).forEach(itemImg => {
-***REMOVED***EventHandler.on(itemImg, EVENT_DRAG_START, e => e.preventDefault());
+EventHandler.on(itemImg, EVENT_DRAG_START, e => e.preventDefault());
       });
 
       if (this._pointerEvent) {
-***REMOVED***EventHandler.on(this._element, EVENT_POINTERDOWN, event => start(event));
-***REMOVED***EventHandler.on(this._element, EVENT_POINTERUP, event => end(event));
+EventHandler.on(this._element, EVENT_POINTERDOWN, event => start(event));
+EventHandler.on(this._element, EVENT_POINTERUP, event => end(event));
 
-***REMOVED***this._element.classList.add(CLASS_NAME_POINTER_EVENT);
+this._element.classList.add(CLASS_NAME_POINTER_EVENT);
       } else {
-***REMOVED***EventHandler.on(this._element, EVENT_TOUCHSTART, event => start(event));
-***REMOVED***EventHandler.on(this._element, EVENT_TOUCHMOVE, event => move(event));
-***REMOVED***EventHandler.on(this._element, EVENT_TOUCHEND, event => end(event));
+EventHandler.on(this._element, EVENT_TOUCHSTART, event => start(event));
+EventHandler.on(this._element, EVENT_TOUCHMOVE, event => move(event));
+EventHandler.on(this._element, EVENT_TOUCHEND, event => end(event));
       }
     }
 
     _keydown(event) {
       if (/input|textarea/i.test(event.target.tagName)) {
-***REMOVED***return;
+return;
       }
 
       const direction = KEY_TO_DIRECTION[event.key];
 
       if (direction) {
-***REMOVED***event.preventDefault();
+event.preventDefault();
 
-***REMOVED***this._slide(direction);
+this._slide(direction);
       }
     }
 
@@ -1370,27 +1370,27 @@
       const fromIndex = this._getItemIndex(SelectorEngine.findOne(SELECTOR_ACTIVE_ITEM, this._element));
 
       return EventHandler.trigger(this._element, EVENT_SLIDE, {
-***REMOVED***relatedTarget,
-***REMOVED***direction: eventDirectionName,
-***REMOVED***from: fromIndex,
-***REMOVED***to: targetIndex
+relatedTarget,
+direction: eventDirectionName,
+from: fromIndex,
+to: targetIndex
       });
     }
 
     _setActiveIndicatorElement(element) {
       if (this._indicatorsElement) {
-***REMOVED***const activeIndicator = SelectorEngine.findOne(SELECTOR_ACTIVE$1, this._indicatorsElement);
-***REMOVED***activeIndicator.classList.remove(CLASS_NAME_ACTIVE$2);
-***REMOVED***activeIndicator.removeAttribute('aria-current');
-***REMOVED***const indicators = SelectorEngine.find(SELECTOR_INDICATOR, this._indicatorsElement);
+const activeIndicator = SelectorEngine.findOne(SELECTOR_ACTIVE$1, this._indicatorsElement);
+activeIndicator.classList.remove(CLASS_NAME_ACTIVE$2);
+activeIndicator.removeAttribute('aria-current');
+const indicators = SelectorEngine.find(SELECTOR_INDICATOR, this._indicatorsElement);
 
-***REMOVED***for (let i = 0; i < indicators.length; i++) {
-***REMOVED***  if (Number.parseInt(indicators[i].getAttribute('data-bs-slide-to'), 10) === this._getItemIndex(element)) {
-***REMOVED***    indicators[i].classList.add(CLASS_NAME_ACTIVE$2);
-***REMOVED***    indicators[i].setAttribute('aria-current', 'true');
-***REMOVED***    break;
-***REMOVED***  }
-***REMOVED***}
+for (let i = 0; i < indicators.length; i++) {
+  if (Number.parseInt(indicators[i].getAttribute('data-bs-slide-to'), 10) === this._getItemIndex(element)) {
+    indicators[i].classList.add(CLASS_NAME_ACTIVE$2);
+    indicators[i].setAttribute('aria-current', 'true');
+    break;
+  }
+}
       }
     }
 
@@ -1398,16 +1398,16 @@
       const element = this._activeElement || SelectorEngine.findOne(SELECTOR_ACTIVE_ITEM, this._element);
 
       if (!element) {
-***REMOVED***return;
+return;
       }
 
       const elementInterval = Number.parseInt(element.getAttribute('data-bs-interval'), 10);
 
       if (elementInterval) {
-***REMOVED***this._config.defaultInterval = this._config.defaultInterval || this._config.interval;
-***REMOVED***this._config.interval = elementInterval;
+this._config.defaultInterval = this._config.defaultInterval || this._config.interval;
+this._config.interval = elementInterval;
       } else {
-***REMOVED***this._config.interval = this._config.defaultInterval || this._config.interval;
+this._config.interval = this._config.defaultInterval || this._config.interval;
       }
     }
 
@@ -1430,29 +1430,29 @@
       const eventDirectionName = this._orderToDirection(order);
 
       if (nextElement && nextElement.classList.contains(CLASS_NAME_ACTIVE$2)) {
-***REMOVED***this._isSliding = false;
-***REMOVED***return;
+this._isSliding = false;
+return;
       }
 
       if (this._isSliding) {
-***REMOVED***return;
+return;
       }
 
       const slideEvent = this._triggerSlideEvent(nextElement, eventDirectionName);
 
       if (slideEvent.defaultPrevented) {
-***REMOVED***return;
+return;
       }
 
       if (!activeElement || !nextElement) {
-***REMOVED***// Some weirdness is happening, so we bail
-***REMOVED***return;
+// Some weirdness is happening, so we bail
+return;
       }
 
       this._isSliding = true;
 
       if (isCycling) {
-***REMOVED***this.pause();
+this.pause();
       }
 
       this._setActiveIndicatorElement(nextElement);
@@ -1460,48 +1460,48 @@
       this._activeElement = nextElement;
 
       const triggerSlidEvent = () => {
-***REMOVED***EventHandler.trigger(this._element, EVENT_SLID, {
-***REMOVED***  relatedTarget: nextElement,
-***REMOVED***  direction: eventDirectionName,
-***REMOVED***  from: activeElementIndex,
-***REMOVED***  to: nextElementIndex
-***REMOVED***});
+EventHandler.trigger(this._element, EVENT_SLID, {
+  relatedTarget: nextElement,
+  direction: eventDirectionName,
+  from: activeElementIndex,
+  to: nextElementIndex
+});
       };
 
       if (this._element.classList.contains(CLASS_NAME_SLIDE)) {
-***REMOVED***nextElement.classList.add(orderClassName);
-***REMOVED***reflow(nextElement);
-***REMOVED***activeElement.classList.add(directionalClassName);
-***REMOVED***nextElement.classList.add(directionalClassName);
+nextElement.classList.add(orderClassName);
+reflow(nextElement);
+activeElement.classList.add(directionalClassName);
+nextElement.classList.add(directionalClassName);
 
-***REMOVED***const completeCallBack = () => {
-***REMOVED***  nextElement.classList.remove(directionalClassName, orderClassName);
-***REMOVED***  nextElement.classList.add(CLASS_NAME_ACTIVE$2);
-***REMOVED***  activeElement.classList.remove(CLASS_NAME_ACTIVE$2, orderClassName, directionalClassName);
-***REMOVED***  this._isSliding = false;
-***REMOVED***  setTimeout(triggerSlidEvent, 0);
-***REMOVED***};
+const completeCallBack = () => {
+  nextElement.classList.remove(directionalClassName, orderClassName);
+  nextElement.classList.add(CLASS_NAME_ACTIVE$2);
+  activeElement.classList.remove(CLASS_NAME_ACTIVE$2, orderClassName, directionalClassName);
+  this._isSliding = false;
+  setTimeout(triggerSlidEvent, 0);
+};
 
-***REMOVED***this._queueCallback(completeCallBack, activeElement, true);
+this._queueCallback(completeCallBack, activeElement, true);
       } else {
-***REMOVED***activeElement.classList.remove(CLASS_NAME_ACTIVE$2);
-***REMOVED***nextElement.classList.add(CLASS_NAME_ACTIVE$2);
-***REMOVED***this._isSliding = false;
-***REMOVED***triggerSlidEvent();
+activeElement.classList.remove(CLASS_NAME_ACTIVE$2);
+nextElement.classList.add(CLASS_NAME_ACTIVE$2);
+this._isSliding = false;
+triggerSlidEvent();
       }
 
       if (isCycling) {
-***REMOVED***this.cycle();
+this.cycle();
       }
     }
 
     _directionToOrder(direction) {
       if (![DIRECTION_RIGHT, DIRECTION_LEFT].includes(direction)) {
-***REMOVED***return direction;
+return direction;
       }
 
       if (isRTL()) {
-***REMOVED***return direction === DIRECTION_LEFT ? ORDER_PREV : ORDER_NEXT;
+return direction === DIRECTION_LEFT ? ORDER_PREV : ORDER_NEXT;
       }
 
       return direction === DIRECTION_LEFT ? ORDER_NEXT : ORDER_PREV;
@@ -1509,11 +1509,11 @@
 
     _orderToDirection(order) {
       if (![ORDER_NEXT, ORDER_PREV].includes(order)) {
-***REMOVED***return order;
+return order;
       }
 
       if (isRTL()) {
-***REMOVED***return order === ORDER_PREV ? DIRECTION_LEFT : DIRECTION_RIGHT;
+return order === ORDER_PREV ? DIRECTION_LEFT : DIRECTION_RIGHT;
       }
 
       return order === ORDER_PREV ? DIRECTION_RIGHT : DIRECTION_LEFT;
@@ -1523,34 +1523,34 @@
     static carouselInterface(element, config) {
       const data = Carousel.getOrCreateInstance(element, config);
       let {
-***REMOVED***_config
+_config
       } = data;
 
       if (typeof config === 'object') {
-***REMOVED***_config = { ..._config,
-***REMOVED***  ...config
-***REMOVED***};
+_config = { ..._config,
+  ...config
+};
       }
 
       const action = typeof config === 'string' ? config : _config.slide;
 
       if (typeof config === 'number') {
-***REMOVED***data.to(config);
+data.to(config);
       } else if (typeof action === 'string') {
-***REMOVED***if (typeof data[action] === 'undefined') {
-***REMOVED***  throw new TypeError(`No method named "${action}"`);
-***REMOVED***}
+if (typeof data[action] === 'undefined') {
+  throw new TypeError(`No method named "${action}"`);
+}
 
-***REMOVED***data[action]();
+data[action]();
       } else if (_config.interval && _config.ride) {
-***REMOVED***data.pause();
-***REMOVED***data.cycle();
+data.pause();
+data.cycle();
       }
     }
 
     static jQueryInterface(config) {
       return this.each(function () {
-***REMOVED***Carousel.carouselInterface(this, config);
+Carousel.carouselInterface(this, config);
       });
     }
 
@@ -1558,22 +1558,22 @@
       const target = getElementFromSelector(this);
 
       if (!target || !target.classList.contains(CLASS_NAME_CAROUSEL)) {
-***REMOVED***return;
+return;
       }
 
       const config = { ...Manipulator.getDataAttributes(target),
-***REMOVED***...Manipulator.getDataAttributes(this)
+...Manipulator.getDataAttributes(this)
       };
       const slideIndex = this.getAttribute('data-bs-slide-to');
 
       if (slideIndex) {
-***REMOVED***config.interval = false;
+config.interval = false;
       }
 
       Carousel.carouselInterface(target, config);
 
       if (slideIndex) {
-***REMOVED***Carousel.getInstance(target).to(slideIndex);
+Carousel.getInstance(target).to(slideIndex);
       }
 
       event.preventDefault();
@@ -1657,25 +1657,25 @@
       const toggleList = SelectorEngine.find(SELECTOR_DATA_TOGGLE$4);
 
       for (let i = 0, len = toggleList.length; i < len; i++) {
-***REMOVED***const elem = toggleList[i];
-***REMOVED***const selector = getSelectorFromElement(elem);
-***REMOVED***const filterElement = SelectorEngine.find(selector).filter(foundElem => foundElem === this._element);
+const elem = toggleList[i];
+const selector = getSelectorFromElement(elem);
+const filterElement = SelectorEngine.find(selector).filter(foundElem => foundElem === this._element);
 
-***REMOVED***if (selector !== null && filterElement.length) {
-***REMOVED***  this._selector = selector;
+if (selector !== null && filterElement.length) {
+  this._selector = selector;
 
-***REMOVED***  this._triggerArray.push(elem);
-***REMOVED***}
+  this._triggerArray.push(elem);
+}
       }
 
       this._initializeChildren();
 
       if (!this._config.parent) {
-***REMOVED***this._addAriaAndCollapsedClass(this._triggerArray, this._isShown());
+this._addAriaAndCollapsedClass(this._triggerArray, this._isShown());
       }
 
       if (this._config.toggle) {
-***REMOVED***this.toggle();
+this.toggle();
       }
     } // Getters
 
@@ -1691,52 +1691,52 @@
 
     toggle() {
       if (this._isShown()) {
-***REMOVED***this.hide();
+this.hide();
       } else {
-***REMOVED***this.show();
+this.show();
       }
     }
 
     show() {
       if (this._isTransitioning || this._isShown()) {
-***REMOVED***return;
+return;
       }
 
       let actives = [];
       let activesData;
 
       if (this._config.parent) {
-***REMOVED***const children = SelectorEngine.find(`.${CLASS_NAME_COLLAPSE} .${CLASS_NAME_COLLAPSE}`, this._config.parent);
-***REMOVED***actives = SelectorEngine.find(SELECTOR_ACTIVES, this._config.parent).filter(elem => !children.includes(elem)); // remove children if greater depth
+const children = SelectorEngine.find(`.${CLASS_NAME_COLLAPSE} .${CLASS_NAME_COLLAPSE}`, this._config.parent);
+actives = SelectorEngine.find(SELECTOR_ACTIVES, this._config.parent).filter(elem => !children.includes(elem)); // remove children if greater depth
       }
 
       const container = SelectorEngine.findOne(this._selector);
 
       if (actives.length) {
-***REMOVED***const tempActiveData = actives.find(elem => container !== elem);
-***REMOVED***activesData = tempActiveData ? Collapse.getInstance(tempActiveData) : null;
+const tempActiveData = actives.find(elem => container !== elem);
+activesData = tempActiveData ? Collapse.getInstance(tempActiveData) : null;
 
-***REMOVED***if (activesData && activesData._isTransitioning) {
-***REMOVED***  return;
-***REMOVED***}
+if (activesData && activesData._isTransitioning) {
+  return;
+}
       }
 
       const startEvent = EventHandler.trigger(this._element, EVENT_SHOW$5);
 
       if (startEvent.defaultPrevented) {
-***REMOVED***return;
+return;
       }
 
       actives.forEach(elemActive => {
-***REMOVED***if (container !== elemActive) {
-***REMOVED***  Collapse.getOrCreateInstance(elemActive, {
-***REMOVED***    toggle: false
-***REMOVED***  }).hide();
-***REMOVED***}
+if (container !== elemActive) {
+  Collapse.getOrCreateInstance(elemActive, {
+    toggle: false
+  }).hide();
+}
 
-***REMOVED***if (!activesData) {
-***REMOVED***  Data.set(elemActive, DATA_KEY$9, null);
-***REMOVED***}
+if (!activesData) {
+  Data.set(elemActive, DATA_KEY$9, null);
+}
       });
 
       const dimension = this._getDimension();
@@ -1752,14 +1752,14 @@
       this._isTransitioning = true;
 
       const complete = () => {
-***REMOVED***this._isTransitioning = false;
+this._isTransitioning = false;
 
-***REMOVED***this._element.classList.remove(CLASS_NAME_COLLAPSING);
+this._element.classList.remove(CLASS_NAME_COLLAPSING);
 
-***REMOVED***this._element.classList.add(CLASS_NAME_COLLAPSE, CLASS_NAME_SHOW$7);
+this._element.classList.add(CLASS_NAME_COLLAPSE, CLASS_NAME_SHOW$7);
 
-***REMOVED***this._element.style[dimension] = '';
-***REMOVED***EventHandler.trigger(this._element, EVENT_SHOWN$5);
+this._element.style[dimension] = '';
+EventHandler.trigger(this._element, EVENT_SHOWN$5);
       };
 
       const capitalizedDimension = dimension[0].toUpperCase() + dimension.slice(1);
@@ -1772,13 +1772,13 @@
 
     hide() {
       if (this._isTransitioning || !this._isShown()) {
-***REMOVED***return;
+return;
       }
 
       const startEvent = EventHandler.trigger(this._element, EVENT_HIDE$5);
 
       if (startEvent.defaultPrevented) {
-***REMOVED***return;
+return;
       }
 
       const dimension = this._getDimension();
@@ -1793,24 +1793,24 @@
       const triggerArrayLength = this._triggerArray.length;
 
       for (let i = 0; i < triggerArrayLength; i++) {
-***REMOVED***const trigger = this._triggerArray[i];
-***REMOVED***const elem = getElementFromSelector(trigger);
+const trigger = this._triggerArray[i];
+const elem = getElementFromSelector(trigger);
 
-***REMOVED***if (elem && !this._isShown(elem)) {
-***REMOVED***  this._addAriaAndCollapsedClass([trigger], false);
-***REMOVED***}
+if (elem && !this._isShown(elem)) {
+  this._addAriaAndCollapsedClass([trigger], false);
+}
       }
 
       this._isTransitioning = true;
 
       const complete = () => {
-***REMOVED***this._isTransitioning = false;
+this._isTransitioning = false;
 
-***REMOVED***this._element.classList.remove(CLASS_NAME_COLLAPSING);
+this._element.classList.remove(CLASS_NAME_COLLAPSING);
 
-***REMOVED***this._element.classList.add(CLASS_NAME_COLLAPSE);
+this._element.classList.add(CLASS_NAME_COLLAPSE);
 
-***REMOVED***EventHandler.trigger(this._element, EVENT_HIDDEN$5);
+EventHandler.trigger(this._element, EVENT_HIDDEN$5);
       };
 
       this._element.style[dimension] = '';
@@ -1825,8 +1825,8 @@
 
     _getConfig(config) {
       config = { ...Default$9,
-***REMOVED***...Manipulator.getDataAttributes(this._element),
-***REMOVED***...config
+...Manipulator.getDataAttributes(this._element),
+...config
       };
       config.toggle = Boolean(config.toggle); // Coerce string values
 
@@ -1841,53 +1841,53 @@
 
     _initializeChildren() {
       if (!this._config.parent) {
-***REMOVED***return;
+return;
       }
 
       const children = SelectorEngine.find(`.${CLASS_NAME_COLLAPSE} .${CLASS_NAME_COLLAPSE}`, this._config.parent);
       SelectorEngine.find(SELECTOR_DATA_TOGGLE$4, this._config.parent).filter(elem => !children.includes(elem)).forEach(element => {
-***REMOVED***const selected = getElementFromSelector(element);
+const selected = getElementFromSelector(element);
 
-***REMOVED***if (selected) {
-***REMOVED***  this._addAriaAndCollapsedClass([element], this._isShown(selected));
-***REMOVED***}
+if (selected) {
+  this._addAriaAndCollapsedClass([element], this._isShown(selected));
+}
       });
     }
 
     _addAriaAndCollapsedClass(triggerArray, isOpen) {
       if (!triggerArray.length) {
-***REMOVED***return;
+return;
       }
 
       triggerArray.forEach(elem => {
-***REMOVED***if (isOpen) {
-***REMOVED***  elem.classList.remove(CLASS_NAME_COLLAPSED);
-***REMOVED***} else {
-***REMOVED***  elem.classList.add(CLASS_NAME_COLLAPSED);
-***REMOVED***}
+if (isOpen) {
+  elem.classList.remove(CLASS_NAME_COLLAPSED);
+} else {
+  elem.classList.add(CLASS_NAME_COLLAPSED);
+}
 
-***REMOVED***elem.setAttribute('aria-expanded', isOpen);
+elem.setAttribute('aria-expanded', isOpen);
       });
     } // Static
 
 
     static jQueryInterface(config) {
       return this.each(function () {
-***REMOVED***const _config = {};
+const _config = {};
 
-***REMOVED***if (typeof config === 'string' && /show|hide/.test(config)) {
-***REMOVED***  _config.toggle = false;
-***REMOVED***}
+if (typeof config === 'string' && /show|hide/.test(config)) {
+  _config.toggle = false;
+}
 
-***REMOVED***const data = Collapse.getOrCreateInstance(this, _config);
+const data = Collapse.getOrCreateInstance(this, _config);
 
-***REMOVED***if (typeof config === 'string') {
-***REMOVED***  if (typeof data[config] === 'undefined') {
-***REMOVED***    throw new TypeError(`No method named "${config}"`);
-***REMOVED***  }
+if (typeof config === 'string') {
+  if (typeof data[config] === 'undefined') {
+    throw new TypeError(`No method named "${config}"`);
+  }
 
-***REMOVED***  data[config]();
-***REMOVED***}
+  data[config]();
+}
       });
     }
 
@@ -1909,7 +1909,7 @@
     const selectorElements = SelectorEngine.find(selector);
     selectorElements.forEach(element => {
       Collapse.getOrCreateInstance(element, {
-***REMOVED***toggle: false
+toggle: false
       }).toggle();
     });
   });
@@ -2001,7 +2001,7 @@
       var element = state.elements[name]; // arrow is optional + virtual elements
 
       if (!isHTMLElement(element) || !getNodeName(element)) {
-***REMOVED***return;
+return;
       } // Flow doesn't support to extend this property, but it's the most
       // effective way to apply styles to an HTMLElement
       // $FlowFixMe[cannot-write]
@@ -2009,13 +2009,13 @@
 
       Object.assign(element.style, style);
       Object.keys(attributes).forEach(function (name) {
-***REMOVED***var value = attributes[name];
+var value = attributes[name];
 
-***REMOVED***if (value === false) {
-***REMOVED***  element.removeAttribute(name);
-***REMOVED***} else {
-***REMOVED***  element.setAttribute(name, value === true ? '' : value);
-***REMOVED***}
+if (value === false) {
+  element.removeAttribute(name);
+} else {
+  element.setAttribute(name, value === true ? '' : value);
+}
       });
     });
   }
@@ -2024,13 +2024,13 @@
     var state = _ref2.state;
     var initialStyles = {
       popper: {
-***REMOVED***position: state.options.strategy,
-***REMOVED***left: '0',
-***REMOVED***top: '0',
-***REMOVED***margin: '0'
+position: state.options.strategy,
+left: '0',
+top: '0',
+margin: '0'
       },
       arrow: {
-***REMOVED***position: 'absolute'
+position: 'absolute'
       },
       reference: {}
     };
@@ -2043,23 +2043,23 @@
 
     return function () {
       Object.keys(state.elements).forEach(function (name) {
-***REMOVED***var element = state.elements[name];
-***REMOVED***var attributes = state.attributes[name] || {};
-***REMOVED***var styleProperties = Object.keys(state.styles.hasOwnProperty(name) ? state.styles[name] : initialStyles[name]); // Set all values to an empty string to unset them
+var element = state.elements[name];
+var attributes = state.attributes[name] || {};
+var styleProperties = Object.keys(state.styles.hasOwnProperty(name) ? state.styles[name] : initialStyles[name]); // Set all values to an empty string to unset them
 
-***REMOVED***var style = styleProperties.reduce(function (style, property) {
-***REMOVED***  style[property] = '';
-***REMOVED***  return style;
-***REMOVED***}, {}); // arrow is optional + virtual elements
+var style = styleProperties.reduce(function (style, property) {
+  style[property] = '';
+  return style;
+}, {}); // arrow is optional + virtual elements
 
-***REMOVED***if (!isHTMLElement(element) || !getNodeName(element)) {
-***REMOVED***  return;
-***REMOVED***}
+if (!isHTMLElement(element) || !getNodeName(element)) {
+  return;
+}
 
-***REMOVED***Object.assign(element.style, style);
-***REMOVED***Object.keys(attributes).forEach(function (attribute) {
-***REMOVED***  element.removeAttribute(attribute);
-***REMOVED***});
+Object.assign(element.style, style);
+Object.keys(attributes).forEach(function (attribute) {
+  element.removeAttribute(attribute);
+});
       });
     };
   } // eslint-disable-next-line import/no-unused-modules
@@ -2138,16 +2138,16 @@
       return true;
     } // then fallback to custom implementation with Shadow DOM support
     else if (rootNode && isShadowRoot(rootNode)) {
-***REMOVED***var next = child;
+var next = child;
 
-***REMOVED***do {
-***REMOVED***  if (next && parent.isSameNode(next)) {
-***REMOVED***    return true;
-***REMOVED***  } // $FlowFixMe[prop-missing]: need a better way to handle this...
+do {
+  if (next && parent.isSameNode(next)) {
+    return true;
+  } // $FlowFixMe[prop-missing]: need a better way to handle this...
 
 
-***REMOVED***  next = next.parentNode || next.host;
-***REMOVED***} while (next);
+  next = next.parentNode || next.host;
+} while (next);
       } // Give up, the result is false
 
 
@@ -2205,7 +2205,7 @@
       var elementCss = getComputedStyle$1(element);
 
       if (elementCss.position === 'fixed') {
-***REMOVED***return null;
+return null;
       }
     }
 
@@ -2217,9 +2217,9 @@
       // https://developer.mozilla.org/en-US/docs/Web/CSS/Containing_block#identifying_the_containing_block
 
       if (css.transform !== 'none' || css.perspective !== 'none' || css.contain === 'paint' || ['transform', 'perspective'].indexOf(css.willChange) !== -1 || isFirefox && css.willChange === 'filter' || isFirefox && css.filter && css.filter !== 'none') {
-***REMOVED***return currentNode;
+return currentNode;
       } else {
-***REMOVED***currentNode = currentNode.parentNode;
+currentNode = currentNode.parentNode;
       }
     }
 
@@ -2286,8 +2286,8 @@
     var _state$modifiersData$;
 
     var state = _ref.state,
-***REMOVED***name = _ref.name,
-***REMOVED***options = _ref.options;
+name = _ref.name,
+options = _ref.options;
     var arrowElement = state.elements.arrow;
     var popperOffsets = state.modifiersData.popperOffsets;
     var basePlacement = getBasePlacement(state.placement);
@@ -2321,9 +2321,9 @@
 
   function effect$1(_ref2) {
     var state = _ref2.state,
-***REMOVED***options = _ref2.options;
+options = _ref2.options;
     var _options$element = options.element,
-***REMOVED***arrowElement = _options$element === void 0 ? '[data-popper-arrow]' : _options$element;
+arrowElement = _options$element === void 0 ? '[data-popper-arrow]' : _options$element;
 
     if (arrowElement == null) {
       return;
@@ -2334,7 +2334,7 @@
       arrowElement = state.elements.popper.querySelector(arrowElement);
 
       if (!arrowElement) {
-***REMOVED***return;
+return;
       }
     }
 
@@ -2368,7 +2368,7 @@
 
   function roundOffsetsByDPR(_ref) {
     var x = _ref.x,
-***REMOVED***y = _ref.y;
+y = _ref.y;
     var win = window;
     var dpr = win.devicePixelRatio || 1;
     return {
@@ -2381,19 +2381,19 @@
     var _Object$assign2;
 
     var popper = _ref2.popper,
-***REMOVED***popperRect = _ref2.popperRect,
-***REMOVED***placement = _ref2.placement,
-***REMOVED***offsets = _ref2.offsets,
-***REMOVED***position = _ref2.position,
-***REMOVED***gpuAcceleration = _ref2.gpuAcceleration,
-***REMOVED***adaptive = _ref2.adaptive,
-***REMOVED***roundOffsets = _ref2.roundOffsets;
+popperRect = _ref2.popperRect,
+placement = _ref2.placement,
+offsets = _ref2.offsets,
+position = _ref2.position,
+gpuAcceleration = _ref2.gpuAcceleration,
+adaptive = _ref2.adaptive,
+roundOffsets = _ref2.roundOffsets;
 
     var _ref3 = roundOffsets === true ? roundOffsetsByDPR(offsets) : typeof roundOffsets === 'function' ? roundOffsets(offsets) : offsets,
-***REMOVED***_ref3$x = _ref3.x,
-***REMOVED***x = _ref3$x === void 0 ? 0 : _ref3$x,
-***REMOVED***_ref3$y = _ref3.y,
-***REMOVED***y = _ref3$y === void 0 ? 0 : _ref3$y;
+_ref3$x = _ref3.x,
+x = _ref3$x === void 0 ? 0 : _ref3$x,
+_ref3$y = _ref3.y,
+y = _ref3$y === void 0 ? 0 : _ref3$y;
 
     var hasX = offsets.hasOwnProperty('x');
     var hasY = offsets.hasOwnProperty('y');
@@ -2407,29 +2407,29 @@
       var widthProp = 'clientWidth';
 
       if (offsetParent === getWindow(popper)) {
-***REMOVED***offsetParent = getDocumentElement(popper);
+offsetParent = getDocumentElement(popper);
 
-***REMOVED***if (getComputedStyle$1(offsetParent).position !== 'static') {
-***REMOVED***  heightProp = 'scrollHeight';
-***REMOVED***  widthProp = 'scrollWidth';
-***REMOVED***}
+if (getComputedStyle$1(offsetParent).position !== 'static') {
+  heightProp = 'scrollHeight';
+  widthProp = 'scrollWidth';
+}
       } // $FlowFixMe[incompatible-cast]: force type refinement, we compare offsetParent with window above, but Flow doesn't detect it
 
 
       offsetParent = offsetParent;
 
       if (placement === top) {
-***REMOVED***sideY = bottom; // $FlowFixMe[prop-missing]
+sideY = bottom; // $FlowFixMe[prop-missing]
 
-***REMOVED***y -= offsetParent[heightProp] - popperRect.height;
-***REMOVED***y *= gpuAcceleration ? 1 : -1;
+y -= offsetParent[heightProp] - popperRect.height;
+y *= gpuAcceleration ? 1 : -1;
       }
 
       if (placement === left) {
-***REMOVED***sideX = right; // $FlowFixMe[prop-missing]
+sideX = right; // $FlowFixMe[prop-missing]
 
-***REMOVED***x -= offsetParent[widthProp] - popperRect.width;
-***REMOVED***x *= gpuAcceleration ? 1 : -1;
+x -= offsetParent[widthProp] - popperRect.width;
+x *= gpuAcceleration ? 1 : -1;
       }
     }
 
@@ -2448,13 +2448,13 @@
 
   function computeStyles(_ref4) {
     var state = _ref4.state,
-***REMOVED***options = _ref4.options;
+options = _ref4.options;
     var _options$gpuAccelerat = options.gpuAcceleration,
-***REMOVED***gpuAcceleration = _options$gpuAccelerat === void 0 ? true : _options$gpuAccelerat,
-***REMOVED***_options$adaptive = options.adaptive,
-***REMOVED***adaptive = _options$adaptive === void 0 ? true : _options$adaptive,
-***REMOVED***_options$roundOffsets = options.roundOffsets,
-***REMOVED***roundOffsets = _options$roundOffsets === void 0 ? true : _options$roundOffsets;
+gpuAcceleration = _options$gpuAccelerat === void 0 ? true : _options$gpuAccelerat,
+_options$adaptive = options.adaptive,
+adaptive = _options$adaptive === void 0 ? true : _options$adaptive,
+_options$roundOffsets = options.roundOffsets,
+roundOffsets = _options$roundOffsets === void 0 ? true : _options$roundOffsets;
 
     var commonStyles = {
       placement: getBasePlacement(state.placement),
@@ -2465,19 +2465,19 @@
 
     if (state.modifiersData.popperOffsets != null) {
       state.styles.popper = Object.assign({}, state.styles.popper, mapToStyles(Object.assign({}, commonStyles, {
-***REMOVED***offsets: state.modifiersData.popperOffsets,
-***REMOVED***position: state.options.strategy,
-***REMOVED***adaptive: adaptive,
-***REMOVED***roundOffsets: roundOffsets
+offsets: state.modifiersData.popperOffsets,
+position: state.options.strategy,
+adaptive: adaptive,
+roundOffsets: roundOffsets
       })));
     }
 
     if (state.modifiersData.arrow != null) {
       state.styles.arrow = Object.assign({}, state.styles.arrow, mapToStyles(Object.assign({}, commonStyles, {
-***REMOVED***offsets: state.modifiersData.arrow,
-***REMOVED***position: 'absolute',
-***REMOVED***adaptive: false,
-***REMOVED***roundOffsets: roundOffsets
+offsets: state.modifiersData.arrow,
+position: 'absolute',
+adaptive: false,
+roundOffsets: roundOffsets
       })));
     }
 
@@ -2501,18 +2501,18 @@
 
   function effect(_ref) {
     var state = _ref.state,
-***REMOVED***instance = _ref.instance,
-***REMOVED***options = _ref.options;
+instance = _ref.instance,
+options = _ref.options;
     var _options$scroll = options.scroll,
-***REMOVED***scroll = _options$scroll === void 0 ? true : _options$scroll,
-***REMOVED***_options$resize = options.resize,
-***REMOVED***resize = _options$resize === void 0 ? true : _options$resize;
+scroll = _options$scroll === void 0 ? true : _options$scroll,
+_options$resize = options.resize,
+resize = _options$resize === void 0 ? true : _options$resize;
     var window = getWindow(state.elements.popper);
     var scrollParents = [].concat(state.scrollParents.reference, state.scrollParents.popper);
 
     if (scroll) {
       scrollParents.forEach(function (scrollParent) {
-***REMOVED***scrollParent.addEventListener('scroll', instance.update, passive);
+scrollParent.addEventListener('scroll', instance.update, passive);
       });
     }
 
@@ -2522,13 +2522,13 @@
 
     return function () {
       if (scroll) {
-***REMOVED***scrollParents.forEach(function (scrollParent) {
-***REMOVED***  scrollParent.removeEventListener('scroll', instance.update, passive);
-***REMOVED***});
+scrollParents.forEach(function (scrollParent) {
+  scrollParent.removeEventListener('scroll', instance.update, passive);
+});
       }
 
       if (resize) {
-***REMOVED***window.removeEventListener('resize', instance.update, passive);
+window.removeEventListener('resize', instance.update, passive);
       }
     };
   } // eslint-disable-next-line import/no-unused-modules
@@ -2611,8 +2611,8 @@
       // Fallback here: "Not Safari" userAgent
 
       if (!/^((?!chrome|android).)*safari/i.test(navigator.userAgent)) {
-***REMOVED***x = visualViewport.offsetLeft;
-***REMOVED***y = visualViewport.offsetTop;
+x = visualViewport.offsetLeft;
+y = visualViewport.offsetTop;
       }
     }
 
@@ -2652,9 +2652,9 @@
   function isScrollParent(element) {
     // Firefox wants us to check `-x` and `-y` variations as well
     var _getComputedStyle = getComputedStyle$1(element),
-***REMOVED***overflow = _getComputedStyle.overflow,
-***REMOVED***overflowX = _getComputedStyle.overflowX,
-***REMOVED***overflowY = _getComputedStyle.overflowY;
+overflow = _getComputedStyle.overflow,
+overflowX = _getComputedStyle.overflowX,
+overflowY = _getComputedStyle.overflowY;
 
     return /auto|scroll|overlay|hidden/.test(overflow + overflowY + overflowX);
   }
@@ -2766,8 +2766,8 @@
 
   function computeOffsets(_ref) {
     var reference = _ref.reference,
-***REMOVED***element = _ref.element,
-***REMOVED***placement = _ref.placement;
+element = _ref.element,
+placement = _ref.placement;
     var basePlacement = placement ? getBasePlacement(placement) : null;
     var variation = placement ? getVariation(placement) : null;
     var commonX = reference.x + reference.width / 2 - element.width / 2;
@@ -2776,38 +2776,38 @@
 
     switch (basePlacement) {
       case top:
-***REMOVED***offsets = {
-***REMOVED***  x: commonX,
-***REMOVED***  y: reference.y - element.height
-***REMOVED***};
-***REMOVED***break;
+offsets = {
+  x: commonX,
+  y: reference.y - element.height
+};
+break;
 
       case bottom:
-***REMOVED***offsets = {
-***REMOVED***  x: commonX,
-***REMOVED***  y: reference.y + reference.height
-***REMOVED***};
-***REMOVED***break;
+offsets = {
+  x: commonX,
+  y: reference.y + reference.height
+};
+break;
 
       case right:
-***REMOVED***offsets = {
-***REMOVED***  x: reference.x + reference.width,
-***REMOVED***  y: commonY
-***REMOVED***};
-***REMOVED***break;
+offsets = {
+  x: reference.x + reference.width,
+  y: commonY
+};
+break;
 
       case left:
-***REMOVED***offsets = {
-***REMOVED***  x: reference.x - element.width,
-***REMOVED***  y: commonY
-***REMOVED***};
-***REMOVED***break;
+offsets = {
+  x: reference.x - element.width,
+  y: commonY
+};
+break;
 
       default:
-***REMOVED***offsets = {
-***REMOVED***  x: reference.x,
-***REMOVED***  y: reference.y
-***REMOVED***};
+offsets = {
+  x: reference.x,
+  y: reference.y
+};
     }
 
     var mainAxis = basePlacement ? getMainAxisFromPlacement(basePlacement) : null;
@@ -2816,13 +2816,13 @@
       var len = mainAxis === 'y' ? 'height' : 'width';
 
       switch (variation) {
-***REMOVED***case start:
-***REMOVED***  offsets[mainAxis] = offsets[mainAxis] - (reference[len] / 2 - element[len] / 2);
-***REMOVED***  break;
+case start:
+  offsets[mainAxis] = offsets[mainAxis] - (reference[len] / 2 - element[len] / 2);
+  break;
 
-***REMOVED***case end:
-***REMOVED***  offsets[mainAxis] = offsets[mainAxis] + (reference[len] / 2 - element[len] / 2);
-***REMOVED***  break;
+case end:
+  offsets[mainAxis] = offsets[mainAxis] + (reference[len] / 2 - element[len] / 2);
+  break;
       }
     }
 
@@ -2835,18 +2835,18 @@
     }
 
     var _options = options,
-***REMOVED***_options$placement = _options.placement,
-***REMOVED***placement = _options$placement === void 0 ? state.placement : _options$placement,
-***REMOVED***_options$boundary = _options.boundary,
-***REMOVED***boundary = _options$boundary === void 0 ? clippingParents : _options$boundary,
-***REMOVED***_options$rootBoundary = _options.rootBoundary,
-***REMOVED***rootBoundary = _options$rootBoundary === void 0 ? viewport : _options$rootBoundary,
-***REMOVED***_options$elementConte = _options.elementContext,
-***REMOVED***elementContext = _options$elementConte === void 0 ? popper : _options$elementConte,
-***REMOVED***_options$altBoundary = _options.altBoundary,
-***REMOVED***altBoundary = _options$altBoundary === void 0 ? false : _options$altBoundary,
-***REMOVED***_options$padding = _options.padding,
-***REMOVED***padding = _options$padding === void 0 ? 0 : _options$padding;
+_options$placement = _options.placement,
+placement = _options$placement === void 0 ? state.placement : _options$placement,
+_options$boundary = _options.boundary,
+boundary = _options$boundary === void 0 ? clippingParents : _options$boundary,
+_options$rootBoundary = _options.rootBoundary,
+rootBoundary = _options$rootBoundary === void 0 ? viewport : _options$rootBoundary,
+_options$elementConte = _options.elementContext,
+elementContext = _options$elementConte === void 0 ? popper : _options$elementConte,
+_options$altBoundary = _options.altBoundary,
+altBoundary = _options$altBoundary === void 0 ? false : _options$altBoundary,
+_options$padding = _options.padding,
+padding = _options$padding === void 0 ? 0 : _options$padding;
     var paddingObject = mergePaddingObject(typeof padding !== 'number' ? padding : expandToHashMap(padding, basePlacements));
     var altContext = elementContext === popper ? reference : popper;
     var referenceElement = state.elements.reference;
@@ -2875,9 +2875,9 @@
     if (elementContext === popper && offsetData) {
       var offset = offsetData[placement];
       Object.keys(overflowOffsets).forEach(function (key) {
-***REMOVED***var multiply = [right, bottom].indexOf(key) >= 0 ? 1 : -1;
-***REMOVED***var axis = [top, bottom].indexOf(key) >= 0 ? 'y' : 'x';
-***REMOVED***overflowOffsets[key] += offset[axis] * multiply;
+var multiply = [right, bottom].indexOf(key) >= 0 ? 1 : -1;
+var axis = [top, bottom].indexOf(key) >= 0 ? 'y' : 'x';
+overflowOffsets[key] += offset[axis] * multiply;
       });
     }
 
@@ -2890,13 +2890,13 @@
     }
 
     var _options = options,
-***REMOVED***placement = _options.placement,
-***REMOVED***boundary = _options.boundary,
-***REMOVED***rootBoundary = _options.rootBoundary,
-***REMOVED***padding = _options.padding,
-***REMOVED***flipVariations = _options.flipVariations,
-***REMOVED***_options$allowedAutoP = _options.allowedAutoPlacements,
-***REMOVED***allowedAutoPlacements = _options$allowedAutoP === void 0 ? placements : _options$allowedAutoP;
+placement = _options.placement,
+boundary = _options.boundary,
+rootBoundary = _options.rootBoundary,
+padding = _options.padding,
+flipVariations = _options.flipVariations,
+_options$allowedAutoP = _options.allowedAutoPlacements,
+allowedAutoPlacements = _options$allowedAutoP === void 0 ? placements : _options$allowedAutoP;
     var variation = getVariation(placement);
     var placements$1 = variation ? flipVariations ? variationPlacements : variationPlacements.filter(function (placement) {
       return getVariation(placement) === variation;
@@ -2912,10 +2912,10 @@
 
     var overflows = allowedPlacements.reduce(function (acc, placement) {
       acc[placement] = detectOverflow(state, {
-***REMOVED***placement: placement,
-***REMOVED***boundary: boundary,
-***REMOVED***rootBoundary: rootBoundary,
-***REMOVED***padding: padding
+placement: placement,
+boundary: boundary,
+rootBoundary: rootBoundary,
+padding: padding
       })[getBasePlacement(placement)];
       return acc;
     }, {});
@@ -2935,37 +2935,37 @@
 
   function flip(_ref) {
     var state = _ref.state,
-***REMOVED***options = _ref.options,
-***REMOVED***name = _ref.name;
+options = _ref.options,
+name = _ref.name;
 
     if (state.modifiersData[name]._skip) {
       return;
     }
 
     var _options$mainAxis = options.mainAxis,
-***REMOVED***checkMainAxis = _options$mainAxis === void 0 ? true : _options$mainAxis,
-***REMOVED***_options$altAxis = options.altAxis,
-***REMOVED***checkAltAxis = _options$altAxis === void 0 ? true : _options$altAxis,
-***REMOVED***specifiedFallbackPlacements = options.fallbackPlacements,
-***REMOVED***padding = options.padding,
-***REMOVED***boundary = options.boundary,
-***REMOVED***rootBoundary = options.rootBoundary,
-***REMOVED***altBoundary = options.altBoundary,
-***REMOVED***_options$flipVariatio = options.flipVariations,
-***REMOVED***flipVariations = _options$flipVariatio === void 0 ? true : _options$flipVariatio,
-***REMOVED***allowedAutoPlacements = options.allowedAutoPlacements;
+checkMainAxis = _options$mainAxis === void 0 ? true : _options$mainAxis,
+_options$altAxis = options.altAxis,
+checkAltAxis = _options$altAxis === void 0 ? true : _options$altAxis,
+specifiedFallbackPlacements = options.fallbackPlacements,
+padding = options.padding,
+boundary = options.boundary,
+rootBoundary = options.rootBoundary,
+altBoundary = options.altBoundary,
+_options$flipVariatio = options.flipVariations,
+flipVariations = _options$flipVariatio === void 0 ? true : _options$flipVariatio,
+allowedAutoPlacements = options.allowedAutoPlacements;
     var preferredPlacement = state.options.placement;
     var basePlacement = getBasePlacement(preferredPlacement);
     var isBasePlacement = basePlacement === preferredPlacement;
     var fallbackPlacements = specifiedFallbackPlacements || (isBasePlacement || !flipVariations ? [getOppositePlacement(preferredPlacement)] : getExpandedFallbackPlacements(preferredPlacement));
     var placements = [preferredPlacement].concat(fallbackPlacements).reduce(function (acc, placement) {
       return acc.concat(getBasePlacement(placement) === auto ? computeAutoPlacement(state, {
-***REMOVED***placement: placement,
-***REMOVED***boundary: boundary,
-***REMOVED***rootBoundary: rootBoundary,
-***REMOVED***padding: padding,
-***REMOVED***flipVariations: flipVariations,
-***REMOVED***allowedAutoPlacements: allowedAutoPlacements
+placement: placement,
+boundary: boundary,
+rootBoundary: rootBoundary,
+padding: padding,
+flipVariations: flipVariations,
+allowedAutoPlacements: allowedAutoPlacements
       }) : placement);
     }, []);
     var referenceRect = state.rects.reference;
@@ -2983,35 +2983,35 @@
       var isVertical = [top, bottom].indexOf(_basePlacement) >= 0;
       var len = isVertical ? 'width' : 'height';
       var overflow = detectOverflow(state, {
-***REMOVED***placement: placement,
-***REMOVED***boundary: boundary,
-***REMOVED***rootBoundary: rootBoundary,
-***REMOVED***altBoundary: altBoundary,
-***REMOVED***padding: padding
+placement: placement,
+boundary: boundary,
+rootBoundary: rootBoundary,
+altBoundary: altBoundary,
+padding: padding
       });
       var mainVariationSide = isVertical ? isStartVariation ? right : left : isStartVariation ? bottom : top;
 
       if (referenceRect[len] > popperRect[len]) {
-***REMOVED***mainVariationSide = getOppositePlacement(mainVariationSide);
+mainVariationSide = getOppositePlacement(mainVariationSide);
       }
 
       var altVariationSide = getOppositePlacement(mainVariationSide);
       var checks = [];
 
       if (checkMainAxis) {
-***REMOVED***checks.push(overflow[_basePlacement] <= 0);
+checks.push(overflow[_basePlacement] <= 0);
       }
 
       if (checkAltAxis) {
-***REMOVED***checks.push(overflow[mainVariationSide] <= 0, overflow[altVariationSide] <= 0);
+checks.push(overflow[mainVariationSide] <= 0, overflow[altVariationSide] <= 0);
       }
 
       if (checks.every(function (check) {
-***REMOVED***return check;
+return check;
       })) {
-***REMOVED***firstFittingPlacement = placement;
-***REMOVED***makeFallbackChecks = false;
-***REMOVED***break;
+firstFittingPlacement = placement;
+makeFallbackChecks = false;
+break;
       }
 
       checksMap.set(placement, checks);
@@ -3022,26 +3022,26 @@
       var numberOfChecks = flipVariations ? 3 : 1;
 
       var _loop = function _loop(_i) {
-***REMOVED***var fittingPlacement = placements.find(function (placement) {
-***REMOVED***  var checks = checksMap.get(placement);
+var fittingPlacement = placements.find(function (placement) {
+  var checks = checksMap.get(placement);
 
-***REMOVED***  if (checks) {
-***REMOVED***    return checks.slice(0, _i).every(function (check) {
-***REMOVED***      return check;
-***REMOVED***    });
-***REMOVED***  }
-***REMOVED***});
+  if (checks) {
+    return checks.slice(0, _i).every(function (check) {
+      return check;
+    });
+  }
+});
 
-***REMOVED***if (fittingPlacement) {
-***REMOVED***  firstFittingPlacement = fittingPlacement;
-***REMOVED***  return "break";
-***REMOVED***}
+if (fittingPlacement) {
+  firstFittingPlacement = fittingPlacement;
+  return "break";
+}
       };
 
       for (var _i = numberOfChecks; _i > 0; _i--) {
-***REMOVED***var _ret = _loop(_i);
+var _ret = _loop(_i);
 
-***REMOVED***if (_ret === "break") break;
+if (_ret === "break") break;
       }
     }
 
@@ -3067,8 +3067,8 @@
   function getSideOffsets(overflow, rect, preventedOffsets) {
     if (preventedOffsets === void 0) {
       preventedOffsets = {
-***REMOVED***x: 0,
-***REMOVED***y: 0
+x: 0,
+y: 0
       };
     }
 
@@ -3088,7 +3088,7 @@
 
   function hide(_ref) {
     var state = _ref.state,
-***REMOVED***name = _ref.name;
+name = _ref.name;
     var referenceRect = state.rects.reference;
     var popperRect = state.rects.popper;
     var preventedOffsets = state.modifiersData.preventOverflow;
@@ -3130,8 +3130,8 @@
     var _ref = typeof offset === 'function' ? offset(Object.assign({}, rects, {
       placement: placement
     })) : offset,
-***REMOVED***skidding = _ref[0],
-***REMOVED***distance = _ref[1];
+skidding = _ref[0],
+distance = _ref[1];
 
     skidding = skidding || 0;
     distance = (distance || 0) * invertDistance;
@@ -3146,17 +3146,17 @@
 
   function offset(_ref2) {
     var state = _ref2.state,
-***REMOVED***options = _ref2.options,
-***REMOVED***name = _ref2.name;
+options = _ref2.options,
+name = _ref2.name;
     var _options$offset = options.offset,
-***REMOVED***offset = _options$offset === void 0 ? [0, 0] : _options$offset;
+offset = _options$offset === void 0 ? [0, 0] : _options$offset;
     var data = placements.reduce(function (acc, placement) {
       acc[placement] = distanceAndSkiddingToXY(placement, state.rects, offset);
       return acc;
     }, {});
     var _data$state$placement = data[state.placement],
-***REMOVED***x = _data$state$placement.x,
-***REMOVED***y = _data$state$placement.y;
+x = _data$state$placement.x,
+y = _data$state$placement.y;
 
     if (state.modifiersData.popperOffsets != null) {
       state.modifiersData.popperOffsets.x += x;
@@ -3177,7 +3177,7 @@
 
   function popperOffsets(_ref) {
     var state = _ref.state,
-***REMOVED***name = _ref.name;
+name = _ref.name;
     // Offsets are the actual position the popper needs to have to be
     // properly positioned near its reference element
     // This is the most basic placement, and will be adjusted by
@@ -3205,20 +3205,20 @@
 
   function preventOverflow(_ref) {
     var state = _ref.state,
-***REMOVED***options = _ref.options,
-***REMOVED***name = _ref.name;
+options = _ref.options,
+name = _ref.name;
     var _options$mainAxis = options.mainAxis,
-***REMOVED***checkMainAxis = _options$mainAxis === void 0 ? true : _options$mainAxis,
-***REMOVED***_options$altAxis = options.altAxis,
-***REMOVED***checkAltAxis = _options$altAxis === void 0 ? false : _options$altAxis,
-***REMOVED***boundary = options.boundary,
-***REMOVED***rootBoundary = options.rootBoundary,
-***REMOVED***altBoundary = options.altBoundary,
-***REMOVED***padding = options.padding,
-***REMOVED***_options$tether = options.tether,
-***REMOVED***tether = _options$tether === void 0 ? true : _options$tether,
-***REMOVED***_options$tetherOffset = options.tetherOffset,
-***REMOVED***tetherOffset = _options$tetherOffset === void 0 ? 0 : _options$tetherOffset;
+checkMainAxis = _options$mainAxis === void 0 ? true : _options$mainAxis,
+_options$altAxis = options.altAxis,
+checkAltAxis = _options$altAxis === void 0 ? false : _options$altAxis,
+boundary = options.boundary,
+rootBoundary = options.rootBoundary,
+altBoundary = options.altBoundary,
+padding = options.padding,
+_options$tether = options.tether,
+tether = _options$tether === void 0 ? true : _options$tether,
+_options$tetherOffset = options.tetherOffset,
+tetherOffset = _options$tetherOffset === void 0 ? 0 : _options$tetherOffset;
     var overflow = detectOverflow(state, {
       boundary: boundary,
       rootBoundary: rootBoundary,
@@ -3259,8 +3259,8 @@
 
       var arrowElement = state.elements.arrow;
       var arrowRect = tether && arrowElement ? getLayoutRect(arrowElement) : {
-***REMOVED***width: 0,
-***REMOVED***height: 0
+width: 0,
+height: 0
       };
       var arrowPaddingObject = state.modifiersData['arrow#persistent'] ? state.modifiersData['arrow#persistent'].padding : getFreshSideObject();
       var arrowPaddingMin = arrowPaddingObject[mainSide];
@@ -3280,26 +3280,26 @@
       var tetherMax = popperOffsets[mainAxis] + maxOffset - offsetModifierValue;
 
       if (checkMainAxis) {
-***REMOVED***var preventedOffset = within(tether ? min(min$1, tetherMin) : min$1, offset, tether ? max(max$1, tetherMax) : max$1);
-***REMOVED***popperOffsets[mainAxis] = preventedOffset;
-***REMOVED***data[mainAxis] = preventedOffset - offset;
+var preventedOffset = within(tether ? min(min$1, tetherMin) : min$1, offset, tether ? max(max$1, tetherMax) : max$1);
+popperOffsets[mainAxis] = preventedOffset;
+data[mainAxis] = preventedOffset - offset;
       }
 
       if (checkAltAxis) {
-***REMOVED***var _mainSide = mainAxis === 'x' ? top : left;
+var _mainSide = mainAxis === 'x' ? top : left;
 
-***REMOVED***var _altSide = mainAxis === 'x' ? bottom : right;
+var _altSide = mainAxis === 'x' ? bottom : right;
 
-***REMOVED***var _offset = popperOffsets[altAxis];
+var _offset = popperOffsets[altAxis];
 
-***REMOVED***var _min = _offset + overflow[_mainSide];
+var _min = _offset + overflow[_mainSide];
 
-***REMOVED***var _max = _offset - overflow[_altSide];
+var _max = _offset - overflow[_altSide];
 
-***REMOVED***var _preventedOffset = within(tether ? min(_min, tetherMin) : _min, _offset, tether ? max(_max, tetherMax) : _max);
+var _preventedOffset = within(tether ? min(_min, tetherMin) : _min, _offset, tether ? max(_max, tetherMax) : _max);
 
-***REMOVED***popperOffsets[altAxis] = _preventedOffset;
-***REMOVED***data[altAxis] = _preventedOffset - _offset;
+popperOffsets[altAxis] = _preventedOffset;
+data[altAxis] = _preventedOffset - _offset;
       }
     }
 
@@ -3360,15 +3360,15 @@
     if (isOffsetParentAnElement || !isOffsetParentAnElement && !isFixed) {
       if (getNodeName(offsetParent) !== 'body' || // https://github.com/popperjs/popper-core/issues/1078
       isScrollParent(documentElement)) {
-***REMOVED***scroll = getNodeScroll(offsetParent);
+scroll = getNodeScroll(offsetParent);
       }
 
       if (isHTMLElement(offsetParent)) {
-***REMOVED***offsets = getBoundingClientRect(offsetParent, true);
-***REMOVED***offsets.x += offsetParent.clientLeft;
-***REMOVED***offsets.y += offsetParent.clientTop;
+offsets = getBoundingClientRect(offsetParent, true);
+offsets.x += offsetParent.clientLeft;
+offsets.y += offsetParent.clientTop;
       } else if (documentElement) {
-***REMOVED***offsets.x = getWindowScrollBarX(documentElement);
+offsets.x = getWindowScrollBarX(documentElement);
       }
     }
 
@@ -3392,21 +3392,21 @@
       visited.add(modifier.name);
       var requires = [].concat(modifier.requires || [], modifier.requiresIfExists || []);
       requires.forEach(function (dep) {
-***REMOVED***if (!visited.has(dep)) {
-***REMOVED***  var depModifier = map.get(dep);
+if (!visited.has(dep)) {
+  var depModifier = map.get(dep);
 
-***REMOVED***  if (depModifier) {
-***REMOVED***    sort(depModifier);
-***REMOVED***  }
-***REMOVED***}
+  if (depModifier) {
+    sort(depModifier);
+  }
+}
       });
       result.push(modifier);
     }
 
     modifiers.forEach(function (modifier) {
       if (!visited.has(modifier.name)) {
-***REMOVED***// check for visited object
-***REMOVED***sort(modifier);
+// check for visited object
+sort(modifier);
       }
     });
     return result;
@@ -3418,7 +3418,7 @@
 
     return modifierPhases.reduce(function (acc, phase) {
       return acc.concat(orderedModifiers.filter(function (modifier) {
-***REMOVED***return modifier.phase === phase;
+return modifier.phase === phase;
       }));
     }, []);
   }
@@ -3427,12 +3427,12 @@
     var pending;
     return function () {
       if (!pending) {
-***REMOVED***pending = new Promise(function (resolve) {
-***REMOVED***  Promise.resolve().then(function () {
-***REMOVED***    pending = undefined;
-***REMOVED***    resolve(fn());
-***REMOVED***  });
-***REMOVED***});
+pending = new Promise(function (resolve) {
+  Promise.resolve().then(function () {
+    pending = undefined;
+    resolve(fn());
+  });
+});
       }
 
       return pending;
@@ -3443,8 +3443,8 @@
     var merged = modifiers.reduce(function (merged, current) {
       var existing = merged[current.name];
       merged[current.name] = existing ? Object.assign({}, existing, current, {
-***REMOVED***options: Object.assign({}, existing.options, current.options),
-***REMOVED***data: Object.assign({}, existing.data, current.data)
+options: Object.assign({}, existing.options, current.options),
+data: Object.assign({}, existing.data, current.data)
       }) : current;
       return merged;
     }, {}); // IE11 does not support Object.values
@@ -3476,136 +3476,136 @@
     }
 
     var _generatorOptions = generatorOptions,
-***REMOVED***_generatorOptions$def = _generatorOptions.defaultModifiers,
-***REMOVED***defaultModifiers = _generatorOptions$def === void 0 ? [] : _generatorOptions$def,
-***REMOVED***_generatorOptions$def2 = _generatorOptions.defaultOptions,
-***REMOVED***defaultOptions = _generatorOptions$def2 === void 0 ? DEFAULT_OPTIONS : _generatorOptions$def2;
+_generatorOptions$def = _generatorOptions.defaultModifiers,
+defaultModifiers = _generatorOptions$def === void 0 ? [] : _generatorOptions$def,
+_generatorOptions$def2 = _generatorOptions.defaultOptions,
+defaultOptions = _generatorOptions$def2 === void 0 ? DEFAULT_OPTIONS : _generatorOptions$def2;
     return function createPopper(reference, popper, options) {
       if (options === void 0) {
-***REMOVED***options = defaultOptions;
+options = defaultOptions;
       }
 
       var state = {
-***REMOVED***placement: 'bottom',
-***REMOVED***orderedModifiers: [],
-***REMOVED***options: Object.assign({}, DEFAULT_OPTIONS, defaultOptions),
-***REMOVED***modifiersData: {},
-***REMOVED***elements: {
-***REMOVED***  reference: reference,
-***REMOVED***  popper: popper
-***REMOVED***},
-***REMOVED***attributes: {},
-***REMOVED***styles: {}
+placement: 'bottom',
+orderedModifiers: [],
+options: Object.assign({}, DEFAULT_OPTIONS, defaultOptions),
+modifiersData: {},
+elements: {
+  reference: reference,
+  popper: popper
+},
+attributes: {},
+styles: {}
       };
       var effectCleanupFns = [];
       var isDestroyed = false;
       var instance = {
-***REMOVED***state: state,
-***REMOVED***setOptions: function setOptions(options) {
-***REMOVED***  cleanupModifierEffects();
-***REMOVED***  state.options = Object.assign({}, defaultOptions, state.options, options);
-***REMOVED***  state.scrollParents = {
-***REMOVED***    reference: isElement(reference) ? listScrollParents(reference) : reference.contextElement ? listScrollParents(reference.contextElement) : [],
-***REMOVED***    popper: listScrollParents(popper)
-***REMOVED***  }; // Orders the modifiers based on their dependencies and `phase`
-***REMOVED***  // properties
+state: state,
+setOptions: function setOptions(options) {
+  cleanupModifierEffects();
+  state.options = Object.assign({}, defaultOptions, state.options, options);
+  state.scrollParents = {
+    reference: isElement(reference) ? listScrollParents(reference) : reference.contextElement ? listScrollParents(reference.contextElement) : [],
+    popper: listScrollParents(popper)
+  }; // Orders the modifiers based on their dependencies and `phase`
+  // properties
 
-***REMOVED***  var orderedModifiers = orderModifiers(mergeByName([].concat(defaultModifiers, state.options.modifiers))); // Strip out disabled modifiers
+  var orderedModifiers = orderModifiers(mergeByName([].concat(defaultModifiers, state.options.modifiers))); // Strip out disabled modifiers
 
-***REMOVED***  state.orderedModifiers = orderedModifiers.filter(function (m) {
-***REMOVED***    return m.enabled;
-***REMOVED***  }); // Validate the provided modifiers so that the consumer will get warned
+  state.orderedModifiers = orderedModifiers.filter(function (m) {
+    return m.enabled;
+  }); // Validate the provided modifiers so that the consumer will get warned
 
-***REMOVED***  runModifierEffects();
-***REMOVED***  return instance.update();
-***REMOVED***},
-***REMOVED***// Sync update – it will always be executed, even if not necessary. This
-***REMOVED***// is useful for low frequency updates where sync behavior simplifies the
-***REMOVED***// logic.
-***REMOVED***// For high frequency updates (e.g. `resize` and `scroll` events), always
-***REMOVED***// prefer the async Popper#update method
-***REMOVED***forceUpdate: function forceUpdate() {
-***REMOVED***  if (isDestroyed) {
-***REMOVED***    return;
-***REMOVED***  }
+  runModifierEffects();
+  return instance.update();
+},
+// Sync update – it will always be executed, even if not necessary. This
+// is useful for low frequency updates where sync behavior simplifies the
+// logic.
+// For high frequency updates (e.g. `resize` and `scroll` events), always
+// prefer the async Popper#update method
+forceUpdate: function forceUpdate() {
+  if (isDestroyed) {
+    return;
+  }
 
-***REMOVED***  var _state$elements = state.elements,
-***REMOVED***      reference = _state$elements.reference,
-***REMOVED***      popper = _state$elements.popper; // Don't proceed if `reference` or `popper` are not valid elements
-***REMOVED***  // anymore
+  var _state$elements = state.elements,
+      reference = _state$elements.reference,
+      popper = _state$elements.popper; // Don't proceed if `reference` or `popper` are not valid elements
+  // anymore
 
-***REMOVED***  if (!areValidElements(reference, popper)) {
+  if (!areValidElements(reference, popper)) {
 
-***REMOVED***    return;
-***REMOVED***  } // Store the reference and popper rects to be read by modifiers
+    return;
+  } // Store the reference and popper rects to be read by modifiers
 
 
-***REMOVED***  state.rects = {
-***REMOVED***    reference: getCompositeRect(reference, getOffsetParent(popper), state.options.strategy === 'fixed'),
-***REMOVED***    popper: getLayoutRect(popper)
-***REMOVED***  }; // Modifiers have the ability to reset the current update cycle. The
-***REMOVED***  // most common use case for this is the `flip` modifier changing the
-***REMOVED***  // placement, which then needs to re-run all the modifiers, because the
-***REMOVED***  // logic was previously ran for the previous placement and is therefore
-***REMOVED***  // stale/incorrect
+  state.rects = {
+    reference: getCompositeRect(reference, getOffsetParent(popper), state.options.strategy === 'fixed'),
+    popper: getLayoutRect(popper)
+  }; // Modifiers have the ability to reset the current update cycle. The
+  // most common use case for this is the `flip` modifier changing the
+  // placement, which then needs to re-run all the modifiers, because the
+  // logic was previously ran for the previous placement and is therefore
+  // stale/incorrect
 
-***REMOVED***  state.reset = false;
-***REMOVED***  state.placement = state.options.placement; // On each update cycle, the `modifiersData` property for each modifier
-***REMOVED***  // is filled with the initial data specified by the modifier. This means
-***REMOVED***  // it doesn't persist and is fresh on each update.
-***REMOVED***  // To ensure persistent data, use `${name}#persistent`
+  state.reset = false;
+  state.placement = state.options.placement; // On each update cycle, the `modifiersData` property for each modifier
+  // is filled with the initial data specified by the modifier. This means
+  // it doesn't persist and is fresh on each update.
+  // To ensure persistent data, use `${name}#persistent`
 
-***REMOVED***  state.orderedModifiers.forEach(function (modifier) {
-***REMOVED***    return state.modifiersData[modifier.name] = Object.assign({}, modifier.data);
-***REMOVED***  });
+  state.orderedModifiers.forEach(function (modifier) {
+    return state.modifiersData[modifier.name] = Object.assign({}, modifier.data);
+  });
 
-***REMOVED***  for (var index = 0; index < state.orderedModifiers.length; index++) {
+  for (var index = 0; index < state.orderedModifiers.length; index++) {
 
-***REMOVED***    if (state.reset === true) {
-***REMOVED***      state.reset = false;
-***REMOVED***      index = -1;
-***REMOVED***      continue;
-***REMOVED***    }
+    if (state.reset === true) {
+      state.reset = false;
+      index = -1;
+      continue;
+    }
 
-***REMOVED***    var _state$orderedModifie = state.orderedModifiers[index],
-***REMOVED******REMOVED***fn = _state$orderedModifie.fn,
-***REMOVED******REMOVED***_state$orderedModifie2 = _state$orderedModifie.options,
-***REMOVED******REMOVED***_options = _state$orderedModifie2 === void 0 ? {} : _state$orderedModifie2,
-***REMOVED******REMOVED***name = _state$orderedModifie.name;
+    var _state$orderedModifie = state.orderedModifiers[index],
+fn = _state$orderedModifie.fn,
+_state$orderedModifie2 = _state$orderedModifie.options,
+_options = _state$orderedModifie2 === void 0 ? {} : _state$orderedModifie2,
+name = _state$orderedModifie.name;
 
-***REMOVED***    if (typeof fn === 'function') {
-***REMOVED***      state = fn({
-***REMOVED******REMOVED***state: state,
-***REMOVED******REMOVED***options: _options,
-***REMOVED******REMOVED***name: name,
-***REMOVED******REMOVED***instance: instance
-***REMOVED***      }) || state;
-***REMOVED***    }
-***REMOVED***  }
-***REMOVED***},
-***REMOVED***// Async and optimistically optimized update – it will not be executed if
-***REMOVED***// not necessary (debounced to run at most once-per-tick)
-***REMOVED***update: debounce(function () {
-***REMOVED***  return new Promise(function (resolve) {
-***REMOVED***    instance.forceUpdate();
-***REMOVED***    resolve(state);
-***REMOVED***  });
-***REMOVED***}),
-***REMOVED***destroy: function destroy() {
-***REMOVED***  cleanupModifierEffects();
-***REMOVED***  isDestroyed = true;
-***REMOVED***}
+    if (typeof fn === 'function') {
+      state = fn({
+state: state,
+options: _options,
+name: name,
+instance: instance
+      }) || state;
+    }
+  }
+},
+// Async and optimistically optimized update – it will not be executed if
+// not necessary (debounced to run at most once-per-tick)
+update: debounce(function () {
+  return new Promise(function (resolve) {
+    instance.forceUpdate();
+    resolve(state);
+  });
+}),
+destroy: function destroy() {
+  cleanupModifierEffects();
+  isDestroyed = true;
+}
       };
 
       if (!areValidElements(reference, popper)) {
 
-***REMOVED***return instance;
+return instance;
       }
 
       instance.setOptions(options).then(function (state) {
-***REMOVED***if (!isDestroyed && options.onFirstUpdate) {
-***REMOVED***  options.onFirstUpdate(state);
-***REMOVED***}
+if (!isDestroyed && options.onFirstUpdate) {
+  options.onFirstUpdate(state);
+}
       }); // Modifiers have the ability to execute arbitrary code before the first
       // update cycle runs. They will be executed in the same order as the update
       // cycle. This is useful when a modifier adds some persistent data that
@@ -3613,32 +3613,32 @@
       // one.
 
       function runModifierEffects() {
-***REMOVED***state.orderedModifiers.forEach(function (_ref3) {
-***REMOVED***  var name = _ref3.name,
-***REMOVED***      _ref3$options = _ref3.options,
-***REMOVED***      options = _ref3$options === void 0 ? {} : _ref3$options,
-***REMOVED***      effect = _ref3.effect;
+state.orderedModifiers.forEach(function (_ref3) {
+  var name = _ref3.name,
+      _ref3$options = _ref3.options,
+      options = _ref3$options === void 0 ? {} : _ref3$options,
+      effect = _ref3.effect;
 
-***REMOVED***  if (typeof effect === 'function') {
-***REMOVED***    var cleanupFn = effect({
-***REMOVED***      state: state,
-***REMOVED***      name: name,
-***REMOVED***      instance: instance,
-***REMOVED***      options: options
-***REMOVED***    });
+  if (typeof effect === 'function') {
+    var cleanupFn = effect({
+      state: state,
+      name: name,
+      instance: instance,
+      options: options
+    });
 
-***REMOVED***    var noopFn = function noopFn() {};
+    var noopFn = function noopFn() {};
 
-***REMOVED***    effectCleanupFns.push(cleanupFn || noopFn);
-***REMOVED***  }
-***REMOVED***});
+    effectCleanupFns.push(cleanupFn || noopFn);
+  }
+});
       }
 
       function cleanupModifierEffects() {
-***REMOVED***effectCleanupFns.forEach(function (fn) {
-***REMOVED***  return fn();
-***REMOVED***});
-***REMOVED***effectCleanupFns = [];
+effectCleanupFns.forEach(function (fn) {
+  return fn();
+});
+effectCleanupFns = [];
       }
 
       return instance;
@@ -3795,24 +3795,24 @@
 
     show() {
       if (isDisabled(this._element) || this._isShown(this._menu)) {
-***REMOVED***return;
+return;
       }
 
       const relatedTarget = {
-***REMOVED***relatedTarget: this._element
+relatedTarget: this._element
       };
       const showEvent = EventHandler.trigger(this._element, EVENT_SHOW$4, relatedTarget);
 
       if (showEvent.defaultPrevented) {
-***REMOVED***return;
+return;
       }
 
       const parent = Dropdown.getParentFromElement(this._element); // Totally disable Popper for Dropdowns in Navbar
 
       if (this._inNavbar) {
-***REMOVED***Manipulator.setDataAttribute(this._menu, 'popper', 'none');
+Manipulator.setDataAttribute(this._menu, 'popper', 'none');
       } else {
-***REMOVED***this._createPopper(parent);
+this._createPopper(parent);
       } // If this is a touch-enabled device we add extra
       // empty mouseover listeners to the body's immediate children;
       // only needed because of broken event delegation on iOS
@@ -3820,7 +3820,7 @@
 
 
       if ('ontouchstart' in document.documentElement && !parent.closest(SELECTOR_NAVBAR_NAV)) {
-***REMOVED***[].concat(...document.body.children).forEach(elem => EventHandler.on(elem, 'mouseover', noop));
+[].concat(...document.body.children).forEach(elem => EventHandler.on(elem, 'mouseover', noop));
       }
 
       this._element.focus();
@@ -3836,11 +3836,11 @@
 
     hide() {
       if (isDisabled(this._element) || !this._isShown(this._menu)) {
-***REMOVED***return;
+return;
       }
 
       const relatedTarget = {
-***REMOVED***relatedTarget: this._element
+relatedTarget: this._element
       };
 
       this._completeHide(relatedTarget);
@@ -3848,7 +3848,7 @@
 
     dispose() {
       if (this._popper) {
-***REMOVED***this._popper.destroy();
+this._popper.destroy();
       }
 
       super.dispose();
@@ -3858,7 +3858,7 @@
       this._inNavbar = this._detectNavbar();
 
       if (this._popper) {
-***REMOVED***this._popper.update();
+this._popper.update();
       }
     } // Private
 
@@ -3867,17 +3867,17 @@
       const hideEvent = EventHandler.trigger(this._element, EVENT_HIDE$4, relatedTarget);
 
       if (hideEvent.defaultPrevented) {
-***REMOVED***return;
+return;
       } // If this is a touch-enabled device we remove the extra
       // empty mouseover listeners we added for iOS support
 
 
       if ('ontouchstart' in document.documentElement) {
-***REMOVED***[].concat(...document.body.children).forEach(elem => EventHandler.off(elem, 'mouseover', noop));
+[].concat(...document.body.children).forEach(elem => EventHandler.off(elem, 'mouseover', noop));
       }
 
       if (this._popper) {
-***REMOVED***this._popper.destroy();
+this._popper.destroy();
       }
 
       this._menu.classList.remove(CLASS_NAME_SHOW$6);
@@ -3892,14 +3892,14 @@
 
     _getConfig(config) {
       config = { ...this.constructor.Default,
-***REMOVED***...Manipulator.getDataAttributes(this._element),
-***REMOVED***...config
+...Manipulator.getDataAttributes(this._element),
+...config
       };
       typeCheckConfig(NAME$9, config, this.constructor.DefaultType);
 
       if (typeof config.reference === 'object' && !isElement$1(config.reference) && typeof config.reference.getBoundingClientRect !== 'function') {
-***REMOVED***// Popper virtual elements require a getBoundingClientRect method
-***REMOVED***throw new TypeError(`${NAME$9.toUpperCase()}: Option "reference" provided type "object" without a required "getBoundingClientRect" method.`);
+// Popper virtual elements require a getBoundingClientRect method
+throw new TypeError(`${NAME$9.toUpperCase()}: Option "reference" provided type "object" without a required "getBoundingClientRect" method.`);
       }
 
       return config;
@@ -3907,17 +3907,17 @@
 
     _createPopper(parent) {
       if (typeof Popper === 'undefined') {
-***REMOVED***throw new TypeError('Bootstrap\'s dropdowns require Popper (https://popper.js.org)');
+throw new TypeError('Bootstrap\'s dropdowns require Popper (https://popper.js.org)');
       }
 
       let referenceElement = this._element;
 
       if (this._config.reference === 'parent') {
-***REMOVED***referenceElement = parent;
+referenceElement = parent;
       } else if (isElement$1(this._config.reference)) {
-***REMOVED***referenceElement = getElement(this._config.reference);
+referenceElement = getElement(this._config.reference);
       } else if (typeof this._config.reference === 'object') {
-***REMOVED***referenceElement = this._config.reference;
+referenceElement = this._config.reference;
       }
 
       const popperConfig = this._getPopperConfig();
@@ -3926,7 +3926,7 @@
       this._popper = createPopper(referenceElement, this._menu, popperConfig);
 
       if (isDisplayStatic) {
-***REMOVED***Manipulator.setDataAttribute(this._menu, 'popper', 'static');
+Manipulator.setDataAttribute(this._menu, 'popper', 'static');
       }
     }
 
@@ -3942,18 +3942,18 @@
       const parentDropdown = this._element.parentNode;
 
       if (parentDropdown.classList.contains(CLASS_NAME_DROPEND)) {
-***REMOVED***return PLACEMENT_RIGHT;
+return PLACEMENT_RIGHT;
       }
 
       if (parentDropdown.classList.contains(CLASS_NAME_DROPSTART)) {
-***REMOVED***return PLACEMENT_LEFT;
+return PLACEMENT_LEFT;
       } // We need to trim the value because custom properties can also include spaces
 
 
       const isEnd = getComputedStyle(this._menu).getPropertyValue('--bs-position').trim() === 'end';
 
       if (parentDropdown.classList.contains(CLASS_NAME_DROPUP)) {
-***REMOVED***return isEnd ? PLACEMENT_TOPEND : PLACEMENT_TOP;
+return isEnd ? PLACEMENT_TOPEND : PLACEMENT_TOP;
       }
 
       return isEnd ? PLACEMENT_BOTTOMEND : PLACEMENT_BOTTOM;
@@ -3965,15 +3965,15 @@
 
     _getOffset() {
       const {
-***REMOVED***offset
+offset
       } = this._config;
 
       if (typeof offset === 'string') {
-***REMOVED***return offset.split(',').map(val => Number.parseInt(val, 10));
+return offset.split(',').map(val => Number.parseInt(val, 10));
       }
 
       if (typeof offset === 'function') {
-***REMOVED***return popperData => offset(popperData, this._element);
+return popperData => offset(popperData, this._element);
       }
 
       return offset;
@@ -3981,29 +3981,29 @@
 
     _getPopperConfig() {
       const defaultBsPopperConfig = {
-***REMOVED***placement: this._getPlacement(),
-***REMOVED***modifiers: [{
-***REMOVED***  name: 'preventOverflow',
-***REMOVED***  options: {
-***REMOVED***    boundary: this._config.boundary
-***REMOVED***  }
-***REMOVED***}, {
-***REMOVED***  name: 'offset',
-***REMOVED***  options: {
-***REMOVED***    offset: this._getOffset()
-***REMOVED***  }
-***REMOVED***}]
+placement: this._getPlacement(),
+modifiers: [{
+  name: 'preventOverflow',
+  options: {
+    boundary: this._config.boundary
+  }
+}, {
+  name: 'offset',
+  options: {
+    offset: this._getOffset()
+  }
+}]
       }; // Disable Popper if we have a static display
 
       if (this._config.display === 'static') {
-***REMOVED***defaultBsPopperConfig.modifiers = [{
-***REMOVED***  name: 'applyStyles',
-***REMOVED***  enabled: false
-***REMOVED***}];
+defaultBsPopperConfig.modifiers = [{
+  name: 'applyStyles',
+  enabled: false
+}];
       }
 
       return { ...defaultBsPopperConfig,
-***REMOVED***...(typeof this._config.popperConfig === 'function' ? this._config.popperConfig(defaultBsPopperConfig) : this._config.popperConfig)
+...(typeof this._config.popperConfig === 'function' ? this._config.popperConfig(defaultBsPopperConfig) : this._config.popperConfig)
       };
     }
 
@@ -4014,7 +4014,7 @@
       const items = SelectorEngine.find(SELECTOR_VISIBLE_ITEMS, this._menu).filter(isVisible);
 
       if (!items.length) {
-***REMOVED***return;
+return;
       } // if target isn't included in items (e.g. when expanding the dropdown)
       // allow cycling to get the last item in case key equals ARROW_UP_KEY
 
@@ -4025,61 +4025,61 @@
 
     static jQueryInterface(config) {
       return this.each(function () {
-***REMOVED***const data = Dropdown.getOrCreateInstance(this, config);
+const data = Dropdown.getOrCreateInstance(this, config);
 
-***REMOVED***if (typeof config !== 'string') {
-***REMOVED***  return;
-***REMOVED***}
+if (typeof config !== 'string') {
+  return;
+}
 
-***REMOVED***if (typeof data[config] === 'undefined') {
-***REMOVED***  throw new TypeError(`No method named "${config}"`);
-***REMOVED***}
+if (typeof data[config] === 'undefined') {
+  throw new TypeError(`No method named "${config}"`);
+}
 
-***REMOVED***data[config]();
+data[config]();
       });
     }
 
     static clearMenus(event) {
       if (event && (event.button === RIGHT_MOUSE_BUTTON || event.type === 'keyup' && event.key !== TAB_KEY$1)) {
-***REMOVED***return;
+return;
       }
 
       const toggles = SelectorEngine.find(SELECTOR_DATA_TOGGLE$3);
 
       for (let i = 0, len = toggles.length; i < len; i++) {
-***REMOVED***const context = Dropdown.getInstance(toggles[i]);
+const context = Dropdown.getInstance(toggles[i]);
 
-***REMOVED***if (!context || context._config.autoClose === false) {
-***REMOVED***  continue;
-***REMOVED***}
+if (!context || context._config.autoClose === false) {
+  continue;
+}
 
-***REMOVED***if (!context._isShown()) {
-***REMOVED***  continue;
-***REMOVED***}
+if (!context._isShown()) {
+  continue;
+}
 
-***REMOVED***const relatedTarget = {
-***REMOVED***  relatedTarget: context._element
-***REMOVED***};
+const relatedTarget = {
+  relatedTarget: context._element
+};
 
-***REMOVED***if (event) {
-***REMOVED***  const composedPath = event.composedPath();
-***REMOVED***  const isMenuTarget = composedPath.includes(context._menu);
+if (event) {
+  const composedPath = event.composedPath();
+  const isMenuTarget = composedPath.includes(context._menu);
 
-***REMOVED***  if (composedPath.includes(context._element) || context._config.autoClose === 'inside' && !isMenuTarget || context._config.autoClose === 'outside' && isMenuTarget) {
-***REMOVED***    continue;
-***REMOVED***  } // Tab navigation through the dropdown menu or events from contained inputs shouldn't close the menu
+  if (composedPath.includes(context._element) || context._config.autoClose === 'inside' && !isMenuTarget || context._config.autoClose === 'outside' && isMenuTarget) {
+    continue;
+  } // Tab navigation through the dropdown menu or events from contained inputs shouldn't close the menu
 
 
-***REMOVED***  if (context._menu.contains(event.target) && (event.type === 'keyup' && event.key === TAB_KEY$1 || /input|select|option|textarea|form/i.test(event.target.tagName))) {
-***REMOVED***    continue;
-***REMOVED***  }
+  if (context._menu.contains(event.target) && (event.type === 'keyup' && event.key === TAB_KEY$1 || /input|select|option|textarea|form/i.test(event.target.tagName))) {
+    continue;
+  }
 
-***REMOVED***  if (event.type === 'click') {
-***REMOVED***    relatedTarget.clickEvent = event;
-***REMOVED***  }
-***REMOVED***}
+  if (event.type === 'click') {
+    relatedTarget.clickEvent = event;
+  }
+}
 
-***REMOVED***context._completeHide(relatedTarget);
+context._completeHide(relatedTarget);
       }
     }
 
@@ -4096,42 +4096,42 @@
       //    - If key is not up or down => not a dropdown command
       //    - If trigger inside the menu => not a dropdown command
       if (/input|textarea/i.test(event.target.tagName) ? event.key === SPACE_KEY || event.key !== ESCAPE_KEY$2 && (event.key !== ARROW_DOWN_KEY && event.key !== ARROW_UP_KEY || event.target.closest(SELECTOR_MENU)) : !REGEXP_KEYDOWN.test(event.key)) {
-***REMOVED***return;
+return;
       }
 
       const isActive = this.classList.contains(CLASS_NAME_SHOW$6);
 
       if (!isActive && event.key === ESCAPE_KEY$2) {
-***REMOVED***return;
+return;
       }
 
       event.preventDefault();
       event.stopPropagation();
 
       if (isDisabled(this)) {
-***REMOVED***return;
+return;
       }
 
       const getToggleButton = this.matches(SELECTOR_DATA_TOGGLE$3) ? this : SelectorEngine.prev(this, SELECTOR_DATA_TOGGLE$3)[0];
       const instance = Dropdown.getOrCreateInstance(getToggleButton);
 
       if (event.key === ESCAPE_KEY$2) {
-***REMOVED***instance.hide();
-***REMOVED***return;
+instance.hide();
+return;
       }
 
       if (event.key === ARROW_UP_KEY || event.key === ARROW_DOWN_KEY) {
-***REMOVED***if (!isActive) {
-***REMOVED***  instance.show();
-***REMOVED***}
+if (!isActive) {
+  instance.show();
+}
 
-***REMOVED***instance._selectMenuItem(event);
+instance._selectMenuItem(event);
 
-***REMOVED***return;
+return;
       }
 
       if (!isActive || event.key === SPACE_KEY) {
-***REMOVED***Dropdown.clearMenus();
+Dropdown.clearMenus();
       }
     }
 
@@ -4204,14 +4204,14 @@
       const scrollbarWidth = this.getWidth();
 
       const manipulationCallBack = element => {
-***REMOVED***if (element !== this._element && window.innerWidth > element.clientWidth + scrollbarWidth) {
-***REMOVED***  return;
-***REMOVED***}
+if (element !== this._element && window.innerWidth > element.clientWidth + scrollbarWidth) {
+  return;
+}
 
-***REMOVED***this._saveInitialAttribute(element, styleProp);
+this._saveInitialAttribute(element, styleProp);
 
-***REMOVED***const calculatedValue = window.getComputedStyle(element)[styleProp];
-***REMOVED***element.style[styleProp] = `${callback(Number.parseFloat(calculatedValue))}px`;
+const calculatedValue = window.getComputedStyle(element)[styleProp];
+element.style[styleProp] = `${callback(Number.parseFloat(calculatedValue))}px`;
       };
 
       this._applyManipulationCallback(selector, manipulationCallBack);
@@ -4231,20 +4231,20 @@
       const actualValue = element.style[styleProp];
 
       if (actualValue) {
-***REMOVED***Manipulator.setDataAttribute(element, styleProp, actualValue);
+Manipulator.setDataAttribute(element, styleProp, actualValue);
       }
     }
 
     _resetElementAttributes(selector, styleProp) {
       const manipulationCallBack = element => {
-***REMOVED***const value = Manipulator.getDataAttribute(element, styleProp);
+const value = Manipulator.getDataAttribute(element, styleProp);
 
-***REMOVED***if (typeof value === 'undefined') {
-***REMOVED***  element.style.removeProperty(styleProp);
-***REMOVED***} else {
-***REMOVED***  Manipulator.removeDataAttribute(element, styleProp);
-***REMOVED***  element.style[styleProp] = value;
-***REMOVED***}
+if (typeof value === 'undefined') {
+  element.style.removeProperty(styleProp);
+} else {
+  Manipulator.removeDataAttribute(element, styleProp);
+  element.style[styleProp] = value;
+}
       };
 
       this._applyManipulationCallback(selector, manipulationCallBack);
@@ -4252,9 +4252,9 @@
 
     _applyManipulationCallback(selector, callBack) {
       if (isElement$1(selector)) {
-***REMOVED***callBack(selector);
+callBack(selector);
       } else {
-***REMOVED***SelectorEngine.find(selector, this._element).forEach(callBack);
+SelectorEngine.find(selector, this._element).forEach(callBack);
       }
     }
 
@@ -4300,48 +4300,48 @@
 
     show(callback) {
       if (!this._config.isVisible) {
-***REMOVED***execute(callback);
-***REMOVED***return;
+execute(callback);
+return;
       }
 
       this._append();
 
       if (this._config.isAnimated) {
-***REMOVED***reflow(this._getElement());
+reflow(this._getElement());
       }
 
       this._getElement().classList.add(CLASS_NAME_SHOW$5);
 
       this._emulateAnimation(() => {
-***REMOVED***execute(callback);
+execute(callback);
       });
     }
 
     hide(callback) {
       if (!this._config.isVisible) {
-***REMOVED***execute(callback);
-***REMOVED***return;
+execute(callback);
+return;
       }
 
       this._getElement().classList.remove(CLASS_NAME_SHOW$5);
 
       this._emulateAnimation(() => {
-***REMOVED***this.dispose();
-***REMOVED***execute(callback);
+this.dispose();
+execute(callback);
       });
     } // Private
 
 
     _getElement() {
       if (!this._element) {
-***REMOVED***const backdrop = document.createElement('div');
-***REMOVED***backdrop.className = this._config.className;
+const backdrop = document.createElement('div');
+backdrop.className = this._config.className;
 
-***REMOVED***if (this._config.isAnimated) {
-***REMOVED***  backdrop.classList.add(CLASS_NAME_FADE$4);
-***REMOVED***}
+if (this._config.isAnimated) {
+  backdrop.classList.add(CLASS_NAME_FADE$4);
+}
 
-***REMOVED***this._element = backdrop;
+this._element = backdrop;
       }
 
       return this._element;
@@ -4349,7 +4349,7 @@
 
     _getConfig(config) {
       config = { ...Default$7,
-***REMOVED***...(typeof config === 'object' ? config : {})
+...(typeof config === 'object' ? config : {})
       }; // use getElement() with the default "body" to get a fresh Element on each instantiation
 
       config.rootElement = getElement(config.rootElement);
@@ -4359,20 +4359,20 @@
 
     _append() {
       if (this._isAppended) {
-***REMOVED***return;
+return;
       }
 
       this._config.rootElement.append(this._getElement());
 
       EventHandler.on(this._getElement(), EVENT_MOUSEDOWN, () => {
-***REMOVED***execute(this._config.clickCallback);
+execute(this._config.clickCallback);
       });
       this._isAppended = true;
     }
 
     dispose() {
       if (!this._isAppended) {
-***REMOVED***return;
+return;
       }
 
       EventHandler.off(this._element, EVENT_MOUSEDOWN);
@@ -4421,16 +4421,16 @@
 
     activate() {
       const {
-***REMOVED***trapElement,
-***REMOVED***autofocus
+trapElement,
+autofocus
       } = this._config;
 
       if (this._isActive) {
-***REMOVED***return;
+return;
       }
 
       if (autofocus) {
-***REMOVED***trapElement.focus();
+trapElement.focus();
       }
 
       EventHandler.off(document, EVENT_KEY$7); // guard against infinite focus loop
@@ -4442,7 +4442,7 @@
 
     deactivate() {
       if (!this._isActive) {
-***REMOVED***return;
+return;
       }
 
       this._isActive = false;
@@ -4452,30 +4452,30 @@
 
     _handleFocusin(event) {
       const {
-***REMOVED***target
+target
       } = event;
       const {
-***REMOVED***trapElement
+trapElement
       } = this._config;
 
       if (target === document || target === trapElement || trapElement.contains(target)) {
-***REMOVED***return;
+return;
       }
 
       const elements = SelectorEngine.focusableChildren(trapElement);
 
       if (elements.length === 0) {
-***REMOVED***trapElement.focus();
+trapElement.focus();
       } else if (this._lastTabNavDirection === TAB_NAV_BACKWARD) {
-***REMOVED***elements[elements.length - 1].focus();
+elements[elements.length - 1].focus();
       } else {
-***REMOVED***elements[0].focus();
+elements[0].focus();
       }
     }
 
     _handleKeydown(event) {
       if (event.key !== TAB_KEY) {
-***REMOVED***return;
+return;
       }
 
       this._lastTabNavDirection = event.shiftKey ? TAB_NAV_BACKWARD : TAB_NAV_FORWARD;
@@ -4483,7 +4483,7 @@
 
     _getConfig(config) {
       config = { ...Default$6,
-***REMOVED***...(typeof config === 'object' ? config : {})
+...(typeof config === 'object' ? config : {})
       };
       typeCheckConfig(NAME$7, config, DefaultType$6);
       return config;
@@ -4571,21 +4571,21 @@
 
     show(relatedTarget) {
       if (this._isShown || this._isTransitioning) {
-***REMOVED***return;
+return;
       }
 
       const showEvent = EventHandler.trigger(this._element, EVENT_SHOW$3, {
-***REMOVED***relatedTarget
+relatedTarget
       });
 
       if (showEvent.defaultPrevented) {
-***REMOVED***return;
+return;
       }
 
       this._isShown = true;
 
       if (this._isAnimated()) {
-***REMOVED***this._isTransitioning = true;
+this._isTransitioning = true;
       }
 
       this._scrollBar.hide();
@@ -4599,11 +4599,11 @@
       this._setResizeEvent();
 
       EventHandler.on(this._dialog, EVENT_MOUSEDOWN_DISMISS, () => {
-***REMOVED***EventHandler.one(this._element, EVENT_MOUSEUP_DISMISS, event => {
-***REMOVED***  if (event.target === this._element) {
-***REMOVED***    this._ignoreBackdropClick = true;
-***REMOVED***  }
-***REMOVED***});
+EventHandler.one(this._element, EVENT_MOUSEUP_DISMISS, event => {
+  if (event.target === this._element) {
+    this._ignoreBackdropClick = true;
+  }
+});
       });
 
       this._showBackdrop(() => this._showElement(relatedTarget));
@@ -4611,13 +4611,13 @@
 
     hide() {
       if (!this._isShown || this._isTransitioning) {
-***REMOVED***return;
+return;
       }
 
       const hideEvent = EventHandler.trigger(this._element, EVENT_HIDE$3);
 
       if (hideEvent.defaultPrevented) {
-***REMOVED***return;
+return;
       }
 
       this._isShown = false;
@@ -4625,7 +4625,7 @@
       const isAnimated = this._isAnimated();
 
       if (isAnimated) {
-***REMOVED***this._isTransitioning = true;
+this._isTransitioning = true;
       }
 
       this._setEscapeEvent();
@@ -4659,22 +4659,22 @@
 
     _initializeBackDrop() {
       return new Backdrop({
-***REMOVED***isVisible: Boolean(this._config.backdrop),
-***REMOVED***// 'static' option will be translated to true, and booleans will keep their value
-***REMOVED***isAnimated: this._isAnimated()
+isVisible: Boolean(this._config.backdrop),
+// 'static' option will be translated to true, and booleans will keep their value
+isAnimated: this._isAnimated()
       });
     }
 
     _initializeFocusTrap() {
       return new FocusTrap({
-***REMOVED***trapElement: this._element
+trapElement: this._element
       });
     }
 
     _getConfig(config) {
       config = { ...Default$5,
-***REMOVED***...Manipulator.getDataAttributes(this._element),
-***REMOVED***...(typeof config === 'object' ? config : {})
+...Manipulator.getDataAttributes(this._element),
+...(typeof config === 'object' ? config : {})
       };
       typeCheckConfig(NAME$6, config, DefaultType$5);
       return config;
@@ -4686,8 +4686,8 @@
       const modalBody = SelectorEngine.findOne(SELECTOR_MODAL_BODY, this._dialog);
 
       if (!this._element.parentNode || this._element.parentNode.nodeType !== Node.ELEMENT_NODE) {
-***REMOVED***// Don't move modal's DOM position
-***REMOVED***document.body.append(this._element);
+// Don't move modal's DOM position
+document.body.append(this._element);
       }
 
       this._element.style.display = 'block';
@@ -4701,24 +4701,24 @@
       this._element.scrollTop = 0;
 
       if (modalBody) {
-***REMOVED***modalBody.scrollTop = 0;
+modalBody.scrollTop = 0;
       }
 
       if (isAnimated) {
-***REMOVED***reflow(this._element);
+reflow(this._element);
       }
 
       this._element.classList.add(CLASS_NAME_SHOW$4);
 
       const transitionComplete = () => {
-***REMOVED***if (this._config.focus) {
-***REMOVED***  this._focustrap.activate();
-***REMOVED***}
+if (this._config.focus) {
+  this._focustrap.activate();
+}
 
-***REMOVED***this._isTransitioning = false;
-***REMOVED***EventHandler.trigger(this._element, EVENT_SHOWN$3, {
-***REMOVED***  relatedTarget
-***REMOVED***});
+this._isTransitioning = false;
+EventHandler.trigger(this._element, EVENT_SHOWN$3, {
+  relatedTarget
+});
       };
 
       this._queueCallback(transitionComplete, this._dialog, isAnimated);
@@ -4726,24 +4726,24 @@
 
     _setEscapeEvent() {
       if (this._isShown) {
-***REMOVED***EventHandler.on(this._element, EVENT_KEYDOWN_DISMISS$1, event => {
-***REMOVED***  if (this._config.keyboard && event.key === ESCAPE_KEY$1) {
-***REMOVED***    event.preventDefault();
-***REMOVED***    this.hide();
-***REMOVED***  } else if (!this._config.keyboard && event.key === ESCAPE_KEY$1) {
-***REMOVED***    this._triggerBackdropTransition();
-***REMOVED***  }
-***REMOVED***});
+EventHandler.on(this._element, EVENT_KEYDOWN_DISMISS$1, event => {
+  if (this._config.keyboard && event.key === ESCAPE_KEY$1) {
+    event.preventDefault();
+    this.hide();
+  } else if (!this._config.keyboard && event.key === ESCAPE_KEY$1) {
+    this._triggerBackdropTransition();
+  }
+});
       } else {
-***REMOVED***EventHandler.off(this._element, EVENT_KEYDOWN_DISMISS$1);
+EventHandler.off(this._element, EVENT_KEYDOWN_DISMISS$1);
       }
     }
 
     _setResizeEvent() {
       if (this._isShown) {
-***REMOVED***EventHandler.on(window, EVENT_RESIZE, () => this._adjustDialog());
+EventHandler.on(window, EVENT_RESIZE, () => this._adjustDialog());
       } else {
-***REMOVED***EventHandler.off(window, EVENT_RESIZE);
+EventHandler.off(window, EVENT_RESIZE);
       }
     }
 
@@ -4759,32 +4759,32 @@
       this._isTransitioning = false;
 
       this._backdrop.hide(() => {
-***REMOVED***document.body.classList.remove(CLASS_NAME_OPEN);
+document.body.classList.remove(CLASS_NAME_OPEN);
 
-***REMOVED***this._resetAdjustments();
+this._resetAdjustments();
 
-***REMOVED***this._scrollBar.reset();
+this._scrollBar.reset();
 
-***REMOVED***EventHandler.trigger(this._element, EVENT_HIDDEN$3);
+EventHandler.trigger(this._element, EVENT_HIDDEN$3);
       });
     }
 
     _showBackdrop(callback) {
       EventHandler.on(this._element, EVENT_CLICK_DISMISS, event => {
-***REMOVED***if (this._ignoreBackdropClick) {
-***REMOVED***  this._ignoreBackdropClick = false;
-***REMOVED***  return;
-***REMOVED***}
+if (this._ignoreBackdropClick) {
+  this._ignoreBackdropClick = false;
+  return;
+}
 
-***REMOVED***if (event.target !== event.currentTarget) {
-***REMOVED***  return;
-***REMOVED***}
+if (event.target !== event.currentTarget) {
+  return;
+}
 
-***REMOVED***if (this._config.backdrop === true) {
-***REMOVED***  this.hide();
-***REMOVED***} else if (this._config.backdrop === 'static') {
-***REMOVED***  this._triggerBackdropTransition();
-***REMOVED***}
+if (this._config.backdrop === true) {
+  this.hide();
+} else if (this._config.backdrop === 'static') {
+  this._triggerBackdropTransition();
+}
       });
 
       this._backdrop.show(callback);
@@ -4798,34 +4798,34 @@
       const hideEvent = EventHandler.trigger(this._element, EVENT_HIDE_PREVENTED);
 
       if (hideEvent.defaultPrevented) {
-***REMOVED***return;
+return;
       }
 
       const {
-***REMOVED***classList,
-***REMOVED***scrollHeight,
-***REMOVED***style
+classList,
+scrollHeight,
+style
       } = this._element;
       const isModalOverflowing = scrollHeight > document.documentElement.clientHeight; // return if the following background transition hasn't yet completed
 
       if (!isModalOverflowing && style.overflowY === 'hidden' || classList.contains(CLASS_NAME_STATIC)) {
-***REMOVED***return;
+return;
       }
 
       if (!isModalOverflowing) {
-***REMOVED***style.overflowY = 'hidden';
+style.overflowY = 'hidden';
       }
 
       classList.add(CLASS_NAME_STATIC);
 
       this._queueCallback(() => {
-***REMOVED***classList.remove(CLASS_NAME_STATIC);
+classList.remove(CLASS_NAME_STATIC);
 
-***REMOVED***if (!isModalOverflowing) {
-***REMOVED***  this._queueCallback(() => {
-***REMOVED***    style.overflowY = '';
-***REMOVED***  }, this._dialog);
-***REMOVED***}
+if (!isModalOverflowing) {
+  this._queueCallback(() => {
+    style.overflowY = '';
+  }, this._dialog);
+}
       }, this._dialog);
 
       this._element.focus();
@@ -4842,11 +4842,11 @@
       const isBodyOverflowing = scrollbarWidth > 0;
 
       if (!isBodyOverflowing && isModalOverflowing && !isRTL() || isBodyOverflowing && !isModalOverflowing && isRTL()) {
-***REMOVED***this._element.style.paddingLeft = `${scrollbarWidth}px`;
+this._element.style.paddingLeft = `${scrollbarWidth}px`;
       }
 
       if (isBodyOverflowing && !isModalOverflowing && !isRTL() || !isBodyOverflowing && isModalOverflowing && isRTL()) {
-***REMOVED***this._element.style.paddingRight = `${scrollbarWidth}px`;
+this._element.style.paddingRight = `${scrollbarWidth}px`;
       }
     }
 
@@ -4858,17 +4858,17 @@
 
     static jQueryInterface(config, relatedTarget) {
       return this.each(function () {
-***REMOVED***const data = Modal.getOrCreateInstance(this, config);
+const data = Modal.getOrCreateInstance(this, config);
 
-***REMOVED***if (typeof config !== 'string') {
-***REMOVED***  return;
-***REMOVED***}
+if (typeof config !== 'string') {
+  return;
+}
 
-***REMOVED***if (typeof data[config] === 'undefined') {
-***REMOVED***  throw new TypeError(`No method named "${config}"`);
-***REMOVED***}
+if (typeof data[config] === 'undefined') {
+  throw new TypeError(`No method named "${config}"`);
+}
 
-***REMOVED***data[config](relatedTarget);
+data[config](relatedTarget);
       });
     }
 
@@ -4889,14 +4889,14 @@
 
     EventHandler.one(target, EVENT_SHOW$3, showEvent => {
       if (showEvent.defaultPrevented) {
-***REMOVED***// only register focus restorer if modal will actually get shown
-***REMOVED***return;
+// only register focus restorer if modal will actually get shown
+return;
       }
 
       EventHandler.one(target, EVENT_HIDDEN$3, () => {
-***REMOVED***if (isVisible(this)) {
-***REMOVED***  this.focus();
-***REMOVED***}
+if (isVisible(this)) {
+  this.focus();
+}
       });
     });
     const data = Modal.getOrCreateInstance(target);
@@ -4983,15 +4983,15 @@
 
     show(relatedTarget) {
       if (this._isShown) {
-***REMOVED***return;
+return;
       }
 
       const showEvent = EventHandler.trigger(this._element, EVENT_SHOW$2, {
-***REMOVED***relatedTarget
+relatedTarget
       });
 
       if (showEvent.defaultPrevented) {
-***REMOVED***return;
+return;
       }
 
       this._isShown = true;
@@ -5000,7 +5000,7 @@
       this._backdrop.show();
 
       if (!this._config.scroll) {
-***REMOVED***new ScrollBarHelper().hide();
+new ScrollBarHelper().hide();
       }
 
       this._element.removeAttribute('aria-hidden');
@@ -5012,13 +5012,13 @@
       this._element.classList.add(CLASS_NAME_SHOW$3);
 
       const completeCallBack = () => {
-***REMOVED***if (!this._config.scroll) {
-***REMOVED***  this._focustrap.activate();
-***REMOVED***}
+if (!this._config.scroll) {
+  this._focustrap.activate();
+}
 
-***REMOVED***EventHandler.trigger(this._element, EVENT_SHOWN$2, {
-***REMOVED***  relatedTarget
-***REMOVED***});
+EventHandler.trigger(this._element, EVENT_SHOWN$2, {
+  relatedTarget
+});
       };
 
       this._queueCallback(completeCallBack, this._element, true);
@@ -5026,13 +5026,13 @@
 
     hide() {
       if (!this._isShown) {
-***REMOVED***return;
+return;
       }
 
       const hideEvent = EventHandler.trigger(this._element, EVENT_HIDE$2);
 
       if (hideEvent.defaultPrevented) {
-***REMOVED***return;
+return;
       }
 
       this._focustrap.deactivate();
@@ -5046,19 +5046,19 @@
       this._backdrop.hide();
 
       const completeCallback = () => {
-***REMOVED***this._element.setAttribute('aria-hidden', true);
+this._element.setAttribute('aria-hidden', true);
 
-***REMOVED***this._element.removeAttribute('aria-modal');
+this._element.removeAttribute('aria-modal');
 
-***REMOVED***this._element.removeAttribute('role');
+this._element.removeAttribute('role');
 
-***REMOVED***this._element.style.visibility = 'hidden';
+this._element.style.visibility = 'hidden';
 
-***REMOVED***if (!this._config.scroll) {
-***REMOVED***  new ScrollBarHelper().reset();
-***REMOVED***}
+if (!this._config.scroll) {
+  new ScrollBarHelper().reset();
+}
 
-***REMOVED***EventHandler.trigger(this._element, EVENT_HIDDEN$2);
+EventHandler.trigger(this._element, EVENT_HIDDEN$2);
       };
 
       this._queueCallback(completeCallback, this._element, true);
@@ -5075,8 +5075,8 @@
 
     _getConfig(config) {
       config = { ...Default$4,
-***REMOVED***...Manipulator.getDataAttributes(this._element),
-***REMOVED***...(typeof config === 'object' ? config : {})
+...Manipulator.getDataAttributes(this._element),
+...(typeof config === 'object' ? config : {})
       };
       typeCheckConfig(NAME$5, config, DefaultType$4);
       return config;
@@ -5084,42 +5084,42 @@
 
     _initializeBackDrop() {
       return new Backdrop({
-***REMOVED***className: CLASS_NAME_BACKDROP,
-***REMOVED***isVisible: this._config.backdrop,
-***REMOVED***isAnimated: true,
-***REMOVED***rootElement: this._element.parentNode,
-***REMOVED***clickCallback: () => this.hide()
+className: CLASS_NAME_BACKDROP,
+isVisible: this._config.backdrop,
+isAnimated: true,
+rootElement: this._element.parentNode,
+clickCallback: () => this.hide()
       });
     }
 
     _initializeFocusTrap() {
       return new FocusTrap({
-***REMOVED***trapElement: this._element
+trapElement: this._element
       });
     }
 
     _addEventListeners() {
       EventHandler.on(this._element, EVENT_KEYDOWN_DISMISS, event => {
-***REMOVED***if (this._config.keyboard && event.key === ESCAPE_KEY) {
-***REMOVED***  this.hide();
-***REMOVED***}
+if (this._config.keyboard && event.key === ESCAPE_KEY) {
+  this.hide();
+}
       });
     } // Static
 
 
     static jQueryInterface(config) {
       return this.each(function () {
-***REMOVED***const data = Offcanvas.getOrCreateInstance(this, config);
+const data = Offcanvas.getOrCreateInstance(this, config);
 
-***REMOVED***if (typeof config !== 'string') {
-***REMOVED***  return;
-***REMOVED***}
+if (typeof config !== 'string') {
+  return;
+}
 
-***REMOVED***if (data[config] === undefined || config.startsWith('_') || config === 'constructor') {
-***REMOVED***  throw new TypeError(`No method named "${config}"`);
-***REMOVED***}
+if (data[config] === undefined || config.startsWith('_') || config === 'constructor') {
+  throw new TypeError(`No method named "${config}"`);
+}
 
-***REMOVED***data[config](this);
+data[config](this);
       });
     }
 
@@ -5145,7 +5145,7 @@
     EventHandler.one(target, EVENT_HIDDEN$2, () => {
       // focus on trigger when it is closed
       if (isVisible(this)) {
-***REMOVED***this.focus();
+this.focus();
       }
     }); // avoid conflict when clicking a toggler of an offcanvas, while another is open
 
@@ -5196,7 +5196,7 @@
 
     if (allowedAttributeList.includes(attrName)) {
       if (uriAttrs.has(attrName)) {
-***REMOVED***return Boolean(SAFE_URL_PATTERN.test(attr.nodeValue) || DATA_URL_PATTERN.test(attr.nodeValue));
+return Boolean(SAFE_URL_PATTERN.test(attr.nodeValue) || DATA_URL_PATTERN.test(attr.nodeValue));
       }
 
       return true;
@@ -5206,7 +5206,7 @@
 
     for (let i = 0, len = regExp.length; i < len; i++) {
       if (regExp[i].test(attrName)) {
-***REMOVED***return true;
+return true;
       }
     }
 
@@ -5265,16 +5265,16 @@
       const elName = el.nodeName.toLowerCase();
 
       if (!allowlistKeys.includes(elName)) {
-***REMOVED***el.remove();
-***REMOVED***continue;
+el.remove();
+continue;
       }
 
       const attributeList = [].concat(...el.attributes);
       const allowedAttributes = [].concat(allowList['*'] || [], allowList[elName] || []);
       attributeList.forEach(attr => {
-***REMOVED***if (!allowedAttribute(attr, allowedAttributes)) {
-***REMOVED***  el.removeAttribute(attr.nodeName);
-***REMOVED***}
+if (!allowedAttribute(attr, allowedAttributes)) {
+  el.removeAttribute(attr.nodeName);
+}
       });
     }
 
@@ -5376,7 +5376,7 @@
   class Tooltip extends BaseComponent {
     constructor(element, config) {
       if (typeof Popper === 'undefined') {
-***REMOVED***throw new TypeError('Bootstrap\'s tooltips require Popper (https://popper.js.org)');
+throw new TypeError('Bootstrap\'s tooltips require Popper (https://popper.js.org)');
       }
 
       super(element); // private
@@ -5425,27 +5425,27 @@
 
     toggle(event) {
       if (!this._isEnabled) {
-***REMOVED***return;
+return;
       }
 
       if (event) {
-***REMOVED***const context = this._initializeOnDelegatedTarget(event);
+const context = this._initializeOnDelegatedTarget(event);
 
-***REMOVED***context._activeTrigger.click = !context._activeTrigger.click;
+context._activeTrigger.click = !context._activeTrigger.click;
 
-***REMOVED***if (context._isWithActiveTrigger()) {
-***REMOVED***  context._enter(null, context);
-***REMOVED***} else {
-***REMOVED***  context._leave(null, context);
-***REMOVED***}
+if (context._isWithActiveTrigger()) {
+  context._enter(null, context);
+} else {
+  context._leave(null, context);
+}
       } else {
-***REMOVED***if (this.getTipElement().classList.contains(CLASS_NAME_SHOW$2)) {
-***REMOVED***  this._leave(null, this);
+if (this.getTipElement().classList.contains(CLASS_NAME_SHOW$2)) {
+  this._leave(null, this);
 
-***REMOVED***  return;
-***REMOVED***}
+  return;
+}
 
-***REMOVED***this._enter(null, this);
+this._enter(null, this);
       }
     }
 
@@ -5454,11 +5454,11 @@
       EventHandler.off(this._element.closest(SELECTOR_MODAL), EVENT_MODAL_HIDE, this._hideModalHandler);
 
       if (this.tip) {
-***REMOVED***this.tip.remove();
+this.tip.remove();
       }
 
       if (this._popper) {
-***REMOVED***this._popper.destroy();
+this._popper.destroy();
       }
 
       super.dispose();
@@ -5466,11 +5466,11 @@
 
     show() {
       if (this._element.style.display === 'none') {
-***REMOVED***throw new Error('Please use show on visible elements');
+throw new Error('Please use show on visible elements');
       }
 
       if (!(this.isWithContent() && this._isEnabled)) {
-***REMOVED***return;
+return;
       }
 
       const showEvent = EventHandler.trigger(this._element, this.constructor.Event.SHOW);
@@ -5478,7 +5478,7 @@
       const isInTheDom = shadowRoot === null ? this._element.ownerDocument.documentElement.contains(this._element) : shadowRoot.contains(this._element);
 
       if (showEvent.defaultPrevented || !isInTheDom) {
-***REMOVED***return;
+return;
       }
 
       const tip = this.getTipElement();
@@ -5488,7 +5488,7 @@
       this._element.setAttribute('aria-describedby', tipId);
 
       if (this._config.animation) {
-***REMOVED***tip.classList.add(CLASS_NAME_FADE$2);
+tip.classList.add(CLASS_NAME_FADE$2);
       }
 
       const placement = typeof this._config.placement === 'function' ? this._config.placement.call(this, tip, this._element) : this._config.placement;
@@ -5498,19 +5498,19 @@
       this._addAttachmentClass(attachment);
 
       const {
-***REMOVED***container
+container
       } = this._config;
       Data.set(tip, this.constructor.DATA_KEY, this);
 
       if (!this._element.ownerDocument.documentElement.contains(this.tip)) {
-***REMOVED***container.append(tip);
-***REMOVED***EventHandler.trigger(this._element, this.constructor.Event.INSERTED);
+container.append(tip);
+EventHandler.trigger(this._element, this.constructor.Event.INSERTED);
       }
 
       if (this._popper) {
-***REMOVED***this._popper.update();
+this._popper.update();
       } else {
-***REMOVED***this._popper = createPopper(this._element, tip, this._getPopperConfig(attachment));
+this._popper = createPopper(this._element, tip, this._getPopperConfig(attachment));
       }
 
       tip.classList.add(CLASS_NAME_SHOW$2);
@@ -5518,7 +5518,7 @@
       const customClass = this._resolvePossibleFunction(this._config.customClass);
 
       if (customClass) {
-***REMOVED***tip.classList.add(...customClass.split(' '));
+tip.classList.add(...customClass.split(' '));
       } // If this is a touch-enabled device we add extra
       // empty mouseover listeners to the body's immediate children;
       // only needed because of broken event delegation on iOS
@@ -5526,19 +5526,19 @@
 
 
       if ('ontouchstart' in document.documentElement) {
-***REMOVED***[].concat(...document.body.children).forEach(element => {
-***REMOVED***  EventHandler.on(element, 'mouseover', noop);
-***REMOVED***});
+[].concat(...document.body.children).forEach(element => {
+  EventHandler.on(element, 'mouseover', noop);
+});
       }
 
       const complete = () => {
-***REMOVED***const prevHoverState = this._hoverState;
-***REMOVED***this._hoverState = null;
-***REMOVED***EventHandler.trigger(this._element, this.constructor.Event.SHOWN);
+const prevHoverState = this._hoverState;
+this._hoverState = null;
+EventHandler.trigger(this._element, this.constructor.Event.SHOWN);
 
-***REMOVED***if (prevHoverState === HOVER_STATE_OUT) {
-***REMOVED***  this._leave(null, this);
-***REMOVED***}
+if (prevHoverState === HOVER_STATE_OUT) {
+  this._leave(null, this);
+}
       };
 
       const isAnimated = this.tip.classList.contains(CLASS_NAME_FADE$2);
@@ -5548,44 +5548,44 @@
 
     hide() {
       if (!this._popper) {
-***REMOVED***return;
+return;
       }
 
       const tip = this.getTipElement();
 
       const complete = () => {
-***REMOVED***if (this._isWithActiveTrigger()) {
-***REMOVED***  return;
-***REMOVED***}
+if (this._isWithActiveTrigger()) {
+  return;
+}
 
-***REMOVED***if (this._hoverState !== HOVER_STATE_SHOW) {
-***REMOVED***  tip.remove();
-***REMOVED***}
+if (this._hoverState !== HOVER_STATE_SHOW) {
+  tip.remove();
+}
 
-***REMOVED***this._cleanTipClass();
+this._cleanTipClass();
 
-***REMOVED***this._element.removeAttribute('aria-describedby');
+this._element.removeAttribute('aria-describedby');
 
-***REMOVED***EventHandler.trigger(this._element, this.constructor.Event.HIDDEN);
+EventHandler.trigger(this._element, this.constructor.Event.HIDDEN);
 
-***REMOVED***if (this._popper) {
-***REMOVED***  this._popper.destroy();
+if (this._popper) {
+  this._popper.destroy();
 
-***REMOVED***  this._popper = null;
-***REMOVED***}
+  this._popper = null;
+}
       };
 
       const hideEvent = EventHandler.trigger(this._element, this.constructor.Event.HIDE);
 
       if (hideEvent.defaultPrevented) {
-***REMOVED***return;
+return;
       }
 
       tip.classList.remove(CLASS_NAME_SHOW$2); // If this is a touch-enabled device we remove the extra
       // empty mouseover listeners we added for iOS support
 
       if ('ontouchstart' in document.documentElement) {
-***REMOVED***[].concat(...document.body.children).forEach(element => EventHandler.off(element, 'mouseover', noop));
+[].concat(...document.body.children).forEach(element => EventHandler.off(element, 'mouseover', noop));
       }
 
       this._activeTrigger[TRIGGER_CLICK] = false;
@@ -5600,7 +5600,7 @@
 
     update() {
       if (this._popper !== null) {
-***REMOVED***this._popper.update();
+this._popper.update();
       }
     } // Protected
 
@@ -5611,7 +5611,7 @@
 
     getTipElement() {
       if (this.tip) {
-***REMOVED***return this.tip;
+return this.tip;
       }
 
       const element = document.createElement('div');
@@ -5631,8 +5631,8 @@
       const templateElement = SelectorEngine.findOne(selector, template);
 
       if (!content && templateElement) {
-***REMOVED***templateElement.remove();
-***REMOVED***return;
+templateElement.remove();
+return;
       } // we use append for html objects to maintain js events
 
 
@@ -5641,32 +5641,32 @@
 
     setElementContent(element, content) {
       if (element === null) {
-***REMOVED***return;
+return;
       }
 
       if (isElement$1(content)) {
-***REMOVED***content = getElement(content); // content is a DOM node or a jQuery
+content = getElement(content); // content is a DOM node or a jQuery
 
-***REMOVED***if (this._config.html) {
-***REMOVED***  if (content.parentNode !== element) {
-***REMOVED***    element.innerHTML = '';
-***REMOVED***    element.append(content);
-***REMOVED***  }
-***REMOVED***} else {
-***REMOVED***  element.textContent = content.textContent;
-***REMOVED***}
+if (this._config.html) {
+  if (content.parentNode !== element) {
+    element.innerHTML = '';
+    element.append(content);
+  }
+} else {
+  element.textContent = content.textContent;
+}
 
-***REMOVED***return;
+return;
       }
 
       if (this._config.html) {
-***REMOVED***if (this._config.sanitize) {
-***REMOVED***  content = sanitizeHtml(content, this._config.allowList, this._config.sanitizeFn);
-***REMOVED***}
+if (this._config.sanitize) {
+  content = sanitizeHtml(content, this._config.allowList, this._config.sanitizeFn);
+}
 
-***REMOVED***element.innerHTML = content;
+element.innerHTML = content;
       } else {
-***REMOVED***element.textContent = content;
+element.textContent = content;
       }
     }
 
@@ -5678,11 +5678,11 @@
 
     updateAttachment(attachment) {
       if (attachment === 'right') {
-***REMOVED***return 'end';
+return 'end';
       }
 
       if (attachment === 'left') {
-***REMOVED***return 'start';
+return 'start';
       }
 
       return attachment;
@@ -5695,15 +5695,15 @@
 
     _getOffset() {
       const {
-***REMOVED***offset
+offset
       } = this._config;
 
       if (typeof offset === 'string') {
-***REMOVED***return offset.split(',').map(val => Number.parseInt(val, 10));
+return offset.split(',').map(val => Number.parseInt(val, 10));
       }
 
       if (typeof offset === 'function') {
-***REMOVED***return popperData => offset(popperData, this._element);
+return popperData => offset(popperData, this._element);
       }
 
       return offset;
@@ -5715,41 +5715,41 @@
 
     _getPopperConfig(attachment) {
       const defaultBsPopperConfig = {
-***REMOVED***placement: attachment,
-***REMOVED***modifiers: [{
-***REMOVED***  name: 'flip',
-***REMOVED***  options: {
-***REMOVED***    fallbackPlacements: this._config.fallbackPlacements
-***REMOVED***  }
-***REMOVED***}, {
-***REMOVED***  name: 'offset',
-***REMOVED***  options: {
-***REMOVED***    offset: this._getOffset()
-***REMOVED***  }
-***REMOVED***}, {
-***REMOVED***  name: 'preventOverflow',
-***REMOVED***  options: {
-***REMOVED***    boundary: this._config.boundary
-***REMOVED***  }
-***REMOVED***}, {
-***REMOVED***  name: 'arrow',
-***REMOVED***  options: {
-***REMOVED***    element: `.${this.constructor.NAME}-arrow`
-***REMOVED***  }
-***REMOVED***}, {
-***REMOVED***  name: 'onChange',
-***REMOVED***  enabled: true,
-***REMOVED***  phase: 'afterWrite',
-***REMOVED***  fn: data => this._handlePopperPlacementChange(data)
-***REMOVED***}],
-***REMOVED***onFirstUpdate: data => {
-***REMOVED***  if (data.options.placement !== data.placement) {
-***REMOVED***    this._handlePopperPlacementChange(data);
-***REMOVED***  }
-***REMOVED***}
+placement: attachment,
+modifiers: [{
+  name: 'flip',
+  options: {
+    fallbackPlacements: this._config.fallbackPlacements
+  }
+}, {
+  name: 'offset',
+  options: {
+    offset: this._getOffset()
+  }
+}, {
+  name: 'preventOverflow',
+  options: {
+    boundary: this._config.boundary
+  }
+}, {
+  name: 'arrow',
+  options: {
+    element: `.${this.constructor.NAME}-arrow`
+  }
+}, {
+  name: 'onChange',
+  enabled: true,
+  phase: 'afterWrite',
+  fn: data => this._handlePopperPlacementChange(data)
+}],
+onFirstUpdate: data => {
+  if (data.options.placement !== data.placement) {
+    this._handlePopperPlacementChange(data);
+  }
+}
       };
       return { ...defaultBsPopperConfig,
-***REMOVED***...(typeof this._config.popperConfig === 'function' ? this._config.popperConfig(defaultBsPopperConfig) : this._config.popperConfig)
+...(typeof this._config.popperConfig === 'function' ? this._config.popperConfig(defaultBsPopperConfig) : this._config.popperConfig)
       };
     }
 
@@ -5765,31 +5765,31 @@
       const triggers = this._config.trigger.split(' ');
 
       triggers.forEach(trigger => {
-***REMOVED***if (trigger === 'click') {
-***REMOVED***  EventHandler.on(this._element, this.constructor.Event.CLICK, this._config.selector, event => this.toggle(event));
-***REMOVED***} else if (trigger !== TRIGGER_MANUAL) {
-***REMOVED***  const eventIn = trigger === TRIGGER_HOVER ? this.constructor.Event.MOUSEENTER : this.constructor.Event.FOCUSIN;
-***REMOVED***  const eventOut = trigger === TRIGGER_HOVER ? this.constructor.Event.MOUSELEAVE : this.constructor.Event.FOCUSOUT;
-***REMOVED***  EventHandler.on(this._element, eventIn, this._config.selector, event => this._enter(event));
-***REMOVED***  EventHandler.on(this._element, eventOut, this._config.selector, event => this._leave(event));
-***REMOVED***}
+if (trigger === 'click') {
+  EventHandler.on(this._element, this.constructor.Event.CLICK, this._config.selector, event => this.toggle(event));
+} else if (trigger !== TRIGGER_MANUAL) {
+  const eventIn = trigger === TRIGGER_HOVER ? this.constructor.Event.MOUSEENTER : this.constructor.Event.FOCUSIN;
+  const eventOut = trigger === TRIGGER_HOVER ? this.constructor.Event.MOUSELEAVE : this.constructor.Event.FOCUSOUT;
+  EventHandler.on(this._element, eventIn, this._config.selector, event => this._enter(event));
+  EventHandler.on(this._element, eventOut, this._config.selector, event => this._leave(event));
+}
       });
 
       this._hideModalHandler = () => {
-***REMOVED***if (this._element) {
-***REMOVED***  this.hide();
-***REMOVED***}
+if (this._element) {
+  this.hide();
+}
       };
 
       EventHandler.on(this._element.closest(SELECTOR_MODAL), EVENT_MODAL_HIDE, this._hideModalHandler);
 
       if (this._config.selector) {
-***REMOVED***this._config = { ...this._config,
-***REMOVED***  trigger: 'manual',
-***REMOVED***  selector: ''
-***REMOVED***};
+this._config = { ...this._config,
+  trigger: 'manual',
+  selector: ''
+};
       } else {
-***REMOVED***this._fixTitle();
+this._fixTitle();
       }
     }
 
@@ -5799,13 +5799,13 @@
       const originalTitleType = typeof this._element.getAttribute('data-bs-original-title');
 
       if (title || originalTitleType !== 'string') {
-***REMOVED***this._element.setAttribute('data-bs-original-title', title || '');
+this._element.setAttribute('data-bs-original-title', title || '');
 
-***REMOVED***if (title && !this._element.getAttribute('aria-label') && !this._element.textContent) {
-***REMOVED***  this._element.setAttribute('aria-label', title);
-***REMOVED***}
+if (title && !this._element.getAttribute('aria-label') && !this._element.textContent) {
+  this._element.setAttribute('aria-label', title);
+}
 
-***REMOVED***this._element.setAttribute('title', '');
+this._element.setAttribute('title', '');
       }
     }
 
@@ -5813,26 +5813,26 @@
       context = this._initializeOnDelegatedTarget(event, context);
 
       if (event) {
-***REMOVED***context._activeTrigger[event.type === 'focusin' ? TRIGGER_FOCUS : TRIGGER_HOVER] = true;
+context._activeTrigger[event.type === 'focusin' ? TRIGGER_FOCUS : TRIGGER_HOVER] = true;
       }
 
       if (context.getTipElement().classList.contains(CLASS_NAME_SHOW$2) || context._hoverState === HOVER_STATE_SHOW) {
-***REMOVED***context._hoverState = HOVER_STATE_SHOW;
-***REMOVED***return;
+context._hoverState = HOVER_STATE_SHOW;
+return;
       }
 
       clearTimeout(context._timeout);
       context._hoverState = HOVER_STATE_SHOW;
 
       if (!context._config.delay || !context._config.delay.show) {
-***REMOVED***context.show();
-***REMOVED***return;
+context.show();
+return;
       }
 
       context._timeout = setTimeout(() => {
-***REMOVED***if (context._hoverState === HOVER_STATE_SHOW) {
-***REMOVED***  context.show();
-***REMOVED***}
+if (context._hoverState === HOVER_STATE_SHOW) {
+  context.show();
+}
       }, context._config.delay.show);
     }
 
@@ -5840,33 +5840,33 @@
       context = this._initializeOnDelegatedTarget(event, context);
 
       if (event) {
-***REMOVED***context._activeTrigger[event.type === 'focusout' ? TRIGGER_FOCUS : TRIGGER_HOVER] = context._element.contains(event.relatedTarget);
+context._activeTrigger[event.type === 'focusout' ? TRIGGER_FOCUS : TRIGGER_HOVER] = context._element.contains(event.relatedTarget);
       }
 
       if (context._isWithActiveTrigger()) {
-***REMOVED***return;
+return;
       }
 
       clearTimeout(context._timeout);
       context._hoverState = HOVER_STATE_OUT;
 
       if (!context._config.delay || !context._config.delay.hide) {
-***REMOVED***context.hide();
-***REMOVED***return;
+context.hide();
+return;
       }
 
       context._timeout = setTimeout(() => {
-***REMOVED***if (context._hoverState === HOVER_STATE_OUT) {
-***REMOVED***  context.hide();
-***REMOVED***}
+if (context._hoverState === HOVER_STATE_OUT) {
+  context.hide();
+}
       }, context._config.delay.hide);
     }
 
     _isWithActiveTrigger() {
       for (const trigger in this._activeTrigger) {
-***REMOVED***if (this._activeTrigger[trigger]) {
-***REMOVED***  return true;
-***REMOVED***}
+if (this._activeTrigger[trigger]) {
+  return true;
+}
       }
 
       return false;
@@ -5875,35 +5875,35 @@
     _getConfig(config) {
       const dataAttributes = Manipulator.getDataAttributes(this._element);
       Object.keys(dataAttributes).forEach(dataAttr => {
-***REMOVED***if (DISALLOWED_ATTRIBUTES.has(dataAttr)) {
-***REMOVED***  delete dataAttributes[dataAttr];
-***REMOVED***}
+if (DISALLOWED_ATTRIBUTES.has(dataAttr)) {
+  delete dataAttributes[dataAttr];
+}
       });
       config = { ...this.constructor.Default,
-***REMOVED***...dataAttributes,
-***REMOVED***...(typeof config === 'object' && config ? config : {})
+...dataAttributes,
+...(typeof config === 'object' && config ? config : {})
       };
       config.container = config.container === false ? document.body : getElement(config.container);
 
       if (typeof config.delay === 'number') {
-***REMOVED***config.delay = {
-***REMOVED***  show: config.delay,
-***REMOVED***  hide: config.delay
-***REMOVED***};
+config.delay = {
+  show: config.delay,
+  hide: config.delay
+};
       }
 
       if (typeof config.title === 'number') {
-***REMOVED***config.title = config.title.toString();
+config.title = config.title.toString();
       }
 
       if (typeof config.content === 'number') {
-***REMOVED***config.content = config.content.toString();
+config.content = config.content.toString();
       }
 
       typeCheckConfig(NAME$4, config, this.constructor.DefaultType);
 
       if (config.sanitize) {
-***REMOVED***config.template = sanitizeHtml(config.template, config.allowList, config.sanitizeFn);
+config.template = sanitizeHtml(config.template, config.allowList, config.sanitizeFn);
       }
 
       return config;
@@ -5913,9 +5913,9 @@
       const config = {};
 
       for (const key in this._config) {
-***REMOVED***if (this.constructor.Default[key] !== this._config[key]) {
-***REMOVED***  config[key] = this._config[key];
-***REMOVED***}
+if (this.constructor.Default[key] !== this._config[key]) {
+  config[key] = this._config[key];
+}
       } // In the future can be replaced with:
       // const keysWithDifferentValues = Object.entries(this._config).filter(entry => this.constructor.Default[entry[0]] !== this._config[entry[0]])
       // `Object.fromEntries(keysWithDifferentValues)`
@@ -5930,7 +5930,7 @@
       const tabClass = tip.getAttribute('class').match(basicClassPrefixRegex);
 
       if (tabClass !== null && tabClass.length > 0) {
-***REMOVED***tabClass.map(token => token.trim()).forEach(tClass => tip.classList.remove(tClass));
+tabClass.map(token => token.trim()).forEach(tClass => tip.classList.remove(tClass));
       }
     }
 
@@ -5940,11 +5940,11 @@
 
     _handlePopperPlacementChange(popperData) {
       const {
-***REMOVED***state
+state
       } = popperData;
 
       if (!state) {
-***REMOVED***return;
+return;
       }
 
       this.tip = state.elements.popper;
@@ -5957,15 +5957,15 @@
 
     static jQueryInterface(config) {
       return this.each(function () {
-***REMOVED***const data = Tooltip.getOrCreateInstance(this, config);
+const data = Tooltip.getOrCreateInstance(this, config);
 
-***REMOVED***if (typeof config === 'string') {
-***REMOVED***  if (typeof data[config] === 'undefined') {
-***REMOVED***    throw new TypeError(`No method named "${config}"`);
-***REMOVED***  }
+if (typeof config === 'string') {
+  if (typeof data[config] === 'undefined') {
+    throw new TypeError(`No method named "${config}"`);
+  }
 
-***REMOVED***  data[config]();
-***REMOVED***}
+  data[config]();
+}
       });
     }
 
@@ -6067,15 +6067,15 @@
 
     static jQueryInterface(config) {
       return this.each(function () {
-***REMOVED***const data = Popover.getOrCreateInstance(this, config);
+const data = Popover.getOrCreateInstance(this, config);
 
-***REMOVED***if (typeof config === 'string') {
-***REMOVED***  if (typeof data[config] === 'undefined') {
-***REMOVED***    throw new TypeError(`No method named "${config}"`);
-***REMOVED***  }
+if (typeof config === 'string') {
+  if (typeof data[config] === 'undefined') {
+    throw new TypeError(`No method named "${config}"`);
+  }
 
-***REMOVED***  data[config]();
-***REMOVED***}
+  data[config]();
+}
       });
     }
 
@@ -6171,22 +6171,22 @@
       this._scrollHeight = this._getScrollHeight();
       const targets = SelectorEngine.find(SELECTOR_LINK_ITEMS, this._config.target);
       targets.map(element => {
-***REMOVED***const targetSelector = getSelectorFromElement(element);
-***REMOVED***const target = targetSelector ? SelectorEngine.findOne(targetSelector) : null;
+const targetSelector = getSelectorFromElement(element);
+const target = targetSelector ? SelectorEngine.findOne(targetSelector) : null;
 
-***REMOVED***if (target) {
-***REMOVED***  const targetBCR = target.getBoundingClientRect();
+if (target) {
+  const targetBCR = target.getBoundingClientRect();
 
-***REMOVED***  if (targetBCR.width || targetBCR.height) {
-***REMOVED***    return [Manipulator[offsetMethod](target).top + offsetBase, targetSelector];
-***REMOVED***  }
-***REMOVED***}
+  if (targetBCR.width || targetBCR.height) {
+    return [Manipulator[offsetMethod](target).top + offsetBase, targetSelector];
+  }
+}
 
-***REMOVED***return null;
+return null;
       }).filter(item => item).sort((a, b) => a[0] - b[0]).forEach(item => {
-***REMOVED***this._offsets.push(item[0]);
+this._offsets.push(item[0]);
 
-***REMOVED***this._targets.push(item[1]);
+this._targets.push(item[1]);
       });
     }
 
@@ -6198,8 +6198,8 @@
 
     _getConfig(config) {
       config = { ...Default$1,
-***REMOVED***...Manipulator.getDataAttributes(this._element),
-***REMOVED***...(typeof config === 'object' && config ? config : {})
+...Manipulator.getDataAttributes(this._element),
+...(typeof config === 'object' && config ? config : {})
       };
       config.target = getElement(config.target) || document.documentElement;
       typeCheckConfig(NAME$2, config, DefaultType$1);
@@ -6226,33 +6226,33 @@
       const maxScroll = this._config.offset + scrollHeight - this._getOffsetHeight();
 
       if (this._scrollHeight !== scrollHeight) {
-***REMOVED***this.refresh();
+this.refresh();
       }
 
       if (scrollTop >= maxScroll) {
-***REMOVED***const target = this._targets[this._targets.length - 1];
+const target = this._targets[this._targets.length - 1];
 
-***REMOVED***if (this._activeTarget !== target) {
-***REMOVED***  this._activate(target);
-***REMOVED***}
+if (this._activeTarget !== target) {
+  this._activate(target);
+}
 
-***REMOVED***return;
+return;
       }
 
       if (this._activeTarget && scrollTop < this._offsets[0] && this._offsets[0] > 0) {
-***REMOVED***this._activeTarget = null;
+this._activeTarget = null;
 
-***REMOVED***this._clear();
+this._clear();
 
-***REMOVED***return;
+return;
       }
 
       for (let i = this._offsets.length; i--;) {
-***REMOVED***const isActiveTarget = this._activeTarget !== this._targets[i] && scrollTop >= this._offsets[i] && (typeof this._offsets[i + 1] === 'undefined' || scrollTop < this._offsets[i + 1]);
+const isActiveTarget = this._activeTarget !== this._targets[i] && scrollTop >= this._offsets[i] && (typeof this._offsets[i + 1] === 'undefined' || scrollTop < this._offsets[i + 1]);
 
-***REMOVED***if (isActiveTarget) {
-***REMOVED***  this._activate(this._targets[i]);
-***REMOVED***}
+if (isActiveTarget) {
+  this._activate(this._targets[i]);
+}
       }
     }
 
@@ -6266,21 +6266,21 @@
       link.classList.add(CLASS_NAME_ACTIVE$1);
 
       if (link.classList.contains(CLASS_NAME_DROPDOWN_ITEM)) {
-***REMOVED***SelectorEngine.findOne(SELECTOR_DROPDOWN_TOGGLE$1, link.closest(SELECTOR_DROPDOWN$1)).classList.add(CLASS_NAME_ACTIVE$1);
+SelectorEngine.findOne(SELECTOR_DROPDOWN_TOGGLE$1, link.closest(SELECTOR_DROPDOWN$1)).classList.add(CLASS_NAME_ACTIVE$1);
       } else {
-***REMOVED***SelectorEngine.parents(link, SELECTOR_NAV_LIST_GROUP$1).forEach(listGroup => {
-***REMOVED***  // Set triggered links parents as active
-***REMOVED***  // With both <ul> and <nav> markup a parent is the previous sibling of any nav ancestor
-***REMOVED***  SelectorEngine.prev(listGroup, `${SELECTOR_NAV_LINKS}, ${SELECTOR_LIST_ITEMS}`).forEach(item => item.classList.add(CLASS_NAME_ACTIVE$1)); // Handle special case when .nav-link is inside .nav-item
+SelectorEngine.parents(link, SELECTOR_NAV_LIST_GROUP$1).forEach(listGroup => {
+  // Set triggered links parents as active
+  // With both <ul> and <nav> markup a parent is the previous sibling of any nav ancestor
+  SelectorEngine.prev(listGroup, `${SELECTOR_NAV_LINKS}, ${SELECTOR_LIST_ITEMS}`).forEach(item => item.classList.add(CLASS_NAME_ACTIVE$1)); // Handle special case when .nav-link is inside .nav-item
 
-***REMOVED***  SelectorEngine.prev(listGroup, SELECTOR_NAV_ITEMS).forEach(navItem => {
-***REMOVED***    SelectorEngine.children(navItem, SELECTOR_NAV_LINKS).forEach(item => item.classList.add(CLASS_NAME_ACTIVE$1));
-***REMOVED***  });
-***REMOVED***});
+  SelectorEngine.prev(listGroup, SELECTOR_NAV_ITEMS).forEach(navItem => {
+    SelectorEngine.children(navItem, SELECTOR_NAV_LINKS).forEach(item => item.classList.add(CLASS_NAME_ACTIVE$1));
+  });
+});
       }
 
       EventHandler.trigger(this._scrollElement, EVENT_ACTIVATE, {
-***REMOVED***relatedTarget: target
+relatedTarget: target
       });
     }
 
@@ -6291,17 +6291,17 @@
 
     static jQueryInterface(config) {
       return this.each(function () {
-***REMOVED***const data = ScrollSpy.getOrCreateInstance(this, config);
+const data = ScrollSpy.getOrCreateInstance(this, config);
 
-***REMOVED***if (typeof config !== 'string') {
-***REMOVED***  return;
-***REMOVED***}
+if (typeof config !== 'string') {
+  return;
+}
 
-***REMOVED***if (typeof data[config] === 'undefined') {
-***REMOVED***  throw new TypeError(`No method named "${config}"`);
-***REMOVED***}
+if (typeof data[config] === 'undefined') {
+  throw new TypeError(`No method named "${config}"`);
+}
 
-***REMOVED***data[config]();
+data[config]();
       });
     }
 
@@ -6372,7 +6372,7 @@
 
     show() {
       if (this._element.parentNode && this._element.parentNode.nodeType === Node.ELEMENT_NODE && this._element.classList.contains(CLASS_NAME_ACTIVE)) {
-***REMOVED***return;
+return;
       }
 
       let previous;
@@ -6381,37 +6381,37 @@
       const listElement = this._element.closest(SELECTOR_NAV_LIST_GROUP);
 
       if (listElement) {
-***REMOVED***const itemSelector = listElement.nodeName === 'UL' || listElement.nodeName === 'OL' ? SELECTOR_ACTIVE_UL : SELECTOR_ACTIVE;
-***REMOVED***previous = SelectorEngine.find(itemSelector, listElement);
-***REMOVED***previous = previous[previous.length - 1];
+const itemSelector = listElement.nodeName === 'UL' || listElement.nodeName === 'OL' ? SELECTOR_ACTIVE_UL : SELECTOR_ACTIVE;
+previous = SelectorEngine.find(itemSelector, listElement);
+previous = previous[previous.length - 1];
       }
 
       const hideEvent = previous ? EventHandler.trigger(previous, EVENT_HIDE$1, {
-***REMOVED***relatedTarget: this._element
+relatedTarget: this._element
       }) : null;
       const showEvent = EventHandler.trigger(this._element, EVENT_SHOW$1, {
-***REMOVED***relatedTarget: previous
+relatedTarget: previous
       });
 
       if (showEvent.defaultPrevented || hideEvent !== null && hideEvent.defaultPrevented) {
-***REMOVED***return;
+return;
       }
 
       this._activate(this._element, listElement);
 
       const complete = () => {
-***REMOVED***EventHandler.trigger(previous, EVENT_HIDDEN$1, {
-***REMOVED***  relatedTarget: this._element
-***REMOVED***});
-***REMOVED***EventHandler.trigger(this._element, EVENT_SHOWN$1, {
-***REMOVED***  relatedTarget: previous
-***REMOVED***});
+EventHandler.trigger(previous, EVENT_HIDDEN$1, {
+  relatedTarget: this._element
+});
+EventHandler.trigger(this._element, EVENT_SHOWN$1, {
+  relatedTarget: previous
+});
       };
 
       if (target) {
-***REMOVED***this._activate(target, target.parentNode, complete);
+this._activate(target, target.parentNode, complete);
       } else {
-***REMOVED***complete();
+complete();
       }
     } // Private
 
@@ -6424,73 +6424,73 @@
       const complete = () => this._transitionComplete(element, active, callback);
 
       if (active && isTransitioning) {
-***REMOVED***active.classList.remove(CLASS_NAME_SHOW$1);
+active.classList.remove(CLASS_NAME_SHOW$1);
 
-***REMOVED***this._queueCallback(complete, element, true);
+this._queueCallback(complete, element, true);
       } else {
-***REMOVED***complete();
+complete();
       }
     }
 
     _transitionComplete(element, active, callback) {
       if (active) {
-***REMOVED***active.classList.remove(CLASS_NAME_ACTIVE);
-***REMOVED***const dropdownChild = SelectorEngine.findOne(SELECTOR_DROPDOWN_ACTIVE_CHILD, active.parentNode);
+active.classList.remove(CLASS_NAME_ACTIVE);
+const dropdownChild = SelectorEngine.findOne(SELECTOR_DROPDOWN_ACTIVE_CHILD, active.parentNode);
 
-***REMOVED***if (dropdownChild) {
-***REMOVED***  dropdownChild.classList.remove(CLASS_NAME_ACTIVE);
-***REMOVED***}
+if (dropdownChild) {
+  dropdownChild.classList.remove(CLASS_NAME_ACTIVE);
+}
 
-***REMOVED***if (active.getAttribute('role') === 'tab') {
-***REMOVED***  active.setAttribute('aria-selected', false);
-***REMOVED***}
+if (active.getAttribute('role') === 'tab') {
+  active.setAttribute('aria-selected', false);
+}
       }
 
       element.classList.add(CLASS_NAME_ACTIVE);
 
       if (element.getAttribute('role') === 'tab') {
-***REMOVED***element.setAttribute('aria-selected', true);
+element.setAttribute('aria-selected', true);
       }
 
       reflow(element);
 
       if (element.classList.contains(CLASS_NAME_FADE$1)) {
-***REMOVED***element.classList.add(CLASS_NAME_SHOW$1);
+element.classList.add(CLASS_NAME_SHOW$1);
       }
 
       let parent = element.parentNode;
 
       if (parent && parent.nodeName === 'LI') {
-***REMOVED***parent = parent.parentNode;
+parent = parent.parentNode;
       }
 
       if (parent && parent.classList.contains(CLASS_NAME_DROPDOWN_MENU)) {
-***REMOVED***const dropdownElement = element.closest(SELECTOR_DROPDOWN);
+const dropdownElement = element.closest(SELECTOR_DROPDOWN);
 
-***REMOVED***if (dropdownElement) {
-***REMOVED***  SelectorEngine.find(SELECTOR_DROPDOWN_TOGGLE, dropdownElement).forEach(dropdown => dropdown.classList.add(CLASS_NAME_ACTIVE));
-***REMOVED***}
+if (dropdownElement) {
+  SelectorEngine.find(SELECTOR_DROPDOWN_TOGGLE, dropdownElement).forEach(dropdown => dropdown.classList.add(CLASS_NAME_ACTIVE));
+}
 
-***REMOVED***element.setAttribute('aria-expanded', true);
+element.setAttribute('aria-expanded', true);
       }
 
       if (callback) {
-***REMOVED***callback();
+callback();
       }
     } // Static
 
 
     static jQueryInterface(config) {
       return this.each(function () {
-***REMOVED***const data = Tab.getOrCreateInstance(this);
+const data = Tab.getOrCreateInstance(this);
 
-***REMOVED***if (typeof config === 'string') {
-***REMOVED***  if (typeof data[config] === 'undefined') {
-***REMOVED***    throw new TypeError(`No method named "${config}"`);
-***REMOVED***  }
+if (typeof config === 'string') {
+  if (typeof data[config] === 'undefined') {
+    throw new TypeError(`No method named "${config}"`);
+  }
 
-***REMOVED***  data[config]();
-***REMOVED***}
+  data[config]();
+}
       });
     }
 
@@ -6596,21 +6596,21 @@
       const showEvent = EventHandler.trigger(this._element, EVENT_SHOW);
 
       if (showEvent.defaultPrevented) {
-***REMOVED***return;
+return;
       }
 
       this._clearTimeout();
 
       if (this._config.animation) {
-***REMOVED***this._element.classList.add(CLASS_NAME_FADE);
+this._element.classList.add(CLASS_NAME_FADE);
       }
 
       const complete = () => {
-***REMOVED***this._element.classList.remove(CLASS_NAME_SHOWING);
+this._element.classList.remove(CLASS_NAME_SHOWING);
 
-***REMOVED***EventHandler.trigger(this._element, EVENT_SHOWN);
+EventHandler.trigger(this._element, EVENT_SHOWN);
 
-***REMOVED***this._maybeScheduleHide();
+this._maybeScheduleHide();
       };
 
       this._element.classList.remove(CLASS_NAME_HIDE); // @deprecated
@@ -6627,24 +6627,24 @@
 
     hide() {
       if (!this._element.classList.contains(CLASS_NAME_SHOW)) {
-***REMOVED***return;
+return;
       }
 
       const hideEvent = EventHandler.trigger(this._element, EVENT_HIDE);
 
       if (hideEvent.defaultPrevented) {
-***REMOVED***return;
+return;
       }
 
       const complete = () => {
-***REMOVED***this._element.classList.add(CLASS_NAME_HIDE); // @deprecated
+this._element.classList.add(CLASS_NAME_HIDE); // @deprecated
 
 
-***REMOVED***this._element.classList.remove(CLASS_NAME_SHOWING);
+this._element.classList.remove(CLASS_NAME_SHOWING);
 
-***REMOVED***this._element.classList.remove(CLASS_NAME_SHOW);
+this._element.classList.remove(CLASS_NAME_SHOW);
 
-***REMOVED***EventHandler.trigger(this._element, EVENT_HIDDEN);
+EventHandler.trigger(this._element, EVENT_HIDDEN);
       };
 
       this._element.classList.add(CLASS_NAME_SHOWING);
@@ -6656,7 +6656,7 @@
       this._clearTimeout();
 
       if (this._element.classList.contains(CLASS_NAME_SHOW)) {
-***REMOVED***this._element.classList.remove(CLASS_NAME_SHOW);
+this._element.classList.remove(CLASS_NAME_SHOW);
       }
 
       super.dispose();
@@ -6665,8 +6665,8 @@
 
     _getConfig(config) {
       config = { ...Default,
-***REMOVED***...Manipulator.getDataAttributes(this._element),
-***REMOVED***...(typeof config === 'object' && config ? config : {})
+...Manipulator.getDataAttributes(this._element),
+...(typeof config === 'object' && config ? config : {})
       };
       typeCheckConfig(NAME, config, this.constructor.DefaultType);
       return config;
@@ -6674,41 +6674,41 @@
 
     _maybeScheduleHide() {
       if (!this._config.autohide) {
-***REMOVED***return;
+return;
       }
 
       if (this._hasMouseInteraction || this._hasKeyboardInteraction) {
-***REMOVED***return;
+return;
       }
 
       this._timeout = setTimeout(() => {
-***REMOVED***this.hide();
+this.hide();
       }, this._config.delay);
     }
 
     _onInteraction(event, isInteracting) {
       switch (event.type) {
-***REMOVED***case 'mouseover':
-***REMOVED***case 'mouseout':
-***REMOVED***  this._hasMouseInteraction = isInteracting;
-***REMOVED***  break;
+case 'mouseover':
+case 'mouseout':
+  this._hasMouseInteraction = isInteracting;
+  break;
 
-***REMOVED***case 'focusin':
-***REMOVED***case 'focusout':
-***REMOVED***  this._hasKeyboardInteraction = isInteracting;
-***REMOVED***  break;
+case 'focusin':
+case 'focusout':
+  this._hasKeyboardInteraction = isInteracting;
+  break;
       }
 
       if (isInteracting) {
-***REMOVED***this._clearTimeout();
+this._clearTimeout();
 
-***REMOVED***return;
+return;
       }
 
       const nextElement = event.relatedTarget;
 
       if (this._element === nextElement || this._element.contains(nextElement)) {
-***REMOVED***return;
+return;
       }
 
       this._maybeScheduleHide();
@@ -6729,15 +6729,15 @@
 
     static jQueryInterface(config) {
       return this.each(function () {
-***REMOVED***const data = Toast.getOrCreateInstance(this, config);
+const data = Toast.getOrCreateInstance(this, config);
 
-***REMOVED***if (typeof config === 'string') {
-***REMOVED***  if (typeof data[config] === 'undefined') {
-***REMOVED***    throw new TypeError(`No method named "${config}"`);
-***REMOVED***  }
+if (typeof config === 'string') {
+  if (typeof data[config] === 'undefined') {
+    throw new TypeError(`No method named "${config}"`);
+  }
 
-***REMOVED***  data[config](this);
-***REMOVED***}
+  data[config](this);
+}
       });
     }
 

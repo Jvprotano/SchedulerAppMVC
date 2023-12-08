@@ -8,57 +8,57 @@ namespace AppAgendamentos.Infrastructure
 {
     public class ApplicationDbContext : DbContext
     {
-***REMOVED***public ApplicationDbContext(DbContextOptions options) : base(options)
-***REMOVED***{
-***REMOVED***}
-***REMOVED***// public DbSet<T> DbSet { get; set; }
+public ApplicationDbContext(DbContextOptions options) : base(options)
+{
+}
+// public DbSet<T> DbSet { get; set; }
 
-***REMOVED***// public DbSet<Company> Companies { get; set; }
-***REMOVED***// public DbSet<User> Users { get; set; }
-***REMOVED***// public DbSet<Category> Categories { get; set; }
-***REMOVED***// public DbSet<CompanyOwners> CompanyOwners { get; set; }
-***REMOVED***// public DbSet<ServicesOffered> ServicesOffered { get; set; }
-***REMOVED***// public DbSet<Scheduling> Schedulings { get; set; }
-***REMOVED***// public DbSet<CompanyOpeningHours> CompanyOpeningHours { get; set; }
+// public DbSet<Company> Companies { get; set; }
+// public DbSet<User> Users { get; set; }
+// public DbSet<Category> Categories { get; set; }
+// public DbSet<CompanyOwners> CompanyOwners { get; set; }
+// public DbSet<ServicesOffered> ServicesOffered { get; set; }
+// public DbSet<Scheduling> Schedulings { get; set; }
+// public DbSet<CompanyOpeningHours> CompanyOpeningHours { get; set; }
 
-***REMOVED***protected override void OnModelCreating(ModelBuilder modelBuilder)
-***REMOVED***{
-***REMOVED***    modelBuilder.ApplyConfigurationsFromAssembly(typeof(ApplicationDbContext).Assembly);
+protected override void OnModelCreating(ModelBuilder modelBuilder)
+{
+    modelBuilder.ApplyConfigurationsFromAssembly(typeof(ApplicationDbContext).Assembly);
 
-***REMOVED***    modelBuilder.ApplySnakeCaseNamingConvention();
+    modelBuilder.ApplySnakeCaseNamingConvention();
 
-***REMOVED***    base.OnModelCreating(modelBuilder);
-***REMOVED***}
+    base.OnModelCreating(modelBuilder);
+}
 
-***REMOVED***public override int SaveChanges()
-***REMOVED***{
-***REMOVED***    AtualizarDatas();
-***REMOVED***    return base.SaveChanges();
-***REMOVED***}
-***REMOVED***public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
-***REMOVED***{
-***REMOVED***    AtualizarDatas();
-***REMOVED***    return await base.SaveChangesAsync(cancellationToken);
-***REMOVED***}
+public override int SaveChanges()
+{
+    AtualizarDatas();
+    return base.SaveChanges();
+}
+public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
+{
+    AtualizarDatas();
+    return await base.SaveChangesAsync(cancellationToken);
+}
 
-***REMOVED***private void AtualizarDatas()
-***REMOVED***{
-***REMOVED***    var entries = ChangeTracker.Entries().Where(e => e.Entity is BaseEntity && (
-***REMOVED******REMOVED***e.State == EntityState.Added || e.State == EntityState.Modified));
+private void AtualizarDatas()
+{
+    var entries = ChangeTracker.Entries().Where(e => e.Entity is BaseEntity && (
+e.State == EntityState.Added || e.State == EntityState.Modified));
 
-***REMOVED***    foreach (var entry in entries)
-***REMOVED***    {
-***REMOVED******REMOVED***var entity = (BaseEntity)entry.Entity;
-***REMOVED******REMOVED***var now = DateTime.UtcNow;
+    foreach (var entry in entries)
+    {
+var entity = (BaseEntity)entry.Entity;
+var now = DateTime.UtcNow;
 
-***REMOVED******REMOVED***if (entry.State == EntityState.Added)
-***REMOVED******REMOVED***{
-***REMOVED******REMOVED***    entity.RegisterDate = now;
-***REMOVED******REMOVED***}
+if (entry.State == EntityState.Added)
+{
+    entity.RegisterDate = now;
+}
 
-***REMOVED******REMOVED***entity.UpdateDate = now;
-***REMOVED***    }
-***REMOVED***}
+entity.UpdateDate = now;
+    }
+}
 
     }
 }

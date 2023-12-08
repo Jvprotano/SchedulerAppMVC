@@ -10,22 +10,22 @@ namespace AppAgendamentos.Infrastructure.Extensions
 {
     public static class ServiceExtensions
     {
-***REMOVED***public static void AddRepositories(this IServiceCollection services)
-***REMOVED***{
-***REMOVED***    #region Repositories
-***REMOVED***    services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
-***REMOVED***    services.AddScoped(typeof(IService<>), typeof(Service<>));
+public static void AddRepositories(this IServiceCollection services)
+{
+    #region Repositories
+    services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
+    services.AddScoped(typeof(IService<>), typeof(Service<>));
 
-***REMOVED***    services.AddScoped<ISchedulingRepository, SchedulingRepository>();
-***REMOVED***    services.AddScoped<ICompanyRepository, CompanyRepository>();
-***REMOVED***    services.AddScoped<ICompanyOpeningHoursRepository, CompanyOpeningHoursRepository>();
+    services.AddScoped<ISchedulingRepository, SchedulingRepository>();
+    services.AddScoped<ICompanyRepository, CompanyRepository>();
+    services.AddScoped<ICompanyOpeningHoursRepository, CompanyOpeningHoursRepository>();
 
-***REMOVED***    #endregion
+    #endregion
 
-***REMOVED***    #region Services
-***REMOVED***    services.AddScoped<ISchedulingService, SchedulingService>();
+    #region Services
+    services.AddScoped<ISchedulingService, SchedulingService>();
 
-***REMOVED***    #endregion
-***REMOVED***}
+    #endregion
+}
     }
 }

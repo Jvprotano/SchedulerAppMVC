@@ -7,36 +7,36 @@ namespace AppAgendamentos.Controllers
 {
     public class CompanyController : Controller
     {
-***REMOVED***private readonly IService<Company> _companyService;
+private readonly IService<Company> _companyService;
 
-***REMOVED***public CompanyController(IService<Company> companyService)
-***REMOVED***{
-***REMOVED***    _companyService = companyService;
-***REMOVED***}
+public CompanyController(IService<Company> companyService)
+{
+    _companyService = companyService;
+}
 
-***REMOVED***public IActionResult Index()
-***REMOVED***{
-***REMOVED***    return RedirectToAction("Create");
-***REMOVED***}
+public IActionResult Index()
+{
+    return RedirectToAction("Create");
+}
 
-***REMOVED***public IActionResult Create()
-***REMOVED***{
-***REMOVED***    var model = new CompanyViewModel();
-***REMOVED***    return View(model);
-***REMOVED***}
+public IActionResult Create()
+{
+    var model = new CompanyViewModel();
+    return View(model);
+}
 
-***REMOVED***[HttpPost]
-***REMOVED***public async Task<IActionResult> Create(Company company)
-***REMOVED***{
-***REMOVED***    try
-***REMOVED***    {
-***REMOVED******REMOVED***await _companyService.SaveAsync(company);
-***REMOVED******REMOVED***return RedirectToAction("Index", "Home");
-***REMOVED***    }
-***REMOVED***    catch(Exception ex)
-***REMOVED***    {
-***REMOVED******REMOVED***throw new Exception(ex.Message);
-***REMOVED***    }
-***REMOVED***}
+[HttpPost]
+public async Task<IActionResult> Create(Company company)
+{
+    try
+    {
+await _companyService.SaveAsync(company);
+return RedirectToAction("Index", "Home");
+    }
+    catch(Exception ex)
+    {
+throw new Exception(ex.Message);
+    }
+}
     }
 }

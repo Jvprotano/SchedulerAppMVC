@@ -8,60 +8,60 @@ namespace AppAgendamentos.Migrations
     /// <inheritdoc />
     public partial class FixTypeTimeStamp : Migration
     {
-***REMOVED***/// <inheritdoc />
-***REMOVED***protected override void Up(MigrationBuilder migrationBuilder)
-***REMOVED***{
-***REMOVED***    migrationBuilder.AlterColumn<TimeSpan>(
-***REMOVED******REMOVED***name: "duration",
-***REMOVED******REMOVED***table: "services_offered",
-***REMOVED******REMOVED***type: "time",
-***REMOVED******REMOVED***nullable: false,
-***REMOVED******REMOVED***oldClrType: typeof(DateTime),
-***REMOVED******REMOVED***oldType: "datetime2");
+/// <inheritdoc />
+protected override void Up(MigrationBuilder migrationBuilder)
+{
+    migrationBuilder.AlterColumn<TimeSpan>(
+name: "duration",
+table: "services_offered",
+type: "time",
+nullable: false,
+oldClrType: typeof(DateTime),
+oldType: "datetime2");
 
-***REMOVED***    migrationBuilder.AlterColumn<TimeSpan>(
-***REMOVED******REMOVED***name: "opening_hour",
-***REMOVED******REMOVED***table: "company_opening_hours",
-***REMOVED******REMOVED***type: "time",
-***REMOVED******REMOVED***nullable: false,
-***REMOVED******REMOVED***oldClrType: typeof(DateTime),
-***REMOVED******REMOVED***oldType: "datetime2");
+    migrationBuilder.AlterColumn<TimeSpan>(
+name: "opening_hour",
+table: "company_opening_hours",
+type: "time",
+nullable: false,
+oldClrType: typeof(DateTime),
+oldType: "datetime2");
 
-***REMOVED***    migrationBuilder.AlterColumn<TimeSpan>(
-***REMOVED******REMOVED***name: "closing_hour",
-***REMOVED******REMOVED***table: "company_opening_hours",
-***REMOVED******REMOVED***type: "time",
-***REMOVED******REMOVED***nullable: false,
-***REMOVED******REMOVED***oldClrType: typeof(DateTime),
-***REMOVED******REMOVED***oldType: "datetime2");
-***REMOVED***}
+    migrationBuilder.AlterColumn<TimeSpan>(
+name: "closing_hour",
+table: "company_opening_hours",
+type: "time",
+nullable: false,
+oldClrType: typeof(DateTime),
+oldType: "datetime2");
+}
 
-***REMOVED***/// <inheritdoc />
-***REMOVED***protected override void Down(MigrationBuilder migrationBuilder)
-***REMOVED***{
-***REMOVED***    migrationBuilder.AlterColumn<DateTime>(
-***REMOVED******REMOVED***name: "duration",
-***REMOVED******REMOVED***table: "services_offered",
-***REMOVED******REMOVED***type: "datetime2",
-***REMOVED******REMOVED***nullable: false,
-***REMOVED******REMOVED***oldClrType: typeof(TimeSpan),
-***REMOVED******REMOVED***oldType: "time");
+/// <inheritdoc />
+protected override void Down(MigrationBuilder migrationBuilder)
+{
+    migrationBuilder.AlterColumn<DateTime>(
+name: "duration",
+table: "services_offered",
+type: "datetime2",
+nullable: false,
+oldClrType: typeof(TimeSpan),
+oldType: "time");
 
-***REMOVED***    migrationBuilder.AlterColumn<DateTime>(
-***REMOVED******REMOVED***name: "opening_hour",
-***REMOVED******REMOVED***table: "company_opening_hours",
-***REMOVED******REMOVED***type: "datetime2",
-***REMOVED******REMOVED***nullable: false,
-***REMOVED******REMOVED***oldClrType: typeof(TimeSpan),
-***REMOVED******REMOVED***oldType: "time");
+    migrationBuilder.AlterColumn<DateTime>(
+name: "opening_hour",
+table: "company_opening_hours",
+type: "datetime2",
+nullable: false,
+oldClrType: typeof(TimeSpan),
+oldType: "time");
 
-***REMOVED***    migrationBuilder.AlterColumn<DateTime>(
-***REMOVED******REMOVED***name: "closing_hour",
-***REMOVED******REMOVED***table: "company_opening_hours",
-***REMOVED******REMOVED***type: "datetime2",
-***REMOVED******REMOVED***nullable: false,
-***REMOVED******REMOVED***oldClrType: typeof(TimeSpan),
-***REMOVED******REMOVED***oldType: "time");
-***REMOVED***}
+    migrationBuilder.AlterColumn<DateTime>(
+name: "closing_hour",
+table: "company_opening_hours",
+type: "datetime2",
+nullable: false,
+oldClrType: typeof(TimeSpan),
+oldType: "time");
+}
     }
 }
