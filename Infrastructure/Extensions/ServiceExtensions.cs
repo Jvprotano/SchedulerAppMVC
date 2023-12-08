@@ -4,6 +4,7 @@ using AppAgendamentos.Contracts.Services;
 using AppAgendamentos.Repository;
 using AppAgendamentos.Repository.Base;
 using AppAgendamentos.Services;
+using AppAgendamentos.Services.Base;
 
 namespace AppAgendamentos.Infrastructure.Extensions
 {
@@ -12,10 +13,13 @@ namespace AppAgendamentos.Infrastructure.Extensions
 ***REMOVED***public static void AddRepositories(this IServiceCollection services)
 ***REMOVED***{
 ***REMOVED***    #region Repositories
-***REMOVED***    services.AddScoped(typeof(IRepositoryBase<>), typeof(RepositoryBase<>));
+***REMOVED***    services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
+***REMOVED***    services.AddScoped(typeof(IService<>), typeof(Service<>));
+
 ***REMOVED***    services.AddScoped<ISchedulingRepository, SchedulingRepository>();
 ***REMOVED***    services.AddScoped<ICompanyRepository, CompanyRepository>();
 ***REMOVED***    services.AddScoped<ICompanyOpeningHoursRepository, CompanyOpeningHoursRepository>();
+
 ***REMOVED***    #endregion
 
 ***REMOVED***    #region Services

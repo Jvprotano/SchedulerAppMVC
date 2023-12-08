@@ -5,7 +5,7 @@ using AppAgendamentos.Repository.Base;
 
 namespace AppAgendamentos.Repository
 {
-    public class SchedulingRepository : RepositoryBase<Scheduling>, ISchedulingRepository
+    public class SchedulingRepository : Repository<Scheduling>, ISchedulingRepository
     {
 ***REMOVED***public SchedulingRepository(ApplicationDbContext context) : base(context)
 ***REMOVED***{

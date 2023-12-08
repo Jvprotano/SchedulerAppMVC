@@ -10,23 +10,11 @@ using System.Data;
 
 namespace AppAgendamentos.Repository
 {
-    public class CompanyRepository : RepositoryBase<Company>, ICompanyRepository
+    public class CompanyRepository : Repository<Company>, ICompanyRepository
     {
 ***REMOVED***public CompanyRepository(ApplicationDbContext context) : base(context)
 ***REMOVED***{
 ***REMOVED***}
-***REMOVED***public override Task SaveAsync(Company entity)
-***REMOVED***{
-***REMOVED***    try
-***REMOVED***    {
-***REMOVED******REMOVED***return base.SaveAsync(entity);
-***REMOVED***    }
-***REMOVED***    catch (Exception ex)
-***REMOVED***    {
-***REMOVED******REMOVED***throw new Exception(ex.Message);
-***REMOVED***    }
-***REMOVED***}
-
 ***REMOVED***public async Task<Company> GetAsync(int id)
 ***REMOVED***{
 ***REMOVED***    return await this.DbSet

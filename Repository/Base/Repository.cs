@@ -5,11 +5,11 @@ using Microsoft.EntityFrameworkCore;
 
 namespace AppAgendamentos.Repository.Base
 {
-    public class RepositoryBase<T> : IRepositoryBase<T> where T : class
+    public class Repository<T> : IRepository<T> where T : class
     {
 ***REMOVED***private readonly DbSet<T> _dbSet;
 ***REMOVED***private ApplicationDbContext _context;
-***REMOVED***public RepositoryBase(ApplicationDbContext context)
+***REMOVED***public Repository(ApplicationDbContext context)
 ***REMOVED***{
 ***REMOVED***    _context = context;
 ***REMOVED***    _dbSet = _context.Set<T>();
@@ -19,8 +19,15 @@ namespace AppAgendamentos.Repository.Base
 
 ***REMOVED***public virtual async Task SaveAsync(T entity)
 ***REMOVED***{
-***REMOVED***    await this.DbSet.AddAsync(entity);
-***REMOVED***    await this._context.SaveChangesAsync();
+***REMOVED***    try
+***REMOVED***    {
+***REMOVED******REMOVED***await this.DbSet.AddAsync(entity);
+***REMOVED******REMOVED***await this._context.SaveChangesAsync();
+***REMOVED***    }
+***REMOVED***    catch (Exception ex)
+***REMOVED***    {
+***REMOVED******REMOVED***throw new Exception(ex.Message);
+***REMOVED***    }
 ***REMOVED***}
     }
 }

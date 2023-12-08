@@ -3,7 +3,7 @@ using AppAgendamentos.Models;
 
 namespace AppAgendamentos.Contracts.Repositories
 {
-    public interface ICompanyRepository : IRepositoryBase<Company>
+    public interface ICompanyRepository : IRepository<Company>
     {
 ***REMOVED***Task<IEnumerable<Company>> GetAllAsync();
 ***REMOVED***Task<Company> GetAsync(int id);

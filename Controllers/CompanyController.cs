@@ -1,19 +1,17 @@
-using AppAgendamentos.Contracts.Repositories;
+using AppAgendamentos.Contracts.Services;
 using AppAgendamentos.Models;
-
+using AppAgendamentos.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AppAgendamentos.Controllers
 {
     public class CompanyController : Controller
     {
-***REMOVED***private readonly ICompanyRepository _companyRepository;
-***REMOVED***private readonly ILogger<CompanyController> _logger;
+***REMOVED***private readonly IService<Company> _companyService;
 
-***REMOVED***public CompanyController(ILogger<CompanyController> logger, ICompanyRepository companyRepository)
+***REMOVED***public CompanyController(IService<Company> companyService)
 ***REMOVED***{
-***REMOVED***    _logger = logger;
-***REMOVED***    _companyRepository = companyRepository;
+***REMOVED***    _companyService = companyService;
 ***REMOVED***}
 
 ***REMOVED***public IActionResult Index()
@@ -23,7 +21,8 @@ namespace AppAgendamentos.Controllers
 
 ***REMOVED***public IActionResult Create()
 ***REMOVED***{
-***REMOVED***    return View();
+***REMOVED***    var model = new CompanyViewModel();
+***REMOVED***    return View(model);
 ***REMOVED***}
 
 ***REMOVED***[HttpPost]
@@ -31,19 +30,13 @@ namespace AppAgendamentos.Controllers
 ***REMOVED***{
 ***REMOVED***    try
 ***REMOVED***    {
-***REMOVED******REMOVED***await _companyRepository.SaveAsync(company);
+***REMOVED******REMOVED***await _companyService.SaveAsync(company);
 ***REMOVED******REMOVED***return RedirectToAction("Index", "Home");
 ***REMOVED***    }
 ***REMOVED***    catch(Exception ex)
 ***REMOVED***    {
 ***REMOVED******REMOVED***throw new Exception(ex.Message);
 ***REMOVED***    }
-***REMOVED***}
-
-***REMOVED***[ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-***REMOVED***public IActionResult Error()
-***REMOVED***{
-***REMOVED***    return View("Error!");
 ***REMOVED***}
     }
 }

@@ -7,7 +7,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace AppAgendamentos.Repository
 {
-    public class CompanyOpeningHoursRepository : RepositoryBase<CompanyOpeningHours>, ICompanyOpeningHoursRepository
+    public class CompanyOpeningHoursRepository : Repository<CompanyOpeningHours>, ICompanyOpeningHoursRepository
     {
 ***REMOVED***public CompanyOpeningHoursRepository(ApplicationDbContext context) 
 ***REMOVED***: base(context)

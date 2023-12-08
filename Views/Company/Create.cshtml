@@ -1,21 +1,23 @@
-﻿@model Company
+﻿@model AppAgendamentos.ViewModels.CompanyViewModel
 @{
     ViewData["Title"] = "Create Company";
 }
 <h1>@ViewData["Title"]</h1>
+<h4>Company image will be generated automatically by us :)</h4>
 
-<p>Use this page to detail your site's privacy policy.</p>
 <form asp-action="Create" method="post">
     <div class="row">
 ***REMOVED***<div class="col-md-4">
-***REMOVED***    @Html.Label("Name")
+***REMOVED***    @Html.LabelFor(c => c.Name)
 ***REMOVED***    @Html.TextBoxFor(c => c.Name, new {@class = "form-control"})
 ***REMOVED***</div>
 ***REMOVED***<div class="col-md-4">
-***REMOVED***    @Html.Label("User Id")
-***REMOVED***    @* @Html.TextBoxFor(c => c.UserId, new {@class = "form-control", @value = 1}) *@
+***REMOVED***    @Html.LabelFor(c => c.CategoryId)
+***REMOVED***    @Html.DropDownListFor(c => c.CategoryId, Model.Categories, new {@class = "form-control"})
 ***REMOVED***</div>
     </div>
-    <input type="submit" value="Salvar">
+    </br>
+    <a asp-action="Index" asp-controller="Home" class="btn btn-danger">Back</a>
+    <input type="submit" value="Create" class="btn btn-success">
 </form>
 
