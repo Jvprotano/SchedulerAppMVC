@@ -26,7 +26,7 @@ public class SchedulingService : Service<Scheduling>, ISchedulingService
         {
             Company company = openingHours?.FirstOrDefault()?.Company;
 
-            ServicesOffered serviceOffered = company.ServicesOffered.Where(c => c.Id == serviceSelected).FirstOrDefault();
+            CompanyServiceOffered serviceOffered = company.ServicesOffered.Where(c => c.Id == serviceSelected).FirstOrDefault();
 
             var shortestService = company.ServicesOffered.Select(c => c.Duration).Min();
 

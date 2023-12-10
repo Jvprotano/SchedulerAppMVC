@@ -1,92 +1,97 @@
-﻿@{
+﻿@model AppAgendamentos.ViewModels.HomeViewModel
+@{
     ViewData["Title"] = "Home Page";
 }
 <style>
     .carousel {
-width: 60%;
+        width: 60%;
     }
 
     .carousel img {
-width: 60%;
-aspect-ratio: 3/2;
-@*object-fit:contain;*@
-mix-blend-mode: color-burn;
+        width: 60%;
+        aspect-ratio: 3/2;
+        @*object-fit:contain;*@mix-blend-mode: color-burn;
     }
 
     .container-carousel {
-display: flex;
-justify-content: center;
+        display: flex;
+        justify-content: center;
     }
 
 
     .carousel-caption {
-color: #fff;
-text-align: center;
-background-color: black;
+        color: #fff;
+        text-align: center;
+        background-color: black;
     }
 
     .carousel-control-prev {
-left: 20px;
+        left: 20px;
     }
 
     .carousel-control-prev-icon {
-background-color: darkgray;
+        background-color: darkgray;
     }
 
     .carousel-control-next-icon {
-background-color: darkgray;
+        background-color: darkgray;
     }
 
     .carousel-control-next {
-right: 20px;
+        right: 20px;
     }
 </style>
+
+@if (TempData["SuccessMessage"] != null)
+{
+    <div class="alert alert-success">
+    @TempData["SuccessMessage"]
+</div>
+}
 
 <div class="text-center">
     <h1 class="display-4">Companies</h1>
 </div>
 </div>
-
-
 <div style="display: flex;justify-content: flex-end;padding-right: 10%;">
-<button>
-<a href='@Url.Action("Create", "Company")' class="button">Create Company</a>
-</button>
+    <button>
+        <a href='@Url.Action("Create", "Company")' class="button">Create Company</a>
+    </button>
 </div>
-
-
-
-
 <div class="container-carousel">
     <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-<ol class="carousel-indicators">
-    @for (int i = 0; i <= Model.Companies.Count; i++)
-    {
-<li data-target="#carouselExampleIndicators" data-slide-to=i.ToString() @i==1 ? class="active" :></li>
-    }
-</ol>
-<div class="carousel-inner">
-    @for (int i = 0; i < Model.Companies.Count; i++)
-    {
-<div class="@(i==1 ? "carousel-item active" : "carousel-item ")">
-    <a href='@Url.Action("Create", "Scheduling", new {@companyId = Model.Companies[i].Id})'>
-<img class="d-block w-100" src=@(Model.Companies[i].Image) alt=@(Model.Companies[i].Name)>
-<div class="carousel-caption d-none d-md-block">
-    <h5>@Model.Companies[i].Name</h5>
-    <p>@Model.Companies[i].Description</p>
-</div>
-    </a>
-</div>
-    }
-</div>
-<a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-    <span class="sr-only">Previous</span>
-</a>
-<a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-    <span class="sr-only">Next</span>
-</a>
+        <ol class="carousel-indicators">
+            @* @for (int i = 0; i <= Model.Companies.Count; i++) *@
+            @foreach (var company in Model.Companies)
+            {
+                var index = Model.Companies.IndexOf(company);
+                <li data-target="#carouselExampleIndicators" data-slide-to=i.ToString() @index == 1 ? class="active" :></li>
+            }
+        </ol>
+        <div class="carousel-inner">
+            @foreach (var company in Model.Companies)
+            {
+                <div class="@(Model.Companies.IndexOf(company) == 1 ? "carousel-item active" : "carousel-item ")">
+                    <a
+                        href='@Url.Action("Create", "Scheduling", new {@companyId = Model.Companies[Model.Companies.IndexOf(company)].Id})'>
+                        <img class="d-block w-100" src=@(Model.Companies[Model.Companies.IndexOf(company)].ImageUrl)
+                            alt=@(Model.Companies[Model.Companies.IndexOf(company)].Name)>
+                        <div class="carousel-caption d-none d-md-block">
+                            <h5>@Model.Companies[Model.Companies.IndexOf(company)].Name</h5>
+                            <p>@Model.Companies[Model.Companies.IndexOf(company)].Description</p>
+                        </div>
+                    </a>
+                </div>
+            }
+        </div>
+        <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+        </a>
     </div>
 </div>
 </div>

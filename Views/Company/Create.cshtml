@@ -4,11 +4,12 @@
 }
 <h1>@ViewData["Title"]</h1>
 <h4>Company image will be generated automatically by us :)</h4>
-
+<div asp-validation-summary="ModelOnly" class="text-danger"></div>
 <form asp-action="Create" method="post">
     <div class="row">
         <div class="col-md-4">
             @Html.LabelFor(c => c.Name, new { @class = "control-label" })
+            <span class="text-danger">*</span>
             @Html.TextBoxFor(c => c.Name, new { @class = "form-control" })
         </div>
         <div class="col-md-4">
@@ -17,21 +18,23 @@
         </div>
         <div class="col-md-4">
             @Html.LabelFor(c => c.Description, new { @class = "control-label" })
+            <span class="text-danger">*</span>
             @Html.TextBoxFor(c => c.Description, new { @class = "form-control" })
         </div>
     </div>
     <div class="row">
         <div class="col-md-4">
             @Html.LabelFor(c => c.Email, new { @class = "control-label" })
+            <span class="text-danger">*</span>
             @Html.TextBoxFor(c => c.Email, new { @class = "form-control" })
         </div>
         <div class="col-md-4">
-            @Html.LabelFor(c => c.CategoriesId, new { @class = "control-label", @title = "Hold Ctrl to select more then one"})
-            @Html.ListBoxFor(c => c.CategoriesId, Model.Categories, new { @class = "form-control" })
+            @Html.LabelFor(c => c.SelectedCategoryIds, new { @class = "control-label", @title = "Hold Ctrl to select more then one"})
+            @Html.ListBoxFor(c => c.SelectedCategoryIds, Model.CategoriesSelectIds, new { @class = "form-control" })
         </div>
         <div class="col-md-4">
-            @Html.LabelFor(c => c.ServicesOfferedIds, new { @class = "control-label", @title = "Hold Ctrl to select more then one" })
-            @Html.ListBoxFor(c => c.ServicesOfferedIds, Model.ServicesOffereds, new { @class = "form-control" })
+            @Html.LabelFor(c => c.SelectedServicesNames, new { @class = "control-label", @title = "Hold Ctrl to select more then one" })
+            @Html.ListBoxFor(c => c.SelectedServicesNames, Model.ServicesOfferedsSelect, new { @class = "form-control" })
         </div>
     </div>
     </div>

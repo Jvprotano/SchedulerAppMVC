@@ -16,11 +16,11 @@ public class CompanyViewModel : BaseViewModel
     [Display(Name = "CNPJ")]
     public string Cnpj { get; set; }
     [Display(Name = "Categories")]
-    public List<int> CategoriesId { get; set; }
+    public List<int> SelectedCategoryIds { get; set; } = [];
     [Display(Name = "Services Offered")]
-    public List<int> ServicesOfferedIds { get; set; }
-    public List<SelectListItem> Categories { get; set; } = LoadCategories();
-    public List<SelectListItem> ServicesOffereds { get; set; }
+    public List<string> SelectedServicesNames { get; set; } = [];
+    public List<SelectListItem> CategoriesSelectIds { get; set; } = LoadCategories();
+    public List<SelectListItem> ServicesOfferedsSelect { get; set; } = [];
 
     private static List<SelectListItem> LoadCategories()
     {

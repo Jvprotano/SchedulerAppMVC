@@ -19,7 +19,8 @@ public static void AddRepositories(this IServiceCollection services)
     services.AddScoped<ISchedulingRepository, SchedulingRepository>();
     services.AddScoped<ICompanyRepository, CompanyRepository>();
     services.AddScoped<ICompanyOpeningHoursRepository, CompanyOpeningHoursRepository>();
-
+    services.AddScoped<ICompanyService, CompanyService>();
+    services.AddScoped<IOpenAIService, OpenAIService>();
     #endregion
 
     #region Services

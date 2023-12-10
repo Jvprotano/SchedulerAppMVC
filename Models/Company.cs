@@ -1,5 +1,7 @@
 using AppAgendamentos.Models.Base;
+
 using AutoMapper.Configuration.Annotations;
+
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -12,9 +14,9 @@ public class Company : Profile
     public string Cnpj { get; set; }
     public bool IsVirtual { get; set; }
     public IList<CompanyOwners> Owners;
-    public IList<CompanyCategory> Categories;
-    public IList<ServicesOffered> ServicesOffered;
+    public IList<CompanyCategory> Categories { get; set; } = new List<CompanyCategory>();
+    public IList<CompanyServiceOffered> ServicesOffered { get; set; } = new List<CompanyServiceOffered>();
 
-    public List<int> CategoryIds { get; set; }
-    public List<int> ServicesOfferedIds { get; set; }
+    public List<int> SelectedCategoryIds { get; set; }
+    public List<string> SelectedServicesNames { get; set; }
 }

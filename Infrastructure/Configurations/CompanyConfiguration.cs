@@ -12,7 +12,7 @@ public class CompanyConfiguration : IEntityTypeConfiguration<Company>
         .WithOne(c => c.Company)
         .HasForeignKey(c => c.CompanyId);
 
-        builder.Ignore(c => c.CategoryIds);
-        builder.Ignore(c => c.ServicesOfferedIds);
+        builder.Ignore(c => c.SelectedCategoryIds);
+        builder.Ignore(c => c.SelectedServicesNames);
     }
 }

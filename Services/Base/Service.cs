@@ -22,4 +22,8 @@ public class Service<T> : IService<T> where T : BaseEntity
     {
         await _repositoryBase.SaveAsync(entity);
     }
+    public virtual void Validate(T entity)
+    {
+        throw new NotImplementedException();
+    }
 }

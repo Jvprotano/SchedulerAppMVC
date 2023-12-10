@@ -9,12 +9,12 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 namespace AppAgendamentos.Controllers;
 public class CompanyController : BaseController
 {
-    private readonly IService<Company> _companyService;
-    private readonly IService<ServicesOffered> _serviceOfferedService;
+    private readonly ICompanyService _companyService;
+    private readonly IService<CompanyServiceOffered> _serviceOfferedService;
     private readonly IMapper _mapper;
 
-    public CompanyController(ILogger<BaseController> logger, IService<Company> companyService, 
-    IService<ServicesOffered> serviceOfferedService, IMapper mapper) : base(logger)
+    public CompanyController(ILogger<BaseController> logger, ICompanyService companyService,
+    IService<CompanyServiceOffered> serviceOfferedService, IMapper mapper) : base(logger)
     {
         _companyService = companyService;
         _serviceOfferedService = serviceOfferedService;
@@ -30,8 +30,8 @@ public class CompanyController : BaseController
     {
         var model = new CompanyViewModel()
         {
-            ServicesOffereds = (await _serviceOfferedService.GetAllAsync()).ToList()
-            .Select(s => new SelectListItem(text: s.Name, value: s.Id.ToString())).ToList()
+            ServicesOfferedsSelect = (await _serviceOfferedService.GetAllAsync()).ToList()
+            .Select(s => new SelectListItem(text: s.Name, value: s.Name.ToString())).ToList()
         };
         return View(model);
     }
@@ -43,11 +43,17 @@ public class CompanyController : BaseController
         {
             var company = _mapper.Map<Company>(model);
             await _companyService.SaveAsync(company);
+            SetMessageSuccess("Company saved successfully");
             return RedirectToAction("Index", "Home");
         }
         catch (Exception ex)
         {
-            throw new Exception(ex.Message);
+            ModelState.AddModelError(string.Empty, ex.Message);
+            return RedirectToAction("Create", model);
         }
+    }
+    private void SetMessageSuccess(string message)
+    {
+        TempData["SuccessMessage"] = message;
     }
 }

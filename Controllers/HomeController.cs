@@ -19,7 +19,7 @@ public class HomeController : BaseController
     {
         HomeViewModel model = new HomeViewModel()
         {
-            Companies = await _companyRepository.GetAllAsync()
+            Companies = (await _companyRepository.GetAllAsync()).ToList()
         };
 
         return View(model);

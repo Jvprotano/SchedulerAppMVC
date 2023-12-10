@@ -1,8 +1,11 @@
-using System.ComponentModel.DataAnnotations;
 using AppAgendamentos.Models.Base;
 
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
 namespace AppAgendamentos.Models;
-public class ServicesOffered : BaseEntity
+[Table("companies_services_offered")]
+public class CompanyServiceOffered : BaseEntity
 {
     [Required]
     public string Name { get; set; }

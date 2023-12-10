@@ -1,6 +1,9 @@
 using AppAgendamentos.Models.Base;
 
+using System.ComponentModel.DataAnnotations.Schema;
+
 namespace AppAgendamentos.Models;
+[Table("companies_opening_hours")]
 public class CompanyOpeningHours : BaseEntity
 {
     public int CompanyId { get; set; }
