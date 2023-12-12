@@ -3,38 +3,107 @@
     ViewData["Title"] = "Create Company";
 }
 <h1>@ViewData["Title"]</h1>
-<h4>Company image will be generated automatically by us :)</h4>
+<div class="divImages" id="divMessageImage">
+    <img class="images" src="https://i.ibb.co/0Xxc07Q/autogene.jpg" alt="Auto generated Image" border="0">
+</div>
+
 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-<form asp-action="Create" method="post">
+
+    <style>
+        /* Add some styling to the uploaded image */
+        .images {
+            max-width: 100%;
+            max-height: 300px;
+            margin-top: 20px;
+        }
+        .divImages{
+                display: flex;
+                justify-content: center;
+        }
+    </style>
+
+<form asp-action="Create" method="post" enctype="multipart/form-data">
+    <div>
+        <div class="upload-btn-wrapper" id="divBtnUploadImage">
+            <button class="btn btn-primary" type="button" id="uploadButton">Upload a Logo</button>
+            <input type="file" name="ImageFile" id="uploadInput" accept="image/*" style="display: none;">
+        </div>
+        <div class="divImages" id="divUploadedImage">
+                <!-- Display the uploaded image -->
+        <img class="images" id="uploadedImage" src="#" alt="Uploaded Image">
+        </div>
+    </div>
     <div class="row">
         <div class="col-md-4">
             @Html.LabelFor(c => c.Name, new { @class = "control-label" })
             <span class="text-danger">*</span>
             @Html.TextBoxFor(c => c.Name, new { @class = "form-control" })
+            @Html.ValidationMessageFor(c => c.Name, "", new { @class = "text-danger" })
         </div>
         <div class="col-md-4">
             @Html.LabelFor(c => c.Cnpj, new { @class = "control-label" })
             @Html.TextBoxFor(c => c.Cnpj, new { @class = "form-control" })
+            @Html.ValidationMessageFor(c => c.Cnpj, "", new { @class = "text-danger" })
         </div>
         <div class="col-md-4">
             @Html.LabelFor(c => c.Description, new { @class = "control-label" })
             <span class="text-danger">*</span>
             @Html.TextBoxFor(c => c.Description, new { @class = "form-control" })
+            @Html.ValidationMessageFor(c => c.Description, "", new { @class = "text-danger" })
         </div>
     </div>
     <div class="row">
-        <div class="col-md-4">
+        <div class="col-md-3">
             @Html.LabelFor(c => c.Email, new { @class = "control-label" })
             <span class="text-danger">*</span>
-            @Html.TextBoxFor(c => c.Email, new { @class = "form-control" })
+            @Html.TextBoxFor(c => c.Email, new { @class = "form-control", placeholder = "mail@mail.com" })
+            @Html.ValidationMessageFor(c => c.Email, "", new { @class = "text-danger" })
         </div>
-        <div class="col-md-4">
+        <div class="col-md-3">
             @Html.LabelFor(c => c.SelectedCategoryIds, new { @class = "control-label", @title = "Hold Ctrl to select more then one"})
             @Html.ListBoxFor(c => c.SelectedCategoryIds, Model.CategoriesSelectIds, new { @class = "form-control" })
+            @Html.ValidationMessageFor(c => c.SelectedCategoryIds, "", new { @class = "text-danger" })
         </div>
-        <div class="col-md-4">
+        <div class="col-md-3">
+            @* <a asp-action="Create" asp-controller="ServiceOffered" class="btn btn-success" style="margin-top: 30px;"><i class="bi bi-plus-circle"></i> Add new service</a> *@
             @Html.LabelFor(c => c.SelectedServicesNames, new { @class = "control-label", @title = "Hold Ctrl to select more then one" })
             @Html.ListBoxFor(c => c.SelectedServicesNames, Model.ServicesOfferedsSelect, new { @class = "form-control" })
+            @Html.ValidationMessageFor(c => c.SelectedServicesNames, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <br />
+    <div class="row">
+        <div class="col-md-4">
+            <label>@Html.DisplayNameFor(c=>c.IsVirtual)@Html.CheckBoxFor(c => c.IsVirtual, new { @class = "form-control" })</label>
+            @Html.ValidationMessageFor(c => c.IsVirtual, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="row" id="addressDiv">
+        <div class="col-md-3">
+            @Html.LabelFor(c => c.CityId, new { @class = "control-label" })
+            <span class="text-danger">*</span>
+            @Html.DropDownListFor(c => c.CityId, Model.CitiesSelect, new { @class = "form-control" })
+            @Html.ValidationMessageFor(c => c.CityId, "", new { @class = "text-danger" })
+        </div>
+        <div class="col-md-4">
+            @Html.LabelFor(c => c.Address, new { @class = "control-label" })
+            <span class="text-danger">*</span>
+            @Html.TextBoxFor(c => c.Address, new { @class = "form-control" })
+            @Html.ValidationMessageFor(c => c.Address, "", new { @class = "text-danger" })
+
+        </div>
+        <div class="col-md-2">
+            @Html.LabelFor(c => c.AddressNumber, new { @class = "control-label" })
+            <span class="text-danger">*</span>
+            @Html.TextBoxFor(c => c.AddressNumber, new { @class = "form-control" })
+            @Html.ValidationMessageFor(c => c.AddressNumber, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <br />
+    <div class="row">
+        <div class="col-md-4">
+                <label>@Html.DisplayNameFor(c=>c.AutoGeneratedImage)@Html.CheckBoxFor(c => c.AutoGeneratedImage, new { @class = "form-control" })</label>
+                @Html.ValidationMessageFor(c => c.AutoGeneratedImage, "", new { @class = "text-danger" })
         </div>
     </div>
     </div>
@@ -44,3 +113,71 @@
         <input type="submit" value="Create" class="btn btn-success">
     </div>
 </form>
+@section scripts{
+    <script>
+        $(document).ready(function () {
+            // Hide the address div if the company is virtual
+            if ($('#IsVirtual').is(':checked')) {
+                $('#addressDiv').hide();
+            }
+
+            $('#uploadedImage').hide();
+
+            // Show the address div if the company is not virtual
+            $('#IsVirtual').click(function () {
+                if ($(this).is(':checked')) {
+                    $('#addressDiv').hide();
+                } else {
+                    $('#addressDiv').show();
+                }
+            });
+        });
+        $(document).ready(function () {
+            if ($('#AutoGeneratedImage').is(':checked')) {
+                $('#divBtnUploadImage').hide();
+                $('#divUploadedImage').hide();
+                
+                $('#divMessageImage').show();
+            }
+            else {
+                $('#divMessageImage').hide();
+            }
+            $('#AutoGeneratedImage').click(function () {
+                if ($(this).is(':checked')) {
+                    $('#divBtnUploadImage').hide();
+                    $('#divUploadedImage').hide();
+                    $('#divMessageImage').show();
+                } else {
+                    $('#divBtnUploadImage').show();
+                    $('#divUploadedImage').show();
+                    $('#divMessageImage').hide();
+                }
+            });
+        });
+
+                $(document).ready(function() {
+            // Triggered when a file is selected
+            $('#uploadInput').change(function() {
+                $('#uploadedImage').show();
+                readURL(this);
+            });
+
+            // Function to read and display the selected image
+            function readURL(input) {
+                if (input.files && input.files[0]) {
+                    var reader = new FileReader();
+
+                    reader.onload = function (e) {
+                        $('#uploadedImage').attr('src', e.target.result);
+                    };
+
+                    reader.readAsDataURL(input.files[0]);
+                }
+            }
+        });
+
+    document.getElementById("uploadButton").addEventListener("click", function() {
+        document.getElementById("uploadInput").click();
+    });
+    </script>
+}

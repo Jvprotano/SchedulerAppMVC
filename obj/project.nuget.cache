@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "LNYRbx0wd6ycW1O8LrYw7W2+cux+lXyevakZd97tm45Bs6tJcic+Aw1EB84epDQvbGLH/H2jERZ+4Oyl8KzmiQ==",
+  "dgSpecHash": "da693qYnQ3qJ1J6zdLRTT69JLJbUwwfpdzJfbVdzXuAHgS7q5F1fcolFTfMd26TGfd44ZFeTJiHrNrfrdxEOqg==",
   "success": true,
   "projectFilePath": "/home/jvprotano/Workspace/AppAgendamentos/AppAgendamentos.csproj",
   "expectedPackageFiles": [
@@ -54,6 +54,7 @@
     "/home/jvprotano/.nuget/packages/microsoft.win32.registry/5.0.0/microsoft.win32.registry.5.0.0.nupkg.sha512",
     "/home/jvprotano/.nuget/packages/microsoft.win32.systemevents/5.0.0/microsoft.win32.systemevents.5.0.0.nupkg.sha512",
     "/home/jvprotano/.nuget/packages/mono.texttemplating/2.2.1/mono.texttemplating.2.2.1.nupkg.sha512",
+    "/home/jvprotano/.nuget/packages/newtonsoft.json/13.0.3/newtonsoft.json.13.0.3.nupkg.sha512",
     "/home/jvprotano/.nuget/packages/system.buffers/4.5.1/system.buffers.4.5.1.nupkg.sha512",
     "/home/jvprotano/.nuget/packages/system.codedom/4.4.0/system.codedom.4.4.0.nupkg.sha512",
     "/home/jvprotano/.nuget/packages/system.configuration.configurationmanager/5.0.0/system.configuration.configurationmanager.5.0.0.nupkg.sha512",

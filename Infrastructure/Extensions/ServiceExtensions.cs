@@ -1,3 +1,4 @@
+using AppAgendamentos.Contracts.HttpServices;
 using AppAgendamentos.Contracts.Repositories;
 using AppAgendamentos.Contracts.Repositories.Base;
 using AppAgendamentos.Contracts.Services;
@@ -5,28 +6,27 @@ using AppAgendamentos.Repository;
 using AppAgendamentos.Repository.Base;
 using AppAgendamentos.Services;
 using AppAgendamentos.Services.Base;
+using AppAgendamentos.Services.HttpServices;
 
-namespace AppAgendamentos.Infrastructure.Extensions
+namespace AppAgendamentos.Infrastructure.Extensions;
+public static class ServiceExtensions
 {
-    public static class ServiceExtensions
+    public static void AddRepositories(this IServiceCollection services)
     {
-public static void AddRepositories(this IServiceCollection services)
-{
-    #region Repositories
-    services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
-    services.AddScoped(typeof(IService<>), typeof(Service<>));
+        services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
+        services.AddScoped(typeof(IService<>), typeof(Service<>));
 
-    services.AddScoped<ISchedulingRepository, SchedulingRepository>();
-    services.AddScoped<ICompanyRepository, CompanyRepository>();
-    services.AddScoped<ICompanyOpeningHoursRepository, CompanyOpeningHoursRepository>();
-    services.AddScoped<ICompanyService, CompanyService>();
-    services.AddScoped<IOpenAIService, OpenAIService>();
-    #endregion
+        #region Repositories
+        services.AddScoped<ISchedulingRepository, SchedulingRepository>();
+        services.AddScoped<ICompanyRepository, CompanyRepository>();
+        services.AddScoped<ICompanyOpeningHoursRepository, CompanyOpeningHoursRepository>();
+        #endregion
 
-    #region Services
-    services.AddScoped<ISchedulingService, SchedulingService>();
-
-    #endregion
-}
+        #region Services
+        services.AddScoped<ISchedulingService, SchedulingService>();
+        services.AddScoped<ICompanyService, CompanyService>();
+        services.AddScoped<IOpenAIService, OpenAIService>();
+        services.AddScoped<IImageService, ImageService>();
+        #endregion
     }
 }
