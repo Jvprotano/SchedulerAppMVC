@@ -281,3 +281,4 @@ obj/Debug/net7.0/AppAgendamentos.dll
 obj/Debug/net7.0/project.razor.json
 .gitignore
 obj/Debug/net7.0/ref/AppAgendamentos.dll
+*.cache

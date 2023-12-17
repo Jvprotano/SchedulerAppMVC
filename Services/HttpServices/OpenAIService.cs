@@ -4,7 +4,7 @@ using System.Reflection;
 namespace AppAgendamentos.Services.HttpServices;
 public class OpenAIService : IOpenAIService
 {
-    public async Task<string> GetUrlNewImageAsync(string userPrompt)
+    public async Task<string> GetBase64NewImageAsync(string userPrompt)
     {
         var config = BuildConfig();
 
@@ -21,7 +21,7 @@ public class OpenAIService : IOpenAIService
         if (selectedResult is null)
             return string.Empty;
 
-        return selectedResult.Url;
+        return selectedResult.B64_json;
     }
 
     static IConfiguration BuildConfig()
@@ -37,5 +37,5 @@ public class OpenAIService : IOpenAIService
 
 public interface IOpenAIService
 {
-    Task<string> GetUrlNewImageAsync(string userPrompt);
+    Task<string> GetBase64NewImageAsync(string userPrompt);
 }

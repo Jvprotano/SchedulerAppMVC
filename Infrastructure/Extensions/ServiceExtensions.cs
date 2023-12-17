@@ -26,7 +26,7 @@ public static class ServiceExtensions
         services.AddScoped<ISchedulingService, SchedulingService>();
         services.AddScoped<ICompanyService, CompanyService>();
         services.AddScoped<IOpenAIService, OpenAIService>();
-        services.AddScoped<IImageService, ImageService>();
+        services.AddScoped<IImageUploadService, ImageUploadService>();
         #endregion
     }
 }

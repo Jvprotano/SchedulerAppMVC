@@ -8,11 +8,13 @@ public interface IOpenAIProxy
 }
 public record class GenerateImageRequest(
     string Prompt,
-    int N,
-    string Size);
+    int imagesNumber,
+    string Size,
+    string Model = "dall-e-3",
+    string ResponseFormat = "b64_json");
 
 public record class GenerateImageResponse(
     long Created,
     GeneratedImageData[] Data);
 
-public record class GeneratedImageData(string Url);
+public record class GeneratedImageData(string B64_json);

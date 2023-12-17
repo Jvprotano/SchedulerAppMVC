@@ -20,7 +20,7 @@ public class OpenAIHttpService : IOpenAIProxy
     {
         string url = _httpClient;
         string bearerToken = _apiKey;
-        string body = $"{{\"prompt\": \"{prompt.Prompt}\"}}";
+        string body = $"{{\"prompt\": \"{prompt.Prompt}\", \"model\": \"{prompt.Model}\", \"response_format\": \"{prompt.ResponseFormat}\"}}";
 
         // Prepare data for the POST request
         var data = new StringContent(body, Encoding.UTF8, "application/json");
