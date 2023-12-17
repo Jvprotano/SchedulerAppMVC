@@ -3,7 +3,7 @@ using AppAgendamentos.Models.Base;
 
 namespace AppAgendamentos.Models;
 [Table("cities")]
-public class City : BaseEntity
+public class City : EntityBase
 {
     public string Name { get; set; }
     public string State { get; set; }

@@ -25,21 +25,21 @@ public class ApplicationDbContext : DbContext
     }
     private void UpdateDefaultValues()
     {
-        var entries = ChangeTracker.Entries().Where(e => e.Entity is BaseEntity && (
+        var entries = ChangeTracker.Entries().Where(e => e.Entity is EntityBase && (
     e.State == EntityState.Added || e.State == EntityState.Modified));
 
         foreach (var entry in entries)
         {
-            var entity = (BaseEntity)entry.Entity;
+            var entity = (EntityBase)entry.Entity;
             var now = DateTime.UtcNow;
 
             if (entry.State == EntityState.Added)
-                entity.RegisterDate = now;
+                entity.CreatedAt = now;
 
             if (!entity.Status.HasValue)
                 entity.Status = Enums.StatusEnum.Active;
 
-            entity.UpdateDate = now;
+            entity.UpdatedAt = now;
         }
     }
 }

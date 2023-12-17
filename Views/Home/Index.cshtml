@@ -10,7 +10,7 @@
     .carousel img {
         width: 60%;
         aspect-ratio: 3/2;
-        @*object-fit:contain;*@mix-blend-mode: color-burn;
+        mix-blend-mode: color-burn;
     }
 
     .container-carousel {
@@ -53,15 +53,9 @@
     <h1 class="display-4">Companies</h1>
 </div>
 </div>
-<div style="display: flex;justify-content: flex-end;padding-right: 10%;">
-    <button>
-        <a href='@Url.Action("Create", "Company")' class="button">Create Company</a>
-    </button>
-</div>
 <div class="container-carousel">
     <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
         <ol class="carousel-indicators">
-            @* @for (int i = 0; i <= Model.Companies.Count; i++) *@
             @foreach (var company in Model.Companies)
             {
                 var index = Model.Companies.IndexOf(company);

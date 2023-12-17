@@ -27,7 +27,7 @@ public class CompanyController : BaseController
     {
         return RedirectToAction("Create");
     }
-
+    [HttpGet]
     public async Task<IActionResult> Create()
     {
         var model = new CompanyViewModel

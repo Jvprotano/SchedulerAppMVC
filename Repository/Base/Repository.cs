@@ -5,7 +5,7 @@ using AppAgendamentos.Models.Base;
 using Microsoft.EntityFrameworkCore;
 
 namespace AppAgendamentos.Repository.Base;
-public class Repository<T> : IRepository<T> where T : BaseEntity
+public class Repository<T> : IRepository<T> where T : EntityBase
 {
     private readonly DbSet<T> _dbSet;
     private ApplicationDbContext _context;

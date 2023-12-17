@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace AppAgendamentos.Models;
 [Table("companies_services_offered")]
-public class CompanyServiceOffered : BaseEntity
+public class CompanyServiceOffered : EntityBase
 {
     [Required]
     public string Name { get; set; }

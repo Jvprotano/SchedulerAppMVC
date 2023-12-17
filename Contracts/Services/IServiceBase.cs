@@ -1,7 +1,7 @@
 using AppAgendamentos.Models.Base;
 
 namespace AppAgendamentos.Contracts.Services;
-public interface IService<T> where T : BaseEntity
+public interface IService<T> where T : EntityBase
 {
     public Task SaveAsync(T entity);
     Task<IEnumerable<T>> GetAllAsync(bool active = true);

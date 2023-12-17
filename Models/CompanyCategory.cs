@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace AppAgendamentos.Models;
 [Table("companies_categories")]
-public class CompanyCategory : BaseEntity
+public class CompanyCategory : EntityBase
 {
     public int CompanyId { get; set; }
     public CategoryEnum CategoryId { get; set; }

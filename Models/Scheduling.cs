@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace AppAgendamentos.Models;
 [Table("schedulings")]
-public class Scheduling : BaseEntity
+public class Scheduling : EntityBase
 {
     public int CompanyId { get; set; }
     public Company Company { get; set; }

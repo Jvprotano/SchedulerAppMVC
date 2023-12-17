@@ -1,9 +1,8 @@
 using System.ComponentModel.DataAnnotations;
-using AutoMapper.Configuration.Annotations;
 
 namespace AppAgendamentos.Models.Base;
-public abstract class Profile : BaseEntity
-{           
+public abstract class ProfileBase : EntityBase
+{
     [Required]
     public string Name { get; set; }
     [Required]

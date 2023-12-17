@@ -4,13 +4,12 @@
 }
 <h1>@ViewData["Title"]</h1>
 <div class="divImages" id="divMessageImage">
-    <img class="images" src="https://i.ibb.co/0Xxc07Q/autogene.jpg" alt="Auto generated Image" border="0">
+    <img class="images" src="wwwroot/images/autogene.jpeg" alt="Auto generated Image" border="0">
 </div>
 
 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
     <style>
-        /* Add some styling to the uploaded image */
         .images {
             max-width: 100%;
             max-height: 300px;
@@ -65,7 +64,6 @@
             @Html.ValidationMessageFor(c => c.SelectedCategoryIds, "", new { @class = "text-danger" })
         </div>
         <div class="col-md-3">
-            @* <a asp-action="Create" asp-controller="ServiceOffered" class="btn btn-success" style="margin-top: 30px;"><i class="bi bi-plus-circle"></i> Add new service</a> *@
             @Html.LabelFor(c => c.SelectedServicesNames, new { @class = "control-label", @title = "Hold Ctrl to select more then one" })
             @Html.ListBoxFor(c => c.SelectedServicesNames, Model.ServicesOfferedsSelect, new { @class = "form-control" })
             @Html.ValidationMessageFor(c => c.SelectedServicesNames, "", new { @class = "text-danger" })

@@ -7,7 +7,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace AppAgendamentos.Models;
 [Table("companies")]
-public class Company : Profile
+public class Company : ProfileBase
 {
     [Required]
     public string Description { get; set; }

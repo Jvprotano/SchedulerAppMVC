@@ -3,7 +3,7 @@ using AppAgendamentos.Contracts.Services;
 using AppAgendamentos.Models.Base;
 
 namespace AppAgendamentos.Services.Base;
-public class Service<T> : IService<T> where T : BaseEntity
+public class Service<T> : IService<T> where T : EntityBase
 {
     private readonly IRepository<T> _repositoryBase;
     public Service(IRepository<T> repositoryBase)
