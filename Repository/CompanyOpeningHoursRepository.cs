@@ -19,7 +19,6 @@ public class CompanyOpeningHoursRepository : Repository<CompanyOpeningHours>, IC
     public List<CompanyOpeningHours> GetByDayOfWeek(int companyId, DayOfWeek dayOfWeek)
     {
         return this.DbSet
-        .Include(c => c.Company).ThenInclude(c => c.ServicesOffered)
         .Where(c => c.CompanyId == companyId && c.DayOfWeek == dayOfWeek)
         .ToList();
     }

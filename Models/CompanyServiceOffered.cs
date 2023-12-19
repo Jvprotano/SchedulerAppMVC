@@ -15,4 +15,6 @@ public class CompanyServiceOffered : EntityBase
     public int CompanyId { get; set; }
     public Company Company { get; set; }
     public TimeSpan Duration { get; set; }
+
+    public IList<Scheduling> Schedulings { get; set; }
 }

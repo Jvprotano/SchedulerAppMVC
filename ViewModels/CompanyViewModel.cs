@@ -40,6 +40,7 @@ public class CompanyViewModel : BaseViewModel
     public List<SelectListItem> ServicesOfferedsSelect { get; set; } = [];
     public List<SelectListItem> CitiesSelect { get; set; }
     public List<CompanyOpeningHours> OpenAISchedules { get; set; } = new List<CompanyOpeningHours>();
+    public List<CompanyOpeningHours> OpeningHours { get; set; } = LoadDefaultOpeningHours();
 
     private static List<SelectListItem> LoadCategories()
     {
@@ -49,5 +50,19 @@ public class CompanyViewModel : BaseViewModel
             new SelectListItem(text: category.ToString(), value: ((int)category).ToString())));
 
         return categories;
+    }
+    private static List<CompanyOpeningHours> LoadDefaultOpeningHours()
+    {
+        List<CompanyOpeningHours> defaultOpeningHours = [];
+
+        Enum.GetValues(typeof(DayOfWeek)).Cast<DayOfWeek>().ToList().ForEach(dayOfWeek => defaultOpeningHours.Add(
+            new CompanyOpeningHours
+            {
+                DayOfWeek = dayOfWeek,
+                OpeningHour = new TimeSpan(9, 0, 0),
+                ClosingHour = new TimeSpan(18, 0, 0)
+            }));
+
+        return defaultOpeningHours;
     }
 }

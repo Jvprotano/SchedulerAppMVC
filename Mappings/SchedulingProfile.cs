@@ -3,14 +3,11 @@ using AppAgendamentos.ViewModels;
 
 using AutoMapper;
 
-namespace AppAgendamentos.Mappings
+namespace AppAgendamentos.Mappings;
+public class SchedulingProfile : Profile
 {
-    public class SchedulingProfile : Profile
+    public SchedulingProfile()
     {
-        public SchedulingProfile()
-        {
-            CreateMap<Scheduling, SchedulingViewModel>();
-            CreateMap<SchedulingViewModel, Scheduling>();
-        }
+        CreateMap<Scheduling, SchedulingViewModel>().ReverseMap();
     }
 }

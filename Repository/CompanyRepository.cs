@@ -16,9 +16,11 @@ public class CompanyRepository : Repository<Company>, ICompanyRepository
     }
     public override async Task<Company> GetByIdAsync(int id, bool active = true)
     {
-        return await this.DbSet
+        var query = this.DbSet
             .Include(c => c.ServicesOffered)
-            .Where(c => c.Id == id).FirstOrDefaultAsync();
+            .Where(c => c.Id == id);
+
+        return await query.FirstOrDefaultAsync();
     }
     public override async Task<IEnumerable<Company>> GetAllAsync(bool active = true)
     {

@@ -12,5 +12,5 @@ public class Scheduling : EntityBase
     public User Customer { get; set; }
     public DateTime ScheduledDate { get; set; }
     public int ServicesOfferedId { get; set; }
-    public CompanyServiceOffered ServicesOffered { get; set; }
+    public CompanyServiceOffered ServiceOffered { get; set; }
 }

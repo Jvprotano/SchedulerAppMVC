@@ -6,12 +6,12 @@
 
 <style>
     #row-actions {
-margin-top: 10px;
-justify-content: center;
+        margin-top: 10px;
+        justify-content: center;
     }
 </style>
-@Html.HiddenFor(c=>c.CompanyId)
-@Html.HiddenFor(c=>c.AvailableTimeSlots)
+@Html.HiddenFor(c => c.CompanyId)
+@Html.HiddenFor(c => c.AvailableTimeSlots)
 
 <div class="company-information" style="text-align: center;">
     <img src="@Model.CompanyImage" height="200px"></img>
@@ -22,49 +22,52 @@ justify-content: center;
 
 <div class="services">
     <div class="row">
-<div class="col-md-3">
-</div>
-<div class="col-md-3">
-    @Html.Label("Serviço")
-    @Html.DropDownListFor(m => m.ServiceSelected, Model.CompanyServices, htmlAttributes: new {@class =
-    "form-control"})
-</div>
-<div class="col-md-2">
-    @Html.Label("Data do agendamento")
-    <input class="form-control" type="date" asp-for="ScheduledDate" asp-format="{0:dd-MM-yyyy}" />
-</div>
-<div class="col-md-2">
-    @Html.Label("Horários disponíveis")
-    @Html.DropDownListFor(m => m.TimeSelected, Model.AvailableTimeSlots, htmlAttributes: new {@class =
-    "form-control"})
-</div>
-    </div>
-    <div class="col-md-3">
-
+        <div class="form-group col-md-3">
+        </div>
+        <div class="form-group col-md-3">
+            @Html.Label("Serviço")
+            @Html.DropDownListFor(m => m.ServiceSelected, Model.CompanyServices, htmlAttributes: new
+                {
+                    @class =
+                     "form-control"
+                })
+        </div>
+        <div class="form-group col-md-2">
+            @Html.Label("Data do agendamento")
+            <input class="form-control" type="date" asp-for="ScheduledDate" />
+        </div>
+        <div class="form-group col-md-2">
+            @Html.Label("Horários disponíveis")
+            @Html.DropDownListFor(m => m.TimeSelected, Model.AvailableTimeSlots, htmlAttributes: new
+                {
+                    @class =
+                     "form-control"
+                })
+        </div>
     </div>
 </div>
 </div>
 <div class="user-confirmation" style="display: none;">
     <div class="row">
-<div class="col-md-3" style="margin-left: 16%;">
-    @Html.Label("Nome")
-    @Html.TextBoxFor(m => m.CustomerName, htmlAttributes: new {@class = "form-control"})
-</div>
-<div class="col-md-3">
-    @Html.Label("Phone Number")
-    <input type="tel" maxlength="15" asp-for="Phone" onkeyup="handlePhone(event)" class="form-control"
-placeholder="(99)99999999" />
-</div>
-<div class="col-md-3" style="display: none;" id="divConfirmationCode">
-    @Html.Label("Code")
-    @Html.TextBoxFor(m => m.ConfirmationCode, htmlAttributes: new {@class = "form-control", @maxlength="5"})
-</div>
-<div class="col-md-1" style="margin-top: 2.3%;">
-    <button class="btn btn-primary" id="sendCode">Send Code</button>
-</div>
-<div class="col-md-1" style="margin-top: 2.3%;">
-    <button class="btn btn-danger" id="cancel">Cancel</button>
-</div>
+        <div class="form-group col-md-3" style="margin-left: 16%;">
+            @Html.Label("Nome")
+            @Html.TextBoxFor(m => m.CustomerName, htmlAttributes: new { @class = "form-control" })
+        </div>
+        <div class="form-group col-md-3">
+            @Html.Label("Phone Number")
+            <input type="tel" maxlength="15" asp-for="Phone" onkeyup="handlePhone(event)" class="form-control"
+                placeholder="(99)99999999" />
+        </div>
+        <div class="form-group col-md-3" style="display: none;" id="divConfirmationCode">
+            @Html.Label("Code")
+            @Html.TextBoxFor(m => m.ConfirmationCode, htmlAttributes: new { @class = "form-control", @maxlength = "5" })
+        </div>
+        <div class="form-group col-md-1" style="margin-top: 2.3%;">
+            <button class="btn btn-primary" id="sendCode">Send Code</button>
+        </div>
+        <div class="form-group col-md-1" style="margin-top: 2.3%;">
+            <button class="btn btn-danger" id="cancel">Cancel</button>
+        </div>
     </div>
 </div>
 
@@ -73,104 +76,107 @@ placeholder="(99)99999999" />
     <input class="btn btn-primary" type="submit" value="Agendar" id="submit" style="display: none; margin-bottom: 10px">
 </div>
 
-@section Scripts{
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+@section Scripts {
     <script type="text/javascript">
 
-const handlePhone = (event) => {
-    let input = event.target
-    input.value = phoneMask(input.value)
-}
+        $(document).ready(function () {
+            CheckIsAllFilled();
+        });
 
-const phoneMask = (value) => {
-    if (!value) return ""
-    value = value.replace(/\D/g, '')
-    value = value.replace(/(\d{2})(\d)/, "($1) $2")
-    value = value.replace(/(\d)(\d{4})$/, "$1-$2")
-    return value
-}
+        const handlePhone = (event) => {
+            let input = event.target
+            input.value = phoneMask(input.value)
+        }
 
-$("#confirm").on("click", function () {
-    $("#confirm").hide();
-    $("#ScheduledDate").prop('disabled', true)
-    $("#ServiceSelected").prop('disabled', true)
-    $("#TimeSelected").prop('disabled', true)
-    $(".user-confirmation").show(500);
-})
-$("#cancel").on("click", function () {
-    $("#confirm").show(500);
-    $("#ScheduledDate").prop('disabled', false)
-    $("#ServiceSelected").prop('disabled', false)
-    $("#TimeSelected").prop('disabled', false)
-    $(".user-confirmation").hide(500);
-})
-$("#sendCode").on("click", function () {
-    $("#confirm").hide();
-    $("#CustomerName").prop('disabled', true)
-    $("#Phone").prop('disabled', true)
-    $("#submit").show(500);
-    $(".user-confirmation").show();
-    $("#divConfirmationCode").show();
-    $("#sendCode").hide();
-    $("#cancel").hide();
-})
+        const phoneMask = (value) => {
+            if (!value) return ""
+            value = value.replace(/\D/g, '')
+            value = value.replace(/(\d{2})(\d)/, "($1) $2")
+            value = value.replace(/(\d)(\d{4})$/, "$1-$2")
+            return value
+        }
 
-$("#ScheduledDate").on("change", function () {
-    GetAvailableTimes();
-    CheckIsAllFilled();
-});
-$("#ServiceSelected").on("change", function () {
-    GetAvailableTimes();
-    CheckIsAllFilled();
-});
-$("#TimeSelected").on("change", function () {
-    CheckIsAllFilled();
-});
+        $("#confirm").on("click", function () {
+            $("#confirm").hide();
+            $("#ScheduledDate").prop('disabled', true)
+            $("#ServiceSelected").prop('disabled', true)
+            $("#TimeSelected").prop('disabled', true)
+            $(".user-confirmation").show(500);
+        })
+        $("#cancel").on("click", function () {
+            $("#confirm").show(500);
+            $("#ScheduledDate").prop('disabled', false)
+            $("#ServiceSelected").prop('disabled', false)
+            $("#TimeSelected").prop('disabled', false)
+            $(".user-confirmation").hide(500);
+        })
+        $("#sendCode").on("click", function () {
+            $("#confirm").hide();
+            $("#CustomerName").prop('disabled', true)
+            $("#Phone").prop('disabled', true)
+            $("#submit").show(500);
+            $(".user-confirmation").show();
+            $("#divConfirmationCode").show();
+            $("#sendCode").hide();
+            $("#cancel").hide();
+        })
 
-function GetAvailableTimes() {
-    let serviceSel = $("#ServiceSelected").val();
-    let company = $("#CompanyId").val();
-    let dateSel = $("#ScheduledDate").val();
+        $("#ScheduledDate").on("change", function () {
+            GetAvailableTimes();
+            CheckIsAllFilled();
+        });
+        $("#ServiceSelected").on("change", function () {
+            GetAvailableTimes();
+            CheckIsAllFilled();
+        });
+        $("#TimeSelected").on("change", function () {
+            CheckIsAllFilled();
+        });
 
-    if (serviceSel && dateSel) {
-$.ajax({
-    url: "/Scheduling/GetAvailableTimesJson",
-    type: 'POST',
-    data: { companyId: company, serviceSelected: serviceSel, dateSelected: dateSel },
-    success: function (data) {
-updateAvailableTimes(data)
-    },
-    error: function (data) {
-console.log(data);
-    }
-});
-    }
-}
+        function GetAvailableTimes() {
+            let serviceSel = $("#ServiceSelected").val();
+            let company = $("#CompanyId").val();
+            let dateSel = $("#ScheduledDate").val();
 
-function updateAvailableTimes(data) {
-    var selectList = $("#TimeSelected");
+            if (serviceSel && dateSel) {
+                $.ajax({
+                    url: "/Scheduling/GetAvailableTimesJson",
+                    type: 'POST',
+                    data: { companyId: company, serviceSelected: serviceSel, dateSelected: dateSel },
+                    success: function (data) {
+                        updateAvailableTimes(data)
+                    },
+                    error: function (data) {
+                        console.log(data);
+                    }
+                });
+            }
+        }
 
-    selectList.html('');
+        function updateAvailableTimes(data) {
+            var selectList = $("#TimeSelected");
 
-    data.map(function (time, i) {
-const formatedTime = new Date(('June 11, 1999 ' + time + ' GMT-03:00')).toLocaleTimeString('en-US').replace(/:\d+ /, ' ');;
-selectList.append($('<option></option>').val(time).html(formatedTime));
-    })
+            selectList.html('');
 
-    selectList.trigger('change');
-}
+            data.map(function (time, i) {
+                const formatedTime = new Date(('June 11, 1999 ' + time + ' GMT-03:00')).toLocaleTimeString('en-US').replace(/:\d+ /, ' ');;
+                selectList.append($('<option></option>').val(time).html(formatedTime));
+            })
 
-function CheckIsAllFilled() {
-    let serviceSel = $("#ServiceSelected").val();
-    let dateSel = $("#ScheduledDate").val();
-    let time = $("#TimeSelected").val();
+            selectList.trigger('change');
+        }
 
-    if (serviceSel && dateSel && time) {
-$("#confirm").show(500);
-    } else {
-$("#confirm").hide(200);
-    }
-}
+        function CheckIsAllFilled() {
+            let serviceSel = $("#ServiceSelected").val();
+            let dateSel = $("#ScheduledDate").val();
+            let time = $("#TimeSelected").val();
+
+            if (serviceSel && dateSel && time) {
+                $("#confirm").show(500);
+            } else {
+                $("#confirm").hide(200);
+            }
+        }
 
     </script>
 }

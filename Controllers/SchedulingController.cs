@@ -28,19 +28,35 @@ public class SchedulingController : BaseController
     {
         var company = await _repositoryCompany.GetByIdAsync(companyId);
 
-        SchedulingViewModel model = _mapper.Map<SchedulingViewModel>(company);
-
-        foreach (var item in company.ServicesOffered)
+        if (company == null)
         {
-            model.CompanyServices.Add(new SelectListItem { Value = item.Id.ToString(), Text = item.Name + " - " + string.Format("{0:C}", item.Price) });
+            ModelState.AddModelError("Company", "Company not found");
+            return RedirectToAction("Index", "Home");
         }
+        if (!company.ServicesOffered.Any())
+        {
+            ModelState.AddModelError("ServicesOffered", "Company has no services offered");
+            return RedirectToAction("Index", "Home");
+        }
+
+        var model = _mapper.Map<SchedulingViewModel>(company);
+
+        model.CompanyServices = company.ServicesOffered
+            .Select(item => new SelectListItem
+            {
+                Value = item.Id.ToString(),
+                Text = $"{item.Name} - {item.Price:C}"
+            }).ToList();
 
         List<TimeSpan> availableTimes = (await _serviceScheduling.GetAvailableTimesAsync(company.Id, company.ServicesOffered.FirstOrDefault().Id, DateOnly.FromDateTime(DateTime.Now))).ToList();
 
-        foreach (var item in availableTimes)
-        {
-            model.AvailableTimeSlots.Add(new SelectListItem { Value = item.ToString(), Text = TimeOnly.Parse(item.ToString()).ToString() });
-        }
+        model.AvailableTimeSlots = availableTimes
+            .Select(item => new SelectListItem
+            {
+                Value = item.ToString(),
+                Text = TimeOnly.Parse(item.ToString()).ToString()
+            })
+            .ToList();
 
         return View(model);
     }
