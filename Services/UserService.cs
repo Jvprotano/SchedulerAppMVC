@@ -11,6 +11,8 @@ public class UserService : Service<User>, IUserService
     }
     public override void Validate(User entity)
     {
+        base.Validate(entity);
+
         if (entity.BirthDate > DateTime.Now)
             throw new Exception("Birth Date cannot be greater than today"
                 + DateTime.Now.ToString("dd/MM/yyyy"));
@@ -26,8 +28,6 @@ public class UserService : Service<User>, IUserService
 
         if (String.IsNullOrEmpty(entity.Name))
             throw new Exception("Name is required");
-
-        base.Validate(entity);
     }
     public override Task SaveAsync(User entity)
     {

@@ -61,10 +61,6 @@ public class CompanyController : BaseController
             return RedirectToAction("Create", model);
         }
     }
-    private void SetMessageSuccess(string message)
-    {
-        TempData["SuccessMessage"] = message;
-    }
     private List<SelectListItem> LoadCities()
     {
         List<SelectListItem> cities = [new SelectListItem()];

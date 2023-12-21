@@ -52,6 +52,9 @@
             if ($("#Password").val() != $("#ConfirmPassword").val()) {
                 $("#divCheckPasswordMatch").html("As senhas não conferem!");
             }
+            else {
+                $("#divCheckPasswordMatch").hide();
+            }
         });
     </script>
 }

@@ -9,4 +9,8 @@ public class BaseController : Controller
     {
         _logger = logger;
     }
+    protected void SetMessageSuccess(string message)
+    {
+        TempData["SuccessMessage"] = message;
+    }
 }

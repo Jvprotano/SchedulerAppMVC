@@ -24,6 +24,10 @@ public class Service<T> : IService<T> where T : EntityBase
     }
     public virtual void Validate(T entity)
     {
-        throw new NotImplementedException();
+        if (entity == null)
+            throw new Exception("Entity is null");
+        
+        if (entity.Id < 0)
+            throw new Exception("Id is invalid");
     }
 }
