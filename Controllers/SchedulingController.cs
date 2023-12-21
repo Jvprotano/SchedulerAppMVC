@@ -77,7 +77,6 @@ public class SchedulingController : BaseController
     }
 
     [HttpPost]
-    [Route("GetAvailableTimesJson")]
     public async Task<JsonResult> GetAvailableTimes(int companyId, int serviceSelected, DateOnly dateSelected)
     {
         try

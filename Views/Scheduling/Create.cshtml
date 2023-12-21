@@ -134,15 +134,15 @@
         });
 
         function GetAvailableTimes() {
-            let serviceSel = $("#ServiceSelected").val();
-            let company = $("#CompanyId").val();
-            let dateSel = $("#ScheduledDate").val();
+            let serviceSelected = $("#ServiceSelected").val();
+            let companyId = $("#CompanyId").val();
+            let dateSelected = $("#ScheduledDate").val();
 
-            if (serviceSel && dateSel) {
+            if (serviceSelected && dateSelected) {
                 $.ajax({
-                    url: "/Scheduling/GetAvailableTimesJson",
+                    url: "/Scheduling/GetAvailableTimes",
                     type: 'POST',
-                    data: { companyId: company, serviceSelected: serviceSel, dateSelected: dateSel },
+                    data: { companyId: companyId, serviceSelected: serviceSelected, dateSelected: dateSelected },
                     success: function (data) {
                         updateAvailableTimes(data)
                     },

@@ -35,12 +35,13 @@ public class CompanyViewModel : BaseViewModel
     [Display(Name = "Categories")]
     public List<int> SelectedCategoryIds { get; set; } = [];
     [Display(Name = "Services Offered")]
-    public List<string> SelectedServicesNames { get; set; } = [];
+    public List<string> SelectedExistingNames { get; set; } = [];
     public List<SelectListItem> CategoriesSelectIds { get; set; } = LoadCategories();
-    public List<SelectListItem> ServicesOfferedsSelect { get; set; } = [];
+    public List<SelectListItem> ServicesExistingOptionsSelect { get; set; } = [];
     public List<SelectListItem> CitiesSelect { get; set; }
     public List<CompanyOpeningHours> OpenAISchedules { get; set; } = new List<CompanyOpeningHours>();
     public List<CompanyOpeningHours> OpeningHours { get; set; } = LoadDefaultOpeningHours();
+    public List<CompanyServiceOffered> ServicesOffered { get; set; } = new List<CompanyServiceOffered>();
 
     private static List<SelectListItem> LoadCategories()
     {

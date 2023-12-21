@@ -59,13 +59,13 @@
             @foreach (var company in Model.Companies)
             {
                 var index = Model.Companies.IndexOf(company);
-                <li data-target="#carouselExampleIndicators" data-slide-to=i.ToString() @index == 1 ? class="active" :></li>
+                <li data-target="#carouselExampleIndicators" data-slide-to=i.ToString() @index == 0 ? class="active" :></li>
             }
         </ol>
         <div class="carousel-inner">
             @foreach (var company in Model.Companies)
             {
-                <div class="@(Model.Companies.IndexOf(company) == 1 ? "carousel-item active" : "carousel-item ")">
+                <div class="@(Model.Companies.IndexOf(company) == 0 ? "carousel-item active" : "carousel-item ")">
                     <a
                         href='@Url.Action("Create", "Scheduling", new {@companyId = Model.Companies[Model.Companies.IndexOf(company)].Id})'>
                         <img class="d-block w-100" src=@(Model.Companies[Model.Companies.IndexOf(company)].ImageUrl)

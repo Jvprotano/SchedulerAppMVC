@@ -36,8 +36,19 @@ public class SchedulingService : Service<Scheduling>, ISchedulingService
 
             var shortestServiceDuration = new TimeSpan(0, 10, 0);
 
+            if (date == DateOnly.FromDateTime(DateTime.Now))
+                openingHours.RemoveAll(c => c.OpeningHour < DateTime.Now.TimeOfDay && c.ClosingHour < DateTime.Now.TimeOfDay);
+
             foreach (var item in openingHours)
             {
+                if(item.OpeningHour == item.ClosingHour)
+                    continue;
+                if (item.OpeningHour > item.ClosingHour)
+                    throw new Exception("Opening hour cannot be greater than closing hour");
+
+                if (date == DateOnly.FromDateTime(DateTime.Now) && item.OpeningHour < DateTime.Now.TimeOfDay)
+                    item.OpeningHour = DateTime.Now.TimeOfDay;
+                    
                 var opening = item.OpeningHour;
                 var closing = item.ClosingHour;
 

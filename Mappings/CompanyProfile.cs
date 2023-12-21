@@ -1,3 +1,4 @@
+using AppAgendamentos.Enums;
 using AppAgendamentos.Models;
 using AppAgendamentos.ViewModels;
 
@@ -9,7 +10,15 @@ public class CompanyProfile : Profile
     public CompanyProfile()
     {
         CreateMap<Company, CompanyViewModel>();
-        CreateMap<CompanyViewModel, Company>();
+        CreateMap<CompanyViewModel, Company>()
+        .ForMember(dest => dest.Categories, opt => opt.MapFrom((src, dest) =>
+        {
+            var categories = new List<CompanyCategory>();
+            foreach (var category in src.SelectedCategoryIds)
+                categories.Add(new CompanyCategory() { CategoryId = (CategoryEnum)category });
+
+            return categories;
+        }));
 
         CreateMap<Company, SchedulingViewModel>()
         .ForMember(dest => dest.CompanyName, opt => opt.MapFrom(src => src.Name))

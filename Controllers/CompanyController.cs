@@ -32,7 +32,7 @@ public class CompanyController : BaseController
     {
         var model = new CompanyViewModel
         {
-            ServicesOfferedsSelect = (await _serviceOfferedService.GetAllAsync()).ToList()
+            ServicesExistingOptionsSelect = (await _serviceOfferedService.GetAllAsync()).ToList()
                 .DistinctBy(c => c.Name).Select(s =>
                     new SelectListItem(text: s.Name, value: s.Name.ToString())).ToList(),
 
