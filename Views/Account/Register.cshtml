@@ -1,37 +1,47 @@
 @model AppAgendamentos.ViewModels.RegisterViewModel
 
-@using (Html.BeginForm("Create", "User", FormMethod.Post))
+@using (Html.BeginForm(FormMethod.Post))
 {
     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
     <div class="row">
-    <div class="form-group col-md-4">
-        @Html.LabelFor(m => m.UserName, new { @class = "control-label" })
-        @Html.TextBoxFor(m => m.UserName, new { @class = "form-control" })
-        @Html.ValidationMessageFor(m => m.UserName, "", new { @class = "text-danger" })
+    <div class="form-group col-md-3">
+        @Html.LabelFor(m => m.FirstName, new { @class = "control-label" })
+        @Html.TextBoxFor(m => m.FirstName, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.FirstName, "", new { @class = "text-danger" })
     </div>
-    <div class="form-group col-md-4">
+    <div class="form-group col-md-3">
+        @Html.LabelFor(m => m.LastName, new { @class = "control-label" })
+        @Html.TextBoxFor(m => m.LastName, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.LastName, "", new { @class = "text-danger" })
+    </div>
+    <div class="form-group col-md-3">
         @Html.LabelFor(m => m.Phone, new { @class = "control-label" })
-        @Html.TextBoxFor(m => m.Phone, new { @class = "form-control" })
+        @Html.TextBoxFor(m => m.Phone, new { @class = "form-control", placeholder = "(00) 00000-0000", type = "tel" })
         @Html.ValidationMessageFor(m => m.Phone, "", new { @class = "text-danger" })
     </div>
-    <div class="form-group col-md-4">
+    <div class="form-group col-md-3">
         @Html.LabelFor(m => m.BirthDate, new { @class = "control-label" })
         @Html.TextBoxFor(m => m.BirthDate, new { @class = "form-control", type = "date" })
         @Html.ValidationMessageFor(m => m.BirthDate, "", new { @class = "text-danger" })
     </div>
 </div>
     <div class="row">
-    <div class="col-md-4">
+    <div class="form-group col-md-3">
+        @Html.LabelFor(m => m.UserName, new { @class = "control-label" })
+        @Html.TextBoxFor(m => m.UserName, new { @class = "form-control", placeholder = "yourUserName" })
+        @Html.ValidationMessageFor(m => m.UserName, "", new { @class = "text-danger" })
+    </div>
+    <div class="form-group col-md-3">
         @Html.LabelFor(m => m.Email, new { @class = "control-label" })
-        @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+        @Html.TextBoxFor(m => m.Email, new { @class = "form-control", placeholder = "email@email.com" })
         @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
     </div>
-    <div class="col-md-4">
+    <div class="form-group col-md-3">
         @Html.LabelFor(m => m.Password, new { @class = "control-label" })
         @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
         @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
     </div>
-    <div class="col-md-4">
+    <div class="form-group col-md-3">
         @Html.LabelFor(m => m.ConfirmPassword, new { @class = "control-label" })
         @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control" })
         @Html.ValidationMessageFor(m => m.ConfirmPassword, "", new { @class = "text-danger" })
@@ -39,10 +49,9 @@
     </div>
 </div>
     <br />
-    <div class="row">
-    <div class="form-group col-md-12">
-        <a asp-action="Index" asp-controller="Home" class="btn btn-danger">Back</a>
-        <input type="submit" value="Save" class="btn btn-success" />
+    <div class="form-group">
+    <div class="col-md-offset-2 col-md-10" style="display: flex; align-items: center; flex-direction: column;">
+        <input type="submit" value="Register" class="btn btn-default" style="border-color: darkmagenta;"/>
     </div>
 </div>
 }
@@ -56,5 +65,20 @@
                 $("#divCheckPasswordMatch").hide();
             }
         });
+
+        function formatPhoneNumber(phoneNumber) {
+            const numericOnly = phoneNumber.replace(/\D/g, '');
+            const phoneNumberFormat = /^(\d{2})(\d{5})(\d{4})$/;
+            const formattedNumber = numericOnly.replace(phoneNumberFormat, '($1) $2-$3');
+            return formattedNumber;
+        }
+
+        function handleInputChange() {
+            const input = document.getElementById('Phone');
+            const formattedPhoneNumber = formatPhoneNumber(input.value);
+            input.value = formattedPhoneNumber;
+        }
+
+        document.getElementById('Phone').addEventListener('input', handleInputChange);
     </script>
 }

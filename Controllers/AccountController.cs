@@ -1,7 +1,9 @@
 using AppAgendamentos.Controllers.BaseControllers;
 using AppAgendamentos.Models;
 using AppAgendamentos.ViewModels;
+
 using AutoMapper;
+
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
@@ -19,7 +21,6 @@ public class AccountController : BaseController
         _mappper = mappper;
     }
 
-    // Exemplo de uma ação de registro
     public IActionResult Register()
     {
         return View();
@@ -28,6 +29,11 @@ public class AccountController : BaseController
     [HttpPost]
     public async Task<IActionResult> Register(RegisterViewModel model)
     {
+        if (await _userManager.FindByEmailAsync(model.Email) != null)
+            ModelState.AddModelError(string.Empty, "Email already exists");
+        if (model.Password != model.ConfirmPassword)
+            ModelState.AddModelError(string.Empty, "Passwords don't match");
+
         if (ModelState.IsValid)
         {
             var user = _mappper.Map<ApplicationUser>(model);
@@ -59,7 +65,9 @@ public class AccountController : BaseController
     {
         if (ModelState.IsValid)
         {
-            var result = await _signInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, lockoutOnFailure: false);
+            var user = await _userManager.FindByEmailAsync(model.EmailOrUserName);
+
+            var result = await _signInManager.PasswordSignInAsync(user?.UserName ?? model.EmailOrUserName, model.Password, model.RememberMe, lockoutOnFailure: false);
 
             if (result.Succeeded)
             {
@@ -72,7 +80,7 @@ public class AccountController : BaseController
         return View(model);
     }
 
-    [HttpPost]
+    [HttpGet]
     public async Task<IActionResult> Logout()
     {
         await _signInManager.SignOutAsync();

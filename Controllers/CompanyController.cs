@@ -2,11 +2,16 @@ using AppAgendamentos.Contracts.Services;
 using AppAgendamentos.Controllers.BaseControllers;
 using AppAgendamentos.Models;
 using AppAgendamentos.ViewModels;
+
 using AutoMapper;
+
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace AppAgendamentos.Controllers;
+
+[Authorize]
 public class CompanyController : BaseController
 {
     private readonly ICompanyService _companyService;

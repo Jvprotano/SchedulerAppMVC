@@ -40,7 +40,7 @@
                 <a asp-action="Create" asp-controller="Company" class="btn btn-dark" style="margin-right: 10%">
                     Create Company
                 </a>
-                <li class="nav-item dropdown">
+                <li class="nav-item dropdown" style="text-align: center;">
                     <img src="~/images/user.png" alt="user" class="rounded-circle" href="#" id="navbarDropdown"
                         style="width: 40px; height: 40px; margin-right: 10px" role="button" data-bs-toggle="dropdown"
                         aria-expanded="false">
@@ -49,9 +49,11 @@
                     <ul class="dropdown-menu dropdown-menu-start" aria-labelledby="navbarDropdown">
                         @if (User.Identity.IsAuthenticated)
                         {
+                            <li><a class="dropdown-item" asp-action="Index" asp-controller="Account">Account</a></li>
                             <li><a class="dropdown-item" asp-action="Index" asp-controller="Scheduling">Appointments</a>
                             </li>
-                            <li><a class="dropdown-item" asp-action="Index" asp-controller="Company">Companies</a></li>
+                            <li><a class="dropdown-item" asp-action="Index" asp-controller="Company">My Companies</a></li>
+                            <div class="dropdown-divider"></div>
                             <li><a class="dropdown-item" asp-action="Logout" asp-controller="Account">Sair</a></li>
                         }
                         else
@@ -66,6 +68,24 @@
     </header>
     <div class="container">
         <main role="main" class="pb-3">
+            @if (!ViewData.ModelState.IsValid)
+            {
+                <div class="alert alert-danger" role="alert">
+                    @foreach (var modelState in ViewData.ModelState.Values)
+                    {
+                        foreach (var error in modelState.Errors)
+                        {
+                            <span>@error.ErrorMessage</span>
+                        }
+                    }
+                </div>
+            }
+            @if (TempData["Message"] != null)
+            {
+                <div class="alert alert-success" role="alert">
+                    @TempData["Message"]
+                </div>
+            }
             @RenderBody()
         </main>
     </div>

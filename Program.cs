@@ -29,6 +29,16 @@ builder.Services.AddIdentity<ApplicationUser, IdentityRole<int>>()
     .AddEntityFrameworkStores<ApplicationDbContext>()
     .AddDefaultTokenProviders();
 
+// Configure o User para permitir logins com e-mail ou nome de usuário
+builder.Services.Configure<IdentityOptions>(options =>
+{
+    options.SignIn.RequireConfirmedEmail = false; // Configuração opcional
+    options.SignIn.RequireConfirmedPhoneNumber = false; // Configuração opcional
+
+    options.User.RequireUniqueEmail = true; // Certifique-se de que os e-mails sejam únicos
+    options.User.AllowedUserNameCharacters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-._@+"; // Adicione caracteres permitidos no nome de usuário
+});
+
 builder.Services.AddRepositories();
 
 var app = builder.Build();

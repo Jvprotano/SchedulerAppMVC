@@ -2,13 +2,31 @@
 
 @using (Html.BeginForm("Login", "Account", FormMethod.Post))
 {
-    <div class="form-group">
-        @Html.LabelFor(m => m.Email)
-        @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+    <div id="container-login" style="display: flex;flex-direction: column;align-items: center;">
+    <div class="row">
+        <div class="col-md-12">
+            <h2>Login</h2>
+        </div>
     </div>
-    <div class="form-group">
-        @Html.LabelFor(m => m.Password)
-        @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
+    <div class="row">
+        <div class="form-group col-md-12">
+            @Html.TextBoxFor(m => m.EmailOrUserName, new
+                    {
+                        @class = "form-control",
+                        @placeholder = "Email or Username"
+                    })
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-group col-md-12">
+            @Html.PasswordFor(m => m.Password, new { @class = "form-control", @placeholder = "Password" })
+            <div class="checkbox">
+                <label>
+                    @Html.CheckBoxFor(m => m.RememberMe) Remember me?
+                </label>
+            </div>
+        </div>
     </div>
     <button type="submit" class="btn btn-primary">Login</button>
+</div>
 }
