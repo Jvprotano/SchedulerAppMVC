@@ -1,11 +1,16 @@
 using AppAgendamentos.Infrastructure.Extensions;
+using AppAgendamentos.Models;
 using AppAgendamentos.Models.Base;
 
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 
 namespace AppAgendamentos.Infrastructure;
-public class ApplicationDbContext : DbContext
+
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+
+public class ApplicationDbContext : IdentityDbContext<ApplicationUser, IdentityRole<int>, int>
 {
     public ApplicationDbContext(DbContextOptions options) : base(options)
     {

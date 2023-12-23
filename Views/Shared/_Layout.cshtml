@@ -47,10 +47,18 @@
                         @User.Identity.Name
                     </img>
                     <ul class="dropdown-menu dropdown-menu-start" aria-labelledby="navbarDropdown">
-                        <li><a class="dropdown-item" href="#">Login</a></li>
-                        <li><a class="dropdown-item" asp-action="Create" asp-controller="User">Register</a></li>
-                        @* <li><hr class="dropdown-divider" /></li>
-                        <li><a class="dropdown-item" href="#">Sair</a></li> *@
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            <li><a class="dropdown-item" asp-action="Index" asp-controller="Scheduling">Appointments</a>
+                            </li>
+                            <li><a class="dropdown-item" asp-action="Index" asp-controller="Company">Companies</a></li>
+                            <li><a class="dropdown-item" asp-action="Logout" asp-controller="Account">Sair</a></li>
+                        }
+                        else
+                        {
+                            <li><a class="dropdown-item" asp-action="Login" asp-controller="Account">Login</a></li>
+                            <li><a class="dropdown-item" asp-action="Register" asp-controller="Account">Register</a></li>
+                        }
                     </ul>
                 </li>
             </div>

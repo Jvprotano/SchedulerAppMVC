@@ -1,15 +1,12 @@
-using AppAgendamentos.Infrastructure.Configurations.Base;
 using AppAgendamentos.Models;
-
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace AppAgendamentos.Infrastructure.Configurations;
-public class UserConfiguration : ProfileBaseConfiguration<User>
+public class UserConfiguration : IEntityTypeConfiguration<ApplicationUser>
 {
-    public override void Configure(EntityTypeBuilder<User> builder)
+    public void Configure(EntityTypeBuilder<ApplicationUser> builder)
     {
-        base.Configure(builder);
-
         builder.Ignore(c => c.ConfirmPassword);
     }
 }

@@ -9,5 +9,5 @@ public class CompanyOwners : EntityBase
     public int CompanyId { get; set; }
     public Company Company { get; set; }
     public int UserId { get; set; }
-    public User User { get; set; }
+    public ApplicationUser User { get; set; }
 }

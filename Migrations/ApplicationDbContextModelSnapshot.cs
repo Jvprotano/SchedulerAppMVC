@@ -57,7 +57,7 @@ namespace AppAgendamentos.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("cities");
+                    b.ToTable("cities", (string)null);
                 });
 
             modelBuilder.Entity("AppAgendamentos.Models.Company", b =>
@@ -136,7 +136,7 @@ namespace AppAgendamentos.Migrations
 
                     b.HasIndex("CityId");
 
-                    b.ToTable("companies");
+                    b.ToTable("companies", (string)null);
                 });
 
             modelBuilder.Entity("AppAgendamentos.Models.CompanyCategory", b =>
@@ -172,7 +172,7 @@ namespace AppAgendamentos.Migrations
 
                     b.HasIndex("CompanyId");
 
-                    b.ToTable("companies_categories");
+                    b.ToTable("companies_categories", (string)null);
                 });
 
             modelBuilder.Entity("AppAgendamentos.Models.CompanyOpeningHours", b =>
@@ -220,7 +220,7 @@ namespace AppAgendamentos.Migrations
 
                     b.HasIndex("CompanyId");
 
-                    b.ToTable("companies_opening_hours");
+                    b.ToTable("companies_opening_hours", (string)null);
                 });
 
             modelBuilder.Entity("AppAgendamentos.Models.CompanyOwners", b =>
@@ -258,7 +258,7 @@ namespace AppAgendamentos.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("companies_owners");
+                    b.ToTable("companies_owners", (string)null);
                 });
 
             modelBuilder.Entity("AppAgendamentos.Models.CompanyServiceOffered", b =>
@@ -307,7 +307,7 @@ namespace AppAgendamentos.Migrations
 
                     b.HasIndex("CompanyId");
 
-                    b.ToTable("companies_services_offered");
+                    b.ToTable("companies_services_offered", (string)null);
                 });
 
             modelBuilder.Entity("AppAgendamentos.Models.Scheduling", b =>
@@ -359,7 +359,7 @@ namespace AppAgendamentos.Migrations
 
                     b.HasIndex("ServicesOfferedId");
 
-                    b.ToTable("schedulings");
+                    b.ToTable("schedulings", (string)null);
                 });
 
             modelBuilder.Entity("AppAgendamentos.Models.User", b =>
@@ -437,7 +437,7 @@ namespace AppAgendamentos.Migrations
 
                     b.HasIndex("CityId");
 
-                    b.ToTable("users");
+                    b.ToTable("users", (string)null);
                 });
 
             modelBuilder.Entity("AppAgendamentos.Models.Company", b =>

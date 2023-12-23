@@ -7,6 +7,8 @@ public class UserProfile : Profile
 {
     public UserProfile()
     {
-        CreateMap<UserViewModel, User>();
+        CreateMap<UserViewModel, ApplicationUser>();
+        CreateMap<RegisterViewModel, ApplicationUser>();
+        CreateMap<LoginViewModel, ApplicationUser>();
     }
 }
