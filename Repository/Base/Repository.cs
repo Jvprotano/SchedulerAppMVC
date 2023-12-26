@@ -59,6 +59,7 @@ public class Repository<T> : IRepository<T> where T : EntityBase
             else
             {
                 this._context.Entry(entity).State = EntityState.Modified;
+                BeforeUpdateChanges(entity);
             }
             await this._context.SaveChangesAsync();
         }
@@ -66,5 +67,15 @@ public class Repository<T> : IRepository<T> where T : EntityBase
         {
             throw;
         }
+    }
+    public virtual void UpdateCollection<T>(IEnumerable<T> entities) where T : EntityBase
+    {
+        foreach (var entity in entities)
+        {
+            this._context.Entry(entity).State = EntityState.Modified;
+        }
+    }
+    public virtual void BeforeUpdateChanges(T entity)
+    {
     }
 }

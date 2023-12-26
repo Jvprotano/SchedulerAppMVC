@@ -14,7 +14,7 @@ public class Company : ProfileBase
     public IList<CompanyOwners> Owners;
     public IList<CompanyCategory> Categories { get; set; }
     public IList<CompanyServiceOffered> ServicesOffered { get; set; }
-    public IList<CompanyOpeningHours> OpeningHours { get; set; }
+    public virtual IList<CompanyOpeningHours> OpeningHours { get; set; }
 
     public List<int> SelectedCategoryIds { get; set; }
     public List<string> SelectedServicesNames { get; set; }

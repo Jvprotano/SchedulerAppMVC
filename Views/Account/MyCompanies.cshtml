@@ -1,0 +1,31 @@
+@model AppAgendamentos.ViewModels.AccountViewModel
+
+<table class="table table-striped">
+    <thead class="thead-dark">
+        <tr>
+            <th>Name</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var company in Model.Companies)
+        {
+            <tr>
+                <td>@company.Name</td>
+                <td>
+                    <a href="@Url.Action("Scheduler", "Company", new { id = company.Id })"
+                        class="btn btn-primary btn-sm">Select
+                    </a>
+                    <a href="@Url.Action("Show", "Company", new { id = company.Id })"
+                        onclick="event.preventDefault(); prompt('Copy this link:', 'http://localhost:5054/Scheduling/Create/@company.Id');"
+                        class="btn btn-info btn-sm">Show link</a>
+                    <a href="@Url.Action("Edit", "Company", new { id = company.Id })"
+                        class="btn btn-warning btn-sm">Edit</a>
+                    <a href="@Url.Action("CloseSchedule", "Company", new {id = company.Id})" class="btn btn-success btn-sm">Close the schedule</a>
+                    <a href="@Url.Action("Delete", "Company", new { id = company.Id })"
+                        class="btn btn-danger btn-sm">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

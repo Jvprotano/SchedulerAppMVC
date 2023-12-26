@@ -3,8 +3,6 @@ using AppAgendamentos.Infrastructure;
 using AppAgendamentos.Models;
 using AppAgendamentos.Repository.Base;
 
-using Microsoft.EntityFrameworkCore;
-
 namespace AppAgendamentos.Repository;
 public class CompanyOpeningHoursRepository : Repository<CompanyOpeningHours>, ICompanyOpeningHoursRepository
 {

@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace AppAgendamentos.Controllers;
+[Route("[controller]/[action]")]
 public class SchedulingController : BaseController
 {
     private readonly ICompanyRepository _repositoryCompany;
@@ -23,7 +24,8 @@ public class SchedulingController : BaseController
         _mapper = mapper;
         _serviceScheduling = serviceScheduling;
     }
-
+    [HttpGet]
+    [Route("{companyId}")]
     public async Task<IActionResult> Create(int companyId)
     {
         var company = await _repositoryCompany.GetByIdAsync(companyId);

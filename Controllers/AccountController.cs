@@ -1,24 +1,28 @@
+using AppAgendamentos.Contracts.Services;
 using AppAgendamentos.Controllers.BaseControllers;
 using AppAgendamentos.Models;
 using AppAgendamentos.ViewModels;
 
 using AutoMapper;
-
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AppAgendamentos.Controllers;
+[Route("[controller]/[action]")]
 public class AccountController : BaseController
 {
     private readonly UserManager<ApplicationUser> _userManager;
     private readonly SignInManager<ApplicationUser> _signInManager;
+    private readonly ICompanyService _serviceCompany;
     private readonly IMapper _mappper;
 
-    public AccountController(ILogger<BaseController> logger, UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager, IMapper mappper) : base(logger)
+    public AccountController(ILogger<BaseController> logger, UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager, IMapper mappper, ICompanyService serviceCompany) : base(logger)
     {
         _userManager = userManager;
         _signInManager = signInManager;
         _mappper = mappper;
+        _serviceCompany = serviceCompany;
     }
 
     public IActionResult Register()
@@ -81,9 +85,22 @@ public class AccountController : BaseController
     }
 
     [HttpGet]
+    [Authorize]
     public async Task<IActionResult> Logout()
     {
         await _signInManager.SignOutAsync();
         return RedirectToAction("Index", "Home");
+    }
+    [HttpGet]
+    [Authorize]
+    public async Task<IActionResult> MyCompanies()
+    {
+        var user = await _userManager.FindByNameAsync(User.Identity.Name);
+
+        user.Companies = (await _serviceCompany.GetCompaniesByUserAsync(user.Id)).ToList();
+
+        var model = _mappper.Map<AccountViewModel>(user);
+
+        return View(model);
     }
 }

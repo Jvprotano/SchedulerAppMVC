@@ -27,6 +27,7 @@ public class CompanyViewModel : BaseViewModel
     public string PostalCode { get; set; }
     [Display(Name = "Is not a physical location")]
     public bool IsVirtual { get; set; }
+    public string ImageUrl { get; set; }
 
 
     public IFormFile ImageFile { get; set; }
@@ -52,7 +53,7 @@ public class CompanyViewModel : BaseViewModel
 
         return categories;
     }
-    private static List<CompanyOpeningHours> LoadDefaultOpeningHours()
+    public static List<CompanyOpeningHours> LoadDefaultOpeningHours()
     {
         List<CompanyOpeningHours> defaultOpeningHours = [];
 

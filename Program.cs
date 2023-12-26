@@ -1,7 +1,6 @@
 using AppAgendamentos.Infrastructure;
 using AppAgendamentos.Infrastructure.Extensions;
 using AppAgendamentos.Models;
-using AppAgendamentos.Models.Base;
 
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;

@@ -26,5 +26,7 @@ public class ApplicationUser : IdentityUser<int>
     public string PostalCode { get; set; }
 
     public IList<Scheduling> Schedulings { get; set; }
-    public ICollection<CompanyOwners> Companies { get; set; }
+    public IList<CompanyOwners> UserCompanies { get; set; }
+    [NotMapped]
+    public IList<Company> Companies { get; set; }
 }

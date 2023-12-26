@@ -10,5 +10,7 @@ public class UserProfile : Profile
         CreateMap<UserViewModel, ApplicationUser>();
         CreateMap<RegisterViewModel, ApplicationUser>();
         CreateMap<LoginViewModel, ApplicationUser>();
+
+        CreateMap<ApplicationUser, AccountViewModel>().ReverseMap();
     }
 }
