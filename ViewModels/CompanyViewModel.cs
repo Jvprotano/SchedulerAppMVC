@@ -28,6 +28,7 @@ public class CompanyViewModel : BaseViewModel
     [Display(Name = "Is not a physical location")]
     public bool IsVirtual { get; set; }
     public string ImageUrl { get; set; }
+    public ScheduleStatusEnum ScheduleStatus { get; set; }
 
 
     public IFormFile ImageFile { get; set; }

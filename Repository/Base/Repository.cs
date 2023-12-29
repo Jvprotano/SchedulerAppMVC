@@ -20,7 +20,7 @@ public class Repository<T> : IRepository<T> where T : EntityBase
     {
         try
         {
-            var query = this.DbSet.AsNoTracking();
+            var query = DbSet.AsNoTracking();
 
             if (!active)
                 query = query.IgnoreQueryFilters();
@@ -36,7 +36,7 @@ public class Repository<T> : IRepository<T> where T : EntityBase
     {
         try
         {
-            var query = this.DbSet.AsNoTracking();
+            var query = DbSet.AsNoTracking();
 
             if (!active)
                 query = query.IgnoreQueryFilters();
@@ -54,28 +54,66 @@ public class Repository<T> : IRepository<T> where T : EntityBase
         {
             if (entity.Id == 0)
             {
-                await this.DbSet.AddAsync(entity);
+                await DbSet.AddAsync(entity);
             }
             else
             {
-                this._context.Entry(entity).State = EntityState.Modified;
+                _context.Entry(entity).State = EntityState.Modified;
                 BeforeUpdateChanges(entity);
             }
-            await this._context.SaveChangesAsync();
+            await _context.SaveChangesAsync();
         }
         catch (Exception)
         {
             throw;
         }
     }
-    public virtual void UpdateCollection<T>(IEnumerable<T> entities) where T : EntityBase
+    public virtual async Task TemporaryDeleteAsync(T entity)
     {
-        foreach (var entity in entities)
+        try
         {
-            this._context.Entry(entity).State = EntityState.Modified;
+            entity.Status = Enums.StatusEnum.TemporaryRemoved;
+            _context.Entry(entity).State = EntityState.Modified;
+            await _context.SaveChangesAsync();
+        }
+        catch (Exception)
+        {
+            throw;
+        }
+    }
+    public virtual async Task DeleteAsync(T entity)
+    {
+        try
+        {
+            entity.Status = Enums.StatusEnum.Removed;
+            await _context.SaveChangesAsync();
+        }
+        catch (Exception)
+        {
+            throw;
+        }
+    }
+    public async Task<T> GetAsync(int id, bool active = true)
+    {
+        var query = DbSet.AsNoTracking()
+            .Where(e => e.Id == id);
+
+        if (!active)
+            query = query.IgnoreQueryFilters();
+
+        return await query.FirstOrDefaultAsync();
+    }
+    public virtual void UpdateCollection<U>(IEnumerable<U> collection)
+    {
+        if (collection == null)
+            return;
+        foreach (var entity in collection)
+        {
+            _context.Entry(entity).State = EntityState.Modified;
         }
     }
     public virtual void BeforeUpdateChanges(T entity)
     {
     }
+
 }

@@ -186,7 +186,7 @@ namespace AppAgendamentos.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("cities", (string)null);
+                    b.ToTable("cities");
                 });
 
             modelBuilder.Entity("AppAgendamentos.Models.Company", b =>
@@ -253,6 +253,10 @@ namespace AppAgendamentos.Migrations
                         .HasColumnType("nvarchar(max)")
                         .HasColumnName("postal_code");
 
+                    b.Property<int>("ScheduleStatus")
+                        .HasColumnType("int")
+                        .HasColumnName("schedule_status");
+
                     b.Property<int>("Status")
                         .HasColumnType("int")
                         .HasColumnName("status");
@@ -265,7 +269,7 @@ namespace AppAgendamentos.Migrations
 
                     b.HasIndex("CityId");
 
-                    b.ToTable("companies", (string)null);
+                    b.ToTable("companies");
                 });
 
             modelBuilder.Entity("AppAgendamentos.Models.CompanyCategory", b =>
@@ -301,7 +305,7 @@ namespace AppAgendamentos.Migrations
 
                     b.HasIndex("CompanyId");
 
-                    b.ToTable("companies_categories", (string)null);
+                    b.ToTable("companies_categories");
                 });
 
             modelBuilder.Entity("AppAgendamentos.Models.CompanyOpeningHours", b =>
@@ -345,7 +349,7 @@ namespace AppAgendamentos.Migrations
 
                     b.HasIndex("CompanyId");
 
-                    b.ToTable("companies_opening_hours", (string)null);
+                    b.ToTable("companies_opening_hours");
                 });
 
             modelBuilder.Entity("AppAgendamentos.Models.CompanyOwners", b =>
@@ -383,7 +387,7 @@ namespace AppAgendamentos.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("companies_owners", (string)null);
+                    b.ToTable("companies_owners");
                 });
 
             modelBuilder.Entity("AppAgendamentos.Models.CompanyServiceOffered", b =>
@@ -428,7 +432,7 @@ namespace AppAgendamentos.Migrations
 
                     b.HasIndex("CompanyId");
 
-                    b.ToTable("companies_services_offered", (string)null);
+                    b.ToTable("companies_services_offered");
                 });
 
             modelBuilder.Entity("AppAgendamentos.Models.Scheduling", b =>
@@ -476,7 +480,7 @@ namespace AppAgendamentos.Migrations
 
                     b.HasIndex("ServicesOfferedId");
 
-                    b.ToTable("schedulings", (string)null);
+                    b.ToTable("schedulings");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole<int>", b =>
@@ -677,13 +681,13 @@ namespace AppAgendamentos.Migrations
             modelBuilder.Entity("AppAgendamentos.Models.CompanyOwners", b =>
                 {
                     b.HasOne("AppAgendamentos.Models.Company", "Company")
-                        .WithMany()
+                        .WithMany("Owners")
                         .HasForeignKey("CompanyId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("AppAgendamentos.Models.ApplicationUser", "User")
-                        .WithMany("Companies")
+                        .WithMany("UserCompanies")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -784,9 +788,9 @@ namespace AppAgendamentos.Migrations
 
             modelBuilder.Entity("AppAgendamentos.Models.ApplicationUser", b =>
                 {
-                    b.Navigation("Companies");
-
                     b.Navigation("Schedulings");
+
+                    b.Navigation("UserCompanies");
                 });
 
             modelBuilder.Entity("AppAgendamentos.Models.Company", b =>
@@ -794,6 +798,8 @@ namespace AppAgendamentos.Migrations
                     b.Navigation("Categories");
 
                     b.Navigation("OpeningHours");
+
+                    b.Navigation("Owners");
 
                     b.Navigation("Schedulings");
 

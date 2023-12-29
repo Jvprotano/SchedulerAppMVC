@@ -13,7 +13,7 @@ public class SchedulingRepository : Repository<Scheduling>, ISchedulingRepositor
 
     public async Task<IEnumerable<Scheduling>> GetAllByDateAsync(int companyId, DateOnly date)
     {
-        return await this.DbSet.Where(c => c.CompanyId == companyId &&
+        return await DbSet.Where(c => c.CompanyId == companyId &&
             c.ScheduledDate.Date == date.ToDateTime(TimeOnly.Parse("10:00 PM")).Date)
             .ToListAsync();
     }

@@ -4,6 +4,7 @@ using AppAgendamentos.Models;
 using AppAgendamentos.ViewModels;
 
 using AutoMapper;
+
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;

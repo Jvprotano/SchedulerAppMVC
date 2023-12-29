@@ -13,19 +13,53 @@
             <tr>
                 <td>@company.Name</td>
                 <td>
-                    <a href="@Url.Action("Scheduler", "Company", new { id = company.Id })"
-                        class="btn btn-primary btn-sm">Select
-                    </a>
-                    <a href="@Url.Action("Show", "Company", new { id = company.Id })"
-                        onclick="event.preventDefault(); prompt('Copy this link:', 'http://localhost:5054/Scheduling/Create/@company.Id');"
-                        class="btn btn-info btn-sm">Show link</a>
-                    <a href="@Url.Action("Edit", "Company", new { id = company.Id })"
-                        class="btn btn-warning btn-sm">Edit</a>
-                    <a href="@Url.Action("CloseSchedule", "Company", new {id = company.Id})" class="btn btn-success btn-sm">Close the schedule</a>
-                    <a href="@Url.Action("Delete", "Company", new { id = company.Id })"
-                        class="btn btn-danger btn-sm">Delete</a>
+                    @if (company.Status == AppAgendamentos.Enums.StatusEnum.TemporaryRemoved)
+                    {
+                        <a class="btn btn-info btn-sm" href="@Url.Action("Reactive", "Company", new {id = company.Id})"
+                            title="Company removed. Press the button to active again.">Active again</a>
+                    }
+                    else
+                    {
+                        <a href="@Url.Action("Scheduler", "Company", new { id = company.Id })"
+                            class="btn btn-primary btn-sm">Select
+                        </a>
+
+                        @if (company.ScheduleStatus == AppAgendamentos.Enums.ScheduleStatusEnum.Closed)
+                        {
+                            <a href="@Url.Action("OpenSchedule", "Company", new { companyId = company.Id })"
+                                class="btn btn-success btn-sm">Open the schedule
+                            </a>
+                        }
+                        else
+                        {
+                            <a href="@Url.Action("Show", "Company", new { id = company.Id })"
+                                onclick="event.preventDefault(); prompt('Copy this link:', '@Url.Action("Create", "Scheduling", new{ }, protocol: Context.Request.Scheme, host: Context.Request.Host.Value)/@company.Id');"
+                                class="btn btn-info btn-sm">Show link
+                            </a>
+                            <a href="@Url.Action("CloseSchedule", "Company", new { companyId = company.Id })"
+                                class="btn btn-danger btn-sm">Close the schedule</a>
+                        }
+                        <a href="@Url.Action("Edit", "Company", new { id = company.Id })"
+                            class="btn btn-warning btn-sm">Edit</a>
+                        <a href="javascript:void(0);" onclick="confirmRemoveCompany(@company.Id)"
+                            class="btn btn-danger btn-sm">Delete</a>
+                    }
                 </td>
             </tr>
         }
     </tbody>
 </table>
+<script type="text/javascript">
+    function confirmRemoveCompany(companyId) {
+        console.log(companyId)
+        if (confirm('Your company will be available to active for the next 30 days. Are you sure you want to delete?')) {
+            $.ajax({
+                url: '@Url.Action("Delete", "Company")' + '/' + companyId,
+                type: 'DELETE',
+                success: function (result) {
+                    location.reload();
+                }
+            });
+        }
+    }
+</script>

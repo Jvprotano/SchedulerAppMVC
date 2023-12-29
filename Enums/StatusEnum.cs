@@ -3,5 +3,6 @@ public enum StatusEnum
 {
     Removed,
     Active,
-    Finished,
+    Inactive,
+    TemporaryRemoved,
 }

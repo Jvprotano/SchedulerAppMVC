@@ -1,5 +1,6 @@
 using AppAgendamentos.Contracts.Services;
 using AppAgendamentos.Controllers.BaseControllers;
+using AppAgendamentos.Enums;
 using AppAgendamentos.Models;
 using AppAgendamentos.ViewModels;
 
@@ -46,7 +47,6 @@ public class CompanyController : BaseController
         };
         return View(model);
     }
-
     [HttpPost]
     public async Task<IActionResult> Create(CompanyViewModel model)
     {
@@ -104,9 +104,57 @@ public class CompanyController : BaseController
             return RedirectToAction("Edit", model);
         }
     }
-    public IActionResult CloseSchedule(int companyId)
+    [HttpDelete("{id:int}")]
+    public async Task<IActionResult> Delete(int id)
     {
-        throw new NotImplementedException();
+        try
+        {
+            await _companyService.TemporaryDeleteAsync(id);
+            SetMessageSuccess("Company deleted successfully");
+            return RedirectToAction("Index", "Home");
+        }
+        catch (Exception ex)
+        {
+            ModelState.AddModelError("", ex.Message);
+            return RedirectToAction("Edit", id);
+        }
+    }
+    [HttpGet("{id:int}")]
+    public async Task<IActionResult> Reactive(int id)
+    {
+        try
+        {
+            await _companyService.ReactiveAsync(id);
+            SetMessageSuccess("Company reactivated successfully");
+            return RedirectToAction("MyCompanies", "Account");
+        }
+        catch (Exception ex)
+        {
+            ModelState.AddModelError("", ex.Message);
+            return RedirectToAction("MyCompanies", "Account", id);
+        }
+    }
+    [HttpGet]
+    public async Task<IActionResult> CloseSchedule(int companyId)
+    {
+        var company = await _companyService.GetByIdAsync(companyId);
+
+        company.ScheduleStatus = ScheduleStatusEnum.Closed;
+
+        await _companyService.SaveAsync(company);
+
+        return RedirectToAction("MyCompanies", "Account");
+    }
+    [HttpGet]
+    public async Task<IActionResult> OpenSchedule(int companyId)
+    {
+        var company = await _companyService.GetByIdAsync(companyId);
+
+        company.ScheduleStatus = ScheduleStatusEnum.Open;
+
+        await _companyService.SaveAsync(company);
+
+        return RedirectToAction("MyCompanies", "Account");
     }
     [HttpGet("{id:int}")]
     public async Task<IActionResult> Get(int id)

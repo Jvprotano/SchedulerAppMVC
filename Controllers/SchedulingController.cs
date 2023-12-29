@@ -1,6 +1,7 @@
 using AppAgendamentos.Contracts.Repositories;
 using AppAgendamentos.Contracts.Services;
 using AppAgendamentos.Controllers.BaseControllers;
+using AppAgendamentos.Enums;
 using AppAgendamentos.Models;
 using AppAgendamentos.ViewModels;
 
@@ -24,8 +25,7 @@ public class SchedulingController : BaseController
         _mapper = mapper;
         _serviceScheduling = serviceScheduling;
     }
-    [HttpGet]
-    [Route("{companyId}")]
+    [HttpGet("{companyId}")]
     public async Task<IActionResult> Create(int companyId)
     {
         var company = await _repositoryCompany.GetByIdAsync(companyId);
@@ -38,6 +38,11 @@ public class SchedulingController : BaseController
         if (!company.ServicesOffered.Any())
         {
             ModelState.AddModelError("ServicesOffered", "Company has no services offered");
+            return RedirectToAction("Index", "Home");
+        }
+        if (company.ScheduleStatus != ScheduleStatusEnum.Open)
+        {
+            ModelState.AddModelError("ScheduleStatus", "Company schedule is closed");
             return RedirectToAction("Index", "Home");
         }
 
@@ -57,8 +62,7 @@ public class SchedulingController : BaseController
             {
                 Value = item.ToString(),
                 Text = TimeOnly.Parse(item.ToString()).ToString()
-            })
-            .ToList();
+            }).ToList();
 
         return View(model);
     }

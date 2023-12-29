@@ -18,6 +18,10 @@ public class Service<T> : IService<T> where T : EntityBase
     {
         return await _repositoryBase.GetByIdAsync(id, active);
     }
+    public async Task<T> GetAsync(int id, bool active = true)
+    {
+        return await _repositoryBase.GetAsync(id, active);
+    }
     public virtual async Task SaveAsync(T entity)
     {
         await _repositoryBase.SaveAsync(entity);
@@ -26,7 +30,7 @@ public class Service<T> : IService<T> where T : EntityBase
     {
         if (entity == null)
             throw new Exception("Entity is null");
-        
+
         if (entity.Id < 0)
             throw new Exception("Id is invalid");
     }

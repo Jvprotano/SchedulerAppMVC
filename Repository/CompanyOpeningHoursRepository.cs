@@ -12,11 +12,11 @@ public class CompanyOpeningHoursRepository : Repository<CompanyOpeningHours>, IC
     }
     public List<CompanyOpeningHours> GetAll(int companyId)
     {
-        return this.DbSet.Where(c => c.CompanyId == companyId).ToList();
+        return DbSet.Where(c => c.CompanyId == companyId).ToList();
     }
     public List<CompanyOpeningHours> GetByDayOfWeek(int companyId, DayOfWeek dayOfWeek)
     {
-        return this.DbSet
+        return DbSet
         .Where(c => c.CompanyId == companyId && c.DayOfWeek == dayOfWeek)
         .ToList();
     }

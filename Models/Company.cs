@@ -1,3 +1,4 @@
+using AppAgendamentos.Enums;
 using AppAgendamentos.Models.Base;
 
 using System.ComponentModel.DataAnnotations;
@@ -11,6 +12,7 @@ public class Company : ProfileBase
     public string Description { get; set; }
     public string Cnpj { get; set; }
     public bool IsVirtual { get; set; }
+    public ScheduleStatusEnum ScheduleStatus { get; set; }
     public IList<CompanyOwners> Owners;
     public IList<CompanyCategory> Categories { get; set; }
     public IList<CompanyServiceOffered> ServicesOffered { get; set; }

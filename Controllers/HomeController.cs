@@ -1,4 +1,5 @@
 ﻿using AppAgendamentos.Contracts.Repositories;
+using AppAgendamentos.Contracts.Services;
 using AppAgendamentos.Controllers.BaseControllers;
 using AppAgendamentos.ViewModels;
 
@@ -8,18 +9,18 @@ namespace AppAgendamentos.Controllers;
 
 public class HomeController : BaseController
 {
-    private readonly ICompanyRepository _companyRepository;
+    private readonly ICompanyService _companyService;
 
-    public HomeController(ILogger<BaseController> logger, ICompanyRepository companyRepository) : base(logger)
+    public HomeController(ILogger<BaseController> logger, ICompanyService companyServiceICompanyService) : base(logger)
     {
-        _companyRepository = companyRepository;
+        _companyService = companyServiceICompanyService;
     }
 
     public async Task<IActionResult> Index()
     {
-        HomeViewModel model = new HomeViewModel()
+        var model = new HomeViewModel()
         {
-            Companies = (await _companyRepository.GetAllAsync()).ToList()
+            Companies = (await _companyService.GetAllOpen()).ToList()
         };
 
         return View(model);
