@@ -1,13 +1,13 @@
-using AppAgendamentos.Contracts.HttpServices;
-using AppAgendamentos.Contracts.Repositories;
-using AppAgendamentos.Contracts.Repositories.Base;
-using AppAgendamentos.Contracts.Services;
-using AppAgendamentos.Enums;
-using AppAgendamentos.Models;
-using AppAgendamentos.Services.Base;
-using AppAgendamentos.Services.HttpServices;
+using Scheduler.Contracts.HttpServices;
+using Scheduler.Contracts.Repositories;
+using Scheduler.Contracts.Repositories.Base;
+using Scheduler.Contracts.Services;
+using Scheduler.Enums;
+using Scheduler.Models;
+using Scheduler.Services.Base;
+using Scheduler.Services.HttpServices;
 
-namespace AppAgendamentos.Services;
+namespace Scheduler.Services;
 public class CompanyService : Service<Company>, ICompanyService
 {
     private readonly ICompanyRepository _companyRepository;

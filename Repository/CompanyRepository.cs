@@ -1,14 +1,14 @@
-using AppAgendamentos.Contracts.Repositories;
-using AppAgendamentos.Enums;
-using AppAgendamentos.Infrastructure;
-using AppAgendamentos.Models;
-using AppAgendamentos.Repository.Base;
+using Scheduler.Contracts.Repositories;
+using Scheduler.Enums;
+using Scheduler.Infrastructure;
+using Scheduler.Models;
+using Scheduler.Repository.Base;
 
 using Microsoft.EntityFrameworkCore;
 
 using System.Data;
 
-namespace AppAgendamentos.Repository;
+namespace Scheduler.Repository;
 public class CompanyRepository : Repository<Company>, ICompanyRepository
 {
     public CompanyRepository(ApplicationDbContext context) : base(context)

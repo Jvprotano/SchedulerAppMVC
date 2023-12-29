@@ -1,7 +1,7 @@
-using AppAgendamentos.Contracts.Services;
-using AppAgendamentos.Controllers.BaseControllers;
-using AppAgendamentos.Models;
-using AppAgendamentos.ViewModels;
+using Scheduler.Contracts.Services;
+using Scheduler.Controllers.BaseControllers;
+using Scheduler.Models;
+using Scheduler.ViewModels;
 
 using AutoMapper;
 
@@ -9,7 +9,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
-namespace AppAgendamentos.Controllers;
+namespace Scheduler.Controllers;
 [Route("[controller]/[action]")]
 public class AccountController : BaseController
 {

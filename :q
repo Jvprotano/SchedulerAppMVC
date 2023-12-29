@@ -2,7 +2,7 @@
 [1mindex bf514e3..73f386d 100644[m
 [1m--- a/Contracts/Repository/ICompanyRepository.cs[m
 [1m+++ b/Contracts/Repository/ICompanyRepository.cs[m
-[36m@@ -4,6 +4,7 @@[m [mnamespace AppAgendamentos.Contracts.Repository[m
+[36m@@ -4,6 +4,7 @@[m [mnamespace Scheduler.Contracts.Repository[m
  {[m
      public interface ICompanyRepository[m
      {[m
@@ -16,13 +16,13 @@
 [1m--- a/Controllers/SchedulingController.cs[m
 [1m+++ b/Controllers/SchedulingController.cs[m
 [36m@@ -1,4 +1,6 @@[m
-[32m+[m[32musing AppAgendamentos.Contracts.Repository;[m
- using AppAgendamentos.ViewModels;[m
+[32m+[m[32musing Scheduler.Contracts.Repository;[m
+ using Scheduler.ViewModels;[m
 [32m+[m[32musing AutoMapper;[m
  using Microsoft.AspNetCore.Mvc;[m
  [m
- namespace AppAgendamentos.Controllers[m
-[36m@@ -7,16 +9,22 @@[m [mnamespace AppAgendamentos.Controllers[m
+ namespace Scheduler.Controllers[m
+[36m@@ -7,16 +9,22 @@[m [mnamespace Scheduler.Controllers[m
      public class SchedulingController : Controller[m
      {[m
  private readonly ILogger<SchedulingController> _logger;[m
@@ -52,7 +52,7 @@
 [1mindex f0c6a16..582707e 100644[m
 [1m--- a/Infrastructure/ApplicationDbContext.cs[m
 [1m+++ b/Infrastructure/ApplicationDbContext.cs[m
-[36m@@ -13,14 +13,15 @@[m [mnamespace AppAgendamentos.Infrastructure[m
+[36m@@ -13,14 +13,15 @@[m [mnamespace Scheduler.Infrastructure[m
  [m
  public DbSet<Company> Companies { get; set; }[m
  public DbSet<User> Users { get; set; }[m
@@ -76,11 +76,11 @@
 [1m--- a/Infrastructure/Configuration/SchedulingConfiguration.cs[m
 [1m+++ /dev/null[m
 [36m@@ -1,24 +0,0 @@[m
-[31m-using AppAgendamentos.Models;[m
+[31m-using Scheduler.Models;[m
 [31m-using Microsoft.EntityFrameworkCore;[m
 [31m-using Microsoft.EntityFrameworkCore.Metadata.Builders;[m
 [31m-[m
-[31m-namespace AppAgendamentos.Infrastructure.Configuration[m
+[31m-namespace Scheduler.Infrastructure.Configuration[m
 [31m-{[m
 [31m-    public class SchedulingConfiguration : IEntityTypeConfiguration<Scheduling>[m
 [31m-    {[m
@@ -105,7 +105,7 @@
 [1mindex 7d52d8a..cc6e2cb 100644[m
 [1m--- a/Infrastructure/Extensions/ModelBuilderExtensions.cs[m
 [1m+++ b/Infrastructure/Extensions/ModelBuilderExtensions.cs[m
-[36m@@ -30,13 +30,20 @@[m [mnamespace AppAgendamentos.Infrastructure.Extensions[m
+[36m@@ -30,13 +30,20 @@[m [mnamespace Scheduler.Infrastructure.Extensions[m
      }[m
  }[m
  [m
@@ -136,18 +136,18 @@
 [31m-using System.Collections.Generic;[m
 [31m-using System.Linq;[m
 [31m-using System.Threading.Tasks;[m
- using AppAgendamentos.Models;[m
- using AppAgendamentos.ViewModels;[m
+ using Scheduler.Models;[m
+ using Scheduler.ViewModels;[m
  using AutoMapper;[m
 [1mdiff --git a/Migrations/ApplicationDbContextModelSnapshot.cs b/Migrations/ApplicationDbContextModelSnapshot.cs[m
 [1mindex 97971ee..c680340 100644[m
 [1m--- a/Migrations/ApplicationDbContextModelSnapshot.cs[m
 [1m+++ b/Migrations/ApplicationDbContextModelSnapshot.cs[m
-[36m@@ -22,6 +22,36 @@[m [mnamespace AppAgendamentos.Migrations[m
+[36m@@ -22,6 +22,36 @@[m [mnamespace Scheduler.Migrations[m
  [m
      SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);[m
  [m
-[32m+[m[32m    modelBuilder.Entity("AppAgendamentos.Models.Category", b =>[m
+[32m+[m[32m    modelBuilder.Entity("Scheduler.Models.Category", b =>[m
 [32m+[m[32m{[m
 [32m+[m[32m    b.Property<int>("Id")[m
 [32m+[m[32m.ValueGeneratedOnAdd()[m
@@ -177,10 +177,10 @@
 [32m+[m[32m    b.ToTable("categories");[m
 [32m+[m[32m});[m
 [32m+[m
-     modelBuilder.Entity("AppAgendamentos.Models.Company", b =>[m
+     modelBuilder.Entity("Scheduler.Models.Company", b =>[m
  {[m
      b.Property<int>("Id")[m
-[36m@@ -31,6 +61,19 @@[m [mnamespace AppAgendamentos.Migrations[m
+[36m@@ -31,6 +61,19 @@[m [mnamespace Scheduler.Migrations[m
  [m
      SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));[m
  [m
@@ -200,7 +200,7 @@
      b.Property<string>("Name")[m
  .IsRequired()[m
  .HasColumnType("nvarchar(max)")[m
-[36m@@ -40,6 +83,40 @@[m [mnamespace AppAgendamentos.Migrations[m
+[36m@@ -40,6 +83,40 @@[m [mnamespace Scheduler.Migrations[m
  .HasColumnType("datetime2")[m
  .HasColumnName("register_date");[m
  [m
@@ -217,7 +217,7 @@
 [32m+[m[32m    b.ToTable("companies");[m
 [32m+[m[32m});[m
 [32m+[m
-[32m+[m[32m    modelBuilder.Entity("AppAgendamentos.Models.CompanyOwners", b =>[m
+[32m+[m[32m    modelBuilder.Entity("Scheduler.Models.CompanyOwners", b =>[m
 [32m+[m[32m{[m
 [32m+[m[32m    b.Property<int>("Id")[m
 [32m+[m[32m.ValueGeneratedOnAdd()[m
@@ -241,7 +241,7 @@
      b.Property<DateTime>("UpdateDate")[m
  .HasColumnType("datetime2")[m
  .HasColumnName("update_date");[m
-[36m@@ -50,9 +127,11 @@[m [mnamespace AppAgendamentos.Migrations[m
+[36m@@ -50,9 +127,11 @@[m [mnamespace Scheduler.Migrations[m
  [m
      b.HasKey("Id");[m
  [m
@@ -253,8 +253,8 @@
 [32m+[m[32m    b.ToTable("company_owners");[m
  });[m
  [m
-     modelBuilder.Entity("AppAgendamentos.Models.Scheduling", b =>[m
-[36m@@ -80,6 +159,10 @@[m [mnamespace AppAgendamentos.Migrations[m
+     modelBuilder.Entity("Scheduler.Models.Scheduling", b =>[m
+[36m@@ -80,6 +159,10 @@[m [mnamespace Scheduler.Migrations[m
  .HasColumnType("datetime2")[m
  .HasColumnName("scheduled_date");[m
  [m
@@ -265,11 +265,11 @@
      b.Property<DateTime>("UpdateDate")[m
  .HasColumnType("datetime2")[m
  .HasColumnName("update_date");[m
-[36m@@ -93,6 +176,45 @@[m [mnamespace AppAgendamentos.Migrations[m
+[36m@@ -93,6 +176,45 @@[m [mnamespace Scheduler.Migrations[m
      b.ToTable("schedulings");[m
  });[m
  [m
-[32m+[m[32m    modelBuilder.Entity("AppAgendamentos.Models.ServicesOffered", b =>[m
+[32m+[m[32m    modelBuilder.Entity("Scheduler.Models.ServicesOffered", b =>[m
 [32m+[m[32m{[m
 [32m+[m[32m    b.Property<int>("Id")[m
 [32m+[m[32m.ValueGeneratedOnAdd()[m
@@ -308,10 +308,10 @@
 [32m+[m[32m    b.ToTable("services_offered");[m
 [32m+[m[32m});[m
 [32m+[m
-     modelBuilder.Entity("AppAgendamentos.Models.User", b =>[m
+     modelBuilder.Entity("Scheduler.Models.User", b =>[m
  {[m
      b.Property<int>("Id")[m
-[36m@@ -115,6 +237,10 @@[m [mnamespace AppAgendamentos.Migrations[m
+[36m@@ -115,6 +237,10 @@[m [mnamespace Scheduler.Migrations[m
  .HasColumnType("datetime2")[m
  .HasColumnName("register_date");[m
  [m
@@ -322,21 +322,21 @@
      b.Property<DateTime>("UpdateDate")[m
  .HasColumnType("datetime2")[m
  .HasColumnName("update_date");[m
-[36m@@ -124,15 +250,23 @@[m [mnamespace AppAgendamentos.Migrations[m
+[36m@@ -124,15 +250,23 @@[m [mnamespace Scheduler.Migrations[m
      b.ToTable("users");[m
  });[m
  [m
-[31m-    modelBuilder.Entity("AppAgendamentos.Models.Company", b =>[m
-[32m+[m[32m    modelBuilder.Entity("AppAgendamentos.Models.CompanyOwners", b =>[m
+[31m-    modelBuilder.Entity("Scheduler.Models.Company", b =>[m
+[32m+[m[32m    modelBuilder.Entity("Scheduler.Models.CompanyOwners", b =>[m
  {[m
-[31m-    b.HasOne("AppAgendamentos.Models.User", "Owner")[m
-[32m+[m[32m    b.HasOne("AppAgendamentos.Models.Company", "Company")[m
+[31m-    b.HasOne("Scheduler.Models.User", "Owner")[m
+[32m+[m[32m    b.HasOne("Scheduler.Models.Company", "Company")[m
 [32m+[m[32m.WithMany()[m
 [32m+[m[32m.HasForeignKey("CompanyId")[m
 [32m+[m[32m.OnDelete(DeleteBehavior.Cascade)[m
 [32m+[m[32m.IsRequired();[m
 [32m+[m
-[32m+[m[32m    b.HasOne("AppAgendamentos.Models.User", "User")[m
+[32m+[m[32m    b.HasOne("Scheduler.Models.User", "User")[m
  .WithMany("Companies")[m
  .HasForeignKey("UserId")[m
  .OnDelete(DeleteBehavior.Cascade)[m
@@ -348,12 +348,12 @@
 [32m+[m[32m    b.Navigation("User");[m
  });[m
  [m
-     modelBuilder.Entity("AppAgendamentos.Models.Scheduling", b =>[m
+     modelBuilder.Entity("Scheduler.Models.Scheduling", b =>[m
 [1mdiff --git a/Models/Base/BaseEntity.cs b/Models/Base/BaseEntity.cs[m
 [1mindex 7e3fe8b..5aa4572 100644[m
 [1m--- a/Models/Base/BaseEntity.cs[m
 [1m+++ b/Models/Base/BaseEntity.cs[m
-[36m@@ -4,6 +4,7 @@[m [mnamespace AppAgendamentos.Models.Base[m
+[36m@@ -4,6 +4,7 @@[m [mnamespace Scheduler.Models.Base[m
      public class BaseEntity[m
      {[m
  public int Id { get; set; }[m
@@ -365,7 +365,7 @@
 [1mindex 6e391ea..643483d 100644[m
 [1m--- a/Models/Company.cs[m
 [1m+++ b/Models/Company.cs[m
-[36m@@ -8,11 +8,14 @@[m [mnamespace AppAgendamentos.Models[m
+[36m@@ -8,11 +8,14 @@[m [mnamespace Scheduler.Models[m
      public class Company : BaseEntity[m
      {[m
  [Required][m
@@ -389,7 +389,7 @@
 [1mindex 62ecba7..0598e05 100644[m
 [1m--- a/Models/ErrorViewModel.cs[m
 [1m+++ b/Models/ErrorViewModel.cs[m
-[36m@@ -2,7 +2,7 @@[m [mnamespace AppAgendamentos.Models;[m
+[36m@@ -2,7 +2,7 @@[m [mnamespace Scheduler.Models;[m
  [m
  public class ErrorViewModel[m
  {[m
@@ -405,10 +405,10 @@
 [1m+++ b/Models/Scheduling.cs[m
 [36m@@ -1,14 +1,16 @@[m
 [32m+[m[32musing System.ComponentModel.DataAnnotations.Schema;[m
- using AppAgendamentos.Models.Base;[m
+ using Scheduler.Models.Base;[m
  using Microsoft.AspNetCore.Mvc.Rendering;[m
  [m
- namespace AppAgendamentos.Models[m
+ namespace Scheduler.Models[m
  {[m
 [32m+[m[32m    // [Table("schedulings")][m
      public class Scheduling : BaseEntity[m
@@ -427,7 +427,7 @@ mpublic User Customer { get; set; }[m
 [1mindex a03239d..2c23bee 100644[m
 [1m--- a/Models/User.cs[m
 [1m+++ b/Models/User.cs[m
-[36m@@ -8,11 +8,11 @@[m [mnamespace AppAgendamentos.Models[m
+[36m@@ -8,11 +8,11 @@[m [mnamespace Scheduler.Models[m
      public class User : BaseEntity[m
 
 ***REMired][m
@@ -446,9 +446,9 @@ mpublic User Customer { get; set; }[m
 [1mindex 9bb223a..8240099 100644[m
 [1m--- a/Program.cs[m
 [1m+++ b/Program.cs[m
-[36m@@ -2,7 +2,6 @@[m [musing AppAgendamentos.Contracts.Repository;[m
- using AppAgendamentos.Infrastructure;[m
- using AppAgendamentos.Repository;[m
+[36m@@ -2,7 +2,6 @@[m [musing Scheduler.Contracts.Repository;[m
+ using Scheduler.Infrastructure;[m
+ using Scheduler.Repository;[m
  using Microsoft.EntityFrameworkCore;[m
 [31m-using AutoMapper;[m
  [m
@@ -459,15 +459,15 @@ mpublic User Customer { get; set; }[m
 [1m--- a/Repository/CompanyRepository.cs[m
 [1m+++ b/Repository/CompanyRepository.cs[m
 [36m@@ -1,6 +1,8 @@[m
- using AppAgendamentos.Contracts.Repository;[m
- using AppAgendamentos.Infrastructure;[m
- using AppAgendamentos.Models;[m
+ using Scheduler.Contracts.Repository;[m
+ using Scheduler.Infrastructure;[m
+ using Scheduler.Models;[m
 [32m+[m[32musing Microsoft.EntityFrameworkCore;[m
 [32m+[m[32musing System.Data;[m
  [m
- namespace AppAgendamentos.Repository[m
+ namespace Scheduler.Repository[m
  {[m
- +28,12 @@[m [mnamespace AppAgendamentos.Repository[m
+ +28,12 @@[m [mnamespace Scheduler.Repository[m
      }[m
 
  }[m
@@ -486,9 +486,9 @@ mpublic User Customer { get; set; }[m
 [1m--- a/ViewModels/CompanyViewModel.cs[m
 [1m+++ b/ViewModels/CompanyViewModel.cs[m
 [36m@@ -1,8 +1,12 @@[m
-[32m+[m[32musing AppAgendamentos.ViewModels.Base;[m
+[32m+[m[32musing Scheduler.ViewModels.Base;[m
 [32m+[m
- namespace AppAgendamentos.ViewModels[m
+ namespace Scheduler.ViewModels[m
  {[m
 [31m-    public class CompanyViewModel[m
 [32m+[m[32m    public class CompanyViewModel : BaseViewModel[m
@@ -504,7 +504,7 @@ mpublic User Customer { get; set; }[m
 [1mindex 5dcf628..d19d5f4 100644[m
 [1m--- a/ViewModels/SchedulingViewModel.cs[m
 [1m+++ b/ViewModels/SchedulingViewModel.cs[m
-[36m@@ -6,18 +6,21 @@[m [mnamespace AppAgendamentos.ViewModels[m
+[36m@@ -6,18 +6,21 @@[m [mnamespace Scheduler.ViewModels[m
 
  public int CompanyId { get; set; }[m
   CompanyName { get; set; }[m
@@ -582,7 +582,7 @@ m    @* @Html.TextBoxFor(c => c.UserId, new {@class = "form-control", @value = 1
 [1m+++ b/Views/Scheduling/Create.cshtml[m
 [36m@@ -1,4 +1,3 @@[m
 [31m-@page[m
- @model AppAgendamentos.ViewModels.SchedulingViewModel[m
+ @model Scheduler.ViewModels.SchedulingViewModel[m
  [m
  @* @{[m
 [36m@@ -6,25 +5,26 @@[m [mViewData["Title"] = "Create";[m
@@ -619,25 +619,25 @@ VED***    @* @Html.TextBoxFor(c=>c.CustomerId, htmlAttributes: new {@class = "fo
 [32m+[m[32m    </div>[m
  </div>[m
  [m
-[1mdiff --git a/bin/Debug/net7.0/AppAgendamentos.dll b/bin/Debug/net7.0/AppAgendamentos.dll[m
+[1mdiff --git a/bin/Debug/net7.0/Scheduler.dll b/bin/Debug/net7.0/Scheduler.dll[m
 [1mindex f508997..bcc1694 100644[m
-Binary files a/bin/Debug/net7.0/AppAgendamentos.dll and b/bin/Debug/net7.0/AppAgendamentos.dll differ
-[1mdiff --git a/bin/Debug/net7.0/AppAgendamentos.pdb b/bin/Debug/net7.0/AppAgendamentos.pdb[m
+Binary files a/bin/Debug/net7.0/Scheduler.dll and b/bin/Debug/net7.0/Scheduler.dll differ
+[1mdiff --git a/bin/Debug/net7.0/Scheduler.pdb b/bin/Debug/net7.0/Scheduler.pdb[m
 [1mindex c2bf01b..ad42baa 100644[m
-Binary files a/bin/Debug/net7.0/AppAgendamentos.pdb and b/bin/Debug/net7.0/AppAgendamentos.pdb differ
-[1mdiff --git a/obj/Debug/net7.0/AppAgendamentos.csproj.CoreCompileInputs.cache b/obj/Debug/net7.0/AppAgendamentos.csproj.CoreCompileInputs.cache[m
+Binary files a/bin/Debug/net7.0/Scheduler.pdb and b/bin/Debug/net7.0/Scheduler.pdb differ
+[1mdiff --git a/obj/Debug/net7.0/Scheduler.csproj.CoreCompileInputs.cache b/obj/Debug/net7.0/Scheduler.csproj.CoreCompileInputs.cache[m
 [1mindex 4306d7a..765f184 100644[m
-[1m--- a/obj/Debug/net7.0/AppAgendamentos.csproj.CoreCompileInputs.cache[m
-[1m+++ b/obj/Debug/net7.0/AppAgendamentos.csproj.CoreCompileInputs.cache[m
+[1m--- a/obj/Debug/net7.0/Scheduler.csproj.CoreCompileInputs.cache[m
+[1m+++ b/obj/Debug/net7.0/Scheduler.csproj.CoreCompileInputs.cache[m
 [36m@@ -1 +1 @@[m
 [31m-e037f6c796b1d2e3a3d5977a46930c454e07c9f9[m
 [32m+[m[32m73e51d085ed8c9819136c7bdfd522b9a80f7ff76[m
-[1mdiff --git a/obj/Debug/net7.0/AppAgendamentos.dll b/obj/Debug/net7.0/AppAgendamentos.dll[m
+[1mdiff --git a/obj/Debug/net7.0/Scheduler.dll b/obj/Debug/net7.0/Scheduler.dll[m
 [1mindex f508997..bcc1694 100644[m
-BinaryDebug/net7.0/AppAgendamentos.dll and b/obj/Debug/net7.0/AppAgendamentos.dll differ
-[1mdiff --gitnet7.0/AppAgendamentos.pdb b/obj/Debug/net7.0/AppAgendamentos.pdb[m
+BinaryDebug/net7.0/Scheduler.dll and b/obj/Debug/net7.0/Scheduler.dll differ
+[1mdiff --gitnet7.0/Scheduler.pdb b/obj/Debug/net7.0/Scheduler.pdb[m
 f01b..ad42baa 100644[m
-a/obj/Debug/net7.0/AppAgendamentos.pdb and b/obj/Debug/net7.0/AppAgendamentos.pdb differ
+a/obj/Debug/net7.0/Scheduler.pdb and b/obj/Debug/net7.0/Scheduler.pdb differ
 t a/obj/Debug/net7.0/project.razor.json b/obj/Debug/net7.0/project.razor.json[m
 [1mindex 6bc628f..890532d 100644[m
 /Debug/net7.0/project.razor.json[m

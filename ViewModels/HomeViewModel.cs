@@ -1,7 +1,7 @@
-using AppAgendamentos.Models;
-using AppAgendamentos.ViewModels.Base;
+using Scheduler.Models;
+using Scheduler.ViewModels.Base;
 
-namespace AppAgendamentos.ViewModels;
+namespace Scheduler.ViewModels;
 public class HomeViewModel : BaseViewModel
 {
     public IList<Company> Companies { get; set; }

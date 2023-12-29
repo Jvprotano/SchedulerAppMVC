@@ -1,9 +1,9 @@
-using AppAgendamentos.Contracts.Repositories;
-using AppAgendamentos.Infrastructure;
-using AppAgendamentos.Models;
-using AppAgendamentos.Repository.Base;
+using Scheduler.Contracts.Repositories;
+using Scheduler.Infrastructure;
+using Scheduler.Models;
+using Scheduler.Repository.Base;
 
-namespace AppAgendamentos.Repository;
+namespace Scheduler.Repository;
 public class CompanyOpeningHoursRepository : Repository<CompanyOpeningHours>, ICompanyOpeningHoursRepository
 {
     public CompanyOpeningHoursRepository(ApplicationDbContext context)

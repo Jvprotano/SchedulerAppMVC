@@ -1,9 +1,9 @@
-using AppAgendamentos.Contracts.HttpServices;
+using Scheduler.Contracts.HttpServices;
 using System.Net;
 using System.Net.Http.Headers;
 using System.Text;
 
-namespace AppAgendamentos.Services.HttpServices;
+namespace Scheduler.Services.HttpServices;
 public class OpenAIHttpService : IOpenAIProxy
 {
     readonly string _apiKey;

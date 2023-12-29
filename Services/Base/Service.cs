@@ -1,8 +1,8 @@
-using AppAgendamentos.Contracts.Repositories.Base;
-using AppAgendamentos.Contracts.Services;
-using AppAgendamentos.Models.Base;
+using Scheduler.Contracts.Repositories.Base;
+using Scheduler.Contracts.Services;
+using Scheduler.Models.Base;
 
-namespace AppAgendamentos.Services.Base;
+namespace Scheduler.Services.Base;
 public class Service<T> : IService<T> where T : EntityBase
 {
     private readonly IRepository<T> _repositoryBase;

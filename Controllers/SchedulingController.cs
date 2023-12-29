@@ -1,16 +1,16 @@
-using AppAgendamentos.Contracts.Repositories;
-using AppAgendamentos.Contracts.Services;
-using AppAgendamentos.Controllers.BaseControllers;
-using AppAgendamentos.Enums;
-using AppAgendamentos.Models;
-using AppAgendamentos.ViewModels;
+using Scheduler.Contracts.Repositories;
+using Scheduler.Contracts.Services;
+using Scheduler.Controllers.BaseControllers;
+using Scheduler.Enums;
+using Scheduler.Models;
+using Scheduler.ViewModels;
 
 using AutoMapper;
 
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
-namespace AppAgendamentos.Controllers;
+namespace Scheduler.Controllers;
 [Route("[controller]/[action]")]
 public class SchedulingController : BaseController
 {

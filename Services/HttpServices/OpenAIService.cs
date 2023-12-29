@@ -1,7 +1,7 @@
-using AppAgendamentos.Contracts.HttpServices;
+using Scheduler.Contracts.HttpServices;
 using System.Reflection;
 
-namespace AppAgendamentos.Services.HttpServices;
+namespace Scheduler.Services.HttpServices;
 public class OpenAIService : IOpenAIService
 {
     public async Task<string> GetBase64NewImageAsync(string userPrompt)

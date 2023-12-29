@@ -2,7 +2,7 @@
 
 #nullable disable
 
-namespace AppAgendamentos.Migrations
+namespace Scheduler.Migrations
 {
     /// <inheritdoc />
     public partial class Add_Image_Company : Migration

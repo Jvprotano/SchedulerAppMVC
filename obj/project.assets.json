@@ -5142,11 +5142,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/home/jvprotano/Workspace/AppAgendamentos/AppAgendamentos.csproj",
-      "projectName": "AppAgendamentos",
-      "projectPath": "/home/jvprotano/Workspace/AppAgendamentos/AppAgendamentos.csproj",
+      "projectUniqueName": "/home/jvprotano/Workspace/Scheduler/Scheduler.csproj",
+      "projectName": "Scheduler",
+      "projectPath": "/home/jvprotano/Workspace/Scheduler/Scheduler.csproj",
       "packagesPath": "/home/jvprotano/.nuget/packages/",
-      "outputPath": "/home/jvprotano/Workspace/AppAgendamentos/obj/",
+      "outputPath": "/home/jvprotano/Workspace/Scheduler/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "/home/jvprotano/.nuget/NuGet/NuGet.Config"

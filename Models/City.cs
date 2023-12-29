@@ -1,7 +1,7 @@
 using System.ComponentModel.DataAnnotations.Schema;
-using AppAgendamentos.Models.Base;
+using Scheduler.Models.Base;
 
-namespace AppAgendamentos.Models;
+namespace Scheduler.Models;
 [Table("cities")]
 public class City : EntityBase
 {

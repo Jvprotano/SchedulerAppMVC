@@ -1,6 +1,6 @@
-using AppAgendamentos.Infrastructure;
-using AppAgendamentos.Infrastructure.Extensions;
-using AppAgendamentos.Models;
+using Scheduler.Infrastructure;
+using Scheduler.Infrastructure.Extensions;
+using Scheduler.Models;
 
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;

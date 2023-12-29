@@ -2,7 +2,7 @@
 
 #nullable disable
 
-namespace AppAgendamentos.Migrations
+namespace Scheduler.Migrations
 {
     /// <inheritdoc />
     public partial class FixingColumn : Migration

@@ -1,11 +1,11 @@
-﻿using AppAgendamentos.Contracts.Repositories;
-using AppAgendamentos.Contracts.Services;
-using AppAgendamentos.Controllers.BaseControllers;
-using AppAgendamentos.ViewModels;
+﻿using Scheduler.Contracts.Repositories;
+using Scheduler.Contracts.Services;
+using Scheduler.Controllers.BaseControllers;
+using Scheduler.ViewModels;
 
 using Microsoft.AspNetCore.Mvc;
 
-namespace AppAgendamentos.Controllers;
+namespace Scheduler.Controllers;
 
 public class HomeController : BaseController
 {

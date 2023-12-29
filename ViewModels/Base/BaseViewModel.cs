@@ -1,6 +1,6 @@
-using AppAgendamentos.Enums;
+using Scheduler.Enums;
 
-namespace AppAgendamentos.ViewModels.Base;
+namespace Scheduler.ViewModels.Base;
 public class BaseViewModel
 {
     public int Id { get; set; }

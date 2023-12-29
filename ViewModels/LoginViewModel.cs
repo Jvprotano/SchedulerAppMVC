@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace AppAgendamentos.ViewModels;
+namespace Scheduler.ViewModels;
 public class LoginViewModel
 {
     [Required(ErrorMessage = "Field email or username is required")]

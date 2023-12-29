@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc.Rendering;
 
-namespace AppAgendamentos.ViewModels;
+namespace Scheduler.ViewModels;
 public class SchedulingViewModel
 {
     public int CompanyId { get; set; }

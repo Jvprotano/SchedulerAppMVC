@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace AppAgendamentos.ViewModels;
+namespace Scheduler.ViewModels;
 public class RegisterViewModel
 {
     [Display(Name = "First Name")]

@@ -1,11 +1,11 @@
-using AppAgendamentos.Infrastructure.Extensions;
-using AppAgendamentos.Models;
-using AppAgendamentos.Models.Base;
+using Scheduler.Infrastructure.Extensions;
+using Scheduler.Models;
+using Scheduler.Models.Base;
 
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 
-namespace AppAgendamentos.Infrastructure;using Microsoft.AspNetCore.Identity;
+namespace Scheduler.Infrastructure;using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 
 public class ApplicationDbContext : IdentityDbContext<ApplicationUser, IdentityRole<int>, int>

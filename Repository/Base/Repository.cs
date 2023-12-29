@@ -1,10 +1,10 @@
-using AppAgendamentos.Contracts.Repositories.Base;
-using AppAgendamentos.Infrastructure;
-using AppAgendamentos.Models.Base;
+using Scheduler.Contracts.Repositories.Base;
+using Scheduler.Infrastructure;
+using Scheduler.Models.Base;
 
 using Microsoft.EntityFrameworkCore;
 
-namespace AppAgendamentos.Repository.Base;
+namespace Scheduler.Repository.Base;
 public class Repository<T> : IRepository<T> where T : EntityBase
 {
     private readonly DbSet<T> _dbSet;

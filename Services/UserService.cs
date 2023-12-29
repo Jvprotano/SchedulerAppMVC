@@ -1,6 +1,6 @@
-using AppAgendamentos.Contracts.Services;
+using Scheduler.Contracts.Services;
 
-namespace AppAgendamentos.Services;
+namespace Scheduler.Services;
 public class UserService : IUserService
 {
     private static string EncryptPassword(string password)

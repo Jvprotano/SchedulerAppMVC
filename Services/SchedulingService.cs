@@ -1,10 +1,10 @@
-using AppAgendamentos.Contracts.Repositories;
-using AppAgendamentos.Contracts.Repositories.Base;
-using AppAgendamentos.Contracts.Services;
-using AppAgendamentos.Models;
-using AppAgendamentos.Services.Base;
+using Scheduler.Contracts.Repositories;
+using Scheduler.Contracts.Repositories.Base;
+using Scheduler.Contracts.Services;
+using Scheduler.Models;
+using Scheduler.Services.Base;
 
-namespace AppAgendamentos.Services;
+namespace Scheduler.Services;
 public class SchedulingService : Service<Scheduling>, ISchedulingService
 {
     private readonly ISchedulingRepository _repositoryScheduling;
@@ -18,6 +18,12 @@ public class SchedulingService : Service<Scheduling>, ISchedulingService
         _repositoryCompanyOpeningHours = repositoryCompanyOpeningHours;
         _serviceCompany = serviceCompany;
     }
+
+    public async Task<IEnumerable<Scheduling>> GetAllOpenByCompanyIdAsync(int companyId, DateTime initialDate, DateTime finalDate)
+    {
+        return await _repositoryScheduling.GetAllOpenByCompanyIdAsync(companyId, initialDate, finalDate);
+    }
+
     public async Task<IEnumerable<TimeSpan>> GetAvailableTimesAsync(int companyId, int? serviceSelected, DateOnly date)
     {
         List<CompanyOpeningHours> openingHours = _repositoryCompanyOpeningHours.GetByDayOfWeek(companyId, date.DayOfWeek);

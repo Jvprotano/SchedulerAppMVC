@@ -1,9 +1,9 @@
-using AppAgendamentos.Infrastructure.Configurations.Base;
-using AppAgendamentos.Models;
+using Scheduler.Infrastructure.Configurations.Base;
+using Scheduler.Models;
 
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace AppAgendamentos.Infrastructure.Configurations;
+namespace Scheduler.Infrastructure.Configurations;
 public class CompanyConfiguration : ProfileBaseConfiguration<Company>
 {
     public override void Configure(EntityTypeBuilder<Company> builder)

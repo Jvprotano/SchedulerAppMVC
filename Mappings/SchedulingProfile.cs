@@ -1,9 +1,9 @@
-using AppAgendamentos.Models;
-using AppAgendamentos.ViewModels;
+using Scheduler.Models;
+using Scheduler.ViewModels;
 
 using AutoMapper;
 
-namespace AppAgendamentos.Mappings;
+namespace Scheduler.Mappings;
 public class SchedulingProfile : Profile
 {
     public SchedulingProfile()

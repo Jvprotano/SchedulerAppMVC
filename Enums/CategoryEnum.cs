@@ -1,4 +1,4 @@
-namespace AppAgendamentos.Enums;
+namespace Scheduler.Enums;
 public enum CategoryEnum
 {
     Hairdresser = 1,

@@ -1,6 +1,6 @@
-using AppAgendamentos.Models;
+using Scheduler.Models;
 
-namespace AppAgendamentos.Contracts.Repositories
+namespace Scheduler.Contracts.Repositories
 {
     public interface ICompanyOpeningHoursRepository
     {

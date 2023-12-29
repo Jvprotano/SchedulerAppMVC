@@ -1,7 +1,7 @@
 using System.ComponentModel.DataAnnotations;
-using AppAgendamentos.Enums;
+using Scheduler.Enums;
 
-namespace AppAgendamentos.Models.Base;
+namespace Scheduler.Models.Base;
 public abstract class EntityBase
 {
     public int Id { get; set; }

@@ -1,6 +1,6 @@
-using AppAgendamentos.Models.Base;
+using Scheduler.Models.Base;
 
-namespace AppAgendamentos.Contracts.Services;
+namespace Scheduler.Contracts.Services;
 public interface IService<T> where T : EntityBase
 {
     public Task SaveAsync(T entity);

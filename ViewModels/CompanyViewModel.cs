@@ -1,12 +1,12 @@
-using AppAgendamentos.Enums;
-using AppAgendamentos.Models;
-using AppAgendamentos.ViewModels.Base;
+using Scheduler.Enums;
+using Scheduler.Models;
+using Scheduler.ViewModels.Base;
 
 using Microsoft.AspNetCore.Mvc.Rendering;
 
 using System.ComponentModel.DataAnnotations;
 
-namespace AppAgendamentos.ViewModels;
+namespace Scheduler.ViewModels;
 public class CompanyViewModel : BaseViewModel
 {
     [Display(Name = "Name")]
@@ -32,6 +32,9 @@ public class CompanyViewModel : BaseViewModel
 
 
     public IFormFile ImageFile { get; set; }
+
+
+    public List<Scheduling> Schedulings { get; set; }
 
 
     [Display(Name = "Categories")]

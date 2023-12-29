@@ -1,0 +1,68 @@
+@model Scheduler.ViewModels.CompanyViewModel
+
+@{
+    ViewData["Title"] = "Booking Calendar";
+}
+
+<head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+</head>
+
+<div class="container-fluid">
+    <div class="row">
+        <!-- Sidebar -->
+        <div class="col-2 bg-light sidebar">
+            <ul class="nav flex-column">
+                <li class="nav-item">
+                    <a class="nav-link active" href="#">Booking Calendar</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Financials</a>
+                </li>
+            </ul>
+        </div>
+
+        <!-- Page Content -->
+        <div class="col">
+            <h2>@ViewData["Title"]</h2>
+            <table border="1">
+                <thead>
+                    <tr>
+                        <th>Sun</th>
+                        <th>Mon</th>
+                        <th>Tue</th>
+                        <th>Wed</th>
+                        <th>Thu</th>
+                        <th>Fri</th>
+                        <th>Sat</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var week in Model.Schedulings.GroupBy(e => e.ScheduledDate.Year * 100 +
+                    e.ScheduledDate.Month).OrderBy(g => g.Key))
+                    {
+                        <tr>
+                            @for (var i = 0; i < 7; i++)
+                            {
+                                @foreach (var item in week.Where(e => (int)e.ScheduledDate.DayOfWeek == i))
+                                {
+                                    <td>
+                                        <div>
+                                            @String.Format(item.Customer.FirstName + " " + item.Customer.LastName)
+                                        </div>
+                                        <div>
+                                            @item.ServiceOffered.Name
+                                        </div>
+                                        <div>
+                                            @item.ScheduledDate.ToString("hh:mm tt")
+                                        </div>
+                                    </td>
+                                }
+                            }
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

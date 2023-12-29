@@ -2,7 +2,7 @@ using Microsoft.EntityFrameworkCore;
 
 using System.Text;
 
-namespace AppAgendamentos.Infrastructure.Extensions;
+namespace Scheduler.Infrastructure.Extensions;
 public static class ModelBuilderExtensions
 {
     public static void ApplySnakeCaseNamingConvention(this ModelBuilder modelBuilder)

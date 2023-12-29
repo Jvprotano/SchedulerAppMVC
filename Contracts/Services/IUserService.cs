@@ -1,4 +1,4 @@
-namespace AppAgendamentos.Contracts.Services;
+namespace Scheduler.Contracts.Services;
 public interface IUserService 
 {
 

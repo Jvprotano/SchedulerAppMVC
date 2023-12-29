@@ -1,8 +1,8 @@
-using AppAgendamentos.Contracts.Services;
-using AppAgendamentos.Controllers.BaseControllers;
-using AppAgendamentos.Enums;
-using AppAgendamentos.Models;
-using AppAgendamentos.ViewModels;
+using Scheduler.Contracts.Services;
+using Scheduler.Controllers.BaseControllers;
+using Scheduler.Enums;
+using Scheduler.Models;
+using Scheduler.ViewModels;
 
 using AutoMapper;
 
@@ -10,7 +10,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
-namespace AppAgendamentos.Controllers;
+namespace Scheduler.Controllers;
 
 [Authorize]
 [Route("[controller]/[action]")]
@@ -20,14 +20,16 @@ public class CompanyController : BaseController
     private readonly IService<CompanyServiceOffered> _serviceOfferedService;
     private readonly IMapper _mapper;
     private readonly IService<City> _serviceCity;
+    private readonly ISchedulingService _schedulingService;
 
     public CompanyController(ILogger<BaseController> logger, ICompanyService companyService,
-    IService<CompanyServiceOffered> serviceOfferedService, IMapper mapper, IService<City> serviceCity) : base(logger)
+    IService<CompanyServiceOffered> serviceOfferedService, IMapper mapper, IService<City> serviceCity, ISchedulingService schedulingService) : base(logger)
     {
         _companyService = companyService;
         _serviceOfferedService = serviceOfferedService;
         _mapper = mapper;
         _serviceCity = serviceCity;
+        _schedulingService = schedulingService;
     }
 
     public IActionResult Index()
@@ -155,6 +157,21 @@ public class CompanyController : BaseController
         await _companyService.SaveAsync(company);
 
         return RedirectToAction("MyCompanies", "Account");
+    }
+    [HttpGet]
+    [Route("{companyId:int}")]
+    public async Task<IActionResult> Schedule(int companyId, DateTime initialDate, DateTime finalDate)
+    {
+        CompanyViewModel model = new CompanyViewModel
+        {
+            Schedulings = (await _schedulingService.GetAllOpenByCompanyIdAsync(companyId, initialDate, finalDate)).ToList()
+        };
+        // var company = await _companyService.GetByIdAsync(companyId);
+
+        // var model = _mapper.Map<CompanyViewModel>(company);
+
+        return View(model);
+
     }
     [HttpGet("{id:int}")]
     public async Task<IActionResult> Get(int id)

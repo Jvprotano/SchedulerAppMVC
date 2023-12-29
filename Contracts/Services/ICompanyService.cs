@@ -1,6 +1,6 @@
-using AppAgendamentos.Models;
+using Scheduler.Models;
 
-namespace AppAgendamentos.Contracts.Services;
+namespace Scheduler.Contracts.Services;
 public interface ICompanyService : IService<Company>
 {
     Task<IEnumerable<Company>> GetAllOpen();

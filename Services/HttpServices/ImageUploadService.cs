@@ -1,10 +1,10 @@
-using AppAgendamentos.Contracts.HttpServices;
+using Scheduler.Contracts.HttpServices;
 
 using Azure.Storage.Blobs;
 
 using System.Text.RegularExpressions;
 
-namespace AppAgendamentos.Services.HttpServices;
+namespace Scheduler.Services.HttpServices;
 public class ImageUploadService : IImageUploadService
 {
     private readonly string _azureStorage;

@@ -1,7 +1,7 @@
 using System.ComponentModel.DataAnnotations;
-using AppAgendamentos.ViewModels.Base;
+using Scheduler.ViewModels.Base;
 
-namespace AppAgendamentos.ViewModels;
+namespace Scheduler.ViewModels;
 public class UserViewModel : BaseViewModel
 {
     public string Name { get; set; }

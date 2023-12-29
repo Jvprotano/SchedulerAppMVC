@@ -1,4 +1,4 @@
-namespace AppAgendamentos.Contracts.HttpServices;
+namespace Scheduler.Contracts.HttpServices;
 public interface IOpenAIProxy
 {
     //👇 Send the Prompt Text with and return a list of image URLs

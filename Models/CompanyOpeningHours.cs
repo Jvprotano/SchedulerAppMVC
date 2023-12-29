@@ -1,8 +1,8 @@
-using AppAgendamentos.Models.Base;
+using Scheduler.Models.Base;
 
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace AppAgendamentos.Models;
+namespace Scheduler.Models;
 [Table("companies_opening_hours")]
 public class CompanyOpeningHours : EntityBase
 {

@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace AppAgendamentos.Models.Base;
+namespace Scheduler.Models.Base;
 public abstract class ProfileBase : EntityBase
 {
     [Required]

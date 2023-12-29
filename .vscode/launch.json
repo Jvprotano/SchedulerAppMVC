@@ -3,10 +3,10 @@
     "configurations": [
         
         {
-            "name": "C#: AppAgendamentos Debug",
+            "name": "C#: Scheduler Debug",
             "type": "dotnet",
             "request": "launch",
-            "projectPath": " ${workspaceFolder}/AppAgendamentos.csproj"
+            "projectPath": " ${workspaceFolder}/Scheduler.csproj"
         },
 {
     // Use IntelliSense to find out which attributes exist for C# debugging
@@ -17,7 +17,7 @@
     "request": "launch",
     "preLaunchTask": "build",
     // If you have changed target frameworks, make sure to update the program path.
-    "program": "${workspaceFolder}/bin/Debug/net8.0/AppAgendamentos.dll",
+    "program": "${workspaceFolder}/bin/Debug/net8.0/Scheduler.dll",
     "args": [],
     "cwd": "${workspaceFolder}",
     "stopAtEntry": false,

@@ -1,6 +1,6 @@
-using AppAgendamentos.Models.Base;
+using Scheduler.Models.Base;
 
-namespace AppAgendamentos.Contracts.Repositories.Base;
+namespace Scheduler.Contracts.Repositories.Base;
 public interface IRepository<T>
 {
     Task SaveAsync(T entity);

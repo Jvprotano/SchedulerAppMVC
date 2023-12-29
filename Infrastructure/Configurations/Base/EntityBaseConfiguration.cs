@@ -1,9 +1,9 @@
-using AppAgendamentos.Models.Base;
+using Scheduler.Models.Base;
 
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace AppAgendamentos.Infrastructure.Configurations.Base;
+namespace Scheduler.Infrastructure.Configurations.Base;
 public abstract class EntityBaseConfiguration<T> : IEntityTypeConfiguration<T> where T : EntityBase
 {
     public virtual void Configure(EntityTypeBuilder<T> builder)

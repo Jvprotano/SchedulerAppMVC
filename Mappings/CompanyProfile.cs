@@ -1,10 +1,10 @@
-using AppAgendamentos.Enums;
-using AppAgendamentos.Models;
-using AppAgendamentos.ViewModels;
+using Scheduler.Enums;
+using Scheduler.Models;
+using Scheduler.ViewModels;
 
 using AutoMapper;
 
-namespace AppAgendamentos.Mappings;
+namespace Scheduler.Mappings;
 public class CompanyProfile : Profile
 {
     public CompanyProfile()

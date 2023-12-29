@@ -1,7 +1,7 @@
-using AppAgendamentos.Contracts.Repositories.Base;
-using AppAgendamentos.Models;
+using Scheduler.Contracts.Repositories.Base;
+using Scheduler.Models;
 
-namespace AppAgendamentos.Contracts.Repositories;
+namespace Scheduler.Contracts.Repositories;
 public interface ICompanyRepository : IRepository<Company>
 {
     Task<IEnumerable<Company>> GetAllOpen();

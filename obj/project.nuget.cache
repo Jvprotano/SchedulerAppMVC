@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "T/iEip7VBIyX/MPqsY12rJhqrF3vJJGcnDlJ6ZChBdA3Q695dK1+MsTDoVhw9Wa+vh6P+qwssGc0msecReyo0w==",
+  "dgSpecHash": "TM6vbbv09GYQMeAlZYhjJ63r+fQljMmK1ozk0y+Y3413ga43xLxOeyFy0hruHP/ka0ZEGloXt8ArsevNDT0wsw==",
   "success": true,
-  "projectFilePath": "/home/jvprotano/Workspace/AppAgendamentos/AppAgendamentos.csproj",
+  "projectFilePath": "/home/jvprotano/Workspace/Scheduler/Scheduler.csproj",
   "expectedPackageFiles": [
     "/home/jvprotano/.nuget/packages/automapper/12.0.1/automapper.12.0.1.nupkg.sha512",
     "/home/jvprotano/.nuget/packages/automapper.extensions.microsoft.dependencyinjection/12.0.0/automapper.extensions.microsoft.dependencyinjection.12.0.0.nupkg.sha512",

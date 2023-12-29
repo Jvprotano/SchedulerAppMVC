@@ -1,14 +1,14 @@
-using AppAgendamentos.Contracts.HttpServices;
-using AppAgendamentos.Contracts.Repositories;
-using AppAgendamentos.Contracts.Repositories.Base;
-using AppAgendamentos.Contracts.Services;
-using AppAgendamentos.Repository;
-using AppAgendamentos.Repository.Base;
-using AppAgendamentos.Services;
-using AppAgendamentos.Services.Base;
-using AppAgendamentos.Services.HttpServices;
+using Scheduler.Contracts.HttpServices;
+using Scheduler.Contracts.Repositories;
+using Scheduler.Contracts.Repositories.Base;
+using Scheduler.Contracts.Services;
+using Scheduler.Repository;
+using Scheduler.Repository.Base;
+using Scheduler.Services;
+using Scheduler.Services.Base;
+using Scheduler.Services.HttpServices;
 
-namespace AppAgendamentos.Infrastructure.Extensions;
+namespace Scheduler.Infrastructure.Extensions;
 public static class ServiceExtensions
 {
     public static void AddRepositories(this IServiceCollection services)

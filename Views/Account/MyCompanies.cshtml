@@ -1,4 +1,8 @@
-@model AppAgendamentos.ViewModels.AccountViewModel
+@model Scheduler.ViewModels.AccountViewModel
+
+@{
+    ViewData["Title"] = "My Companies";
+}
 
 <table class="table table-striped">
     <thead class="thead-dark">
@@ -13,18 +17,18 @@
             <tr>
                 <td>@company.Name</td>
                 <td>
-                    @if (company.Status == AppAgendamentos.Enums.StatusEnum.TemporaryRemoved)
+                    @if (company.Status == Scheduler.Enums.StatusEnum.TemporaryRemoved)
                     {
                         <a class="btn btn-info btn-sm" href="@Url.Action("Reactive", "Company", new {id = company.Id})"
                             title="Company removed. Press the button to active again.">Active again</a>
                     }
                     else
                     {
-                        <a href="@Url.Action("Scheduler", "Company", new { id = company.Id })"
+                        <a href="@Url.Action("Schedule", "Company", new { @id = company.Id, @initialDate = DateTime.Now, @finalDate = DateTime.Now.AddDays(7) })"
                             class="btn btn-primary btn-sm">Select
                         </a>
 
-                        @if (company.ScheduleStatus == AppAgendamentos.Enums.ScheduleStatusEnum.Closed)
+                        @if (company.ScheduleStatus == Scheduler.Enums.ScheduleStatusEnum.Closed)
                         {
                             <a href="@Url.Action("OpenSchedule", "Company", new { companyId = company.Id })"
                                 class="btn btn-success btn-sm">Open the schedule

@@ -1,7 +1,7 @@
-using AppAgendamentos.Models.Base;
+using Scheduler.Models.Base;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace AppAgendamentos.Infrastructure.Configurations.Base;
+namespace Scheduler.Infrastructure.Configurations.Base;
 public abstract class ProfileBaseConfiguration<T> : EntityBaseConfiguration<T> where T : ProfileBase
 {
     public override void Configure(EntityTypeBuilder<T> builder)
