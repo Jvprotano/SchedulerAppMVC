@@ -10,71 +10,91 @@
         justify-content: center;
     }
 </style>
-@Html.HiddenFor(c => c.CompanyId)
-@Html.HiddenFor(c => c.AvailableTimeSlots)
 
-<div class="company-information" style="text-align: center;">
-    <img src="@Model.CompanyImage" height="200px"></img>
+<form action="/Scheduling/Create" method="post">
 
-    <h1 style="text-align: center;">@Model.CompanyName</h1>
-    <h3 style="text-align: center;">@Model.CompanyDescription</h3>
-</div>
+    @Html.HiddenFor(c => c.CompanyId)
+    @Html.HiddenFor(c => c.AvailableTimeSlots)
 
-<div class="services">
-    <div class="row">
-        <div class="form-group col-md-3">
-        </div>
-        <div class="form-group col-md-3">
-            @Html.Label("Serviço")
-            @Html.DropDownListFor(m => m.ServiceSelected, Model.CompanyServices, htmlAttributes: new
-                {
-                    @class =
-                     "form-control"
-                })
-        </div>
-        <div class="form-group col-md-2">
-            @Html.Label("Data do agendamento")
-            <input class="form-control" type="date" asp-for="ScheduledDate" />
-        </div>
-        <div class="form-group col-md-2">
-            @Html.Label("Horários disponíveis")
-            @Html.DropDownListFor(m => m.TimeSelected, Model.AvailableTimeSlots, htmlAttributes: new
-                {
-                    @class =
-                     "form-control"
-                })
+    <div class="company-information" style="text-align: center;">
+        <img src="@Model.CompanyImage" height="200px"></img>
+
+        <h1 style="text-align: center;">@Model.CompanyName</h1>
+        <h3 style="text-align: center;">@Model.CompanyDescription</h3>
+    </div>
+
+    <div class="services">
+        <div class="row">
+            <div class="form-group col-md-3">
+            </div>
+            <div class="form-group col-md-3">
+                @Html.Label("Serviço")
+                @Html.DropDownListFor(m => m.ServiceSelected, Model.CompanyServices, htmlAttributes: new
+                    {
+                        @class =
+                         "form-control"
+                    })
+            </div>
+            <div class="form-group col-md-2">
+                @Html.Label("Data do agendamento")
+                @Html.TextBoxFor(m => m.ScheduledDate, htmlAttributes: new
+                    {
+                        @class =
+                         "form-control",
+                        @type =
+                         "date"
+                    })
+            </div>
+            <div class="form-group col-md-2">
+                @Html.Label("Horários disponíveis")
+                @Html.DropDownListFor(m => m.TimeSelected, Model.AvailableTimeSlots, htmlAttributes: new
+                    {
+                        @class =
+                         "form-control"
+                    })
+            </div>
         </div>
     </div>
-</div>
-</div>
-<div class="user-confirmation" style="display: none;">
-    <div class="row">
-        <div class="form-group col-md-3" style="margin-left: 16%;">
-            @Html.Label("Nome")
-            @Html.TextBoxFor(m => m.CustomerName, htmlAttributes: new { @class = "form-control" })
-        </div>
-        <div class="form-group col-md-3">
-            @Html.Label("Phone Number")
-            <input type="tel" maxlength="15" asp-for="Phone" onkeyup="handlePhone(event)" class="form-control"
-                placeholder="(99)99999999" />
-        </div>
-        <div class="form-group col-md-3" style="display: none;" id="divConfirmationCode">
-            @Html.Label("Code")
-            @Html.TextBoxFor(m => m.ConfirmationCode, htmlAttributes: new { @class = "form-control", @maxlength = "5" })
-        </div>
-        <div class="form-group col-md-1" style="margin-top: 2.3%;">
-            <button class="btn btn-primary" id="sendCode">Send Code</button>
-        </div>
-        <div class="form-group col-md-1" style="margin-top: 2.3%;">
-            <button class="btn btn-danger" id="cancel">Cancel</button>
-        </div>
     </div>
-</div>
+    @if (!User.Identity.IsAuthenticated)
+    {
+        <div id="user-confirmation-container" style="display: none;">
+            <div class="row">
+                <div class="form-group col-md-3" style="margin-left: 16%;">
+                    @Html.Label("Nome")
+                    @Html.TextBoxFor(m => m.CustomerName, htmlAttributes: new { @class = "form-control" })
+                </div>
+                <div class="form-group col-md-3">
+                    @Html.Label("Phone Number")
+                    <input type="tel" maxlength="15" asp-for="Phone" onkeyup="handlePhone(event)" class="form-control"
+                        placeholder="(99)99999999" />
+                </div>
+                <div class="form-group col-md-3" style="display: none;" id="divConfirmationCode">
+                    @Html.Label("Code")
+                    @Html.TextBoxFor(m => m.ConfirmationCode, htmlAttributes: new
+                        {
+                            @class = "form-control",
+                            @maxlength =
+                             "5"
+                        })
+                </div>
+                <div class="form-group col-md-1" style="margin-top: 2.3%;">
+                    <a class="btn btn-primary" id="sendCode">Send Code</a>
+                </div>
+                <div class="form-group col-md-1" style="margin-top: 2.3%;">
+                    <a class="btn btn-danger" id="cancel">Cancel</a>
+                </div>
+            </div>
+        </div>
+    }
 
-<div class="row" id="row-actions">
-    <button class="btn btn-primary" id="confirm" style="margin-bottom: 10px; display: none">Confirmar</button>
-    <input class="btn btn-primary" type="submit" value="Agendar" id="submit" style="display: none; margin-bottom: 10px">
-</div>
+
+    <div class="row" id="row-actions">
+        <a class="btn btn-primary" id="confirm" style="margin-bottom: 10px; display: none">Confirmar</a>
+        <input class="btn btn-primary" type="submit" value="Book" id="submit"
+            style="display: none; margin-bottom: 10px">
+    </div>
+</form>
 
 @section Scripts {
     <script type="text/javascript">
@@ -96,26 +116,31 @@
             return value
         }
 
+        var userLogged = @User.Identity.IsAuthenticated.ToString().ToLower();
+        console.log(userLogged);
+
         $("#confirm").on("click", function () {
             $("#confirm").hide();
-            $("#ScheduledDate").prop('disabled', true)
-            $("#ServiceSelected").prop('disabled', true)
-            $("#TimeSelected").prop('disabled', true)
-            $(".user-confirmation").show(500);
+            
+            if (userLogged == false)
+            {
+                $("#user-confirmation-container").show(500);
+            }
+            else
+            {
+                $("#submit").show(500);
+            }
         })
         $("#cancel").on("click", function () {
             $("#confirm").show(500);
-            $("#ScheduledDate").prop('disabled', false)
-            $("#ServiceSelected").prop('disabled', false)
-            $("#TimeSelected").prop('disabled', false)
-            $(".user-confirmation").hide(500);
+            $("#user-confirmation-container").hide(500);
         })
         $("#sendCode").on("click", function () {
             $("#confirm").hide();
-            $("#CustomerName").prop('disabled', true)
-            $("#Phone").prop('disabled', true)
+            $("#CustomerName").prop('readonly', true)
+            $("#Phone").prop('readonly', true)
             $("#submit").show(500);
-            $(".user-confirmation").show();
+            $("#user-confirmation-container").show();
             $("#divConfirmationCode").show();
             $("#sendCode").hide();
             $("#cancel").hide();
@@ -159,7 +184,7 @@
             selectList.html('');
 
             data.map(function (time, i) {
-                const formatedTime = new Date(('June 11, 1999 ' + time + ' GMT-03:00')).toLocaleTimeString('en-US').replace(/:\d+ /, ' ');;
+                const formatedTime = new Date(('June 11, 1999 ' + time + ' GMT-03:00')).toLocaleTimeString('en-US').replace(/:\d+ /, ' ');
                 selectList.append($('<option></option>').val(time).html(formatedTime));
             })
 

@@ -166,9 +166,6 @@ public class CompanyController : BaseController
         {
             Schedulings = (await _schedulingService.GetAllOpenByCompanyIdAsync(companyId, initialDate, finalDate)).ToList()
         };
-        // var company = await _companyService.GetByIdAsync(companyId);
-
-        // var model = _mapper.Map<CompanyViewModel>(company);
 
         return View(model);
 

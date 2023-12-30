@@ -24,6 +24,7 @@ public class Service<T> : IService<T> where T : EntityBase
     }
     public virtual async Task SaveAsync(T entity)
     {
+        Validate(entity);
         await _repositoryBase.SaveAsync(entity);
     }
     public virtual void Validate(T entity)

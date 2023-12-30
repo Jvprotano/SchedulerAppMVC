@@ -11,19 +11,15 @@ public class SchedulingViewModel
     public string CustomerName { get; set; }
     public string Phone { get; set; }
     public string ConfirmationCode { get; set; }
-
-    public SelectListItem ServiceSelected { get; set; }
+    public string ServiceSelected { get; set; }
     public IList<SelectListItem> CompanyServices { get; set; }
     public IList<SelectListItem> AvailableTimeSlots { get; set; }
     public DateTime ScheduledDate { get; set; }
-    public TimeSpan ScheduledTime { get; set; }
-    public SelectListItem TimeSelected { get; set; }
-
+    public string TimeSelected { get; set; }
 
     public SchedulingViewModel()
     {
         CompanyServices = new List<SelectListItem>();
-        ScheduledDate = DateTime.Now;
         AvailableTimeSlots = new List<SelectListItem>();
     }
 }

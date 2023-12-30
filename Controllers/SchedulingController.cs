@@ -1,34 +1,35 @@
-using Scheduler.Contracts.Repositories;
+using AutoMapper;
+
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Scheduler.Contracts.Services;
 using Scheduler.Controllers.BaseControllers;
 using Scheduler.Enums;
 using Scheduler.Models;
 using Scheduler.ViewModels;
 
-using AutoMapper;
-
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
-
 namespace Scheduler.Controllers;
 [Route("[controller]/[action]")]
 public class SchedulingController : BaseController
 {
-    private readonly ICompanyRepository _repositoryCompany;
+    private readonly UserManager<ApplicationUser> _userManager;
+    private readonly ICompanyService _companyService;
     private readonly ISchedulingService _serviceScheduling;
     private readonly IMapper _mapper;
 
-    public SchedulingController(ILogger<SchedulingController> logger, ICompanyRepository repositoryCompany,
-     IMapper mapper, ISchedulingService serviceScheduling) : base(logger)
+    public SchedulingController(ILogger<SchedulingController> logger, ICompanyService companyService,
+     IMapper mapper, ISchedulingService serviceScheduling, UserManager<ApplicationUser> userManager) : base(logger)
     {
-        _repositoryCompany = repositoryCompany;
+        _companyService = companyService;
         _mapper = mapper;
         _serviceScheduling = serviceScheduling;
+        _userManager = userManager;
     }
     [HttpGet("{companyId}")]
     public async Task<IActionResult> Create(int companyId)
     {
-        var company = await _repositoryCompany.GetByIdAsync(companyId);
+        var company = await _companyService.GetByIdAsync(companyId);
 
         if (company == null)
         {
@@ -71,12 +72,37 @@ public class SchedulingController : BaseController
     {
         try
         {
+            if (String.IsNullOrWhiteSpace(model.TimeSelected))
+                throw new Exception("Time is required");
+            if (String.IsNullOrWhiteSpace(model.ServiceSelected))
+                throw new Exception("Service is required");
+            if (model.ScheduledDate == default)
+                throw new Exception("Date is required");
+
             var scheduling = _mapper.Map<Scheduling>(model);
+
+            if (User.Identities.Any(c => c.IsAuthenticated))
+            {
+                var user = _userManager.FindByNameAsync(User.Identity.Name).Result;
+                scheduling.CustomerId = user.Id;
+            }
+            else
+            {
+                var newUser = new ApplicationUser
+                {
+                    UserName = model.CustomerName,
+                    Email = model.CustomerName,
+                    PhoneNumber = model.Phone
+                };
+                await _userManager.CreateAsync(newUser);
+            }
             await _serviceScheduling.SaveAsync(scheduling);
+            SetMessageSuccess("Scheduling created successfully!");
         }
         catch (Exception ex)
         {
-            throw new Exception(ex.Message);
+            ModelState.AddModelError("", ex.Message);
+            return View(model);
         }
 
         return RedirectToAction("Index", "Home");

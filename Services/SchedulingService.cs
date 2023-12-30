@@ -18,6 +18,24 @@ public class SchedulingService : Service<Scheduling>, ISchedulingService
         _repositoryCompanyOpeningHours = repositoryCompanyOpeningHours;
         _serviceCompany = serviceCompany;
     }
+    public override void Validate(Scheduling entity)
+    {
+        if (entity.CompanyId == 0)
+            throw new Exception("Company is required");
+        // if (entity.CustomerId == 0)
+        //     throw new Exception("Customer is required");
+        if (entity.ScheduledDate == default)
+            throw new Exception("Scheduled date is required");
+        if (entity.ServicesOfferedId == 0)
+            throw new Exception("Service is required");
+
+        base.Validate(entity);
+    }
+
+    public override Task SaveAsync(Scheduling entity)
+    {
+        return base.SaveAsync(entity);
+    }
 
     public async Task<IEnumerable<Scheduling>> GetAllOpenByCompanyIdAsync(int companyId, DateTime initialDate, DateTime finalDate)
     {
